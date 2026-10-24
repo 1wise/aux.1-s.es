@@ -1,4 +1,4 @@
-# Timestamp: 2026-10-24 | Version: 6.3.0-dev.2
+# Timestamp: 2026-10-24 | Version: 6.4.0-dev.1
 # Author & Credits: https://www.alawise.es/1-s
 [Unit]
 Description=TECH rescue consent and local controls
@@ -10,7 +10,10 @@ Conflicts=getty@tty6.service
 
 [Service]
 Type=simple
-# Wait for a usable connection, but keep local recovery available when offline.
+# Persistent NetworkManager state can leave networking or Wi-Fi disabled across boots.
+ExecStartPre=/usr/bin/nmcli networking on
+ExecStartPre=-/usr/bin/nmcli radio wifi on
+# Keep local recovery available when no network can be established.
 ExecStartPre=-/usr/bin/nm-online --quiet --timeout=15
 ExecStartPre=/usr/bin/chvt 6
 ExecStart=/usr/bin/python3 /usr/share/aux-assist/assist.py
