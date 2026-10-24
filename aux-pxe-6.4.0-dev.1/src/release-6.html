@@ -1,0 +1,49 @@
+<!-- Timestamp: 2026-10-24 | Version: 6.4.0-dev.1 | Author & Credits: https://www.alawise.es/1-s -->
+<section><h1>AUX / PXE / TEC 6.4 · Agentes y CLI</h1>
+<p><strong>6.4.0-dev.1 — fuentes de pruebas, no versión estable ni ISO compilada.</strong>
+USB persistente, casos reanudables tras reinicios, claves API preparadas y menús negro/verde/azul oscuro. GPT y Gemini mantienen aprobación física root.
+La ISO Rescue 5.0.1 permanece intacta.</p>
+<p><a href="downloads/aux-suite-6.4.0-dev.1.zip">Descargar entrega completa 6.4</a> ·
+<a href="downloads/aux-suite-6.4.0-dev.1.zip.sha256">SHA-256</a> ·
+<a href="downloads/RELEASE-6.4.md">Guía de preparación</a> ·
+<a href="downloads/CHECKLIST-6.4.json">Checklist de publicación</a></p>
+<h2>Two terminals in a new browser tab</h2><p>Open terminal from CLI or the case register to open Terminal 1 and Terminal 2. Each has Paste and Ctrl+C controls. Switching tabs keeps both shells connected. Update TEC, CLI and the Live client together.</p><h2>WAN Arsenal and local USB networking</h2><p>WAN Arsenal names the iPXE menu. Local persistent and RAM boots obtain their own connection and DNS through NetworkManager. The menu remains available offline.</p><h2>Llave y asistencia</h2><p>La primera entrada USB persistente arranca tras 5 segundos. El caso autorizado puede continuar durante ocho horas en el mismo equipo, por web o SSH 4242. Reiniciar abre una shell nueva. <a href="downloads/aux-portable-6.4.0-dev.1-kit.zip">Kit portable</a>.</p><h2>Instalación nueva</h2><p><a href="downloads/INSTALL-6.4.md">Instalar desde cero</a> · <a href="downloads/install-web.py">Instalador con plan por defecto</a>. Alta TOTP en la cuenta y secreto CLI sincronizado por el instalador.</p>
+<h2>Hacer, revisar y deshacer</h2>
+<p>G y M abren los agentes sin root en F4/F5. Ambos usan el mismo ejecutor local.
+E en F6 muestra plan, ID, SHA-256 y estado previo. Simular no modifica el destino.
+Aplicar y deshacer requieren frases distintas de confirmación. I cierra ambas API.</p>
+<table><thead><tr><th>Acción</th><th>Primera entrega</th><th>Deshacer</th></tr></thead><tbody>
+<tr><td>Diagnóstico</td><td>Memoria, discos sin leer datos, servicios fallidos</td><td>No modifica nada</td></tr>
+<tr><td>Texto</td><td>Solo *.txt bajo /work/managed</td><td>Restaurar copia previa o retirar el archivo creado</td></tr>
+<tr><td>Servicio</td><td>Solo iniciar/detener chronyd.service</td><td>Restituir activo/inactivo</td></tr>
+<tr><td>Paquetes, red, discos</td><td>Bloqueados; ampliación pendiente</td><td>No se promete reversión genérica</td></tr>
+</tbody></table>
+<p>No hay shell arbitraria. Las propuestas caducan y el canal del agente no admite aprobar
+ni ejecutar. El diario y las copias son privados y efímeros: no hay deshacer tras reiniciar.
+Los resultados solo salen hacia la API al escribir ENVIAR.</p>
+<p><a href="downloads/iso-assist/AGENT-6.3.md">Hola mundo, aprobación y deshacer</a> ·
+<a href="downloads/iso-assist/payload/aux_exec.py">Ejecutor comentado</a> ·
+<a href="downloads/iso-assist/payload/ai_agent.py">Adaptadores GPT/Gemini</a></p>
+<h2>Servicios por ubicación</h2>
+<p>Excalibur ejecuta aux-cli, Nginx y TEC/PHP. La ISO contiene aux-gpt, aux-gemini y
+aux-exec. Las API se consultan directamente por HTTPS, con entrada de clave visible u oculta; cli.1-s.es
+sigue siendo la pasarela SSH humana, no una pasarela API de IA.</p>
+<p>Las sesiones API son nuevas y no heredan esta conversación. Hola mundo allí no envía
+un mensaje a este chat. No se incluyen claves ni un modelo supuestamente universal.</p>
+<h2>Bastion: una sola raíz B/P/T</h2>
+<p>Los tres dominios usan la misma carpeta OVH con el despliegue entero, las ISO, árboles,
+catálogo y TEC público. assemble.py materializa enlaces autorizados como archivos físicos.
+Datos privados y secretos quedan fuera. Bastion no ejecuta CLI; Kamala es alternativo manual.</p>
+<p><a href="downloads/ovh/README.md">Preparar raíz completa OVH</a></p>
+<h2>USB con espacio de trabajo</h2>
+<p>El creador valida y exige confirmación antes de borrar. Añade AUX-DATA al espacio restante
+de ISO GPT compatibles. Montaje explícito en /storage; /work sigue en RAM. No probado en
+USB físico. MBR/híbrido desconocido se rechaza antes de escribir.</p>
+<p><strong>Guardar datos o una ISO nueva no actualiza el kernel del Live.</strong>
+Instalación USB actualizable o imágenes A/B con recuperación siguen pendientes.</p>
+<p><a href="downloads/usb/USB-6.3.md">USB y límites</a> ·
+<a href="downloads/usb/create-usb.sh">Creador USB</a> · <a href="work.html">/work</a></p>
+<h2>Antes de publicar estable</h2>
+<p>Pendientes: API reales, arranque BIOS/UEFI y SELinux 6.3, USB físico, ejecución/deshacer
+desde ambos proveedores, CLI exterior GSM, navegador, contingencia y revisión de seguridad.
+Las pruebas locales no convierten esas condiciones en verificadas.</p></section>

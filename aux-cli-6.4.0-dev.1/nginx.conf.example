@@ -1,0 +1,30 @@
+# Timestamp: 2026-10-24 | Version: 6.4.0-dev.1
+# Author & Credits: https://www.alawise.es/1-s
+# Define in the http context, outside the server block.
+map $request_method $aux_pair_key {
+    default "";
+    POST $binary_remote_addr;
+}
+limit_req_zone $aux_pair_key zone=aux_pair:1m rate=6r/m;
+server {
+    listen 443 ssl;
+    server_name cli.1-s.es;
+    ssl_certificate /etc/letsencrypt/live/ntp1.1-s.eu/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/ntp1.1-s.eu/privkey.pem;
+    client_max_body_size 16k;
+    location = /api/sessions {
+        limit_req zone=aux_pair burst=4 nodelay;
+        proxy_pass http://127.0.0.1:8096;
+        proxy_set_header Host $host;
+    }
+    location / {
+        proxy_pass http://127.0.0.1:8096;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_buffering off;
+        proxy_read_timeout 90s;
+        proxy_send_timeout 90s;
+    }
+}
