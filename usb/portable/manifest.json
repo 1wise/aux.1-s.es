@@ -1,0 +1,105 @@
+{
+  "_meta": {
+    "Timestamp": "2026-10-17",
+    "Version": "6.3.0-dev.2",
+    "Author & Credits": "https://www.alawise.es/1-s"
+  },
+  "status": "development source kit; support resume implemented and fixture-tested; actual Live acceptance pending",
+  "image": null,
+  "iso_input": null,
+  "implemented": [
+    "new regular-file image builder",
+    "GPT BIOS + EFI + shared ext4",
+    "compressed Live base shared by clean/persistent boots",
+    "network iPXE entry",
+    "persistent root/work/storage",
+    "generic Live initramfs generation",
+    "atomic kernel menu publication with previous kernel when modules remain",
+    "persistent GRUB entry selected by stable ID on every boot",
+    "optional private USB API key preload with root staging and per-unit systemd credentials; local replacement and deletion",
+    "fixed-deadline authorized case resume with private USB state, durable gateway cases and browser reconnect"
+  ],
+  "tested": {
+    "isolated_tests": 10,
+    "grub_syntax_files": 3,
+    "physical_device_writes": 0,
+    "actual_kernel_boot": false,
+    "selinux_live": false,
+    "ai_tests": 20,
+    "executor_tests": 20,
+    "executor_skipped": 1,
+    "iso_source_tests": 13,
+    "systemd_units_and_dropins_syntax": 2,
+    "provider_api_calls": 0,
+    "client_resume_tests": 5,
+    "gateway_resume_tests": 5,
+    "live_agent_wss_reconnect": 1
+  },
+  "pending": [
+    "actual client reboot, web reconnection and direct SSH under SELinux enforcing",
+    "real per-service credential delivery to GPT/Gemini, local key manager and SELinux on the booted USB",
+    "build using actual AUX ISO on Fedora",
+    "BIOS and UEFI VM boot",
+    "physical USB boot",
+    "persistent package and workspace after reboot",
+    "new kernel boot",
+    "SELinux enforcing",
+    "power interruption",
+    "automatic expansion and clone UUID individualization",
+    "Secure Boot unsupported by this unsigned loader"
+  ],
+  "source_sha256": {
+    "API-KEYS.md": "b7bf10439bdcf4661ba7d8f0ddffa47ed0cab8a5b4d40b6b20cf02add1196b78",
+    "README.md": "bfa6d123d5f5ebe2eb68fbf1393ed0ee9373c77badb0c9fc61453e84f4bb013f",
+    "RESUME.md": "0d857641bd06b1e7783bc30cc73e7759e82942ea0a8974f3c8834129ab4d49eb",
+    "build.py": "6d3de9eb40bda2cd9166bbeb9ae36dd170a15c4921a8b5b59f9a2dc69587b5cf",
+    "portable_menu.py": "d3c9782982aeffaf1940aa86ee05f9aac9fbc711e0a9c41c63bd2e7ea465143a",
+    "runtime.py": "5a27f681101a6a5581d2c3debc9bf9746eec173870afb2e10836033f4862ea87",
+    "test_portable.py": "ec58dfc791e16111cfa2fededd7ebed7cabbad166733af0ad2f3136b57a78266",
+    "live-patch/ai.py": "57691890f239534f7f12664348aa5ae5c466329e0a63c987af0452fde6026801",
+    "live-patch/ai_agent.py": "2115d291a45b96926e6240f772a79e6c5ea51ceb86372eb2186d06eee2abac5d",
+    "live-patch/assist.py": "d2e3a28377fdbae182b0151a75dbcceef2b25aa9bf466c5828a8d2c532618ee7",
+    "live-patch/agent.py": "af78560fcc0a2def142e84447e09975a82011920af57affe6f0d9f01488dfab3",
+    "live-patch/support_case.py": "6821d0555bf01ba1417b239348d8789411ce5c37a6d3b731d48fd2fe4f1a0793"
+  },
+  "default_boot": {
+    "entry_id": "aux-persistent",
+    "timeout_seconds": 5,
+    "saved_last_selection": false
+  },
+  "support_resume": {
+    "required_for_release": true,
+    "implemented": true,
+    "live_verified": false,
+    "specification": "RESUME.md",
+    "routes": [
+      "web",
+      "C"
+    ],
+    "duration_seconds": 28800,
+    "gateway_store": "/var/lib/aux-cli/cases",
+    "client_store": "AUX/private/support/case.json"
+  },
+  "api_key_preload": {
+    "implemented_in_sources": true,
+    "live_verified": false,
+    "specification": "API-KEYS.md",
+    "profile": "persistent USB only",
+    "providers": [
+      "openai",
+      "gemini"
+    ],
+    "directory": "AUX/private/api",
+    "directory_mode": "0700 root",
+    "file_mode": "0600 root",
+    "encrypted_at_rest": false,
+    "real_keys_in_kit": false
+  },
+  "case_registry": {
+    "implemented_in_sources": true,
+    "live_verified": false,
+    "device_identity": "USB UUID and hashed DMI UUID after local consent",
+    "gateway_history": "/var/lib/aux-cli/history.sqlite3",
+    "standalone_C": "manual tracking"
+  }
+}

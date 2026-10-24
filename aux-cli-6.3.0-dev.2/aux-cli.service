@@ -1,0 +1,31 @@
+# Timestamp: 2026-10-17 | Version: 6.3.0-dev.1
+# Author & Credits: https://www.alawise.es/1-s
+[Unit]
+Description=AUX CLI consent-bound WSS SSH gateway
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=aux-cli
+Group=aux-cli
+WorkingDirectory=/opt/aux-cli
+Environment=AUX_CLI_CONFIG=/etc/aux-cli/fast-boot.json
+Environment=AUX_CLI_NODE=excalibur
+Environment=AUX_CLI_SECRET_FILE=/etc/aux-cli/secret
+ExecStart=/opt/aux-cli/venv/bin/python /opt/aux-cli/server.py
+Restart=on-failure
+UMask=0077
+StateDirectory=aux-cli
+StateDirectoryMode=0700
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+CapabilityBoundingSet=
+
+[Install]
+WantedBy=multi-user.target

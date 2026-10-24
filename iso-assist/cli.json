@@ -1,0 +1,7 @@
+{
+  "_meta": {"Timestamp": "2026-10-16", "Version": "6.3.0-dev.1", "Author & Credits": "https://www.alawise.es/1-s"},
+  "nodes": {
+    "excalibur": {"url": "https://cli.1-s.es"},
+    "kamala": {"url": "https://cli-kamala.1-s.es"}
+  }
+}
