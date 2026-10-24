@@ -1,0 +1,106 @@
+{
+  "_meta": {
+    "Timestamp": "2026-10-17",
+    "Version": "6.4.0-dev.1",
+    "Author & Credits": "https://www.alawise.es/1-s"
+  },
+  "status": "development source kit; support resume implemented and fixture-tested; actual Live acceptance pending",
+  "image": null,
+  "iso_input": null,
+  "implemented": [
+    "new regular-file image builder",
+    "GPT BIOS + EFI + shared ext4",
+    "compressed Live base shared by clean/persistent boots",
+    "network iPXE entry",
+    "persistent root/work/storage",
+    "generic Live initramfs generation",
+    "atomic kernel menu publication with previous kernel when modules remain",
+    "persistent GRUB entry selected by stable ID on every boot",
+    "optional private USB API key preload with root staging and per-unit systemd credentials; local replacement and deletion",
+    "fixed-deadline authorized case resume with private USB state, durable gateway cases and browser reconnect"
+  ],
+  "tested": {
+    "isolated_tests": 10,
+    "grub_syntax_files": 3,
+    "physical_device_writes": 0,
+    "actual_kernel_boot": false,
+    "selinux_live": false,
+    "ai_tests": 20,
+    "executor_tests": 20,
+    "executor_skipped": 1,
+    "iso_source_tests": 13,
+    "systemd_units_and_dropins_syntax": 2,
+    "provider_api_calls": 0,
+    "client_resume_tests": 5,
+    "gateway_resume_tests": 5,
+    "live_agent_wss_reconnect": 1
+  },
+  "pending": [
+    "actual client reboot, web reconnection and direct SSH under SELinux enforcing",
+    "real per-service credential delivery to GPT/Gemini, local key manager and SELinux on the booted USB",
+    "build using actual AUX ISO on Fedora",
+    "BIOS and UEFI VM boot",
+    "physical USB boot",
+    "persistent package and workspace after reboot",
+    "new kernel boot",
+    "SELinux enforcing",
+    "power interruption",
+    "automatic expansion and clone UUID individualization",
+    "Secure Boot unsupported by this unsigned loader"
+  ],
+  "source_sha256": {
+    "API-KEYS.md": "b7bf10439bdcf4661ba7d8f0ddffa47ed0cab8a5b4d40b6b20cf02add1196b78",
+    "README.md": "6e3ab0b8fc782ebe7637efd81807428cb4090f9f7d24273fd6a4df9660463411",
+    "RESUME.md": "0d857641bd06b1e7783bc30cc73e7759e82942ea0a8974f3c8834129ab4d49eb",
+    "build.py": "1f6cfa9b11f2aa49108ad7664c7a2121c13f2e16deaf961295ee13e7b478be9b",
+    "portable_menu.py": "2d709e4966870f362c72e51ff4d5de60907574741e6e8c2df665ddca823ae78a",
+    "runtime.py": "9fb8e6543e3e8e1250c54998584318b2bcaebc548c9d5158e04f8b7921e8b716",
+    "test_portable.py": "b96681b977f4afa21a9c0d0f97f82680c6e2ab262e8b6748e15ca91a0f8df169",
+    "live-patch/ai.py": "ce13048cf2c271cc3f9176ca07df3560eb8506eb90903824694f011c65c1e5f9",
+    "live-patch/ai_agent.py": "ba316ff6f42001ac29123fcaf1b5571a7abe599ae97fe0c740865045d5a6273f",
+    "live-patch/assist.py": "f1e76e987af31626144afcd980c7ff54aca35c1ba2d59fcc92dca3ecba144b58",
+    "live-patch/agent.py": "317937442d3fd4c5f315599f9895710bdeb0e74b8d24f93d84402003e337d26c",
+    "live-patch/support_case.py": "44482f23d3792b054ede6456b4f65137104c5dce8a842fcca37368268ca1a646",
+    "live-patch/remote-shell.sh": "147acee5047772e53b668f1df501eb8535f627d004a127e9a121026630a2c6c3"
+  },
+  "default_boot": {
+    "entry_id": "aux-persistent",
+    "timeout_seconds": 5,
+    "saved_last_selection": false
+  },
+  "support_resume": {
+    "required_for_release": true,
+    "implemented": true,
+    "live_verified": false,
+    "specification": "RESUME.md",
+    "routes": [
+      "web",
+      "C"
+    ],
+    "duration_seconds": 28800,
+    "gateway_store": "/var/lib/aux-cli/cases",
+    "client_store": "AUX/private/support/case.json"
+  },
+  "api_key_preload": {
+    "implemented_in_sources": true,
+    "live_verified": false,
+    "specification": "API-KEYS.md",
+    "profile": "persistent USB only",
+    "providers": [
+      "openai",
+      "gemini"
+    ],
+    "directory": "AUX/private/api",
+    "directory_mode": "0700 root",
+    "file_mode": "0600 root",
+    "encrypted_at_rest": false,
+    "real_keys_in_kit": false
+  },
+  "case_registry": {
+    "implemented_in_sources": true,
+    "live_verified": false,
+    "device_identity": "USB UUID and hashed DMI UUID after local consent",
+    "gateway_history": "/var/lib/aux-cli/history.sqlite3",
+    "standalone_C": "manual tracking"
+  }
+}
