@@ -1,0 +1,7 @@
+{
+  "_meta": {"Timestamp": "2026-10-16", "Version": "6.3.0-dev.1", "Author & Credits": "https://www.alawise.es/1-s"},
+  "node": "excalibur",
+  "origins": ["https://tec.1-s.es", "https://tec.1-s.eu", "https://t.1-s.es", "https://t.1-s.eu"],
+  "port": 8096,
+  "max_sessions": 64
+}

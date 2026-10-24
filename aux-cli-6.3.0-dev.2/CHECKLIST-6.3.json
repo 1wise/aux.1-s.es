@@ -1,0 +1,89 @@
+{
+  "_meta": {
+    "Timestamp": "2026-10-17",
+    "Version": "6.3.0-dev.2",
+    "Author & Credits": "https://www.alawise.es/1-s"
+  },
+  "stable_ready": false,
+  "stage": "complete development source suite; network loader built; AUX ISO and combined USB not built",
+  "checks": {
+    "gateway_reconnect": {
+      "state": "passed_automated",
+      "evidence": "5 gateway tests including two real SSH terminal transports and durable restart"
+    },
+    "client_case": {
+      "state": "passed_automated",
+      "evidence": "5 identity/privacy/clock/SSH host key/shutdown cases"
+    },
+    "live_agent_wss": {
+      "state": "passed_automated",
+      "evidence": "real agent, local HTTPS/WSS gateway, one initial consent, automatic reconnect and remote close"
+    },
+    "api_preload": {
+      "state": "passed_automated",
+      "evidence": "20 API tests and 10 portable tests; no provider calls"
+    },
+    "portal_refresh_reconnect": {
+      "state": "passed_automated",
+      "evidence": "Node DOM fixture; actual browser acceptance pending"
+    },
+    "loader_bios_uefi": {
+      "state": "passed_qemu_menu",
+      "evidence": "both GRUB menus viewed; networkless iPXE initialization; no AUX Live boot"
+    },
+    "php_totp": {
+      "state": "passed_automated",
+      "evidence": "four platform/TOTP flows and PHP lint"
+    },
+    "nginx_routing": {
+      "state": "passed_automated",
+      "evidence": "six local virtual hosts with temporary TLS fixtures"
+    },
+    "catalog_regression": {
+      "state": "passed_automated",
+      "evidence": "65 checks; corrected USB 6.3 link rechecked, plus extracted command bundle regression"
+    },
+    "package_integrity": {
+      "state": "passed_automated",
+      "evidence": "five component ZIP CRC/SHA-256, outer SHA256SUMS, installer plan and extracted portable/ISO case fixtures"
+    },
+    "fresh_fedora_install": {
+      "state": "pending"
+    },
+    "live_bios_uefi_selinux": {
+      "state": "pending"
+    },
+    "physical_usb_and_reboot_resume": {
+      "state": "pending"
+    },
+    "kernel_update_boot": {
+      "state": "pending"
+    },
+    "provider_api_accounts": {
+      "state": "pending"
+    },
+    "browser_clipboard_yubikey": {
+      "state": "pending"
+    },
+    "unix_socket_in_live": {
+      "state": "pending",
+      "evidence": "one AF_UNIX test is skipped by this runtime"
+    },
+    "unit_syntax": {
+      "state": "passed_automated",
+      "evidence": "systemd API credential drop-ins and gateway parsed; gateway interpreter substituted only in local syntax fixture"
+    },
+    "client_usb_registry": {
+      "state": "passed_automated",
+      "evidence": "PHP registry + real PHP/TLS gateway integration; scoped accounts, CSRF/TOTP, notes, dates, identity and retained history"
+    },
+    "gateway_history": {
+      "state": "passed_automated",
+      "evidence": "4 new tests; durable SQLite metadata journal, pagination, device invariants, secret exclusion, revocation despite audit failure"
+    },
+    "registry_browser": {
+      "state": "pending",
+      "evidence": "Node DOM fixtures passed; full browser visual acceptance pending"
+    }
+  }
+}
