@@ -1,0 +1,82 @@
+# Timestamp: 2026-10-17 | Version: 6.3.0-dev.1
+# Author & Credits: https://www.alawise.es/1-s
+# Build with livemedia-creator virtual mode, never as a client installer.
+lang en_US.UTF-8
+# Lorax owns the installer display mode; do not add text, cmdline or graphical.
+keyboard es
+timezone UTC --utc
+rootpw --iscrypted @ROOT_HASH@
+selinux --enforcing
+firewall --disabled
+services --enabled=NetworkManager,chronyd --disabled=sshd
+network --bootproto=dhcp --activate --device=link
+url --mirrorlist=https://mirrors.fedoraproject.org/mirrorlist?repo=fedora-44&arch=x86_64
+repo --name=f44-updates --mirrorlist=https://mirrors.fedoraproject.org/mirrorlist?repo=updates-released-f44&arch=x86_64
+bootloader --location=mbr
+zerombr
+clearpart --all --initlabel
+# Add the platform's required boot partition to the disposable build disk.
+reqpart
+part / --size=8192 --fstype=ext4
+shutdown
+
+%packages --nocore --excludedocs --exclude-weakdeps
+@PACKAGES@
+%end
+
+%post --erroronfail --interpreter=/usr/bin/python3 --log=/var/log/tech-image-post.log
+import base64
+import json
+from pathlib import Path
+import subprocess
+
+# Payload travels inside Kickstart so both QEMU and the installer see it.
+for ent in json.loads(base64.b64decode('@PAYLOAD@')):
+    pth = Path(ent['path'])
+    pth.parent.mkdir(parents=True, exist_ok=True)
+    pth.write_bytes(base64.b64decode(ent['data']))
+    pth.chmod(ent['mode'])
+
+Path('/work').mkdir(exist_ok=True)
+Path('/root').mkdir(mode=0o700, exist_ok=True)
+Path('/etc/fstab').write_text('# Live root is mounted by dracut; no client disks or swap.\n')
+Path('/etc/hostname').write_text('tec-rescue\n')
+subprocess.run(['usermod', '-s', '/bin/bash', 'root'], check=True)
+# AI terminals cannot obtain root; only the physical approval console can apply plans.
+subprocess.run(['useradd', '--system', '--user-group', '--no-create-home',
+                '--shell', '/usr/sbin/nologin', 'aux-ai'], check=True)
+# No automatic local login or SSH outside the consent-based assistance service.
+for uni in ('sshd.service', 'sshd.socket', 'getty@.service', 'serial-getty@.service',
+            'systemd-zram-setup@.service'):
+    subprocess.run(['systemctl', 'mask', uni], check=True)
+subprocess.run(['systemctl', 'enable', 'tech-work.service', 'aux-assist.service',
+                'aux-observer@7.service', 'aux-observer@8.service'], check=True)
+subprocess.run(['systemctl', 'set-default', 'multi-user.target'], check=True)
+# Declare the custom SSH port in this Live image, not on the build host.
+res = subprocess.run(['semanage', 'port', '-a', '-t', 'ssh_port_t', '-p', 'tcp', '4242'])
+if res.returncode:
+    subprocess.run(['semanage', 'port', '-m', '-t', 'ssh_port_t', '-p', 'tcp', '4242'], check=True)
+subprocess.run(['restorecon', '-RF', '/usr/share/aux-assist', '/etc/systemd/system', '/root'], check=True)
+subprocess.run(['dnf5', 'clean', 'all'], check=True)
+
+# Fail the build when a promised utility is absent, rather than silently skipping it.
+import shutil
+req = @COMMANDS@
+aus = [nom for nom in req if shutil.which(nom) is None]
+if aus:
+    raise RuntimeError('Missing rescue utilities: ' + ', '.join(aus))
+if not Path('/etc/yum.repos.d/fedora.repo').is_file():
+    raise RuntimeError('Fedora repository configuration is missing')
+import sys
+sys.path.insert(0, '/usr/share/aux-assist')
+from boot_check import prepara_efi
+prepara_efi()
+# Lorax creates the outer Live initramfs; retain no duplicate in the compressed root.
+for pth in Path('/boot').glob('initramfs-*.img'):
+    pth.unlink()
+subprocess.run(['rpm', '-qa', '--qf', '%{NAME}-%{VERSION}-%{RELEASE}.%{ARCH}\n'],
+               stdout=open('/usr/share/aux-assist/packages-rpm.txt', 'w'), check=True)
+Path('/etc/machine-id').write_text('')
+for pth in Path('/etc/ssh').glob('ssh_host_*'):
+    pth.unlink()
+%end
