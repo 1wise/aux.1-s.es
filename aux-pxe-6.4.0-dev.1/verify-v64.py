@@ -29,6 +29,7 @@ class Suite(unittest.TestCase):
     def test_complete_suite_has_unique_entries_and_valid_checksums(self):
         self.assertIsNone(self.arc.testzip())
         self.assertEqual(len(self.arc.namelist()), len(set(self.arc.namelist())))
+        self.assertEqual(self.arc.read('README.md'), (DIR_APP / 'packaging/README-SUITE.md').read_bytes())
         for lin in self.arc.read('SHA256SUMS').decode().splitlines():
             suma, nom = lin.split('  ', 1)
             self.assertEqual(hashlib.sha256(self.arc.read(nom)).hexdigest(), suma, nom)
@@ -38,6 +39,9 @@ class Suite(unittest.TestCase):
             with self.componente(nom) as cmp:
                 self.assertIsNone(cmp.testzip(), nom)
                 self.assertEqual(len(cmp.namelist()), len(set(cmp.namelist())), nom)
+                if nom.startswith('aux-pxe-'):
+                    self.assertEqual(cmp.read('README.md'),
+                                     (DIR_APP / 'packaging/README-AUX-PXE.md').read_bytes())
 
     def test_tec_workspace_and_assets_match_the_verified_sources(self):
         with self.componente('tec-platform-' + VERSION + '.zip') as cmp:
