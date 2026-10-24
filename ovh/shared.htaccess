@@ -1,0 +1,19 @@
+# Timestamp: 2026-10-16 | Version: 6.0.0-dev.1
+# Author & Credits: https://www.alawise.es/1-s
+# All B/P/T Multisite domains use this SAME public root, including all ISO files.
+DirectoryIndex index.php index.html
+Options -Indexes
+AddType text/plain .ipxe
+AddType application/octet-stream .iso .img .efi .kpxe .lkrn .bin .bzi
+RewriteEngine On
+# Stop direct access to administrative material if it was uploaded by mistake.
+RewriteRule (?:^|/)(?:\.git|\.env|manage\.php|usuarios\.json|tecnicos\.json|solicitudes\.json)(?:/|$) - [F,L,NC]
+RewriteCond %{HTTP_HOST} ^(?:t|tec)\.1-s\.(?:es|eu)(?::[0-9]+)?$ [NC]
+RewriteRule ^(?:index\.(?:php|html))?$ tec/index.php [L]
+# TEC uses root-relative PHP endpoints and assets; route only known public paths.
+RewriteCond %{HTTP_HOST} ^(?:t|tec)\.1-s\.(?:es|eu)(?::[0-9]+)?$ [NC]
+RewriteRule ^((?:[A-Za-z0-9_-]+\.(?:php|css|js|ttf))|(?:assets|vendor)/.+)$ tec/$1 [L]
+RewriteCond %{HTTP_HOST} ^(?:p|pxe)\.1-s\.(?:es|eu)(?::[0-9]+)?$ [NC]
+RewriteRule ^(?:index\.(?:php|html))?$ cli.html [L]
+# Relative content paths are shared, so no ISO, kernel or tree is duplicated.
+# Keep HTTP available for iPXE; do not add a blanket HTTP-to-HTTPS redirect.

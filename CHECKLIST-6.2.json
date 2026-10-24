@@ -1,0 +1,57 @@
+{
+  "_meta": {
+    "Timestamp": "2026-10-17",
+    "Version": "6.2.0-dev.1",
+    "Author & Credits": "https://www.alawise.es/1-s"
+  },
+  "stable_ready": false,
+  "stage": "complete development source suite; ISO not compiled; installer not deployed",
+  "checks": {
+    "source_contracts": {
+      "state": "passed_automated",
+      "evidence": "test_exec.py 19 passed + 1 AF_UNIX runtime skip; test_ai.py 15 passed; test_sources.py 13 passed; verify-v62.py 5 passed; verify-v61.py 11 passed; verify-v6.py 8 passed"
+    },
+    "php_totp_enrollment": {
+      "state": "passed_automated",
+      "evidence": "PHP 8.3.6: test_cli.php, test_enroll.php, test_platform.py and test_enroll_web.py passed; real local PHP HTTP/session flow with simulated HTTPS server metadata"
+    },
+    "cli_transport": {
+      "state": "passed_automated",
+      "evidence": "10 tests with real local SSH, HTTPS/WSS, certificate rejection, 165-character synthetic input and revocation"
+    },
+    "fresh_excalibur_install": {
+      "state": "pending"
+    },
+    "iso_bios_uefi_selinux": {
+      "state": "pending"
+    },
+    "api_live_accounts": {
+      "state": "pending"
+    },
+    "browser_yubikey_enrollment": {
+      "state": "pending"
+    },
+    "physical_usb": {
+      "state": "pending"
+    },
+    "security_review": {
+      "state": "pending"
+    },
+    "nginx_routing": {
+      "state": "passed_automated",
+      "evidence": "Temporary Nginx routing harness passed; not production TLS or PHP-FPM deployment"
+    },
+    "unix_socket_on_live": {
+      "state": "pending",
+      "evidence": "AF_UNIX creation is prohibited in this preparation runtime; integration test skipped"
+    },
+    "regression_catalog": {
+      "state": "passed_automated",
+      "evidence": "verify.py: all 65 tests passed after correcting the USB guide link"
+    },
+    "package_integrity": {
+      "state": "passed_automated",
+      "evidence": "Four component ZIPs plus suite: CRC, SHA-256, extracted contents and ISO source hashes verified; installer plan tested from extracted suite"
+    }
+  }
+}

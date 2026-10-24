@@ -1,0 +1,22 @@
+# Timestamp: 2026-10-13 | Version: 5.1.0
+# Author & Credits: https://www.alawise.es/1-s
+https://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/debian-live-13.7.0-amd64-gnome.iso
+https://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/debian-live-13.7.0-amd64-xfce.iso
+https://fedora.mirrorservice.org/fedora/linux/releases/44/Workstation/x86_64/iso/Fedora-Workstation-Live-44-1.7.x86_64.iso
+https://fedora.ipacct.com/fedora/linux/releases/44/Workstation/aarch64/iso/Fedora-Workstation-Live-44-1.7.aarch64.iso
+https://mirror.xenyth.net/archlinux/iso/2026.10.01/archlinux-2026.10.01-x86_64.iso
+https://distfiles.gentoo.org/releases/amd64/autobuilds/current-livegui-amd64/livegui-amd64-20260913T163055Z.iso
+https://kali.download/base-images/kali-2026.2/kali-linux-2026.2-installer-amd64.iso
+https://kali.download/base-images/kali-2026.2/kali-linux-2026.2-installer-purple-amd64.iso
+https://enterprise.proxmox.com/iso/proxmox-ve_9.2-1.iso
+https://cdimage.debian.org/cdimage/daily-builds/daily/current/amd64/iso-cd/debian-testing-amd64-netinst.iso
+https://cdimage.debian.org/cdimage/daily-builds/daily/current/arm64/iso-cd/debian-testing-arm64-netinst.iso
+https://releases.ubuntu.com/26.04.1/ubuntu-26.04.1-desktop-amd64.iso
+https://releases.ubuntu.com/26.04.1/ubuntu-26.04.1-live-server-amd64.iso
+https://sourceforge.net/projects/boot-repair-cd/files/boot-repair-disk-64bit.iso/download
+https://cloud.debian.org/images/cloud/trixie/latest/debian-13-genericcloud-amd64.qcow2
+https://cloud.debian.org/images/cloud/trixie/latest/debian-13-genericcloud-arm64.qcow2
+https://download.fedoraproject.org/pub/fedora/linux/releases/44/Cloud/x86_64/images/Fedora-Cloud-Base-Generic-44-1.7.x86_64.qcow2
+https://download.fedoraproject.org/pub/fedora/linux/releases/44/Cloud/aarch64/images/Fedora-Cloud-Base-Generic-44-1.7.aarch64.qcow2
+https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86/alpine-extended-3.24.2-x86.iso
+https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86_64/alpine-extended-3.24.2-x86_64.iso

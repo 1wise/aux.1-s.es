@@ -1,0 +1,15 @@
+; Timestamp: 2026-10-13 | Version: 5.0.8
+; Author & Credits: https://www.alawise.es/1-s
+; Dedicated public AUX pool; TEC uses a separate system account.
+[aux]
+user = www-data
+group = www-data
+listen = /run/php/aux.sock
+listen.owner = www-data
+listen.group = www-data
+listen.mode = 0660
+pm = ondemand
+pm.max_children = 4
+pm.process_idle_timeout = 20s
+clear_env = yes
+security.limit_extensions = .php
