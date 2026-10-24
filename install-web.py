@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Timestamp: 2026-10-17 | Version: 6.3.0-dev.2
+# Timestamp: 2026-10-24 | Version: 6.4.0-dev.1
 # Author & Credits: https://www.alawise.es/1-s
 """Install AUX/PXE, TEC and the Excalibur gateway; show the plan unless --apply."""
 import argparse
@@ -18,7 +18,7 @@ import subprocess
 import tempfile
 import zipfile
 
-VERSION = '6.3.0-dev.2'
+VERSION = '6.4.0-dev.1'
 DIR_APP = Path(__file__).resolve().parent
 
 
@@ -157,7 +157,8 @@ def instala(src, root, nginx):
     for nom in ('download.sh', 'deploy.sh', 'generate.sh', 'build.py', 'url.txt', 'light-url.txt',
                 'heavy-url.txt', 'alpine-sources.json', 'alpine-SHA256SUMS', 'CONFIGURATION.md',
                 'RELEASE-6.md', 'CHECKLIST-6.json', 'RELEASE-6.1.md', 'CHECKLIST-6.1.json',
-                'TEST-6.1.md', 'RELEASE-6.3.md', 'CHECKLIST-6.3.json', 'TEST-6.3.md', 'INSTALL-6.3.md'):
+                'TEST-6.1.md', 'RELEASE-6.3.md', 'CHECKLIST-6.3.json', 'TEST-6.3.md', 'INSTALL-6.3.md',
+                'RELEASE-6.4.md', 'CHECKLIST-6.4.json', 'TEST-6.4.md', 'INSTALL-6.4.md'):
         if (src / nom).is_file():
             escribe(root / nom, (src / nom).read_bytes(), 0o755 if nom.endswith('.sh') else 0o644)
     sincroniza(src / 'tec/web', root / 'web')
@@ -231,7 +232,7 @@ def main():
                 print('Conservar cuentas y secreto existente; sincronizar su copia privada con TEC; habilitar CLI.')
                 print('Configurar pool PHP y etiquetas/booleanos SELinux de red y correo; generar índices sin descargar ISO.')
                 print('Instalar vhosts Nginx:', args.nginx, '· validar configuración y reiniciar aux-cli/PHP.')
-                print('Aplicar con --apply; para instalar los vhosts revisados añadir --nginx. Leer INSTALL-6.3.md.')
+                print('Aplicar con --apply; para instalar los vhosts revisados añadir --nginx. Leer INSTALL-6.4.md.')
             else:
                 instala(src, args.root.resolve(), args.nginx)
         return 0
