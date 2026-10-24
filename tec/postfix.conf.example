@@ -1,0 +1,14 @@
+# Timestamp: 2026-10-17 | Version: 6.3.0-dev.1
+# Author & Credits: https://www.alawise.es/1-s
+# Merge these settings into /etc/postfix/main.cf; do not replace the whole file.
+# OVH MX Plan Europe: confirm this server against the actual account settings.
+relayhost = [smtp.mail.ovh.net]:587
+smtp_sasl_auth_enable = yes
+smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
+smtp_sasl_security_options = noanonymous
+smtp_sasl_tls_security_options = noanonymous
+smtp_tls_security_level = verify
+smtp_tls_CAfile = /etc/pki/tls/certs/ca-bundle.crt
+# Accept local application submissions only; this host is not an inbound relay.
+inet_interfaces = loopback-only
+mynetworks = 127.0.0.0/8 [::1]/128

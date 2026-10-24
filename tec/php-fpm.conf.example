@@ -1,0 +1,28 @@
+; Timestamp: 2026-10-17 | Version: 6.3.0-dev.1
+; Author & Credits: https://www.alawise.es/1-s
+; Install as /etc/php-fpm.d/tec.conf after creating the tec system account.
+[tec]
+user = tec
+group = tec
+listen = /run/php-fpm/tec.sock
+listen.owner = nginx
+listen.group = nginx
+listen.mode = 0660
+pm = ondemand
+pm.max_children = 5
+pm.process_idle_timeout = 20s
+pm.max_requests = 500
+chdir = /var/www/aux.1-s.es/web
+clear_env = yes
+; Preserve a predictable executable search path for ssh-keygen and mail helpers.
+env[PATH] = /usr/local/bin:/usr/bin:/bin
+catch_workers_output = yes
+env[AUX_ASSIST_MAIL_FROM] = tec@1wise.es
+env[AUX_ASSIST_PUBLIC_URL] = https://tec.1-s.es
+env[AUX_ASSIST_DATA_DIR] = /var/lib/aux-assist
+env[AUX_ASSIST_CONFIG] = /var/www/aux.1-s.es/fast-boot.json
+php_admin_value[session.save_path] = /var/lib/php/tec-session
+php_admin_value[sendmail_path] = /usr/sbin/sendmail -t -i -f tec@1wise.es
+php_admin_flag[log_errors] = on
+php_admin_value[error_log] = /var/log/php-fpm/tec-error.log
+security.limit_extensions = .php
