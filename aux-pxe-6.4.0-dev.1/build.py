@@ -114,6 +114,8 @@ origin = json.loads(arc_site.read_text())['origin'] if arc_site.exists() else cf
 (pth_dist / 'robots.txt').write_text('User-agent: *\nAllow: /\nSitemap: ' + origin.rstrip('/') + '/sitemaps.xml\n')
 release = pth_dist / 'downloads' / ('aux-pxe-' + eng.VERSION + '.zip')
 shutil.copy2(pth_dist / 'downloads/aux-fast-boot.zip', release)
+with zipfile.ZipFile(release, 'a', compression=zipfile.ZIP_DEFLATED) as archive:
+    archive.write(pth_repo / 'packaging/README-AUX-PXE.md', 'README.md')
 release.with_suffix('.zip.sha256').write_text(hashlib.sha256(release.read_bytes()).hexdigest() + '  ' + release.name + '\n')
 pth_tech = pth_repo / 'tec'
 if pth_tech.is_dir():
@@ -178,6 +180,7 @@ with zipfile.ZipFile(release, 'w', compression=zipfile.ZIP_DEFLATED) as archive:
 release.with_suffix('.zip.sha256').write_text(hashlib.sha256(release.read_bytes()).hexdigest() + '  ' + release.name + '\n')
 suite = pth_dist / 'downloads' / ('aux-suite-' + eng.VERSION + '.zip')
 with zipfile.ZipFile(suite, 'w', compression=zipfile.ZIP_DEFLATED) as archive:
+    archive.write(pth_repo / 'packaging/README-SUITE.md', 'README.md')
     for name in ['aux-pxe-' + eng.VERSION, 'tec-platform-' + eng.VERSION,
                  'aux-cli-' + eng.VERSION, 'aux-assist-' + eng.VERSION + '-sources',
                  'aux-portable-' + eng.VERSION + '-kit']:
