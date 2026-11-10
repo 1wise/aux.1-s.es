@@ -1,0 +1,30 @@
+<!-- Timestamp: 2026-10-13 | Version: 5.0.8 | Author & Credits: https://www.alawise.es/1-s -->
+<section id="usb-guide"><h2>Crear la llave USB: Fedora, Debian/Ubuntu, Windows y macOS</h2>
+<p>Dos imágenes distintas: <strong>aux-ipxe-usb.img</strong> es la llave pequeña que obtiene menu.ipxe por red; <strong>aux-rescue-…iso</strong> contiene el sistema Live. Grabar la imagen completa sobre el dispositivo USB. Copiar el archivo al explorador no crea la llave. La escritura reemplaza el contenido del USB: comprobar modelo, capacidad y dispositivo.</p>
+<p>La llave actual arranca en BIOS o UEFI x86_64; su cargador UEFI no está firmado para Secure Boot. No es una llave ARM64 ni un medio de arranque para Apple Silicon. Crear la llave en un Mac no cambia su arquitectura.</p>
+<h3>1. Descargar y verificar</h3><p>Usar la imagen y su SHA256SUMS de la misma publicación. <a href="downloads/usb/README.md">Fuentes y compilación de la llave</a>. Para AUX Rescue, la ISO debe compilarse y medirse primero: el manifiesto de receta no sustituye su checksum.</p>
+<h3>Fedora</h3><pre>sudo dnf install mediawriter
+sha256sum aux-ipxe-usb.img
+lsblk -o NAME,SIZE,MODEL,TRAN,MOUNTPOINTS</pre>
+<p>En Fedora Media Writer elegir imagen personalizada, seleccionar la imagen y verificar el USB de destino. Comparar el hash calculado con el publicado antes de grabar.</p>
+<h3>Debian y Ubuntu</h3><pre>sudo apt update
+sudo apt install gnome-disk-utility
+sha256sum aux-ipxe-usb.img
+lsblk -o NAME,SIZE,MODEL,TRAN,MOUNTPOINTS</pre>
+<p>En Discos seleccionar el dispositivo USB, abrir «Restaurar imagen de disco» y elegir la imagen. Revisar el dispositivo y confirmar. No usar la operación sobre el disco del sistema.</p>
+<h3>Alternativa de terminal Linux</h3><p>Después de identificar el dispositivo completo y desmontar sus particiones montadas. El marcador siguiente debe reemplazarse; no usar una partición como /dev/sdb1.</p><pre>arc_img="$PWD/aux-ipxe-usb.img"
+dev_usb=/dev/REEMPLAZAR_USB
+lsblk -o NAME,SIZE,MODEL,TRAN,MOUNTPOINTS "$dev_usb"
+# Run only after confirming and unmounting the selected USB partitions.
+sudo dd if="$arc_img" of="$dev_usb" bs=4M status=progress conv=fsync
+sync</pre>
+<h3>Windows</h3><p>Usar <a href="https://rufus.ie/">Rufus oficial</a> o <a href="https://github.com/FedoraQt/MediaWriter/releases">Fedora Media Writer</a>. Seleccionar la imagen y comprobar el USB. Si Rufus pregunta por modo ISO o DD, elegir DD para conservar la imagen híbrida tal como se construyó.</p><pre>Get-FileHash .ux-ipxe-usb.img -Algorithm SHA256</pre>
+<p>El comando anterior se ejecuta en PowerShell. Tras grabar, rechazar cualquier solicitud de Windows de formatear particiones Linux.</p>
+<h3>macOS</h3><p>Fedora Media Writer permite seleccionar una imagen personalizada. Alternativa de terminal:</p><pre>shasum -a 256 aux-ipxe-usb.img
+diskutil list</pre>
+<p>Identificar el USB completo. Reemplazar N por su número real, nunca elegir el disco del sistema:</p><pre>diskutil unmountDisk /dev/diskN
+sudo dd if=aux-ipxe-usb.img of=/dev/rdiskN bs=4m
+sync
+diskutil eject /dev/diskN</pre>
+<p>Durante dd, Ctrl+T permite consultar el progreso en macOS. Para una ISO híbrida, sustituir únicamente el archivo de entrada por el nombre de la ISO verificada.</p>
+<h3>Prueba de la llave</h3><p>Elegir el USB en el menú de arranque del equipo. La llave iPXE debe mostrar GRUB durante 5 segundos, obtener red y cargar menu.ipxe; el menú de asistencia tiene su temporizador independiente de 60 segundos. Primero probar la llave sin realizar ninguna operación sobre discos. La escritura en los cuatro sistemas no se ha probado físicamente en esta publicación.</p></section>

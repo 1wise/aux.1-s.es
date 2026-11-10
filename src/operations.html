@@ -1,0 +1,92 @@
+<!-- Timestamp: 2026-10-13 | Version: 5.1.0 | Author & Credits: https://www.alawise.es/1-s -->
+<section class="ops-guide" id="operations">
+<h2>Despliegue y permisos</h2>
+<details id="readonly-generate"><summary>generate: errores Read-only file system en archivos de una ISO</summary>
+<p>Los contenidos de una ISO montada se mantienen en solo lectura. La versión 5.0.6 evita cambiar sus permisos y mantiene isolinux.bin, EFI y las ISOs internas en Browse contents, sin convertirlos en descargas independientes del catálogo.</p>
+<p>Actualizar generate.sh y src/common.py juntos desde el ZIP, conservando fast-boot.json y las listas locales. Después repetir únicamente la generación:</p>
+<pre>sudo bash generate.sh --verbose</pre>
+<p>No es necesario volver a descargar ni desplegar las ISOs. Los permisos de archivos gestionados en sistemas escribibles siguen normalizándose.</p>
+</details>
+<details id="mixed-deploy" open><summary>Dos listas: ligeras en RAM, pesadas en disco</summary>
+<p>light-url.txt reúne 29 recursos, incluidos Alpine Netboot y Standard; heavy-url.txt reúne 20, incluidos Extended, cloud, Ubuntu y Boot-Repair. Solo hay una ISO Arch. Los pequeños clientes iPXE de Arch quedan en RAM; sus ISOs quedan en disco para evitar dos copias grandes en memoria.</p>
+<p>Las listas son editables. Ambos destinos publican en el mismo html; generate rastrea los enlaces RAM y las carpetas físicas juntos. Cada fase se ejecuta por separado:</p>
+<pre># Light selection: cache, then RAM
+sudo bash download.sh --list light --verbose
+sudo bash deploy.sh ram --list light --verbose
+
+# Heavy selection: same cache, then persistent disk
+sudo bash download.sh --list heavy --verbose
+sudo bash deploy.sh disk --list heavy --verbose
+
+# One catalogue from both deployments
+sudo bash generate.sh --verbose</pre>
+<p>También se puede seleccionar directamente un archivo. deploy solo usa las copias del cache; una descarga ausente aparece como fallo y nunca se descarga durante deploy:</p>
+<pre>sudo bash download.sh --url-file light-url.txt --verbose
+sudo bash deploy.sh ram --url-file light-url.txt --verbose
+
+# Inspect the selection before making changes
+bash deploy.sh disk --list heavy --dry-run</pre>
+<p>Las ISOs locales de asistencia no tienen una URL remota inventada. Si ya están en el cache, desplegarlas también en RAM antes de generate, o añadir su URL real a light-url.txt cuando esté publicada:</p>
+<pre>sudo bash deploy.sh ram --only assist --verbose
+sudo bash generate.sh --verbose</pre>
+<p>url.txt conserva la lista conjunta por compatibilidad. Sin selector, deploy continúa leyendo todo el cache. download conserva los registros de las dos listas entre ejecuciones. FTP replica el conjunto completo y no acepta filtros de lista.</p>
+<p>Pasar una ISO gestionada de RAM a disk actualiza sus enlaces y desmonta su montaje anterior. La copia antigua permanece en tmpfs: apartarla después de verificar el despliegue en disco para recuperar memoria. No retirar todo /dev/shm ni archivos ajenos.</p>
+</details>
+<details id="tls-certificate"><summary>Nginx: certificado compartido ntp1.1-s.eu</summary>
+<p>El nginx conjunto utiliza /etc/letsencrypt/live/ntp1.1-s.eu/fullchain.pem y privkey.pem para aux, pxe y tec. Verificar que subjectAltName incluye los seis dominios .es/.eu; el nombre de la carpeta no garantiza esa cobertura:</p>
+<pre>sudo openssl x509 \
+  -in /etc/letsencrypt/live/ntp1.1-s.eu/fullchain.pem \
+  -noout -ext subjectAltName
+
+# Test the installed configuration before reloading
+sudo nginx -t &amp;&amp; sudo systemctl reload nginx</pre>
+<p><a href="downloads/nginx/aux-pxe-tec.conf.example">Configuración conjunta AUX / PXE / TEC</a></p>
+</details>
+<details id="ram-space"><summary>RAM y pruebas desde cero</summary><p>Comprobar free -h, df y findmnt. El objetivo es 22 GB para el catálogo RAM. No modificar un tmpfs que contenga montajes activos; preparar un destino vacío para una prueba aislada. Los archivos comprimidos requieren su copia y extracción. Ubuntu y Boot-Repair forman parte de heavy; las instrucciones antiguas para retirarlos han quedado reemplazadas.</p><p><a href="alpine-guide.html">Prueba Alpine desde cero</a></p></details>
+<details open><summary>FTP / Bastion: publicar html e ISOs en /</summary>
+<p>Primero preparar RAM o disco y ejecutar generate. FTP publica el contenido de html/ y los archivos del cache en la misma raíz remota: /assets/, /index.php y /imagen.iso. Los archivos internos de las ISOs se sirven desde Excalibur. Las fases se ejecutan por separado.</p>
+<pre># Inspect the merge without connecting
+sudo bash deploy.sh ftp \
+  --output /var/www/aux.1-s.es/html \
+  --cache /var/www/aux.1-s.es/isos \
+  --ram-dir /dev/shm/aux-fast-boot \
+  --ftp-root / --dry-run
+
+# Replace host/user; password is requested privately
+sudo bash deploy.sh ftp \
+  --output /var/www/aux.1-s.es/html \
+  --cache /var/www/aux.1-s.es/isos \
+  --ram-dir /dev/shm/aux-fast-boot \
+  --ftp-host HOST_FTP --ftp-user USUARIO_FTP \
+  --ftp-root / --verbose</pre>
+<p>Usar el ram-dir real. Si la cuenta publica desde /www, sustituir ftp-root por /www. FTPS explícito es el valor predeterminado; --no-ftp-tls selecciona FTP sin cifrar. No poner la contraseña en el comando ni en fast-boot.json. Repetir el mismo deploy permite reanudar archivos parciales.</p>
+<p><a href="downloads/DEPLOYMENT.md">Detalles de FTP, verificación y réplica</a></p>
+</details>
+<details><summary>Propietario, grupo y permisos de download / deploy / generate</summary>
+<p>Los archivos gestionados quedan con 0644; directorios y scripts ejecutables con 0755. Las fases reparan los archivos reutilizados. Con sudo en Fedora y grupo nginx disponible, el valor predeterminado es root:nginx: el servidor puede leer y el propietario administra. Sin ese grupo se conserva el grupo del proceso; sin sudo se utiliza el usuario y grupo del proceso.</p>
+<pre># Explicit Fedora owner/group; each phase remains independent
+sudo bash download.sh --list light --user root --group nginx --verbose
+sudo bash deploy.sh ram --list light --user root --group nginx --verbose
+sudo bash generate.sh --user root --group nginx --verbose
+
+# Equivalent persistent deployment
+sudo bash deploy.sh disk --list heavy --user root --group nginx --verbose</pre>
+<p>owner y group también se admiten en fast-boot.json. Solo se ajustan los archivos creados o gestionados por las fases; los enlaces no cambian propietarios de destinos externos. Las ISOs montadas en solo lectura conservan sus permisos de origen. Los JSON privados de TEC siguen fuera de la web.</p>
+<p>FTP asigna el propietario de la cuenta del alojamiento. chown local no cambia ese propietario remoto. deploy ftp intenta SITE CHMOD 0755 en las carpetas publicadas y 0644 en los archivos; si el servidor no admite SITE CHMOD, se indica y los modos dependen del alojamiento.</p>
+<pre># Inspect SELinux before applying a mount context
+ls -lZ /var/www/aux.1-s.es/html
+sudo restorecon -Rv /var/www/aux.1-s.es/html
+
+# Read-only RAM ISO mounts can receive an HTTP-readable context
+sudo bash deploy.sh ram --list light \
+  --mount-context system_u:object_r:httpd_sys_content_t:s0 \
+  --user root --group nginx --verbose</pre>
+<p>SELinux se comprueba aparte de chmod/chown. Un montaje ISO de solo lectura no se reetiqueta con restorecon; utilizar mount-context al desplegar y revisar los AVC del servidor.</p>
+</details>
+</section>
+
+<nav aria-label="Guías por sistema"><a href="chroot.html#chroot-host">Chroot desde Fedora y Debian</a> | <a href="iso-guide.html#iso-debian">ISO Debian</a> | <a href="usb-guide.html">Llave USB: Linux, Windows, macOS</a> | <a href="debian-deploy.html">Replicar en Debian</a></nav>
+<section id="catalog-budget"><h2>Catálogo 5.1.0: RAM y disco</h2><p>29 entradas light y 20 heavy. AUX Rescue local no tiene URL inventada: añadir su imagen real explícitamente. Debian testing pasa a disco; Ubuntu LTS y Boot-Repair vuelven a heavy. Se retira Rawhide y el alias duplicado de Arch de las listas activas; no se borran archivos existentes.</p><p>Presupuesto: 22 GB de RAM y 120 GB de disco, unidades decimales. Las previsiones anteriores (15–16 GB en RAM y 57–69 GB de caché total) son estimaciones, no tamaños medidos. Comprobar el consumo real y archivos temporales antes de desplegar. Cambiar listas no retira imágenes antiguas de RAM o caché.</p><pre>free -h
+df -B1 /dev/shm /var/www/aux.1-s.es
+du -B1 -s /var/www/aux.1-s.es/isos
+findmnt -R /dev/shm</pre><p>El control de espacio existente evita superar el espacio libre del tmpfs, pero las listas no establecen por sí solas una cuota de 22 GB. Para imponerla aisladamente, preparar un tmpfs dedicado de size=22000000000 en un directorio vacío, configurar ram_dir hacia él y migrar los montajes de forma controlada. No reducir ni sustituir un tmpfs que contenga montajes activos. El disco debe reservar margen para actualizaciones y extracciones; una copia FTP preparada localmente cuenta también.</p></section>

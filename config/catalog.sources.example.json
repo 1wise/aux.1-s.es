@@ -1,0 +1,66 @@
+{
+  "_meta": {
+    "Timestamp": "2026-11-10",
+    "Version": "7.0.0-dev.4",
+    "Author & Credits": "https://www.alawise.es/1-s",
+    "status": "review-source-and-first-result-before-enabling-timer"
+  },
+  "sources": [
+    {
+      "id": "debian-testing-amd64",
+      "url": "https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/",
+      "allowed_hosts": [
+        "cdimage.debian.org"
+      ],
+      "format": "html",
+      "pattern": "debian-testing-(?P<architecture>amd64)-netinst\\.iso",
+      "checksums_url": "https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/SHA256SUMS",
+      "release_from_checksum": true,
+      "defaults": {
+        "family": "debian",
+        "release": "testing",
+        "kind": "installer",
+        "download_class": "light"
+      }
+    },
+    {
+      "id": "fedora-current",
+      "url": "https://fedoraproject.org/releases.json",
+      "allowed_hosts": [
+        "fedoraproject.org",
+        "download.fedoraproject.org"
+      ],
+      "format": "fedora-releases",
+      "pattern": ".*\\.iso",
+      "defaults": {
+        "download_class": "heavy"
+      },
+      "class_rules": [
+        {
+          "pattern": ".*netinst.*",
+          "download_class": "light"
+        }
+      ]
+    },
+    {
+      "id": "netboot",
+      "url": "https://raw.githubusercontent.com/netbootxyz/netboot.xyz/development/roles/netbootxyz/defaults/main.yml",
+      "boot_url": "https://boot.netboot.xyz",
+      "allowed_hosts": [
+        "raw.githubusercontent.com",
+        "api.github.com",
+        "boot.netboot.xyz"
+      ],
+      "format": "netboot",
+      "menu_index_url": "https://api.github.com/repos/netbootxyz/netboot.xyz/contents/roles/netbootxyz/templates/menu?ref=development",
+      "project_index_url": "https://raw.githubusercontent.com/netbootxyz/netboot.xyz/development/README.md"
+    }
+  ],
+  "entries": [],
+  "storage": {
+    "enabled": false,
+    "ids": [],
+    "max_images": 2,
+    "max_total_bytes": null
+  }
+}

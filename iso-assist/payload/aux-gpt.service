@@ -1,0 +1,32 @@
+# Timestamp: 2026-10-17 | Version: 6.3.0-dev.1
+# Author & Credits: https://www.alawise.es/1-s
+[Unit]
+Description=GPT Assist agent terminal on tty4 (manual start, root approval required)
+After=NetworkManager.service
+Requires=aux-exec.service
+After=aux-exec.service
+Conflicts=getty@tty4.service
+
+[Service]
+Type=simple
+User=aux-ai
+Group=aux-ai
+SupplementaryGroups=tty
+ExecStart=/usr/bin/python3 /usr/share/aux-assist/ai.py --provider openai --agent
+StandardInput=tty
+StandardOutput=tty
+StandardError=tty
+TTYPath=/dev/tty4
+TTYReset=yes
+TTYVHangup=yes
+Environment=TERM=linux
+Environment=PYTHONDONTWRITEBYTECODE=1
+UMask=0077
+LimitCORE=0
+NoNewPrivileges=yes
+CapabilityBoundingSet=
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=no
+# No Install section: API access must never start just because the Live booted.
