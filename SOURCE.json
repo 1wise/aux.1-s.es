@@ -1,0 +1,69 @@
+{
+  "metadata": {
+    "Timestamp": "2026-11-10",
+    "Version": "7.0.0-beta.0",
+    "Author & Credits": "https://www.alawise.es/1-s"
+  },
+  "source_type": "recovered-source-with-integrated-web-and-native-software-selection",
+  "recovered_archive": {
+    "name": "aux-suite-6.4.0-dev.1.zip",
+    "sha256": "b622233a8387568eedf10cd51f8e2af236924d173344bd2f38728fdaf3f78e95"
+  },
+  "documentation_reference": {
+    "name": "aux-edicion-7.0.0-dev.1.zip",
+    "sha256": "4cf969291f78aed44271e7dd9bf55a6990ae8aa4a59697a5276114f647a8f733"
+  },
+  "upstream_observed": {
+    "repository": "https://github.com/1wise/aux.1-s.es",
+    "branch": "history",
+    "head": "bc1b6b2b225aa6823f7c875faebd3913563e8f24",
+    "archive_commit_equivalence": "not-verified"
+  },
+  "compiled_new_isos_included": false,
+  "real_installed_system_acceptance": "pending",
+  "protocol_compatibility_runtime": "6.4",
+  "local_test_report": "docs/CHECKS-7.md",
+  "website_status": "local-beta-build-ready-for-publication",
+  "github_status": "not-pushed-by-this-release-preparation",
+  "software_catalogs": {
+    "debian": {
+      "schema": "aux-software-catalog-v1",
+      "distribution": "debian",
+      "release": "testing",
+      "architecture": "amd64",
+      "retrieved_at": "2026-11-09",
+      "source_url": "https://deb.debian.org/debian/pool/main/t/tasksel/tasksel-data_3.91_all.deb",
+      "source_sha256": "f75c88c8469a3ae5ecab006ec9252425ea4aa26d77d1d1a192d61ecf4de3aa5c",
+      "tasksel_version": "3.91",
+      "package_index_url": "https://deb.debian.org/debian/dists/testing/main/binary-amd64/Packages.xz",
+      "package_index_sha256": "fd5279275deed1456612cf2c7a3230da7111bc2711c94bf2efbab6a438d94e54",
+      "source_package_sha256": "b77ac8d97acc201f8054af55a8a243ce680ad4f9e213fd94c24314a89550ad03",
+      "digest_sha256": "ab6aea2edd12b49d306711a5b2e6f629489ebaf330c1cbcc2eaf722cdf21158d"
+    },
+    "fedora": {
+      "schema": "aux-software-catalog-v1",
+      "distribution": "fedora",
+      "release": "45",
+      "architecture": "x86_64",
+      "retrieved_at": "2026-11-10",
+      "source_url": "https://download.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/repodata/repomd.xml",
+      "source_sha256": "b73c06c00fe2c14ddc694489f2ecc67088395f0a374b27cd536c63143718fe55",
+      "comps_compressed_sha256": "33b08445a1beb3712913d91fa00042d3a60b678be68f8e68cc2587bbb6b35d06",
+      "repomd_sha256": "b773d5b26da503ff3512dd90059216904a980ae046e77ec3cb6e65aec62a5802",
+      "digest_sha256": "bc294fb9c8366f5a88cbd075b664bddc2598faa258c474acf163ae7c0e5ebeb4"
+    }
+  },
+  "catalog_remote_snapshot": {
+    "retrieved_at": "2026-11-10",
+    "netboot_entries": 186,
+    "fedora45_origin_images": 53,
+    "image_downloads_included": false
+  },
+  "release_channel": "beta",
+  "console_ui": {
+    "configuration": "indigo",
+    "installation_generation": "cyan",
+    "module": "auxlib/console_ui.py",
+    "named_apps": true
+  }
+}

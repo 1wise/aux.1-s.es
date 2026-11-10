@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+# Timestamp: 2026-11-09 | Version: 7.0.0-beta.0
+# Author & Credits: https://www.alawise.es/1-s
+"""Install or plan an AUX deployment."""
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from auxlib.setup import main
+
+if __name__ == '__main__':
+    try:
+        main()
+    except KeyboardInterrupt:
+        sys.exit(130)
+    except (OSError, ValueError, RuntimeError) as exc:
+        sys.exit('AUX detenido: ' + str(exc))

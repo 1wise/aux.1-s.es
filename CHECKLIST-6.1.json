@@ -1,0 +1,30 @@
+{
+  "_meta": {"Timestamp": "2026-10-17", "Version": "6.1.0-dev.1", "Author & Credits": "https://www.alawise.es/1-s"},
+  "stable_ready": false,
+  "stage": "development sources; no compiled 6.1 ISO",
+  "checks": {
+    "executor_local_apply_undo": {"state": "passed_automated", "evidence": "test_executor.py: 19 passed, 1 AF_UNIX integration skipped; real temporary-file transactions, provider/service fixtures"},
+    "agent_provider_protocols": {"state": "passed_automated", "evidence": "test_ai.py: 14 passed; provider protocol fixtures in test_executor.py; no real API calls"},
+    "iso_recipe_payload": {"state": "passed_automated", "evidence": "test_sources.py: 11 passed; payload integration in verify-v61.py; new ISO not compiled"},
+    "bastion_one_root": {"state": "passed_automated", "evidence": "verify-v61.py: 11 passed across OVH/USB/payload; physical-copy fixtures, not OVH hosting"},
+    "usb_guards_gpt": {"state": "passed_automated", "evidence": "verify-v61.py: parser/CRC/rejection fixtures only; no physical device writes"},
+    "regression_6": {"state": "passed_automated", "evidence": "verify.py 65, verify-v6.py 8, CLI 10; TEC PHP workflows and routing passed"},
+    "iso_6_earlier_cari_gsm_T": {"state": "passed_user_report", "evidence": "Earlier user-built 6.0 ISO reached menu and T via Hammer GSM; not evidence for 6.1"},
+    "live_openai_hello": {"state": "pending", "evidence": null},
+    "live_gemini_hello": {"state": "pending", "evidence": null},
+    "agent_execution_undo_from_both_models": {"state": "pending", "evidence": "Include approval/refusal, replay, target changed and revocation"},
+    "unix_socket_runtime": {"state": "pending", "evidence": "Preparation runtime prohibits AF_UNIX creation; actual peer-UID/socket permissions test must run on ISO"},
+    "iso_61_compiled_bios_uefi_selinux": {"state": "pending", "evidence": null},
+    "cli_excalibur_dns_tls_health_wss": {"state": "pending", "evidence": null},
+    "external_gsm_assistance": {"state": "pending", "evidence": null},
+    "browser_utf8_notifications": {"state": "pending", "evidence": null},
+    "bastion_b_p_t_excalibur_off": {"state": "pending", "evidence": null},
+    "kamala_independent_public_cli": {"state": "pending", "evidence": null},
+    "usb_physical_free_space_bios_uefi": {"state": "pending", "evidence": "GPT-only tool; unsupported hybrid tables abort before writing"},
+    "persistent_system_kernel_updates": {"state": "not_implemented", "evidence": "Requires real installed USB or validated A/B image workflow; data persistence is insufficient"},
+    "package_transactions_undo": {"state": "not_implemented", "evidence": "Packages and unrestricted system changes blocked"},
+    "security_review": {"state": "pending", "evidence": null},
+    "gentoo_memtest_previous_failure": {"state": "failed_user_report", "evidence": "Exact error and BIOS/UEFI mode needed"},
+    "whole_tree_atomic_publish": {"state": "pending", "evidence": "File replacement is not whole-tree atomicity"}
+  }
+}

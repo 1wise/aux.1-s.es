@@ -1,0 +1,14 @@
+# Timestamp: 2026-10-12 | Version: 5.0.1-dev.5
+# Author & Credits: https://www.alawise.es/1-s
+[Unit]
+Description=TECH bounded workspace in RAM
+After=local-fs.target
+Before=aux-assist.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /usr/share/aux-assist/work.py
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

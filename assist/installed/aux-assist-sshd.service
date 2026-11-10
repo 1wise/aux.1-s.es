@@ -1,0 +1,18 @@
+# Timestamp: 2026-11-09 | Version: 7.0.0-dev.2
+# Author & Credits: https://www.alawise.es/1-s
+[Unit]
+Description=AUX listener opened by local support consent
+ConditionPathExists=/run/aux-assist/sshd.conf
+BindsTo=aux-assist.service
+After=aux-assist.service network.target
+
+[Service]
+Type=simple
+ExecStartPre=/usr/bin/install -d -m 0755 /run/sshd
+ExecStart=/usr/sbin/sshd -D -e -f /run/aux-assist/sshd.conf
+StandardInput=null
+StandardOutput=journal
+StandardError=journal
+KillMode=control-group
+TimeoutStopSec=5
+UMask=0077

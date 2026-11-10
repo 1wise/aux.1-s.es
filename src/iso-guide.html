@@ -1,0 +1,205 @@
+<!-- Timestamp: 2026-10-13 | Version: 5.0.7 | Author & Credits: https://www.alawise.es/1-s -->
+<article id="iso-guide">
+<p>MANUAL ABIERTO / FEDORA 44 / RESCATE Y ASISTENCIA</p>
+<h1>Cómo construir una ISO y manifiesto de aux-rescue.iso</h1>
+<p>Una ISO de rescate reúne un sistema operativo, su arranque y herramientas en un medio que puede iniciarse sin instalarlo en el disco del cliente. Este capítulo explica la receta editable del proyecto, cada fase de construcción, sus límites y las pruebas necesarias antes de ofrecer asistencia. Las instrucciones e inventarios pueden consultarse con Links, sin JavaScript.</p>
+<p><strong>Estado de esta publicación:</strong> la receta distribuida es Fedora 44 x86_64, versión 5.0.1-dev.5. Se distribuyen fuentes e instrucciones. Esta página no certifica una nueva ISO compilada ni un arranque físico. Las huellas, tamaños y resultados de una compilación concreta se publican después de medirlos.</p>
+<nav aria-label="Índice del manual"><ol>
+<li><a href="#manifesto">Manifiesto, consentimiento y netiquette</a></li>
+<li><a href="#iso-parts">Qué contiene una ISO Live</a></li>
+<li><a href="#iso-design">Diseñar el alcance y elegir herramientas</a></li>
+<li><a href="#iso-sources">Fuentes, crédito e inventario</a></li>
+<li><a href="#iso-builder">Preparar el constructor Fedora</a></li>
+<li><a href="#iso-kickstart">Preparar y revisar Kickstart</a></li>
+<li><a href="#iso-compile">Compilar aux-rescue.iso</a></li>
+<li><a href="#iso-verify">Verificar, medir y aceptar una versión</a></li>
+<li><a href="#iso-publish">Publicar por RAM, disco e iPXE</a></li>
+<li><a href="#iso-maintain">Mantenimiento e informes</a></li>
+</ol></nav>
+<section id="manifesto"><h2>0. Manifiesto de aux-rescue.iso</h2>
+<p><strong>Una terminal de trabajo, un procedimiento visible y una autorización explícita.</strong> AUX Rescue facilita diagnóstico, recuperación de datos, mantenimiento y preparación de instalaciones desde un Live de terminal. Un técnico autorizado trabaja con herramientas conocidas y el cliente observa la sesión. La asistencia puede prestarla el técnico elegido; requiere una identidad y una clave verificadas, además de una ruta de red disponible.</p>
+<p>El proyecto organiza tres funciones: aux./ presenta recursos y documentación; PXE_ permite navegar por terminal y arrancar medios inspeccionados; tec.* mantiene perfiles y solicitudes. Excalibur sirve PXE y los archivos internos de las imágenes. Bastion ofrece descargas completas. Cada fase del servidor se ejecuta por separado para leer, probar y rectificar su resultado.</p>
+<ol>
+<li><strong>Identidad antes del acceso.</strong> Confirmar técnico, contacto y huella de la clave mediante un canal reconocido por el cliente. Un nombre en un formulario o una clave descargada no sustituye esa comprobación.</li>
+<li><strong>Consentimiento comprensible.</strong> La consola local presenta técnico y huella; el listener SSH de la receta se inicia después de AUTORIZO. Explicar que root puede leer datos, modificar discos y reinstalar. Confirmar por separado cualquier operación destructiva.</li>
+<li><strong>Observación accesible.</strong> F6 conserva controles locales; F7 muestra tmux en solo lectura; F8 muestra estado y memoria. Root puede modificar el sistema: esos visores describen la interfaz prevista y no constituyen una barrera frente al técnico autorizado.</li>
+<li><strong>Sesiones delimitadas.</strong> Informar del inicio y cierre de la intervención. Cerrar desde los controles del Live, comprobar que el listener deja de escuchar y retirar la configuración privada utilizada. Las claves SSH efímeras y sesiones tmux se eliminan al cerrar; /work se conserva hasta reiniciar.</li>
+<li><strong>Datos bajo control del cliente.</strong> Acordar copias, destinos y conservación antes de transferir información. Separar registros técnicos de documentos personales. Redactar informes sin contraseñas, tokens, claves privadas ni información identificable innecesaria.</li>
+<li><strong>Fuentes y límites visibles.</strong> Publicar receta, paquetes solicitados, inventario RPM real, huella de la ISO y pruebas. Distinguir comprobación de archivos, arranque en VM y prueba física. Un menú generado no demuestra por sí mismo que un instalador funcione.</li>
+<li><strong>Crédito y reciprocidad.</strong> Mantener el crédito de Fedora, GNU/Linux, Lorax, dracut, las herramientas y el proyecto. Conservar las licencias de cada componente. El apoyo voluntario “Buy me a beer” puede acompañar la distribución; los términos de los componentes se documentan individualmente.</li>
+</ol>
+<p>La netiquette también se aplica al soporte: describir cambios con claridad, pedir solo información necesaria, respetar tiempos de respuesta y aportar pruebas útiles. Los perfiles aprobados de TEC ayudan a elegir contacto; aceptar una solicitud web no abre automáticamente SSH ni VPN. La ISO pública contiene perfiles públicos y ninguna clave privada compartida.</p>
+</section>
+<section id="iso-parts"><h2>1. Anatomía del Live</h2>
+<p>El arranque BIOS o UEFI carga kernel e initramfs. Dracut prepara la red y localiza el sistema Live comprimido. SquashFS conserva la base; overlayfs recoge cambios del sistema durante la sesión. /work proporciona espacio en tmpfs. El medio también incluye cargadores, configuración de arranque, metadatos y firmware.</p>
+<p>El nombre de un archivo no establece su capacidad de arrancar por HTTP. El generador inspecciona los archivos y configuración originales, comprueba kernel, initrd y rootfs y crea una receta cuando reconoce un conjunto completo. Conservar rutas como LiveOS/squashfs.img mantiene el medio coherente. Un kernel de otra ISO puede ser incompatible.</p>
+<table><thead><tr><th>Capa</th><th>Función</th><th>Comprobación</th></tr></thead><tbody>
+<tr><td>BIOS / UEFI</td><td>Cargadores y archivos EFI</td><td>Arranque separado; Secure Boot requiere validar toda la cadena</td></tr>
+<tr><td>Kernel / initramfs</td><td>Dispositivos, red y carga del Live</td><td>Versiones coherentes, drivers y rutas reales</td></tr>
+<tr><td>SquashFS / overlay</td><td>Base comprimida y cambios temporales</td><td>Memoria y comportamiento al reiniciar</td></tr>
+<tr><td>/work</td><td>Descargas, scripts y chroot manual</td><td>tmpfs 0700 con límite según memoria</td></tr>
+<tr><td>Asistencia</td><td>Control local, SSH y observadores</td><td>Consentimiento, clave, cierre y puerto 2222</td></tr>
+</tbody></table>
+<p>Los cambios del Live se pierden al reiniciar. Las escrituras manuales en discos reales permanecen. /work, overlay y rootfs descargado por PXE comparten RAM física; sus límites no crean memoria adicional.</p>
+</section>
+<section id="iso-design"><h2>2. Alcance y selección de herramientas</h2>
+<p>La receta prioriza una base de terminal utilitaria: root con /bin/bash, gestor de paquetes Fedora, red, transferencias y rescate. No incorpora escritorio ni Anaconda precargado. Dnf permite añadir paquetes; consume memoria y requiere repositorios accesibles. El técnico puede preparar un chroot o instalación manual siguiendo la <a href="chroot-all.html">guía de Fedora, Debian, Ubuntu, Gentoo y Arch</a>.</p>
+<table><thead><tr><th>Trabajo</th><th>Utilidades principales</th></tr></thead><tbody>
+<tr><td>Terminal</td><td>bash, tmux, nano, less, htop, file, strace, lsof</td></tr>
+<tr><td>Consulta y transferencias</td><td>links, wget, curl, ftp, rsync, ssh, scp y sftp salientes</td></tr>
+<tr><td>Fedora</td><td>rpm, dnf5/dnf, fedora-repos, claves GPG y certificados CA</td></tr>
+<tr><td>Red y Wi-Fi</td><td>nmcli, nmtui, wpa_supplicant, firmware, ip, ss, ping, dig, ethtool, tcpdump</td></tr>
+<tr><td>Discos y volúmenes</td><td>lsblk, blkid, parted, gdisk, cryptsetup, lvm2, mdadm</td></tr>
+<tr><td>Diagnóstico y recuperación</td><td>smartctl, nvme, ddrescue, TestDisk, PhotoRec y reparación de sistemas de archivos</td></tr>
+<tr><td>Arranque y entornos nuevos</td><td>efibootmgr, GRUB, tar, compresores, unzip, chroot</td></tr>
+</tbody></table>
+<p>Ethernet, Wi-Fi y linux-firmware se solicitan por defecto. Esa cobertura aumenta el tamaño y permite probar portátiles sin una conexión Ethernet. Identificar adaptadores con lspci -nnk y lsusb y probar el hardware real. El tamaño final y RAM mínima del cliente deben medirse: los 4096 MiB del comando de compilación corresponden a la VM constructora.</p>
+</section>
+<section id="iso-sources"><h2>3. Fuentes, procedencia e inventario</h2>
+<p>La unidad editable contiene prepare.py, assist.ks.in, dracut.conf, packages.txt y payload/. El payload implementa trabajo en RAM, consentimiento, observadores y preparación EFI. test_sources.py comprueba la receta sin montar discos del cliente. Revisar los archivos antes de construir como root.</p>
+<p><a href="downloads/tec-fedora44-rescue-5.0.1-dev.5-sources.zip">Fuentes / ZIP</a> · <a href="downloads/tec-fedora44-rescue-5.0.1-dev.5-sources.zip.sha256">SHA256 del ZIP</a> · <a href="downloads/iso/manifest.json">Manifiesto de receta / JSON</a> · <a href="downloads/iso-packages.txt">Paquetes editables</a></p>
+<p>El manifiesto describe fuentes y <strong>@@ISO_PACKAGE_COUNT@@ paquetes solicitados</strong>. RPM añade dependencias. Tamaño, SHA-256 de la ISO e inventario instalado permanecen pendientes hasta compilar. prepare.py escribe source-manifest.json con las huellas de la receta concreta; el Live guarda packages-requested.txt y packages-rpm.txt para comparar intención y resultado.</p>
+<details open><summary>Lista completa de paquetes solicitados</summary><pre>@@ISO_PACKAGES@@</pre></details>
+<p>Conservar versión, fecha, arquitectura, mirrors, logs e inventarios. Las claves privadas, registros de clientes y configuraciones VPN privadas quedan fuera de Git y de ZIP públicos. Cada componente conserva su licencia. Una declaración global de licencia debe describir expresamente los archivos que cubre y respetar los componentes incluidos.</p>
+</section>
+<section id="iso-builder"><h2>4. Preparar un constructor Fedora</h2>
+<p>Construir en Fedora 44 x86_64, preferiblemente en una máquina o VM dedicada a este trabajo. Utilizar livemedia-creator en modo virtual: su instalador actúa sobre un disco de construcción. La receta contiene clearpart y no debe aplicarse como instalación de un equipo real ni con --no-virt sobre un servidor de producción.</p>
+<pre>sudo dnf install lorax lorax-lmc-virt pykickstart openssl xorriso squashfs-tools</pre>
+<p>Obtener Fedora Server netinst 44 x86_64 desde Fedora y verificar su CHECKSUM firmado con las claves oficiales. La firma identifica la procedencia del archivo de comprobación; el hash comprueba la descarga. Consultar <a href="https://fedoraproject.org/security/">seguridad y claves de Fedora</a> y conservar el resultado.</p>
+<p>Prever espacio para la ISO instaladora, el disco virtual de unos 8 GiB más particiones de arranque, temporales y resultados. La receta recomienda al menos 20 GiB libres como punto de partida; revisar el uso real de Lorax. Usar carpetas nuevas por intento y conservar logs anteriores.</p>
+<pre>df -h . /var/tmp
+free -h
+rpm -q lorax lorax-lmc-virt pykickstart xorriso squashfs-tools
+livemedia-creator --help
+test -c /dev/kvm</pre>
+<p>Si no hay aceleración KVM, revisar --no-kvm en el constructor; la emulación será más lenta. Registrar el entorno utilizado. Los comandos del capítulo son fases manuales que pueden ejecutarse y revisarse individualmente.</p>
+</section>
+<section id="iso-kickstart"><h2>5. Preparar y revisar Kickstart</h2>
+<p>Desde las fuentes descomprimidas, comprobarlas y crear una salida nueva:</p>
+<pre>python3 test_sources.py
+python3 prepare.py --output work-5.0.1-dev.5
+ksvalidator -v F44 work-5.0.1-dev.5/assist.ks</pre>
+<p>prepare.py incluye Wi-Fi, resuelve el payload y calcula huellas. Prepara el hash de una contraseña aleatoria no divulgada para conservar el estado de root; la autenticación SSH por contraseña permanece deshabilitada. Esa aleatoriedad y los repositorios de actualizaciones impiden prometer reproducibilidad bit a bit.</p>
+<p>Leer assist.ks antes de compilar. El esquema usa reqpart y una raíz ext4 de 8 GiB en la VM. Lorax controla la pantalla de Anaconda: no añadir text, cmdline ni graphical. ksvalidator comprueba sintaxis; no valida toda la semántica específica del constructor.</p>
+<p>%packages contiene solicitudes explícitas y excluye dependencias débiles y documentación del medio. %post instala el payload, prepara /work y root, habilita controles y observadores y mantiene SSH estándar enmascarado. La receta conserva SELinux enforcing, registra el puerto 2222 y no configura montajes de discos del cliente.</p>
+<p>Para perfiles públicos fijos, prepare.py admite --profiles perfiles-publicos.json. Incluir únicamente información pública y claves públicas válidas. Las claves privadas de WireGuard, secretos de correo y claves privadas de técnicos quedan fuera de una ISO pública.</p>
+</section>
+<section id="iso-compile"><h2>6. Compilar AUX Rescue</h2>
+<p>Definir la ruta del netinst oficial verificado. El comando produce una ISO versionada; aux-rescue.iso es el nombre público propuesto para una versión aceptada. Conservar el archivo versionado permite identificar el medio usado en cada intervención.</p>
+<pre>pth_netinst="/ruta/Fedora-Server-netinst-x86_64-44-1.7.iso"
+
+sudo livemedia-creator \
+  --make-iso \
+  --iso="$pth_netinst" \
+  --ks="$PWD/work-5.0.1-dev.5/assist.ks" \
+  --releasever=44 \
+  --project="1-s AUX Rescue" \
+  --volid=AUX_RESCUE_501 \
+  --rootfs-type=squashfs \
+  --dracut-conf="$PWD/dracut.conf" \
+  --extra-boot-args="aux.assist rd.live.overlay.overlayfs=1 rd.luks=0 rd.lvm=0 rd.md=0" \
+  --ram=4096 --vcpus=2 \
+  --iso-only \
+  --iso-name=aux-rescue-5.0.1-dev.5-x86_64.iso \
+  --resultdir="$PWD/results-5.0.1-dev.5" \
+  --logfile="$PWD/compile-5.0.1-dev.5.log"</pre>
+<p>El constructor instala en la VM y empaqueta el Live. Seguir el log: una instalación terminada no implica que xorriso haya terminado. Conservar últimas líneas y logs de Anaconda si falla. La <a href="https://weldr.io/lorax/livemedia-creator.html">documentación de Lorax</a> explica las fases; contrastar con --help de la versión instalada.</p>
+<h3>El fallo EFI/BOOT observado</h3>
+<p>Si xorriso encuentra EFI/BOOT ausente, revisar los cargadores. La receta solicita grub2-efi-x64-cdboot, shim-x64 y módulos y herramientas GRUB. boot_check.py prepara y comprueba gcdx64.efi, shimx64.efi, mmx64.efi y unicode.pf2 desde los RPM antes del empaquetado. Un directorio vacío no aporta los binarios de arranque.</p>
+<p>rd.luks=0, rd.lvm=0 y rd.md=0 limitan descubrimiento temprano; las herramientas siguen disponibles para intervención manual. Mantener aux.assist en la configuración real permite reconocer asistencia. Kernel, initrd y SquashFS deben pertenecer a la misma compilación.</p>
+</section>
+<section id="iso-verify"><h2>7. Verificar y aceptar una compilación</h2>
+<p>Calcular tamaño y SHA-256 sobre el archivo final. Conservar log y manifiesto de fuentes junto a la versión. Publicar nombre versionado y huella; un alias estable debe actualizarse con los mismos bytes y una huella coherente.</p>
+<pre>sha256sum results-5.0.1-dev.5/aux-rescue-5.0.1-dev.5-x86_64.iso
+du -h results-5.0.1-dev.5/aux-rescue-5.0.1-dev.5-x86_64.iso
+cat work-5.0.1-dev.5/source-manifest.json</pre>
+<p>Arrancar primero una VM sin discos de cliente. Probar BIOS y UEFI por separado, después hardware de pruebas y HTTP/iPXE sin ISO local. La presencia de shim no certifica Secure Boot: validar toda la cadena del medio, firmware y configuración.</p>
+<pre># Run from the authorized Live shell
+cat /usr/share/aux-assist/packages-requested.txt
+sort /usr/share/aux-assist/packages-rpm.txt
+getent passwd root
+free -h
+df -h / /work
+findmnt -t tmpfs,overlay,squashfs
+dnf repolist
+ss -ltn</pre>
+<p>Probar una instalación pequeña con dnf, Wi-Fi, Ethernet, DNS y TLS. Medir RAM inicial, tamaño y tiempo PXE. Verificar ausencia de listener antes de AUTORIZO, rechazo de otra clave y cierre del puerto al terminar. Comprobar huellas, observadores y SELinux enforcing. Guardar resultados por hardware y versión.</p>
+<p>/work limita su uso al mínimo entre un cuarto de RAM total, un tercio de RAM disponible al iniciar y 2 GiB. Antes de un stage3 o recuperación grande, revisar memoria y acordar un destino persistente suficiente. Reiniciar elimina trabajo temporal; las escrituras en discos reales permanecen.</p>
+</section>
+<section id="iso-publish"><h2>8. Publicar en Excalibur e iPXE</h2>
+<p>Tras aceptar la compilación, copiar ISO versionada y SHA-256 a /var/www/aux.1-s.es/isos. Conservar la versión anterior durante las pruebas. El generador reconoce aux-rescue.iso y aux-rescue-version-arquitectura.iso como asistencia; exige los archivos y marcadores reales para habilitar arranque automático.</p>
+<pre># From the AUX/PXE command directory, after copying the accepted ISO to cache
+sudo bash deploy.sh ram --only aux-rescue --verbose
+sudo bash generate.sh --verbose</pre>
+<p>La asistencia aparece en capítulo 0. El menú puede arrancar la versión más reciente compatible tras 60 segundos; cualquier tecla detiene la cuenta. Ese arranque lleva al control local del Live: autorizar técnico es un paso posterior. La llave USB del proyecto utiliza GRUB visible durante 5 segundos antes de iPXE.</p>
+<p>Si se mantiene aux-rescue.iso como alias, comprobar que sean los mismos bytes que la versión aceptada. Evitar cargar alias y versión simultáneamente en RAM sin necesidad: son dos nombres y pueden consumir dos copias. Preparar réplica FTP después de generar; contenidos navegables y PXE permanecen en Excalibur.</p>
+<p>Utilizar <a href="operations.html#mixed-deploy">las listas ligera y pesada</a> para el resto. Añadir la URL real de la ISO propia a la ligera cuando exista una publicación comprobada. El generador rastrea RAM y disco y reúne contenidos, catálogo, menú y sitemaps.</p>
+</section>
+<section id="iso-maintain"><h2>9. Mantenimiento e informes</h2>
+<p>Una versión útil incluye fuentes, inventario e instrucciones revisables. Conservar número de receta, cambios y pruebas de cada función prometida. Si cambia un repositorio o paquete, recompilar y medir. Una actualización de web no constituye una ISO nueva probada.</p>
+<p>Informar de fallos con versión y hash, arquitectura, BIOS/UEFI, Secure Boot, RAM, adaptador, USB/iPXE, comando y últimas líneas del log. Redactar datos personales y secretos. Explicar qué ocurrió, qué se esperaba y qué fase terminó; una descarga correcta no valida el arranque.</p>
+<p>Para un fork, definir objetivo: base mínima, diagnóstico, recuperación o instalación. Mantener créditos y licencias, publicar diferencias y actualizar manifiesto. Cambiar servicios o automatismos exige revisar consentimiento, cierre y acceso. Una recuperación empieza con un plan de datos y termina con un informe verificable.</p>
+<p><a href="https://www.alawise.es/1-s">Author &amp; Credits: https://www.alawise.es/1-s</a>. Componentes principales: <a href="https://fedoraproject.org/">Fedora Project</a>, <a href="https://weldr.io/lorax/">Lorax</a>, <a href="https://github.com/dracut-ng/dracut-ng">dracut</a> y autores de los paquetes enumerados. <a href="#iso-guide">Volver al inicio</a>.</p>
+</section>
+</article>
+
+<section id="iso-debian"><h2>Construir una ISO de rescate en Debian</h2>
+<p>Ruta independiente de Fedora/Lorax: usar una VM Debian 13 amd64 dedicada con live-build. Esta receta crea una base de rescate con Wi-Fi; no incorpora todavía la plataforma de asistencia, consentimiento AUTORIZO ni observadores. No distribuirla como una versión terminada de AUX Assist.</p>
+<pre>sudo apt update
+sudo apt install live-build debootstrap debian-archive-keyring xorriso squashfs-tools qemu-system-x86 ovmf
+mkdir aux-rescue-debian
+cd aux-rescue-debian
+lb config --distribution trixie --architectures amd64 --binary-images iso-hybrid --archive-areas "main non-free-firmware" --firmware-chroot true --firmware-binary true --bootappend-live "boot=live components"</pre>
+<p>Crear config/package-lists/rescue.list.chroot, un paquete por línea, con esta selección inicial:</p>
+<pre>linux-image-amd64
+live-boot
+live-config
+systemd-sysv
+bash
+sudo
+ca-certificates
+network-manager
+wpasupplicant
+iw
+firmware-iwlwifi
+firmware-realtek
+firmware-atheros
+links
+tmux
+wget
+curl
+lftp
+openssh-client
+rsync
+cryptsetup
+lvm2
+mdadm
+btrfs-progs
+xfsprogs
+e2fsprogs
+dosfstools
+parted
+gdisk
+smartmontools
+nvme-cli
+testdisk
+gddrescue
+pciutils
+usbutils
+iproute2
+iputils-ping
+nano</pre>
+<p>NetworkManager proporciona nmtui. La selección de firmware cubre varias familias habituales, no todos los adaptadores. No se instala un servidor SSH ni se incluye una clave privada. Acceso administrativo local con sudo desde el usuario Live; /bin/bash disponible.</p>
+<pre>sudo lb build
+sha256sum live-image-amd64.hybrid.iso
+qemu-system-x86_64 -m 4096 -cdrom live-image-amd64.hybrid.iso -boot d</pre>
+<p>Dentro del Live, comprobar red con nmtui y preparar una unidad temporal de trabajo; elegir un tamaño apropiado para la RAM realmente disponible:</p>
+<pre>free -h
+sudo install -d -m 0700 /work
+sudo mount -t tmpfs -o size=1G,mode=0700,nosuid,nodev tmpfs /work
+findmnt /work</pre>
+<p>El montaje permite ejecutar programas para chroot y desaparece al apagar. No habilitar persistencia por defecto. Para incorporar servicios propios, utilizar config/includes.chroot y hooks revisados; no copiar a ciegas los servicios Fedora porque cambian rutas, paquetes y políticas.</p>
+<p>Antes de publicar: guardar configuración, lista de paquetes realmente instalados, fecha, hash y tamaño; probar BIOS y UEFI, Ethernet/Wi-Fi, /work y apagado. La compilación de esta receta Debian está pendiente de ejecutar; los comandos documentados no equivalen a una ISO validada.</p>
+<p><a href="https://live-team.pages.debian.net/live-manual/html/live-manual/index.en.html">Manual Debian Live</a> · <a href="https://manpages.debian.org/trixie/live-build/lb_config.1.en.html">Opciones live-build</a></p>
+<h3>Elegir el sistema constructor</h3><p>Desde Fedora: construir la ISO Fedora con la receta Lorax anterior; para Debian, abrir una VM Debian y usar esta sección. Desde Debian: construir con live-build; para Fedora, abrir una VM Fedora con virtualización anidada disponible si Lorax crea otra VM. Evitar --no-virt sobre un equipo de trabajo. Cada construcción utiliza su directorio propio.</p>
+<p><a href="usb-guide.html">Grabar la llave en Fedora, Debian/Ubuntu, Windows o macOS</a> · <a href="debian-deploy.html">Servidor Debian para AUX/PXE/TEC</a></p></section>

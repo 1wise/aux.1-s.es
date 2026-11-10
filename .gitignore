@@ -1,0 +1,12 @@
+# Timestamp: 2026-11-09 | Version: 7.0.0-dev.2
+# Author & Credits: https://www.alawise.es/1-s
+__pycache__/
+*.pyc
+.venv/
+work-*/
+*.part
+*.raw
+*.qcow2
+private/
+*.key
+*.secret

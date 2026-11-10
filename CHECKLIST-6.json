@@ -1,0 +1,23 @@
+{
+  "_meta": {"Timestamp": "2026-10-16", "Version": "6.0.0-dev.3", "Author & Credits": "https://www.alawise.es/1-s"},
+  "stable_ready": false,
+  "checks": {
+    "rescue_5_intranet_ssh_dnf": {"state": "passed_user_report", "evidence": "Boot, SSH and dnf update confirmed by user"},
+    "cli_local_ssh_binary_consent_revocation": {"state": "passed_automated", "evidence": "10 tests: real SSH, TLS/WSS, consent, ownership, replay, expiry, host pinning, UTF-8 and revocation"},
+    "scripts_local_regression": {"state": "passed_automated", "evidence": "65 regression tests plus release-specific tests in verify-v6.py"},
+    "tec_json_workflows": {"state": "passed_automated", "evidence": "tec/test_platform.py"},
+    "iso_6_sources": {"state": "passed_automated", "evidence": "iso-assist/test_sources.py"},
+    "iso_6_cari_gsm_boot_menu_T": {"state": "passed_user_report", "evidence": "Cari booted a user-compiled 6.0 image via USB and Hammer USB tethering over GSM; menu and local T worked. Exact version, hash and firmware not provided."},
+    "iso_6_gentoo_memtest": {"state": "failed_user_report", "evidence": "Gentoo and Memtest86+ x86_64 failed; error and firmware mode pending. Gentoo has no complete direct netboot recipe."},
+    "ai_terminal_sources": {"state": "passed_automated", "evidence": "14 fixture tests in iso-assist/test_ai.py; systemd-analyze verify passed for both optional units"},
+    "ai_live_openai_gemini": {"state": "pending", "evidence": "Requires API accounts, real provider calls and boot tests of dev.3; no API key packaged."},
+    "iso_6_compiled_bios_uefi_selinux": {"state": "pending", "evidence": null},
+    "external_nat_assistance": {"state": "pending", "evidence": null},
+    "cli_excalibur_tls": {"state": "pending", "evidence": null},
+    "kamala_public_cli": {"state": "pending", "evidence": null},
+    "bastion_with_excalibur_off": {"state": "pending", "evidence": null},
+    "browser_terminal_notifications": {"state": "pending", "evidence": null},
+    "whole_tree_atomic_publish": {"state": "pending", "evidence": "Current replacement is atomic per file only"},
+    "dracut_timing": {"state": "pending", "evidence": null}
+  }
+}

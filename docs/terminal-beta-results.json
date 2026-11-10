@@ -1,0 +1,47 @@
+{
+  "version": "7.0.0-beta.0",
+  "checks": [
+    {
+      "command": "python3 aux-catalog --interactive",
+      "terminal": "120x30 xterm-256color",
+      "background": 54,
+      "identity_visible": true,
+      "cancel_exit": 0
+    },
+    {
+      "command": "python3 aux-setup --interactive",
+      "terminal": "120x30 xterm-256color",
+      "background": 51,
+      "identity_visible": true,
+      "cancel_exit": 130
+    },
+    {
+      "command": "python3 aux-images --interactive",
+      "terminal": "120x30 xterm-256color",
+      "background": 51,
+      "identity_visible": true,
+      "cancel_exit": 130
+    },
+    {
+      "command": "python3 aux-profile --interactive",
+      "terminal": "120x30 xterm-256color",
+      "background": 51,
+      "identity_visible": true,
+      "cancel_exit": 130
+    },
+    {
+      "command": "python3 iso-assist/prepare.py --interactive",
+      "terminal": "120x30 xterm-256color",
+      "background": 51,
+      "identity_visible": true,
+      "cancel_exit": 130
+    },
+    {
+      "command": "python3 usb/portable/build.py --interactive",
+      "terminal": "120x30 xterm-256color",
+      "background": 51,
+      "identity_visible": true,
+      "cancel_exit": 130
+    }
+  ]
+}
