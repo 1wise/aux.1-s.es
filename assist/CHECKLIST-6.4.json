@@ -1,0 +1,10 @@
+{
+  "version": "6.4.0-dev.1",
+  "status": "development source release; new Live and combined USB require compilation and boot acceptance",
+  "features": ["dedicated browser tab", "two independent SSH PTYs", "per-terminal paste and Ctrl+C", "USB NetworkManager DNS preparation", "WAN Arsenal"],
+  "packages": ["aux-pxe", "tec-platform", "aux-cli", "aux-assist sources", "aux-portable kit"],
+  "live_boot_verified": false,
+  "provider_api_calls": 0,
+  "verified": {"gateway_tests": 24, "iso_tests_run": 63, "iso_tests_skipped": 1, "portable_tests": 10, "catalog_tests": 65, "release_contract_tests": 29, "php_and_node_checks": "passed", "complete_package_integrity": "CRC and SHA-256 verified"},
+  "pending": ["Fedora 44 ISO compilation", "combined USB build", "BIOS and UEFI Live boot", "SELinux enforcing on Live", "Ethernet and saved Wi-Fi DNS after reboot", "physical clipboard and foreground interrupt acceptance"]
+}

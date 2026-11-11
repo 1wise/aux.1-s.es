@@ -1,0 +1,1185 @@
+{
+  "_meta": {
+    "Timestamp": "2026-11-10",
+    "Version": "7.0.0-beta.15",
+    "Author & Credits": "https://www.alawise.es/1-s",
+    "status": "review-source-and-first-result-before-enabling-timer"
+  },
+  "sources": [
+    {
+      "id": "fedora-current",
+      "url": "https://fedoraproject.org/releases.json",
+      "allowed_hosts": [
+        "fedoraproject.org",
+        "download.fedoraproject.org"
+      ],
+      "format": "fedora-releases",
+      "pattern": ".*\\.iso",
+      "defaults": {
+        "download_class": "heavy"
+      },
+      "class_rules": [
+        {
+          "pattern": ".*netinst.*",
+          "download_class": "light"
+        }
+      ]
+    },
+    {
+      "id": "netboot",
+      "url": "https://raw.githubusercontent.com/netbootxyz/netboot.xyz/development/roles/netbootxyz/defaults/main.yml",
+      "boot_url": "https://boot.netboot.xyz",
+      "allowed_hosts": [
+        "raw.githubusercontent.com",
+        "api.github.com",
+        "boot.netboot.xyz"
+      ],
+      "format": "netboot",
+      "menu_index_url": "https://api.github.com/repos/netbootxyz/netboot.xyz/contents/roles/netbootxyz/templates/menu?ref=development",
+      "project_index_url": "https://raw.githubusercontent.com/netbootxyz/netboot.xyz/development/README.md"
+    }
+  ],
+  "entries": [],
+  "storage": {
+    "enabled": false,
+    "ids": [],
+    "max_images": 2,
+    "max_total_bytes": null
+  },
+  "sync_rules": [
+    {
+      "source_id": "d01-debian-stable-amd64",
+      "filename_pattern": "debian-(?P<release>[0-9]+\\.[0-9]+\\.[0-9]+)-amd64-netinst\\.iso"
+    },
+    {
+      "source_id": "d02-debian-stable-arm64",
+      "filename_pattern": "debian-(?P<release>[0-9]+\\.[0-9]+\\.[0-9]+)-arm64-netinst\\.iso"
+    },
+    {
+      "source_id": "d03-fedora-downloads",
+      "filename_pattern": "Fedora-Server-netinst-x86_64-(?P<release>[0-9]+-[0-9.]+)\\.iso"
+    },
+    {
+      "source_id": "d04-fedora-downloads",
+      "filename_pattern": "Fedora-Server-netinst-aarch64-(?P<release>[0-9]+-[0-9.]+)\\.iso"
+    },
+    {
+      "source_id": "d05-arch-ipxe",
+      "filename_pattern": "ipxe\\-arch\\.lkrn"
+    },
+    {
+      "source_id": "d06-arch-ipxe",
+      "filename_pattern": "ipxe\\-arch\\.pxe"
+    },
+    {
+      "source_id": "d07-arch-ipxe",
+      "filename_pattern": "ipxe\\-arch\\.efi"
+    },
+    {
+      "source_id": "d08-gentoo-minimal",
+      "filename_pattern": "install-amd64-minimal-(?P<release>[0-9]{8}T[0-9]{6}Z)\\.iso"
+    },
+    {
+      "source_id": "d09-kali",
+      "filename_pattern": "kali-linux-(?P<release>[0-9.]+)-installer-netinst-amd64\\.iso"
+    },
+    {
+      "source_id": "d10-clonezilla-testing",
+      "filename_pattern": "clonezilla-live-(?P<release>[0-9.]+-[0-9]+)-amd64\\.iso"
+    },
+    {
+      "source_id": "d11-gparted-stable",
+      "filename_pattern": "gparted-live-(?P<release>[0-9.]+-[0-9]+)-amd64\\.iso"
+    },
+    {
+      "source_id": "d12-netboot-binaries",
+      "filename_pattern": "netboot\\.xyz\\.kpxe"
+    },
+    {
+      "source_id": "d13-netboot-binaries",
+      "filename_pattern": "netboot\\.xyz\\.efi"
+    },
+    {
+      "source_id": "d14-memtest",
+      "filename_pattern": "mt86plus_(?P<release>[0-9.]+)_i586\\.iso\\.zip"
+    },
+    {
+      "source_id": "d15-memtest",
+      "filename_pattern": "mt86plus_(?P<release>[0-9.]+)_x86_64\\.iso\\.zip"
+    },
+    {
+      "source_id": "d16-memtest",
+      "filename_pattern": "mt86plus_(?P<release>[0-9.]+)_x86_64\\.grub\\.iso\\.zip"
+    },
+    {
+      "source_id": "d17-supergrub-beta",
+      "filename_pattern": "supergrub2-(?P<release>[0-9][A-Za-z0-9.-]*beta[0-9]*)-multiarch-CD\\.iso"
+    },
+    {
+      "source_id": "d18-centos-x86-64",
+      "filename_pattern": "CentOS\\-Stream\\-10\\-latest\\-x86_64\\-boot\\.iso"
+    },
+    {
+      "source_id": "d19-centos-aarch64",
+      "filename_pattern": "CentOS\\-Stream\\-10\\-latest\\-aarch64\\-boot\\.iso"
+    },
+    {
+      "source_id": "d20-systemrescue",
+      "filename_pattern": "systemrescue-(?P<release>[0-9.]+)-amd64\\.iso"
+    },
+    {
+      "source_id": "d21-rescatux",
+      "filename_pattern": "rescatux-(?P<release>[0-9.]+)\\.iso"
+    },
+    {
+      "source_id": "d22-redorescue",
+      "filename_pattern": "redorescue-(?P<release>[0-9.]+)\\.iso"
+    },
+    {
+      "source_id": "d23-debian-i386",
+      "filename_pattern": "debian-(?P<release>12\\.[0-9]+\\.[0-9]+)-i386-netinst\\.iso"
+    },
+    {
+      "source_id": "d24-debian-netboot",
+      "filename_pattern": "netboot\\.tar\\.gz"
+    },
+    {
+      "source_id": "d25-alpine-aarch64",
+      "filename_pattern": "alpine-netboot-(?P<release>[0-9.]+)-aarch64\\.tar\\.gz"
+    },
+    {
+      "source_id": "d26-alpine-x86",
+      "filename_pattern": "alpine-netboot-(?P<release>[0-9.]+)-x86\\.tar\\.gz"
+    },
+    {
+      "source_id": "d27-alpine-x86-64",
+      "filename_pattern": "alpine-netboot-(?P<release>[0-9.]+)-x86_64\\.tar\\.gz"
+    },
+    {
+      "source_id": "d28-alpine-x86",
+      "filename_pattern": "alpine-standard-(?P<release>[0-9.]+)-x86\\.iso"
+    },
+    {
+      "source_id": "d29-alpine-x86-64",
+      "filename_pattern": "alpine-standard-(?P<release>[0-9.]+)-x86_64\\.iso"
+    },
+    {
+      "source_id": "d30-debian-live",
+      "filename_pattern": "debian-live-(?P<release>[0-9.]+)-amd64-gnome\\.iso"
+    },
+    {
+      "source_id": "d31-debian-live",
+      "filename_pattern": "debian-live-(?P<release>[0-9.]+)-amd64-xfce\\.iso"
+    },
+    {
+      "source_id": "d32-fedora-downloads",
+      "filename_pattern": "Fedora-Workstation-Live-(?P<release>[0-9]+-[0-9.]+)\\.x86_64\\.iso"
+    },
+    {
+      "source_id": "d33-fedora-downloads",
+      "filename_pattern": "Fedora-Workstation-Live-(?P<release>[0-9]+-[0-9.]+)\\.aarch64\\.iso"
+    },
+    {
+      "source_id": "d34-arch-iso",
+      "filename_pattern": "archlinux-(?P<release>[0-9]{4}\\.[0-9]{2}\\.[0-9]{2})-x86_64\\.iso"
+    },
+    {
+      "source_id": "d35-gentoo-livegui",
+      "filename_pattern": "livegui-amd64-(?P<release>[0-9]{8}T[0-9]{6}Z)\\.iso"
+    },
+    {
+      "source_id": "d36-kali",
+      "filename_pattern": "kali-linux-(?P<release>[0-9.]+)-installer-amd64\\.iso"
+    },
+    {
+      "source_id": "d37-kali",
+      "filename_pattern": "kali-linux-(?P<release>[0-9.]+)-installer-purple-amd64\\.iso"
+    },
+    {
+      "source_id": "d38-proxmox",
+      "filename_pattern": "proxmox-ve_(?P<release>[0-9.]+-[0-9]+)\\.iso"
+    },
+    {
+      "source_id": "d39-debian-testing-amd64",
+      "filename_pattern": "debian\\-testing\\-amd64\\-netinst\\.iso"
+    },
+    {
+      "source_id": "d40-debian-testing-arm64",
+      "filename_pattern": "debian\\-testing\\-arm64\\-netinst\\.iso"
+    },
+    {
+      "source_id": "d41-ubuntu-lts",
+      "filename_pattern": "ubuntu-(?P<release>26\\.04(?:\\.[0-9]+)?)-desktop-amd64\\.iso"
+    },
+    {
+      "source_id": "d42-ubuntu-lts",
+      "filename_pattern": "ubuntu-(?P<release>26\\.04(?:\\.[0-9]+)?)-live-server-amd64\\.iso"
+    },
+    {
+      "source_id": "d43-bootrepair",
+      "filename_pattern": "boot\\-repair\\-disk\\-64bit\\.iso"
+    },
+    {
+      "source_id": "d44-debian-cloud",
+      "filename_pattern": "debian-(?P<release>13)-genericcloud-amd64\\.qcow2"
+    },
+    {
+      "source_id": "d45-debian-cloud",
+      "filename_pattern": "debian-(?P<release>13)-genericcloud-arm64\\.qcow2"
+    },
+    {
+      "source_id": "d46-fedora-downloads",
+      "filename_pattern": "Fedora-Cloud-Base-Generic-(?P<release>[0-9]+-[0-9.]+)\\.x86_64\\.qcow2"
+    },
+    {
+      "source_id": "d47-fedora-downloads",
+      "filename_pattern": "Fedora-Cloud-Base-Generic-(?P<release>[0-9]+-[0-9.]+)\\.aarch64\\.qcow2"
+    },
+    {
+      "source_id": "d48-alpine-x86",
+      "filename_pattern": "alpine-extended-(?P<release>[0-9.]+)-x86\\.iso"
+    },
+    {
+      "source_id": "d49-alpine-x86-64",
+      "filename_pattern": "alpine-extended-(?P<release>[0-9.]+)-x86_64\\.iso"
+    }
+  ],
+  "download_sources": [
+    {
+      "id": "debian-stable-amd64",
+      "url": "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/",
+      "format": "artifact-html",
+      "allowed_hosts": [
+        "cdimage.debian.org",
+        "*.ftp.acc.umu.se"
+      ],
+      "checksums_url": "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/SHA256SUMS"
+    },
+    {
+      "id": "debian-stable-arm64",
+      "url": "https://cdimage.debian.org/debian-cd/current/arm64/iso-cd/",
+      "format": "artifact-html",
+      "allowed_hosts": [
+        "cdimage.debian.org",
+        "*.ftp.acc.umu.se"
+      ],
+      "checksums_url": "https://cdimage.debian.org/debian-cd/current/arm64/iso-cd/SHA256SUMS"
+    },
+    {
+      "id": "debian-i386",
+      "url": "https://cdimage.debian.org/cdimage/archive/",
+      "format": "html-walk",
+      "allowed_hosts": [
+        "cdimage.debian.org",
+        "*.ftp.acc.umu.se"
+      ],
+      "directory_pattern": "12\\.[0-9]+\\.[0-9]+",
+      "subdirectory": "i386/iso-cd/"
+    },
+    {
+      "id": "debian-live",
+      "url": "https://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/",
+      "format": "artifact-html",
+      "allowed_hosts": [
+        "cdimage.debian.org",
+        "*.ftp.acc.umu.se"
+      ],
+      "checksums_url": "https://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/SHA256SUMS"
+    },
+    {
+      "id": "debian-testing-amd64",
+      "url": "https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/",
+      "format": "artifact-html",
+      "allowed_hosts": [
+        "cdimage.debian.org",
+        "*.ftp.acc.umu.se"
+      ],
+      "checksums_url": "https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/SHA256SUMS"
+    },
+    {
+      "id": "debian-testing-arm64",
+      "url": "https://cdimage.debian.org/cdimage/weekly-builds/arm64/iso-cd/",
+      "format": "artifact-html",
+      "allowed_hosts": [
+        "cdimage.debian.org",
+        "*.ftp.acc.umu.se"
+      ],
+      "checksums_url": "https://cdimage.debian.org/cdimage/weekly-builds/arm64/iso-cd/SHA256SUMS"
+    },
+    {
+      "id": "debian-cloud",
+      "url": "https://cloud.debian.org/images/cloud/trixie/latest/",
+      "format": "artifact-html",
+      "allowed_hosts": [
+        "cloud.debian.org",
+        "*.ftp.acc.umu.se"
+      ],
+      "checksums_url": "https://cloud.debian.org/images/cloud/trixie/latest/SHA512SUMS",
+      "checksum_algorithm": "sha512"
+    },
+    {
+      "id": "debian-netboot",
+      "url": "https://deb.debian.org/debian/dists/bookworm/main/installer-i386/current/images/netboot/",
+      "format": "fixed",
+      "allowed_hosts": [
+        "deb.debian.org",
+        "*.ftp.acc.umu.se"
+      ],
+      "artifacts": [
+        {
+          "original_url": "https://deb.debian.org/debian/dists/bookworm/main/installer-i386/current/images/netboot/netboot.tar.gz",
+          "release": "bookworm/current"
+        }
+      ]
+    },
+    {
+      "id": "fedora-downloads",
+      "url": "https://fedoraproject.org/releases.json",
+      "format": "fedora-artifacts",
+      "allowed_hosts": [
+        "fedoraproject.org",
+        "download.fedoraproject.org",
+        "*.fedoraproject.org",
+        "fedora.mirrorservice.org",
+        "mirror.cov.ukservers.com",
+        "fedora.ipacct.com"
+      ],
+      "mirror_redirect_origins": [
+        "download.fedoraproject.org"
+      ]
+    },
+    {
+      "id": "arch-iso",
+      "url": "https://archlinux.org/releng/releases/json/",
+      "format": "arch-releases",
+      "allowed_hosts": [
+        "archlinux.org",
+        "geo.mirror.pkgbuild.com"
+      ],
+      "artifact_base": "https://geo.mirror.pkgbuild.com"
+    },
+    {
+      "id": "arch-ipxe",
+      "url": "https://archlinux.org/releng/netboot/",
+      "format": "fixed",
+      "allowed_hosts": [
+        "archlinux.org"
+      ],
+      "artifacts": [
+        {
+          "original_url": "https://archlinux.org/static/netboot/ipxe-arch.efi",
+          "release": "rolling"
+        },
+        {
+          "original_url": "https://archlinux.org/static/netboot/ipxe-arch.pxe",
+          "release": "rolling"
+        },
+        {
+          "original_url": "https://archlinux.org/static/netboot/ipxe-arch.lkrn",
+          "release": "rolling"
+        }
+      ]
+    },
+    {
+      "id": "gentoo-minimal",
+      "url": "https://distfiles.gentoo.org/releases/amd64/autobuilds/current-install-amd64-minimal/latest-install-amd64-minimal.txt",
+      "allowed_hosts": [
+        "distfiles.gentoo.org"
+      ],
+      "format": "gentoo-latest",
+      "pattern": "install-amd64-minimal-(?P<release>[0-9]{8}T[0-9]{6}Z)\\.iso",
+      "defaults": {
+        "family": "gentoo",
+        "architecture": "x86_64",
+        "kind": "installer",
+        "download_class": "light"
+      }
+    },
+    {
+      "id": "gentoo-livegui",
+      "url": "https://distfiles.gentoo.org/releases/amd64/autobuilds/current-livegui-amd64/latest-livegui-amd64.txt",
+      "allowed_hosts": [
+        "distfiles.gentoo.org"
+      ],
+      "format": "gentoo-latest",
+      "pattern": "livegui-amd64-(?P<release>[0-9]{8}T[0-9]{6}Z)\\.iso",
+      "defaults": {
+        "family": "gentoo",
+        "architecture": "x86_64",
+        "kind": "live",
+        "download_class": "heavy"
+      }
+    },
+    {
+      "id": "kali",
+      "url": "https://cdimage.kali.org/current/",
+      "format": "artifact-html",
+      "allowed_hosts": [
+        "cdimage.kali.org",
+        "kali.download",
+        "*.mm.fcix.net"
+      ],
+      "checksums_url": "https://cdimage.kali.org/current/SHA256SUMS",
+      "mirror_redirect_origins": [
+        "cdimage.kali.org",
+        "kali.download"
+      ]
+    },
+    {
+      "id": "clonezilla-testing",
+      "url": "https://clonezilla.org/downloads/testing/data/CHECKSUMS.TXT",
+      "format": "checksum-index",
+      "allowed_hosts": [
+        "clonezilla.org",
+        "sourceforge.net",
+        "downloads.sourceforge.net",
+        "*.dl.sourceforge.net"
+      ],
+      "filename_pattern": "clonezilla-live-(?P<release>[0-9.]+-[0-9]+)-amd64\\.iso",
+      "artifact_base": "https://downloads.sourceforge.net/project/clonezilla/clonezilla_live_testing/",
+      "artifact_template": "{release}/{filename}"
+    },
+    {
+      "id": "gparted-stable",
+      "url": "https://gparted.org/download.php",
+      "format": "artifact-html",
+      "allowed_hosts": [
+        "gparted.org",
+        "sourceforge.net",
+        "downloads.sourceforge.net",
+        "*.dl.sourceforge.net"
+      ]
+    },
+    {
+      "id": "netboot-binaries",
+      "url": "https://api.github.com/repos/netbootxyz/netboot.xyz/releases/latest",
+      "format": "github-assets",
+      "allowed_hosts": [
+        "api.github.com",
+        "github.com",
+        "release-assets.githubusercontent.com",
+        "objects.githubusercontent.com"
+      ]
+    },
+    {
+      "id": "memtest",
+      "url": "https://www.memtest.org/",
+      "format": "artifact-html",
+      "allowed_hosts": [
+        "www.memtest.org",
+        "memtest.org"
+      ]
+    },
+    {
+      "id": "supergrub-beta",
+      "url": "https://www.supergrubdisk.org/category/download/supergrub2diskdownload/super-grub2-disk-beta/",
+      "format": "artifact-html",
+      "allowed_hosts": [
+        "www.supergrubdisk.org",
+        "supergrubdisk.org",
+        "sourceforge.net",
+        "downloads.sourceforge.net",
+        "*.dl.sourceforge.net"
+      ]
+    },
+    {
+      "id": "centos-x86_64",
+      "url": "https://mirror.stream.centos.org/10-stream/BaseOS/x86_64/iso/",
+      "format": "artifact-html",
+      "allowed_hosts": [
+        "mirror.stream.centos.org"
+      ]
+    },
+    {
+      "id": "centos-aarch64",
+      "url": "https://mirror.stream.centos.org/10-stream/BaseOS/aarch64/iso/",
+      "format": "artifact-html",
+      "allowed_hosts": [
+        "mirror.stream.centos.org"
+      ]
+    },
+    {
+      "id": "systemrescue",
+      "url": "https://www.system-rescue.org/Download/",
+      "format": "artifact-html",
+      "allowed_hosts": [
+        "www.system-rescue.org",
+        "system-rescue.org",
+        "fastly-cdn.system-rescue.org",
+        "sourceforge.net",
+        "downloads.sourceforge.net",
+        "*.dl.sourceforge.net"
+      ]
+    },
+    {
+      "id": "rescatux",
+      "url": "https://www.supergrubdisk.org/category/download/rescatuxdownloads/rescatux-stable/",
+      "format": "artifact-html",
+      "allowed_hosts": [
+        "www.supergrubdisk.org",
+        "supergrubdisk.org",
+        "sourceforge.net",
+        "downloads.sourceforge.net",
+        "*.dl.sourceforge.net"
+      ]
+    },
+    {
+      "id": "redorescue",
+      "url": "https://sourceforge.net/projects/redobackup/rss?path=/&limit=100",
+      "format": "artifact-rss",
+      "allowed_hosts": [
+        "sourceforge.net",
+        "downloads.sourceforge.net",
+        "*.dl.sourceforge.net"
+      ]
+    },
+    {
+      "id": "bootrepair",
+      "url": "https://sourceforge.net/projects/boot-repair-cd/rss?path=/&limit=100",
+      "format": "artifact-rss",
+      "allowed_hosts": [
+        "sourceforge.net",
+        "downloads.sourceforge.net",
+        "*.dl.sourceforge.net"
+      ]
+    },
+    {
+      "id": "alpine-aarch64",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/latest-stable/releases/aarch64/latest-releases.yaml",
+      "format": "alpine-releases",
+      "allowed_hosts": [
+        "dl-cdn.alpinelinux.org"
+      ]
+    },
+    {
+      "id": "alpine-x86",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/latest-stable/releases/x86/latest-releases.yaml",
+      "format": "alpine-releases",
+      "allowed_hosts": [
+        "dl-cdn.alpinelinux.org"
+      ]
+    },
+    {
+      "id": "alpine-x86_64",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/latest-stable/releases/x86_64/latest-releases.yaml",
+      "format": "alpine-releases",
+      "allowed_hosts": [
+        "dl-cdn.alpinelinux.org"
+      ]
+    },
+    {
+      "id": "proxmox",
+      "url": "https://www.proxmox.com/en/downloads/proxmox-virtual-environment/iso",
+      "format": "artifact-html",
+      "allowed_hosts": [
+        "enterprise.proxmox.com",
+        "www.proxmox.com"
+      ]
+    },
+    {
+      "id": "ubuntu-lts",
+      "url": "https://releases.ubuntu.com/26.04/",
+      "format": "artifact-html",
+      "allowed_hosts": [
+        "releases.ubuntu.com"
+      ],
+      "checksums_url": "https://releases.ubuntu.com/26.04/SHA256SUMS"
+    }
+  ],
+  "download_slots": [
+    {
+      "id": "d01-debian-stable-amd64",
+      "source_id": "debian-stable-amd64",
+      "filename_pattern": "debian-(?P<release>[0-9]+\\.[0-9]+\\.[0-9]+)-amd64-netinst\\.iso",
+      "family": "debian",
+      "architecture": "x86_64",
+      "kind": "install",
+      "download_class": "light",
+      "channel": "released",
+      "release": "released",
+      "label": "Debian / debian-13.7.0-amd64-netinst.iso"
+    },
+    {
+      "id": "d02-debian-stable-arm64",
+      "source_id": "debian-stable-arm64",
+      "filename_pattern": "debian-(?P<release>[0-9]+\\.[0-9]+\\.[0-9]+)-arm64-netinst\\.iso",
+      "family": "debian",
+      "architecture": "arm64",
+      "kind": "install",
+      "download_class": "light",
+      "channel": "released",
+      "release": "released",
+      "label": "Debian / debian-13.7.0-arm64-netinst.iso"
+    },
+    {
+      "id": "d03-fedora-downloads",
+      "source_id": "fedora-downloads",
+      "filename_pattern": "Fedora-Server-netinst-x86_64-(?P<release>[0-9]+-[0-9.]+)\\.iso",
+      "family": "fedora",
+      "architecture": "x86_64",
+      "kind": "install",
+      "download_class": "light",
+      "channel": "released",
+      "release": "released",
+      "label": "Fedora / Fedora-Server-netinst-x86_64-44-1.7.iso"
+    },
+    {
+      "id": "d04-fedora-downloads",
+      "source_id": "fedora-downloads",
+      "filename_pattern": "Fedora-Server-netinst-aarch64-(?P<release>[0-9]+-[0-9.]+)\\.iso",
+      "family": "fedora",
+      "architecture": "arm64",
+      "kind": "install",
+      "download_class": "light",
+      "channel": "released",
+      "release": "released",
+      "label": "Fedora / Fedora-Server-netinst-aarch64-44-1.7.iso"
+    },
+    {
+      "id": "d05-arch-ipxe",
+      "source_id": "arch-ipxe",
+      "filename_pattern": "ipxe\\-arch\\.lkrn",
+      "family": "arch",
+      "architecture": "x86_64",
+      "kind": "netboot",
+      "download_class": "light",
+      "channel": "rolling",
+      "release": "rolling",
+      "label": "Arch / ipxe-arch.lkrn"
+    },
+    {
+      "id": "d06-arch-ipxe",
+      "source_id": "arch-ipxe",
+      "filename_pattern": "ipxe\\-arch\\.pxe",
+      "family": "arch",
+      "architecture": "x86_64",
+      "kind": "netboot",
+      "download_class": "light",
+      "channel": "rolling",
+      "release": "rolling",
+      "label": "Arch / ipxe-arch.pxe"
+    },
+    {
+      "id": "d07-arch-ipxe",
+      "source_id": "arch-ipxe",
+      "filename_pattern": "ipxe\\-arch\\.efi",
+      "family": "arch",
+      "architecture": "x86_64",
+      "kind": "netboot",
+      "download_class": "light",
+      "channel": "rolling",
+      "release": "rolling",
+      "label": "Arch / ipxe-arch.efi"
+    },
+    {
+      "id": "d08-gentoo-minimal",
+      "source_id": "gentoo-minimal",
+      "filename_pattern": "install-amd64-minimal-(?P<release>[0-9]{8}T[0-9]{6}Z)\\.iso",
+      "family": "gentoo",
+      "architecture": "x86_64",
+      "kind": "install",
+      "download_class": "light",
+      "channel": "current",
+      "release": "current",
+      "label": "Gentoo / install-amd64-minimal-20261108T170107Z.iso"
+    },
+    {
+      "id": "d09-kali",
+      "source_id": "kali",
+      "filename_pattern": "kali-linux-(?P<release>[0-9.]+)-installer-netinst-amd64\\.iso",
+      "family": "kali",
+      "architecture": "x86_64",
+      "kind": "install",
+      "download_class": "light",
+      "channel": "released",
+      "release": "released",
+      "label": "Kali / kali-linux-2026.2-installer-netinst-amd64.iso"
+    },
+    {
+      "id": "d10-clonezilla-testing",
+      "source_id": "clonezilla-testing",
+      "filename_pattern": "clonezilla-live-(?P<release>[0-9.]+-[0-9]+)-amd64\\.iso",
+      "family": "clonezilla",
+      "architecture": "x86_64",
+      "kind": "live",
+      "download_class": "light",
+      "channel": "testing",
+      "release": "testing",
+      "label": "Clonezilla / clonezilla-live-3.3.4-6-amd64.iso"
+    },
+    {
+      "id": "d11-gparted-stable",
+      "source_id": "gparted-stable",
+      "filename_pattern": "gparted-live-(?P<release>[0-9.]+-[0-9]+)-amd64\\.iso",
+      "family": "gparted",
+      "architecture": "x86_64",
+      "kind": "live",
+      "download_class": "light",
+      "channel": "released",
+      "release": "released",
+      "label": "Gparted / gparted-live-1.7.0-1-amd64.iso"
+    },
+    {
+      "id": "d12-netboot-binaries",
+      "source_id": "netboot-binaries",
+      "filename_pattern": "netboot\\.xyz\\.kpxe",
+      "family": "netboot",
+      "architecture": "x86_64",
+      "kind": "netboot",
+      "download_class": "light",
+      "channel": "released",
+      "release": "released",
+      "label": "Netboot / netboot.xyz.kpxe"
+    },
+    {
+      "id": "d13-netboot-binaries",
+      "source_id": "netboot-binaries",
+      "filename_pattern": "netboot\\.xyz\\.efi",
+      "family": "netboot",
+      "architecture": "x86_64",
+      "kind": "netboot",
+      "download_class": "light",
+      "channel": "released",
+      "release": "released",
+      "label": "Netboot / netboot.xyz.efi"
+    },
+    {
+      "id": "d14-memtest",
+      "source_id": "memtest",
+      "filename_pattern": "mt86plus_(?P<release>[0-9.]+)_i586\\.iso\\.zip",
+      "family": "memtest",
+      "architecture": "i386",
+      "kind": "tool",
+      "download_class": "light",
+      "channel": "released",
+      "release": "released",
+      "label": "Memtest / mt86plus_8.00_i586.iso.zip"
+    },
+    {
+      "id": "d15-memtest",
+      "source_id": "memtest",
+      "filename_pattern": "mt86plus_(?P<release>[0-9.]+)_x86_64\\.iso\\.zip",
+      "family": "memtest",
+      "architecture": "x86_64",
+      "kind": "tool",
+      "download_class": "light",
+      "channel": "released",
+      "release": "released",
+      "label": "Memtest / mt86plus_8.00_x86_64.iso.zip"
+    },
+    {
+      "id": "d16-memtest",
+      "source_id": "memtest",
+      "filename_pattern": "mt86plus_(?P<release>[0-9.]+)_x86_64\\.grub\\.iso\\.zip",
+      "family": "memtest",
+      "architecture": "x86_64",
+      "kind": "tool",
+      "download_class": "light",
+      "channel": "released",
+      "release": "released",
+      "label": "Memtest / mt86plus_8.00_x86_64.grub.iso.zip"
+    },
+    {
+      "id": "d17-supergrub-beta",
+      "source_id": "supergrub-beta",
+      "filename_pattern": "supergrub2-(?P<release>[0-9][A-Za-z0-9.-]*beta[0-9]*)-multiarch-CD\\.iso",
+      "family": "supergrub",
+      "architecture": "x86_64",
+      "kind": "tool",
+      "download_class": "light",
+      "channel": "beta",
+      "release": "beta",
+      "label": "Supergrub / supergrub2-2.06s1-beta2-multiarch-CD.iso",
+      "latest_available": true
+    },
+    {
+      "id": "d18-centos-x86-64",
+      "source_id": "centos-x86_64",
+      "filename_pattern": "CentOS\\-Stream\\-10\\-latest\\-x86_64\\-boot\\.iso",
+      "family": "centos",
+      "architecture": "x86_64",
+      "kind": "install",
+      "download_class": "light",
+      "channel": "10-stream/current",
+      "release": "10-stream/current",
+      "label": "Centos / CentOS-Stream-10-latest-x86_64-boot.iso"
+    },
+    {
+      "id": "d19-centos-aarch64",
+      "source_id": "centos-aarch64",
+      "filename_pattern": "CentOS\\-Stream\\-10\\-latest\\-aarch64\\-boot\\.iso",
+      "family": "centos",
+      "architecture": "arm64",
+      "kind": "install",
+      "download_class": "light",
+      "channel": "10-stream/current",
+      "release": "10-stream/current",
+      "label": "Centos / CentOS-Stream-10-latest-aarch64-boot.iso"
+    },
+    {
+      "id": "d20-systemrescue",
+      "source_id": "systemrescue",
+      "filename_pattern": "systemrescue-(?P<release>[0-9.]+)-amd64\\.iso",
+      "family": "systemrescue",
+      "architecture": "x86_64",
+      "kind": "tool",
+      "download_class": "light",
+      "channel": "released",
+      "release": "released",
+      "label": "Systemrescue / systemrescue-13.02-amd64.iso"
+    },
+    {
+      "id": "d21-rescatux",
+      "source_id": "rescatux",
+      "filename_pattern": "rescatux-(?P<release>[0-9.]+)\\.iso",
+      "family": "rescatux",
+      "architecture": "x86_64",
+      "kind": "tool",
+      "download_class": "light",
+      "channel": "released",
+      "release": "released",
+      "label": "Rescatux / rescatux-0.74.iso"
+    },
+    {
+      "id": "d22-redorescue",
+      "source_id": "redorescue",
+      "filename_pattern": "redorescue-(?P<release>[0-9.]+)\\.iso",
+      "family": "redo",
+      "architecture": "x86_64",
+      "kind": "tool",
+      "download_class": "light",
+      "channel": "released",
+      "release": "released",
+      "label": "Redo / redorescue-4.0.0.iso"
+    },
+    {
+      "id": "d23-debian-i386",
+      "source_id": "debian-i386",
+      "filename_pattern": "debian-(?P<release>12\\.[0-9]+\\.[0-9]+)-i386-netinst\\.iso",
+      "family": "debian",
+      "architecture": "i386",
+      "kind": "install",
+      "download_class": "light",
+      "channel": "bookworm-i386",
+      "release": "bookworm-i386",
+      "label": "Debian / debian-12.15.0-i386-netinst.iso"
+    },
+    {
+      "id": "d24-debian-netboot",
+      "source_id": "debian-netboot",
+      "filename_pattern": "netboot\\.tar\\.gz",
+      "family": "debian",
+      "architecture": "i386",
+      "kind": "netboot",
+      "download_class": "light",
+      "channel": "bookworm/current",
+      "release": "bookworm/current",
+      "label": "Debian / netboot.tar.gz"
+    },
+    {
+      "id": "d25-alpine-aarch64",
+      "source_id": "alpine-aarch64",
+      "filename_pattern": "alpine-netboot-(?P<release>[0-9.]+)-aarch64\\.tar\\.gz",
+      "family": "alpine",
+      "architecture": "arm64",
+      "kind": "netboot",
+      "download_class": "light",
+      "channel": "latest-stable",
+      "release": "latest-stable",
+      "label": "Alpine / alpine-netboot-3.24.2-aarch64.tar.gz"
+    },
+    {
+      "id": "d26-alpine-x86",
+      "source_id": "alpine-x86",
+      "filename_pattern": "alpine-netboot-(?P<release>[0-9.]+)-x86\\.tar\\.gz",
+      "family": "alpine",
+      "architecture": "i386",
+      "kind": "netboot",
+      "download_class": "light",
+      "channel": "latest-stable",
+      "release": "latest-stable",
+      "label": "Alpine / alpine-netboot-3.24.2-x86.tar.gz"
+    },
+    {
+      "id": "d27-alpine-x86-64",
+      "source_id": "alpine-x86_64",
+      "filename_pattern": "alpine-netboot-(?P<release>[0-9.]+)-x86_64\\.tar\\.gz",
+      "family": "alpine",
+      "architecture": "x86_64",
+      "kind": "netboot",
+      "download_class": "light",
+      "channel": "latest-stable",
+      "release": "latest-stable",
+      "label": "Alpine / alpine-netboot-3.24.2-x86_64.tar.gz"
+    },
+    {
+      "id": "d28-alpine-x86",
+      "source_id": "alpine-x86",
+      "filename_pattern": "alpine-standard-(?P<release>[0-9.]+)-x86\\.iso",
+      "family": "alpine",
+      "architecture": "i386",
+      "kind": "install",
+      "download_class": "light",
+      "channel": "latest-stable",
+      "release": "latest-stable",
+      "label": "Alpine / alpine-standard-3.24.2-x86.iso"
+    },
+    {
+      "id": "d29-alpine-x86-64",
+      "source_id": "alpine-x86_64",
+      "filename_pattern": "alpine-standard-(?P<release>[0-9.]+)-x86_64\\.iso",
+      "family": "alpine",
+      "architecture": "x86_64",
+      "kind": "install",
+      "download_class": "light",
+      "channel": "latest-stable",
+      "release": "latest-stable",
+      "label": "Alpine / alpine-standard-3.24.2-x86_64.iso"
+    },
+    {
+      "id": "d30-debian-live",
+      "source_id": "debian-live",
+      "filename_pattern": "debian-live-(?P<release>[0-9.]+)-amd64-gnome\\.iso",
+      "family": "debian",
+      "architecture": "x86_64",
+      "kind": "live",
+      "download_class": "heavy",
+      "channel": "released",
+      "release": "released",
+      "label": "Debian / debian-live-13.7.0-amd64-gnome.iso"
+    },
+    {
+      "id": "d31-debian-live",
+      "source_id": "debian-live",
+      "filename_pattern": "debian-live-(?P<release>[0-9.]+)-amd64-xfce\\.iso",
+      "family": "debian",
+      "architecture": "x86_64",
+      "kind": "live",
+      "download_class": "heavy",
+      "channel": "released",
+      "release": "released",
+      "label": "Debian / debian-live-13.7.0-amd64-xfce.iso"
+    },
+    {
+      "id": "d32-fedora-downloads",
+      "source_id": "fedora-downloads",
+      "filename_pattern": "Fedora-Workstation-Live-(?P<release>[0-9]+-[0-9.]+)\\.x86_64\\.iso",
+      "family": "fedora",
+      "architecture": "x86_64",
+      "kind": "live",
+      "download_class": "heavy",
+      "channel": "released",
+      "release": "released",
+      "label": "Fedora / Fedora-Workstation-Live-44-1.7.x86_64.iso"
+    },
+    {
+      "id": "d33-fedora-downloads",
+      "source_id": "fedora-downloads",
+      "filename_pattern": "Fedora-Workstation-Live-(?P<release>[0-9]+-[0-9.]+)\\.aarch64\\.iso",
+      "family": "fedora",
+      "architecture": "arm64",
+      "kind": "live",
+      "download_class": "heavy",
+      "channel": "released",
+      "release": "released",
+      "label": "Fedora / Fedora-Workstation-Live-44-1.7.aarch64.iso"
+    },
+    {
+      "id": "d34-arch-iso",
+      "source_id": "arch-iso",
+      "filename_pattern": "archlinux-(?P<release>[0-9]{4}\\.[0-9]{2}\\.[0-9]{2})-x86_64\\.iso",
+      "family": "arch",
+      "architecture": "x86_64",
+      "kind": "live",
+      "download_class": "heavy",
+      "channel": "released",
+      "release": "released",
+      "label": "Arch / archlinux-2026.10.01-x86_64.iso"
+    },
+    {
+      "id": "d35-gentoo-livegui",
+      "source_id": "gentoo-livegui",
+      "filename_pattern": "livegui-amd64-(?P<release>[0-9]{8}T[0-9]{6}Z)\\.iso",
+      "family": "gentoo",
+      "architecture": "x86_64",
+      "kind": "live",
+      "download_class": "heavy",
+      "channel": "current",
+      "release": "current",
+      "label": "Gentoo / livegui-amd64-20260913T163055Z.iso"
+    },
+    {
+      "id": "d36-kali",
+      "source_id": "kali",
+      "filename_pattern": "kali-linux-(?P<release>[0-9.]+)-installer-amd64\\.iso",
+      "family": "kali",
+      "architecture": "x86_64",
+      "kind": "install",
+      "download_class": "heavy",
+      "channel": "released",
+      "release": "released",
+      "label": "Kali / kali-linux-2026.2-installer-amd64.iso"
+    },
+    {
+      "id": "d37-kali",
+      "source_id": "kali",
+      "filename_pattern": "kali-linux-(?P<release>[0-9.]+)-installer-purple-amd64\\.iso",
+      "family": "kali",
+      "architecture": "x86_64",
+      "kind": "install",
+      "download_class": "heavy",
+      "channel": "released",
+      "release": "released",
+      "label": "Kali / kali-linux-2026.2-installer-purple-amd64.iso"
+    },
+    {
+      "id": "d38-proxmox",
+      "source_id": "proxmox",
+      "filename_pattern": "proxmox-ve_(?P<release>[0-9.]+-[0-9]+)\\.iso",
+      "family": "proxmox",
+      "architecture": "x86_64",
+      "kind": "install",
+      "download_class": "heavy",
+      "channel": "released",
+      "release": "released",
+      "label": "Proxmox / proxmox-ve_9.2-1.iso"
+    },
+    {
+      "id": "d39-debian-testing-amd64",
+      "source_id": "debian-testing-amd64",
+      "filename_pattern": "debian\\-testing\\-amd64\\-netinst\\.iso",
+      "family": "debian",
+      "architecture": "x86_64",
+      "kind": "install",
+      "download_class": "heavy",
+      "channel": "testing",
+      "release": "testing",
+      "label": "Debian / debian-testing-amd64-netinst.iso"
+    },
+    {
+      "id": "d40-debian-testing-arm64",
+      "source_id": "debian-testing-arm64",
+      "filename_pattern": "debian\\-testing\\-arm64\\-netinst\\.iso",
+      "family": "debian",
+      "architecture": "arm64",
+      "kind": "install",
+      "download_class": "heavy",
+      "channel": "testing",
+      "release": "testing",
+      "label": "Debian / debian-testing-arm64-netinst.iso"
+    },
+    {
+      "id": "d41-ubuntu-lts",
+      "source_id": "ubuntu-lts",
+      "filename_pattern": "ubuntu-(?P<release>26\\.04(?:\\.[0-9]+)?)-desktop-amd64\\.iso",
+      "family": "ubuntu",
+      "architecture": "x86_64",
+      "kind": "live",
+      "download_class": "heavy",
+      "channel": "26.04-LTS",
+      "release": "26.04-LTS",
+      "label": "Ubuntu / ubuntu-26.04.1-desktop-amd64.iso"
+    },
+    {
+      "id": "d42-ubuntu-lts",
+      "source_id": "ubuntu-lts",
+      "filename_pattern": "ubuntu-(?P<release>26\\.04(?:\\.[0-9]+)?)-live-server-amd64\\.iso",
+      "family": "ubuntu",
+      "architecture": "x86_64",
+      "kind": "live",
+      "download_class": "heavy",
+      "channel": "26.04-LTS",
+      "release": "26.04-LTS",
+      "label": "Ubuntu / ubuntu-26.04.1-live-server-amd64.iso"
+    },
+    {
+      "id": "d43-bootrepair",
+      "source_id": "bootrepair",
+      "filename_pattern": "boot\\-repair\\-disk\\-64bit\\.iso",
+      "family": "bootrepair",
+      "architecture": "x86_64",
+      "kind": "tool",
+      "download_class": "heavy",
+      "channel": "current",
+      "release": "current",
+      "label": "Bootrepair / boot-repair-disk-64bit.iso"
+    },
+    {
+      "id": "d44-debian-cloud",
+      "source_id": "debian-cloud",
+      "filename_pattern": "debian-(?P<release>13)-genericcloud-amd64\\.qcow2",
+      "family": "debian",
+      "architecture": "x86_64",
+      "kind": "install",
+      "download_class": "heavy",
+      "channel": "trixie",
+      "release": "trixie",
+      "label": "Debian / debian-13-genericcloud-amd64.qcow2"
+    },
+    {
+      "id": "d45-debian-cloud",
+      "source_id": "debian-cloud",
+      "filename_pattern": "debian-(?P<release>13)-genericcloud-arm64\\.qcow2",
+      "family": "debian",
+      "architecture": "arm64",
+      "kind": "install",
+      "download_class": "heavy",
+      "channel": "trixie",
+      "release": "trixie",
+      "label": "Debian / debian-13-genericcloud-arm64.qcow2"
+    },
+    {
+      "id": "d46-fedora-downloads",
+      "source_id": "fedora-downloads",
+      "filename_pattern": "Fedora-Cloud-Base-Generic-(?P<release>[0-9]+-[0-9.]+)\\.x86_64\\.qcow2",
+      "family": "fedora",
+      "architecture": "x86_64",
+      "kind": "install",
+      "download_class": "heavy",
+      "channel": "released",
+      "release": "released",
+      "label": "Fedora / Fedora-Cloud-Base-Generic-44-1.7.x86_64.qcow2"
+    },
+    {
+      "id": "d47-fedora-downloads",
+      "source_id": "fedora-downloads",
+      "filename_pattern": "Fedora-Cloud-Base-Generic-(?P<release>[0-9]+-[0-9.]+)\\.aarch64\\.qcow2",
+      "family": "fedora",
+      "architecture": "arm64",
+      "kind": "install",
+      "download_class": "heavy",
+      "channel": "released",
+      "release": "released",
+      "label": "Fedora / Fedora-Cloud-Base-Generic-44-1.7.aarch64.qcow2"
+    },
+    {
+      "id": "d48-alpine-x86",
+      "source_id": "alpine-x86",
+      "filename_pattern": "alpine-extended-(?P<release>[0-9.]+)-x86\\.iso",
+      "family": "alpine",
+      "architecture": "i386",
+      "kind": "install",
+      "download_class": "heavy",
+      "channel": "latest-stable",
+      "release": "latest-stable",
+      "label": "Alpine / alpine-extended-3.24.2-x86.iso"
+    },
+    {
+      "id": "d49-alpine-x86-64",
+      "source_id": "alpine-x86_64",
+      "filename_pattern": "alpine-extended-(?P<release>[0-9.]+)-x86_64\\.iso",
+      "family": "alpine",
+      "architecture": "x86_64",
+      "kind": "install",
+      "download_class": "heavy",
+      "channel": "latest-stable",
+      "release": "latest-stable",
+      "label": "Alpine / alpine-extended-3.24.2-x86_64.iso"
+    }
+  ],
+  "download_lists": {
+    "all": "../url.txt",
+    "light": "../light-url.txt",
+    "heavy": "../heavy-url.txt"
+  }
+}

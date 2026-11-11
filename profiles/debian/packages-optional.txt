@@ -1,0 +1,6 @@
+# Timestamp: 2026-11-05 | Version: 7.0.0-dev.1
+# Author and Credits: https://www.alawise.es/1-s
+# Optional firmware and architecture-specific packages; review repository components.
+intel-microcode
+amd64-microcode
+linux-headers-amd64

@@ -1,0 +1,25 @@
+{
+  "version": "20261109T130056Z-3e9999d0",
+  "entries": [
+    {
+      "family": "debian",
+      "release": "testing-d1eb69349237",
+      "kind": "installer",
+      "download_class": "light",
+      "architecture": "amd64",
+      "original_url": "https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-netinst.iso",
+      "id": "debian-testing-amd64-80a86379d957b9dc",
+      "source_index": "https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/",
+      "allowed_hosts": [
+        "cdimage.debian.org"
+      ],
+      "sha256": "d1eb69349237e6738ea2354cb15314069ae91ed5dffb116e903fd0bc28af26d0",
+      "checksum_source": "https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/SHA256SUMS",
+      "verification": {
+        "download_hash": "not-checked",
+        "source_signature": "not-checked"
+      },
+      "identity": "cc555a2bf91ea5343070fd7236b490af6da84df1d5627149820feb8b7031cdf5"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+/* Timestamp: 2026-11-11 | Version: 7.0.0-beta.15
+ * Author & Credits: https://www.alawise.es/1-s */
+.terminal-workspace {height:100vh;height:100dvh;margin:0;overflow:hidden;background:#000;color:#7bffa0}
+.terminal-workspace main {display:flex;flex-direction:column;width:100%;height:100%;min-width:0;min-height:0;max-width:1500px;margin:0 auto;padding:12px 20px;overflow:hidden}
+.workspace-header {display:flex;align-items:center;flex-wrap:wrap;gap:8px 18px;flex-shrink:0;margin-bottom:6px}
+.workspace-header>div {flex:1;min-width:0;overflow-wrap:anywhere}
+.workspace-header h1 {font-size:20px;margin:0 0 4px;color:#b7ffca}
+.workspace-header p {font-size:12px;margin:0;color:#83a58e}
+.workspace-header .logo {font-size:29px;white-space:nowrap}
+.workspace-back {margin-left:auto;font-size:13px}
+#terminal-state {flex-shrink:0;min-height:1.3em;font-size:13px;margin:5px 0;overflow-wrap:anywhere}
+.terminal-tabs {display:flex;gap:6px;flex-shrink:0;border-bottom:1px solid #254c34;margin:0}
+.terminal-tabs button {border:1px solid #254c34;border-bottom:0;padding:9px 20px;background:#07130c;color:#83a58e;font:inherit;cursor:pointer}
+.terminal-tabs [aria-selected="true"] {background:#071f4e;color:#b7ffca;border-color:#215aa0}
+.terminal-tabs button:focus-visible,.terminal-toolbar button:focus-visible {outline:2px solid #7bffa0;outline-offset:3px}
+/* Scope panel rules above the shared theme's section selectors. */
+.terminal-workspace .terminal-panel {display:flex;flex-direction:column;flex:1;min-width:0;min-height:0;margin:0;padding:8px;background:#000;border:1px solid #254c34;border-top:0;border-radius:0;overflow:hidden}
+.terminal-workspace .terminal-panel[hidden] {display:none}
+.terminal-toolbar {display:flex;align-items:center;justify-content:space-between;gap:8px;flex-shrink:0;padding:0 0 7px;font-size:12px;color:#83a58e}
+.terminal-toolbar>div {display:flex;gap:8px}
+.terminal-toolbar button {font:inherit;padding:7px 12px;border:1px solid #37654a;background:#0b2616;color:#b7ffca;cursor:pointer;white-space:nowrap}
+.terminal-toolbar button:disabled {opacity:.4;cursor:default}
+.terminal-toolbar button:not(:disabled):hover {background:#123b22;border-color:#7bffa0}
+.terminal-toolbar button[id^="terminal-interrupt"] {border-color:#4e607e;background:#0c1931}
+.terminal-toolbar button span {margin-left:5px}
+/* Flex assigns the actual remaining space after headers, tools and controls. */
+.terminal-grid {position:relative;flex:1;min-width:0;min-height:0;overflow:hidden}
+.terminal-grid .xterm {height:100%;padding:0}
+.terminal-grid .xterm-viewport {overscroll-behavior:contain;scrollbar-color:#22d3ee #1e1b4b}
+.terminal-grid .xterm-scrollable-element>.scrollbar.vertical {background:#1e1b4b}
+.terminal-grid .xterm-viewport::-webkit-scrollbar {width:14px}
+.terminal-grid .xterm-viewport::-webkit-scrollbar-track {background:#1e1b4b}
+.terminal-grid .xterm-viewport::-webkit-scrollbar-thumb {background:#22d3ee;border:3px solid #1e1b4b;border-radius:8px}
+.workspace-note {flex-shrink:0;font-size:12px;line-height:1.3;color:#83a58e;margin:6px 0}
+.terminal-workspace footer {flex-shrink:0;margin:0;padding:4px 0;font-size:11px}
+.terminal-workspace .terminal-tools {flex:0 1 auto;min-height:0;max-height:30dvh;margin:5px 0;padding:0;border:1px solid #334155;overflow:auto;background:#111d32;color:#cbd5e1}
+.terminal-tools>summary {padding:7px 10px;cursor:pointer;color:#38bdf8}
+.terminal-tools-body {padding:0 10px 9px;overflow-wrap:anywhere}
+.terminal-tools label {display:inline-block;margin:5px 12px 5px 0}
+.terminal-tools select {display:inline-block;width:auto;max-width:100%;margin-left:6px}
+.terminal-tools small {display:block;margin-top:5px;color:#b9c6cd}
+@media(max-width:640px) {
+  .terminal-workspace main {padding:8px}
+  .workspace-header {gap:6px 10px}
+  .workspace-header h1 {font-size:17px}
+  .workspace-header .logo {font-size:23px}
+  .workspace-back {width:100%;margin-left:0;font-size:12px}
+  .terminal-tabs button {padding:8px 16px}
+  .terminal-toolbar button span {display:none}
+}
+@media(max-height:480px) {
+  .terminal-workspace main {padding:6px 10px}
+  .workspace-header {margin:0;gap:4px 10px}
+  .workspace-header .logo {font-size:22px}
+  .workspace-header h1 {font-size:16px;margin:0}
+  .workspace-header p,.workspace-note,.terminal-workspace footer {display:none}
+  .workspace-back {width:auto;margin-left:auto}
+  .terminal-tabs button {padding:6px 16px}
+}
