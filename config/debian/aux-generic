@@ -1,0 +1,4 @@
+# Timestamp: 2026-11-05 | Version: 7.0.0-dev.1
+# Author and Credits: https://www.alawise.es/1-s
+# Include a broad module set for portable installed media.
+MODULES=most

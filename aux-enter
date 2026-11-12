@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+# Timestamp: 2026-11-11 | Version: 7.0.0-beta.19
+# Author & Credits: https://www.alawise.es/1-s
+"""List roots or inspect/repair a selected block device."""
+import sys
+import subprocess
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from auxlib.enter import main
+
+if __name__ == '__main__':
+    try:
+        main()
+    except KeyboardInterrupt:
+        sys.exit(130)
+    except (OSError, ValueError, RuntimeError, subprocess.SubprocessError) as exc:
+        sys.exit('Entrada detenida: ' + str(exc))

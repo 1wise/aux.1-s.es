@@ -1,0 +1,38 @@
+<!-- Timestamp: 2026-10-13 | Version: 5.0.8 | Author & Credits: https://www.alawise.es/1-s -->
+<section id="debian-deploy"><h2>Replicar AUX / PXE / TEC en Debian 13</h2>
+<p>Mismos scripts independientes, rutas y catálogo. Ejecutar en el servidor Debian de destino; no reemplazar la configuración de Excalibur mientras se prepara la réplica. Los ejemplos usan Debian 13 con PHP 8.4: comprobar la versión instalada antes de elegir la carpeta y el servicio FPM.</p>
+<h3>1. Dependencias</h3><pre>sudo apt update
+sudo apt install bash python3 curl wget ca-certificates util-linux tar unzip xz-utils squashfs-tools nginx php-fpm php-cli openssh-client</pre>
+<p>La transferencia FTP usa la biblioteca estándar de Python. Instalar y configurar Postfix por separado solo si TEC enviará correo; conservar tec@1wise.es y el relay OVH. No introducir credenciales SMTP en el directorio público.</p>
+<h3>2. Rutas y cuentas</h3><pre>getent passwd tec
+ls /etc/php/
+ps -eo user,group,comm | grep nginx</pre>
+<p>Solo si la cuenta tec no existe:</p><pre>sudo adduser --system --group --home /var/lib/aux-assist --no-create-home tec</pre>
+<pre>sudo install -d -o root -g www-data -m 0755 /var/www/aux.1-s.es/isos /var/www/aux.1-s.es/html /var/www/aux.1-s.es/web
+sudo install -d -o tec -g tec -m 0700 /var/lib/aux-assist /var/lib/php/tec-session</pre>
+<p>Copiar el paquete TEC público a web y mantener manage.php fuera de web. Para una migración, detener escrituras en el origen, copiar los JSON privados preservando permisos, verificar el destino y después cambiar DNS. No fusionar dos directorios JSON activos: esta réplica no implementa sincronización multi-master.</p>
+<h3>3. Configuración pública y pools</h3>
+<p>Los archivos descargables <a href="downloads/debian/nginx.conf.example">Nginx Debian</a>, <a href="downloads/debian/aux-pool.conf.example">pool AUX</a> y <a href="downloads/debian/tec-pool.conf.example">pool TEC</a> usan sockets estables /run/php/aux.sock y /run/php/tec.sock. No dependen del nombre del socket del pool www. Respaldar configuraciones existentes y retirar vhosts duplicados antes de habilitarlos.</p>
+<pre>sudo install -m 0644 debian/aux-pool.conf.example /etc/php/8.4/fpm/pool.d/aux.conf
+sudo install -m 0644 debian/tec-pool.conf.example /etc/php/8.4/fpm/pool.d/tec.conf
+sudo install -m 0644 debian/nginx.conf.example /etc/nginx/conf.d/aux-pxe-tec.conf
+sudo php-fpm8.4 -t
+sudo nginx -t</pre>
+<p>Nginx requiere el certificado existente en /etc/letsencrypt/live/ntp1.1-s.eu y una cobertura SAN válida para los seis nombres. Prepararlo en el destino antes del test; no publicar claves privadas ni sustituirlo por un certificado de otro dominio.</p>
+<p>Solo después de superar ambas comprobaciones:</p><pre>sudo systemctl restart php8.4-fpm
+sudo systemctl reload nginx
+sudo ls -l /run/php/aux.sock /run/php/tec.sock</pre>
+<h3>4. Las tres fases, por separado</h3>
+<p>Desde la raíz del paquete AUX. La opción --group adapta la propiedad pública a Debian y mantiene los JSON privados separados. El archivo debian/fast-boot.json también sirve de referencia; se utiliza directamente con --config debian/fast-boot.json; sus listas apuntan a la raíz del paquete.</p>
+<pre>sudo bash download.sh --list light --group www-data --verbose
+sudo bash download.sh --list heavy --group www-data --verbose
+sudo bash deploy.sh ram --list light --group www-data --verbose
+sudo bash deploy.sh disk --list heavy --group www-data --verbose
+sudo bash generate.sh --group www-data --verbose</pre>
+<p>AUX Rescue local se despliega de forma explícita con --only y su nombre real; no está descargable hasta publicar su URL. Los montajes RAM desaparecen al reiniciar: repetir deploy ram y generate después de cada reinicio. No hay un orquestador fastboot.</p>
+<h3>5. Verificación</h3><pre>curl -I http://127.0.0.1/menu.ipxe -H 'Host: pxe.1-s.es'
+sudo tail -n 40 /var/log/nginx/tec.error.log
+sudo journalctl -u php8.4-fpm -n 40 --no-pager
+df -h /dev/shm /var/www/aux.1-s.es</pre>
+<p>Probar además las páginas HTTPS con resolución y certificado correctos, navegación de contenidos, una descarga parcial y arranque BIOS/UEFI desde Cari. Los ejemplos están preparados para Debian; esta publicación no acredita una instalación real en un servidor Debian ni un arranque hardware.</p>
+<p><a href="operations.html">FTP y permisos</a> · <a href="tec-502.html">Diagnóstico 502</a> · <a href="https://www.php.net/manual/en/install.fpm.configuration.php">Referencia PHP-FPM</a></p></section>

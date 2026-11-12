@@ -1,0 +1,448 @@
+{
+  "version": "7.0.0-beta.19",
+  "selected_payloads": 49,
+  "source_groups": 30,
+  "entries": [
+    {
+      "id": "d01-debian-stable-amd64",
+      "family": "debian",
+      "architecture": "x86_64",
+      "channel": "released",
+      "download_class": "light",
+      "source": "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/",
+      "adapter": "artifact-html"
+    },
+    {
+      "id": "d02-debian-stable-arm64",
+      "family": "debian",
+      "architecture": "arm64",
+      "channel": "released",
+      "download_class": "light",
+      "source": "https://cdimage.debian.org/debian-cd/current/arm64/iso-cd/",
+      "adapter": "artifact-html"
+    },
+    {
+      "id": "d03-fedora-downloads",
+      "family": "fedora",
+      "architecture": "x86_64",
+      "channel": "released",
+      "download_class": "light",
+      "source": "https://fedoraproject.org/releases.json",
+      "adapter": "fedora-artifacts"
+    },
+    {
+      "id": "d04-fedora-downloads",
+      "family": "fedora",
+      "architecture": "arm64",
+      "channel": "released",
+      "download_class": "light",
+      "source": "https://fedoraproject.org/releases.json",
+      "adapter": "fedora-artifacts"
+    },
+    {
+      "id": "d05-arch-ipxe",
+      "family": "arch",
+      "architecture": "x86_64",
+      "channel": "rolling",
+      "download_class": "light",
+      "source": "https://archlinux.org/releng/netboot/",
+      "adapter": "fixed"
+    },
+    {
+      "id": "d06-arch-ipxe",
+      "family": "arch",
+      "architecture": "x86_64",
+      "channel": "rolling",
+      "download_class": "light",
+      "source": "https://archlinux.org/releng/netboot/",
+      "adapter": "fixed"
+    },
+    {
+      "id": "d07-arch-ipxe",
+      "family": "arch",
+      "architecture": "x86_64",
+      "channel": "rolling",
+      "download_class": "light",
+      "source": "https://archlinux.org/releng/netboot/",
+      "adapter": "fixed"
+    },
+    {
+      "id": "d08-gentoo-minimal",
+      "family": "gentoo",
+      "architecture": "x86_64",
+      "channel": "current",
+      "download_class": "light",
+      "source": "https://distfiles.gentoo.org/releases/amd64/autobuilds/current-install-amd64-minimal/latest-install-amd64-minimal.txt",
+      "adapter": "gentoo-latest"
+    },
+    {
+      "id": "d09-kali",
+      "family": "kali",
+      "architecture": "x86_64",
+      "channel": "released",
+      "download_class": "light",
+      "source": "https://cdimage.kali.org/current/",
+      "adapter": "artifact-html"
+    },
+    {
+      "id": "d10-clonezilla-testing",
+      "family": "clonezilla",
+      "architecture": "x86_64",
+      "channel": "testing",
+      "download_class": "light",
+      "source": "https://clonezilla.org/downloads/testing/data/CHECKSUMS.TXT",
+      "adapter": "checksum-index"
+    },
+    {
+      "id": "d11-gparted-stable",
+      "family": "gparted",
+      "architecture": "x86_64",
+      "channel": "released",
+      "download_class": "light",
+      "source": "https://gparted.org/download.php",
+      "adapter": "artifact-html"
+    },
+    {
+      "id": "d12-netboot-binaries",
+      "family": "netboot",
+      "architecture": "x86_64",
+      "channel": "released",
+      "download_class": "light",
+      "source": "https://api.github.com/repos/netbootxyz/netboot.xyz/releases/latest",
+      "adapter": "github-assets"
+    },
+    {
+      "id": "d13-netboot-binaries",
+      "family": "netboot",
+      "architecture": "x86_64",
+      "channel": "released",
+      "download_class": "light",
+      "source": "https://api.github.com/repos/netbootxyz/netboot.xyz/releases/latest",
+      "adapter": "github-assets"
+    },
+    {
+      "id": "d14-memtest",
+      "family": "memtest",
+      "architecture": "i386",
+      "channel": "released",
+      "download_class": "light",
+      "source": "https://www.memtest.org/",
+      "adapter": "artifact-html"
+    },
+    {
+      "id": "d15-memtest",
+      "family": "memtest",
+      "architecture": "x86_64",
+      "channel": "released",
+      "download_class": "light",
+      "source": "https://www.memtest.org/",
+      "adapter": "artifact-html"
+    },
+    {
+      "id": "d16-memtest",
+      "family": "memtest",
+      "architecture": "x86_64",
+      "channel": "released",
+      "download_class": "light",
+      "source": "https://www.memtest.org/",
+      "adapter": "artifact-html"
+    },
+    {
+      "id": "d17-supergrub-beta",
+      "family": "supergrub",
+      "architecture": "x86_64",
+      "channel": "beta",
+      "download_class": "light",
+      "source": "https://www.supergrubdisk.org/category/download/supergrub2diskdownload/super-grub2-disk-beta/",
+      "adapter": "artifact-html"
+    },
+    {
+      "id": "d18-centos-x86-64",
+      "family": "centos",
+      "architecture": "x86_64",
+      "channel": "10-stream/current",
+      "download_class": "light",
+      "source": "https://mirror.stream.centos.org/10-stream/BaseOS/x86_64/iso/",
+      "adapter": "artifact-html"
+    },
+    {
+      "id": "d19-centos-aarch64",
+      "family": "centos",
+      "architecture": "arm64",
+      "channel": "10-stream/current",
+      "download_class": "light",
+      "source": "https://mirror.stream.centos.org/10-stream/BaseOS/aarch64/iso/",
+      "adapter": "artifact-html"
+    },
+    {
+      "id": "d20-systemrescue",
+      "family": "systemrescue",
+      "architecture": "x86_64",
+      "channel": "released",
+      "download_class": "light",
+      "source": "https://www.system-rescue.org/Download/",
+      "adapter": "artifact-html"
+    },
+    {
+      "id": "d21-rescatux",
+      "family": "rescatux",
+      "architecture": "x86_64",
+      "channel": "released",
+      "download_class": "light",
+      "source": "https://www.supergrubdisk.org/category/download/rescatuxdownloads/rescatux-stable/",
+      "adapter": "artifact-html"
+    },
+    {
+      "id": "d22-redorescue",
+      "family": "redo",
+      "architecture": "x86_64",
+      "channel": "released",
+      "download_class": "light",
+      "source": "https://sourceforge.net/projects/redobackup/rss?path=/&limit=100",
+      "adapter": "artifact-rss"
+    },
+    {
+      "id": "d23-debian-i386",
+      "family": "debian",
+      "architecture": "i386",
+      "channel": "bookworm-i386",
+      "download_class": "light",
+      "source": "https://cdimage.debian.org/cdimage/archive/",
+      "adapter": "html-walk"
+    },
+    {
+      "id": "d24-debian-netboot",
+      "family": "debian",
+      "architecture": "i386",
+      "channel": "bookworm/current",
+      "download_class": "light",
+      "source": "https://deb.debian.org/debian/dists/bookworm/main/installer-i386/current/images/netboot/",
+      "adapter": "fixed"
+    },
+    {
+      "id": "d25-alpine-aarch64",
+      "family": "alpine",
+      "architecture": "arm64",
+      "channel": "latest-stable",
+      "download_class": "light",
+      "source": "https://dl-cdn.alpinelinux.org/alpine/latest-stable/releases/aarch64/latest-releases.yaml",
+      "adapter": "alpine-releases"
+    },
+    {
+      "id": "d26-alpine-x86",
+      "family": "alpine",
+      "architecture": "i386",
+      "channel": "latest-stable",
+      "download_class": "light",
+      "source": "https://dl-cdn.alpinelinux.org/alpine/latest-stable/releases/x86/latest-releases.yaml",
+      "adapter": "alpine-releases"
+    },
+    {
+      "id": "d27-alpine-x86-64",
+      "family": "alpine",
+      "architecture": "x86_64",
+      "channel": "latest-stable",
+      "download_class": "light",
+      "source": "https://dl-cdn.alpinelinux.org/alpine/latest-stable/releases/x86_64/latest-releases.yaml",
+      "adapter": "alpine-releases"
+    },
+    {
+      "id": "d28-alpine-x86",
+      "family": "alpine",
+      "architecture": "i386",
+      "channel": "latest-stable",
+      "download_class": "light",
+      "source": "https://dl-cdn.alpinelinux.org/alpine/latest-stable/releases/x86/latest-releases.yaml",
+      "adapter": "alpine-releases"
+    },
+    {
+      "id": "d29-alpine-x86-64",
+      "family": "alpine",
+      "architecture": "x86_64",
+      "channel": "latest-stable",
+      "download_class": "light",
+      "source": "https://dl-cdn.alpinelinux.org/alpine/latest-stable/releases/x86_64/latest-releases.yaml",
+      "adapter": "alpine-releases"
+    },
+    {
+      "id": "d30-debian-live",
+      "family": "debian",
+      "architecture": "x86_64",
+      "channel": "released",
+      "download_class": "heavy",
+      "source": "https://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/",
+      "adapter": "artifact-html"
+    },
+    {
+      "id": "d31-debian-live",
+      "family": "debian",
+      "architecture": "x86_64",
+      "channel": "released",
+      "download_class": "heavy",
+      "source": "https://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/",
+      "adapter": "artifact-html"
+    },
+    {
+      "id": "d32-fedora-downloads",
+      "family": "fedora",
+      "architecture": "x86_64",
+      "channel": "released",
+      "download_class": "heavy",
+      "source": "https://fedoraproject.org/releases.json",
+      "adapter": "fedora-artifacts"
+    },
+    {
+      "id": "d33-fedora-downloads",
+      "family": "fedora",
+      "architecture": "arm64",
+      "channel": "released",
+      "download_class": "heavy",
+      "source": "https://fedoraproject.org/releases.json",
+      "adapter": "fedora-artifacts"
+    },
+    {
+      "id": "d34-arch-iso",
+      "family": "arch",
+      "architecture": "x86_64",
+      "channel": "released",
+      "download_class": "heavy",
+      "source": "https://archlinux.org/releng/releases/json/",
+      "adapter": "arch-releases"
+    },
+    {
+      "id": "d35-gentoo-livegui",
+      "family": "gentoo",
+      "architecture": "x86_64",
+      "channel": "current",
+      "download_class": "heavy",
+      "source": "https://distfiles.gentoo.org/releases/amd64/autobuilds/current-livegui-amd64/latest-livegui-amd64.txt",
+      "adapter": "gentoo-latest"
+    },
+    {
+      "id": "d36-kali",
+      "family": "kali",
+      "architecture": "x86_64",
+      "channel": "released",
+      "download_class": "heavy",
+      "source": "https://cdimage.kali.org/current/",
+      "adapter": "artifact-html"
+    },
+    {
+      "id": "d37-kali",
+      "family": "kali",
+      "architecture": "x86_64",
+      "channel": "released",
+      "download_class": "heavy",
+      "source": "https://cdimage.kali.org/current/",
+      "adapter": "artifact-html"
+    },
+    {
+      "id": "d38-proxmox",
+      "family": "proxmox",
+      "architecture": "x86_64",
+      "channel": "released",
+      "download_class": "heavy",
+      "source": "https://www.proxmox.com/en/downloads/proxmox-virtual-environment/iso",
+      "adapter": "artifact-html"
+    },
+    {
+      "id": "d39-debian-testing-amd64",
+      "family": "debian",
+      "architecture": "x86_64",
+      "channel": "testing",
+      "download_class": "heavy",
+      "source": "https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/",
+      "adapter": "artifact-html"
+    },
+    {
+      "id": "d40-debian-testing-arm64",
+      "family": "debian",
+      "architecture": "arm64",
+      "channel": "testing",
+      "download_class": "heavy",
+      "source": "https://cdimage.debian.org/cdimage/weekly-builds/arm64/iso-cd/",
+      "adapter": "artifact-html"
+    },
+    {
+      "id": "d41-ubuntu-lts",
+      "family": "ubuntu",
+      "architecture": "x86_64",
+      "channel": "26.04-LTS",
+      "download_class": "heavy",
+      "source": "https://releases.ubuntu.com/26.04/",
+      "adapter": "artifact-html"
+    },
+    {
+      "id": "d42-ubuntu-lts",
+      "family": "ubuntu",
+      "architecture": "x86_64",
+      "channel": "26.04-LTS",
+      "download_class": "heavy",
+      "source": "https://releases.ubuntu.com/26.04/",
+      "adapter": "artifact-html"
+    },
+    {
+      "id": "d43-bootrepair",
+      "family": "bootrepair",
+      "architecture": "x86_64",
+      "channel": "current",
+      "download_class": "heavy",
+      "source": "https://sourceforge.net/projects/boot-repair-cd/rss?path=/&limit=100",
+      "adapter": "artifact-rss"
+    },
+    {
+      "id": "d44-debian-cloud",
+      "family": "debian",
+      "architecture": "x86_64",
+      "channel": "trixie",
+      "download_class": "heavy",
+      "source": "https://cloud.debian.org/images/cloud/trixie/latest/",
+      "adapter": "artifact-html"
+    },
+    {
+      "id": "d45-debian-cloud",
+      "family": "debian",
+      "architecture": "arm64",
+      "channel": "trixie",
+      "download_class": "heavy",
+      "source": "https://cloud.debian.org/images/cloud/trixie/latest/",
+      "adapter": "artifact-html"
+    },
+    {
+      "id": "d46-fedora-downloads",
+      "family": "fedora",
+      "architecture": "x86_64",
+      "channel": "released",
+      "download_class": "heavy",
+      "source": "https://fedoraproject.org/releases.json",
+      "adapter": "fedora-artifacts"
+    },
+    {
+      "id": "d47-fedora-downloads",
+      "family": "fedora",
+      "architecture": "arm64",
+      "channel": "released",
+      "download_class": "heavy",
+      "source": "https://fedoraproject.org/releases.json",
+      "adapter": "fedora-artifacts"
+    },
+    {
+      "id": "d48-alpine-x86",
+      "family": "alpine",
+      "architecture": "i386",
+      "channel": "latest-stable",
+      "download_class": "heavy",
+      "source": "https://dl-cdn.alpinelinux.org/alpine/latest-stable/releases/x86/latest-releases.yaml",
+      "adapter": "alpine-releases"
+    },
+    {
+      "id": "d49-alpine-x86-64",
+      "family": "alpine",
+      "architecture": "x86_64",
+      "channel": "latest-stable",
+      "download_class": "heavy",
+      "source": "https://dl-cdn.alpinelinux.org/alpine/latest-stable/releases/x86_64/latest-releases.yaml",
+      "adapter": "alpine-releases"
+    }
+  ]
+}

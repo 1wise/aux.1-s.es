@@ -1,0 +1,12 @@
+# Timestamp: 2026-11-09 | Version: 7.0.0-dev.2
+# Author & Credits: https://www.alawise.es/1-s
+[Unit]
+Description=Weekly selected catalogue refresh
+
+[Timer]
+OnCalendar=Sat *-*-* 03:00:00 Europe/Andorra
+Persistent=yes
+Unit=aux-catalog-update.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,81 @@
+{
+  "metadata": {
+    "Timestamp": "2026-11-05",
+    "Version": "7.0.0-dev.1",
+    "Author and Credits": "https://www.alawise.es/1-s",
+    "status": "schema-example-not-a-working-crawler"
+  },
+  "entries": [
+    {
+      "id": "fedora-development-installer-amd64",
+      "family": "fedora",
+      "release": "REPLACE_WITH_PINNED_COMPOSE",
+      "architecture": "x86_64",
+      "kind": "installer",
+      "download_class": "light",
+      "original_url": "https://example.invalid/REPLACE_WITH_OFFICIAL_URL.iso",
+      "checksum": {
+        "algorithm": "sha256",
+        "value": null,
+        "signed_manifest_url": null,
+        "signing_fingerprint": null
+      },
+      "boot": {
+        "internal_paths": {
+          "kernel": "images/pxeboot/vmlinuz",
+          "initrd": "images/pxeboot/initrd.img",
+          "squashfs": null
+        },
+        "internal_paths_status": "candidates-require-inspection",
+        "installer_tree_url": "https://example.invalid/REPLACE_WITH_INSTALL_TREE/",
+        "kernel_args": [
+          "ip=dhcp",
+          "inst.repo=${installer_tree_url}",
+          "inst.ks=${kickstart_url}"
+        ]
+      },
+      "deployments": {
+        "excalibur": {
+          "public_prefix": null,
+          "resolved_assets": {}
+        },
+        "bastion": {
+          "public_prefix": null,
+          "resolved_assets": {}
+        }
+      },
+      "verification": {
+        "source_signature": "not-checked",
+        "download_hash": "not-checked",
+        "deployed_urls": "not-checked",
+        "bios_boot": "not-tested",
+        "uefi_boot": "not-tested",
+        "secure_boot": "not-tested"
+      }
+    },
+    {
+      "id": "third-party-live-example",
+      "family": "REPLACE_WITH_FAMILY",
+      "release": "REPLACE_WITH_RELEASE",
+      "architecture": "REPLACE_WITH_ARCH",
+      "kind": "live",
+      "download_class": "heavy",
+      "original_url": "https://example.invalid/REPLACE_WITH_OFFICIAL_LIVE.iso",
+      "boot": {
+        "internal_paths": {
+          "kernel": null,
+          "initrd": null,
+          "squashfs": null
+        },
+        "internal_paths_status": "must-inspect-actual-image",
+        "kernel_args": []
+      },
+      "verification": {
+        "download_hash": "not-checked",
+        "deployed_urls": "not-checked",
+        "bios_boot": "not-tested",
+        "uefi_boot": "not-tested"
+      }
+    }
+  ]
+}

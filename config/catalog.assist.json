@@ -1,0 +1,11 @@
+{
+  "_meta": {
+    "Timestamp": "2026-11-10",
+    "Version": "7.0.0-beta.19",
+    "Author & Credits": "https://www.alawise.es/1-s"
+  },
+  "openai": {"model": null},
+  "gemini": {"model": null},
+  "timeout_seconds": 60,
+  "max_output_tokens": 4096
+}

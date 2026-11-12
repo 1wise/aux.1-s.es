@@ -1,0 +1,24 @@
+{
+  "summary": "Ejemplo sin API: conservar Debian como enlace y preparar el menú del proveedor para elegir versión.",
+  "selection": [
+    {
+      "entry_id": "r_050e49ebad21",
+      "mode": "origin",
+      "reason": "Sólo enlace de origen; sin alojar la imagen."
+    }
+  ],
+  "sources": [],
+  "recipes": [
+    {
+      "entry_id": "r_050e49ebad21",
+      "label": "Debian vía netboot.xyz: elegir versión",
+      "type": "provider-menu",
+      "architecture": "x86_64",
+      "firmware": "any",
+      "kernel_url": "",
+      "initrd_url": "",
+      "kernel_args": [],
+      "menu_url": "https://boot.netboot.xyz/debian.ipxe"
+    }
+  ]
+}

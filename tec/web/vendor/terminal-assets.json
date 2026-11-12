@@ -1,0 +1,16 @@
+{
+  "Timestamp": "2026-11-11",
+  "Version": "7.0.0-beta.19",
+  "Author & Credits": "https://www.alawise.es/1-s",
+  "xterm": {
+    "version": "6.0.0",
+    "sha256": "14903579ff54664cd72f8e8699e6961a6272c21863ec1c3b118cdc8af5d4a972",
+    "source": "https://registry.npmjs.org/@xterm/xterm/-/xterm-6.0.0.tgz",
+    "upstream_match": true
+  },
+  "addon-fit": {
+    "version": "0.11.0",
+    "sha256": "ba3ea256ce0620a0992a197d6c9baea64823fc93d8da07a9e366ca9943c18527",
+    "source": "https://registry.npmjs.org/@xterm/addon-fit/-/addon-fit-0.11.0.tgz"
+  }
+}
