@@ -1,0 +1,59 @@
+#!/usr/bin/env python3
+# Timestamp: 2026-11-15 | Version: 70.0.1.beta.1
+# Author & Credits: https://www.alawise.es/1-s
+"""Inventory -> deploy -> verify -> generate -> publish -> verify, with no ISO copies."""
+import argparse
+import json
+import subprocess
+import sys
+from auxlib import release as rel, VERSION
+from auxlib.console_ui import aplicacion, campo
+from auxlib.interactive import elige
+
+FASES = ('plan','inventory','deploy','verify','generate','publish','status')
+
+
+def ejecuta(arg, fase):
+    ctx = rel.contexto(arg.config,arg.release_id)
+    if fase == 'plan': return rel.plan(ctx)
+    if fase == 'status': return rel.resumen(rel.estado(ctx))
+    if not arg.apply: return {'requested':fase,'effect':'plan only; add --apply',**rel.plan(ctx)}
+    with rel.bloqueo(ctx):
+        if fase == 'inventory': dat = rel.captura(ctx)
+        elif fase == 'deploy': dat = rel.despliega(ctx,arg.secrets)
+        elif fase == 'verify': dat = rel.verifica(ctx,arg.secrets)
+        elif fase == 'generate': dat = rel.genera(ctx)
+        else: dat = rel.publica(ctx,arg.secrets)
+    return rel.resumen(dat)
+
+
+def main():
+    par = argparse.ArgumentParser(description=__doc__)
+    par.add_argument('--version',action='version',version='aux-release '+VERSION)
+    par.add_argument('phase',nargs='?',choices=FASES,default='plan')
+    par.add_argument('--config'); par.add_argument('--secrets'); par.add_argument('--release-id')
+    par.add_argument('--apply',action='store_true'); par.add_argument('-i','--interactive',action='store_true')
+    arg = par.parse_args()
+    if arg.interactive:
+        if not sys.stdin.isatty(): par.error('Se requiere una terminal interactiva.')
+        with aplicacion('AUX RELEASE '+VERSION+' | Réplica íntegra','ejecucion'):
+            while True:
+                try:
+                    fase = elige('Inventario → Deploy → Verify → Generate → Publish → Verify',
+                                  [(n,n) for n in FASES]+[('Volver',None)])
+                    if fase is None: return 0
+                    if fase not in ('plan','status'):
+                        vista = json.dumps(rel.plan(rel.contexto(arg.config,arg.release_id)),ensure_ascii=False,indent=2).splitlines()
+                        if campo('Escribir APLICAR para ejecutar '+fase,resumen=vista) != 'APLICAR': continue
+                    arg.apply = True
+                    campo('Resultado '+fase,resumen=json.dumps(ejecuta(arg,fase),ensure_ascii=False,indent=2).splitlines())
+                except KeyboardInterrupt: return 0
+                except (OSError,ValueError,subprocess.CalledProcessError) as err: campo('Fase detenida',resumen=[str(err)])
+    else: print(json.dumps(ejecuta(arg,arg.phase),ensure_ascii=False,indent=2))
+    return 0
+
+
+if __name__ == '__main__':
+    try: raise SystemExit(main())
+    except KeyboardInterrupt: raise SystemExit(130)
+    except (OSError,ValueError,subprocess.CalledProcessError) as err: raise SystemExit('AUX RELEASE: '+str(err))

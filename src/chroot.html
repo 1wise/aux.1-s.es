@@ -1,0 +1,136 @@
+<!-- Timestamp: 2026-10-13 | Version: 5.0.3 | Author & Credits: https://www.alawise.es/1-s -->
+<section class="ops-guide" id="chroot">
+<h2>Chroot: Fedora, Debian, Ubuntu, Gentoo y Arch</h2>
+<p>Ejecutar desde una terminal root del Live/rescate. Chroot utiliza el kernel del Live y los programas del sistema destino; necesita arquitectura compatible y una raíz con /bin/bash y sus bibliotecas. El contenido montado de una ISO no es la raíz instalada. Un chroot en disco modifica ese disco; /work pertenece a RAM y desaparece al reiniciar.</p>
+<details open id="chroot-host"><summary>0. Sistema de origen: Fedora o Debian/Ubuntu</summary>
+<p>Estos comandos preparan el Live de origen. El gestor de paquetes que se use dentro del chroot será el del sistema destino. Un Fedora Live puede rescatar un Debian instalado y viceversa si la arquitectura y el kernel son compatibles.</p>
+<h3>Desde Fedora</h3><pre>sudo dnf install util-linux coreutils cryptsetup lvm2 btrfs-progs
+sudo -i</pre><h3>Desde Debian o Ubuntu</h3><pre>sudo apt update
+sudo apt install util-linux coreutils cryptsetup lvm2 btrfs-progs
+sudo -i</pre>
+<p>Para rescatar una raíz existente de Fedora, Debian, Ubuntu, Gentoo o Arch, continuar con los montajes comunes. Instalar paquetes en el Live no los instala en el destino. Si el rescate ya tiene estas utilidades, no hace falta reinstalarlas.</p>
+<p>Crear una raíz nueva es otra operación: Fedora usa DNF; Debian/Ubuntu usa debootstrap; Gentoo usa stage3; Arch usa pacstrap. Para crear Fedora desde Debian, usar preferentemente una VM Fedora y la receta DNF documentada. Para crear Debian desde Fedora, preparar debootstrap y el keyring Debian antes; no omitir la verificación de firmas.</p></details>
+<details open><summary>1. Identificar y montar el sistema instalado</summary>
+<pre>lsblk -f
+findmnt
+pth_raiz=/mnt/target
+mkdir -p "$pth_raiz"
+
+# Replace with the identified root partition or logical volume
+dev_raiz=/dev/REEMPLAZAR_RAIZ
+mount "$dev_raiz" "$pth_raiz"
+cat "$pth_raiz/etc/os-release"
+cat "$pth_raiz/etc/fstab"</pre>
+<p>Si la raíz ya está montada por el rescate, asignar pth_raiz a ese montaje sin repetir mount. Para Fedora Btrfs, identificar el subvolumen y usar mount -o subvol=root cuando root sea su nombre real. Montar también /usr, /var, /boot y /boot/efi separados según el fstab del destino antes de trabajar con paquetes o arranque.</p>
+<pre># Optional encrypted/LVM root; replace both placeholders first
+cryptsetup open /dev/REEMPLAZAR_LUKS cr_root
+vgchange -ay REEMPLAZAR_VG
+lsblk -f</pre>
+<p>Esas dos órdenes son alternativas para los equipos que las necesiten. No formatear ni crear particiones para entrar en chroot.</p>
+</details>
+<details><summary>2. Preparar /dev, /proc, /sys y /run; entrar</summary>
+<p>Usar una sola vez por sesión. Comprobar que pth_raiz apunta al destino, nunca a /. Los rslave impiden propagar desmontajes hacia el Live.</p>
+<pre>mkdir -p "$pth_raiz"/{dev,proc,sys,run}
+mount --rbind /dev "$pth_raiz/dev"
+mount --make-rslave "$pth_raiz/dev"
+mount -t proc proc "$pth_raiz/proc"
+mount --rbind /sys "$pth_raiz/sys"
+mount --make-rslave "$pth_raiz/sys"
+mount --bind /run "$pth_raiz/run"
+mount --make-slave "$pth_raiz/run"
+chroot "$pth_raiz" /bin/bash -l
+
+# Inside the target
+cat /etc/os-release
+pwd</pre>
+<p>Comprobar DNS antes de descargar paquetes. /run permite usar el resolv.conf habitual que enlaza a systemd-resolved/NetworkManager. Si el destino requiere otro resolver, respaldar su /etc/resolv.conf antes de cualquier cambio y restaurarlo al salir. No iniciar servicios del sistema instalado desde este chroot de rescate.</p>
+</details>
+<details><summary>DNS temporal cuando la raíz destino no resuelve</summary>
+<p>Desde el Live, antes de entrar: guardar el resolver original si existe, sin sobrescribir un respaldo de otra sesión. La copia temporal sustituye el enlace del destino; no escribe a través de ese enlace hacia el Live.</p>
+<pre># Only when the original target resolver exists; keep its file/link type
+cp -a "$pth_raiz/etc/resolv.conf" "$pth_raiz/etc/resolv.conf.chroot-backup"
+
+# Also usable when a new root has no resolver yet
+cp -L --remove-destination /etc/resolv.conf "$pth_raiz/etc/resolv.conf"</pre>
+<p>Después de exit, restaurar únicamente el respaldo creado en esta sesión:</p>
+<pre>mv -- "$pth_raiz/etc/resolv.conf.chroot-backup" "$pth_raiz/etc/resolv.conf"</pre>
+<p>Si era una raíz nueva sin resolver original, conservar o configurar su resolver según la distribución. Los cambios en un sistema instalado persisten en disco.</p>
+</details>
+<details id="chroot-fedora"><summary>Fedora</summary>
+<p>En el rescate del instalador, comprobar el montaje anunciado (/mnt/sysroot o /mnt/sysimage según versión). En un Live, seguir los pasos comunes, incluido el subvolumen Btrfs real. Dentro del destino:</p>
+<pre>rpm -q fedora-release
+dnf repolist</pre>
+<p>Para crear una raíz nueva y vacía en RAM desde Fedora con DNF5, usar repositorios y claves oficiales de la release elegida. Revisar espacio con free -h y df -h /work. Este paso instala paquetes en /work; no crea un sistema arrancable en disco.</p>
+<pre>pth_raiz=/work/fedora
+mkdir -p "$pth_raiz"
+dnf5 --use-host-config --installroot="$pth_raiz" --releasever=44 \
+  --setopt=install_weak_deps=False install \
+  bash coreutils filesystem fedora-release fedora-repos dnf5</pre>
+<p>Después usar la preparación común de montajes y chroot. use-host-config utiliza la configuración del Fedora Live para poblar la raíz vacía; comprobar sus repositorios antes. <a href="https://dnf5.readthedocs.io/en/latest/misc/installroot.7.html">DNF5: installroot</a></p>
+</details>
+<details id="chroot-debian"><summary>Debian</summary>
+<p>El instalador en rescue puede abrir directamente una shell dentro del sistema elegido; si ofrece la shell del instalador, la raíz elegida suele estar en /target. Evitar montar de nuevo lo que ya esté preparado. Desde un Live, seguir los pasos comunes.</p>
+<pre># Inside the installed Debian target
+dpkg --audit
+apt-cache policy</pre>
+<p>Raíz nueva en RAM: se necesita debootstrap y el keyring Debian en el Live. Ejemplo amd64 con trixie, en un directorio vacío y con firmas obligatorias:</p>
+<pre>pth_raiz=/work/debian
+debootstrap --arch=amd64 --variant=minbase --force-check-sig \
+  trixie "$pth_raiz" https://deb.debian.org/debian</pre>
+<p>Después preparar montajes y entrar. <a href="https://www.debian.org/releases/trixie/amd64/ch08s06.en.html">Rescate Debian</a> · <a href="https://manpages.debian.org/trixie/debootstrap/debootstrap.8.en.html">debootstrap</a></p>
+</details>
+<details id="chroot-ubuntu"><summary>Ubuntu</summary>
+<p>Desde un Live, montar la raíz y las particiones separadas del Ubuntu instalado, preparar los montajes comunes y entrar. Dentro del destino:</p>
+<pre>cat /etc/os-release
+dpkg --audit
+apt-cache policy</pre>
+<p>Raíz nueva amd64 en RAM: se necesita debootstrap compatible con noble y ubuntu-keyring en el Live. Comprobar la ruta del keyring, conservar la verificación y usar un directorio vacío:</p>
+<pre>pth_raiz=/work/ubuntu
+debootstrap --arch=amd64 --variant=minbase --force-check-sig \
+  --keyring=/usr/share/keyrings/ubuntu-archive-keyring.gpg \
+  noble "$pth_raiz" https://archive.ubuntu.com/ubuntu</pre>
+<p>Después preparar montajes y entrar. <a href="https://manpages.ubuntu.com/manpages/noble/man8/debootstrap.8.html">Manual Ubuntu de debootstrap</a></p>
+</details>
+<details id="chroot-gentoo"><summary>Gentoo</summary>
+<p>Para una instalación existente, usar los pasos comunes sin cambiar make.conf ni sus perfiles. Para un entorno nuevo, descargar un stage3 oficial compatible, comprobar su firma y digests antes de extraerlo como root a un directorio vacío.</p>
+<pre>pth_raiz=/work/gentoo
+mkdir -p "$pth_raiz"
+arc_stage=/ruta/REEMPLAZAR_STAGE3.tar.xz
+tar xpf "$arc_stage" --xattrs-include='*.*' --numeric-owner -C "$pth_raiz"</pre>
+<p>Preparar los montajes comunes y entrar; dentro de Gentoo:</p>
+<pre>source /etc/profile
+export PS1="(gentoo chroot) ${PS1}"
+eselect profile show
+emerge --info</pre>
+<p>Sin árbol Portage en un stage3 nuevo, emerge-webrsync prepara el snapshot; comprobar DNS antes. <a href="https://wiki.gentoo.org/wiki/Chroot/en">Guía Gentoo</a></p>
+</details>
+<details id="chroot-arch"><summary>Arch Linux</summary>
+<p>En el medio oficial Arch, arch-chroot prepara los sistemas virtuales y DNS; no ejecutar además los montajes comunes sobre el mismo destino. La raíz debe estar montada.</p>
+<pre># After mounting the installed Arch root and separate filesystems
+arch-chroot "$pth_raiz" /bin/bash</pre>
+<p>Dentro del destino:</p>
+<pre>pacman -Q filesystem bash
+pacman -Dk</pre>
+<p>Para crear una raíz nueva, usar pacstrap desde el Live oficial Arch con keyring/mirrorlist vigentes; una carpeta en /work puede hacerse mountpoint mediante bind. Luego arch-chroot administra sus montajes internos:</p>
+<pre>pth_raiz=/work/arch
+mkdir -p "$pth_raiz"
+mount --bind "$pth_raiz" "$pth_raiz"
+pacstrap -K "$pth_raiz" base
+arch-chroot "$pth_raiz" /bin/bash</pre>
+<p>El Live Fedora de asistencia no incluye pacstrap ni arch-chroot por defecto. Para rescatar Arch desde Fedora, utilizar el chroot común con la raíz Arch ya instalada; para bootstrap, arrancar el Live Arch o instalar previamente sus herramientas oficiales. <a href="https://man.archlinux.org/man/arch-chroot.8">arch-chroot</a> · <a href="https://man.archlinux.org/man/pacstrap.8">pacstrap</a></p>
+</details>
+<details><summary>3. Salir y desmontar</summary>
+<pre># Exit the target shell first
+exit
+cd /
+findmnt -R "$pth_raiz"
+
+# Only for the mounts created manually in this session
+umount -R "$pth_raiz/run"
+umount -R "$pth_raiz/sys"
+umount "$pth_raiz/proc"
+umount -R "$pth_raiz/dev"</pre>
+<p>Después desmontar las particiones separadas en orden inverso y finalmente la raíz en disco o el bind de /work/arch. arch-chroot suele retirar sus propios montajes al salir; comprobar findmnt y no repetir desmontajes inexistentes. Si un montaje está ocupado, cerrar shells/procesos que lo utilicen; no forzar desmontajes del Live.</p>
+</details>
+<p><a href="chroot-all.html">Todas las instrucciones abiertas, sin JavaScript, para Links/Lynx</a></p>
+</section>

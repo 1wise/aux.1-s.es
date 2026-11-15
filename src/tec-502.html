@@ -1,0 +1,32 @@
+<!-- Timestamp: 2026-10-13 | Version: 5.0.7 | Author & Credits: https://www.alawise.es/1-s -->
+<article><h1>TEC: comprobar 502 Bad Gateway</h1>
+<p>Nginx conecta con PHP-FPM mediante /run/php-fpm/tec.sock. El pool TEC debe estar instalado, escuchar allí y permitir acceso al usuario nginx. El registro concreto distingue la causa; estas instrucciones no suponen que se haya cambiado Excalibur.</p>
+<h2>1. Leer el fallo y comprobar PHP-FPM</h2>
+<pre>sudo tail -n 50 /var/log/nginx/tec.error.log
+sudo systemctl status php-fpm --no-pager -l
+sudo journalctl -u php-fpm -n 80 --no-pager
+sudo php-fpm -t</pre>
+<h2>2. Comprobar usuario, pool y socket</h2>
+<pre>getent passwd tec
+sudo ls -lZ /run/php-fpm/tec.sock
+sudo rg -n '^\[tec\]|^user|^group|^listen|^chdir' /etc/php-fpm.d/tec.conf
+sudo ss -xlpn
+sudo nginx -T</pre>
+<table><thead><tr><th>Error del upstream</th><th>Revisar</th></tr></thead><tbody>
+<tr><td>No such file or directory</td><td>Socket ausente; pool no instalado, servicio detenido o ruta distinta</td></tr>
+<tr><td>Permission denied</td><td>Modo 0660, propietario/grupo nginx, recorrido, ACL y AVC</td></tr>
+<tr><td>Connection refused</td><td>Socket sin proceso escuchando; servicio y journal FPM</td></tr>
+<tr><td>upstream prematurely closed connection</td><td>Crash, errores FPM o memoria; seguir el registro</td></tr>
+</tbody></table>
+<p>El ejemplo usa tec para PHP y nginx para conectar al socket. Si se configuran listen.acl_users o listen.acl_groups, FPM ignora listen.owner y listen.group. El archivo del socket puede existir aunque no haya servicio escuchando.</p>
+<h2>3. Corregir la causa y validar</h2>
+<pre>sudo getfacl /run/php-fpm/tec.sock
+sudo ausearch -m AVC,USER_AVC -ts recent
+sudo php-fpm -t
+sudo nginx -t
+sudo systemctl restart php-fpm
+sudo systemctl reload nginx
+curl -I https://tec.1-s.es/</pre>
+<p>Reiniciar después de corregir y validar. FPM recrea su socket con la política del pool. Conservar JSON, configuración y contextos SELinux. Evitar permisos recursivos sobre todo /var/www, desactivar SELinux o publicar phpinfo.</p>
+<p><a href="downloads/tec/TROUBLESHOOTING.md">Instalación y diagnóstico completo</a> · <a href="downloads/tec/php-fpm.conf.example">Pool TEC</a> · <a href="downloads/nginx/aux-pxe-tec.conf.example">Nginx conjunto</a> · <a href="https://www.php.net/manual/en/install.fpm.configuration.php">Referencia PHP-FPM</a></p>
+</article>

@@ -1,0 +1,19 @@
+<!-- Timestamp: 2026-10-16 | Version: 6.0.0-dev.1 | Author & Credits: https://www.alawise.es/1-s -->
+<section><h1>/work · área de trabajo en RAM</h1>
+<p>La ISO fija AUX Rescue incluye una unidad tmpfs privada de root. Sirve para herramientas,
+descargas temporales, informes y preparar un chroot. Su capacidad es un límite, no una reserva:
+solo consume memoria según se escriben archivos. Comparte RAM con el sistema Live y su overlay.</p>
+<dl><dt>Límite</dt><dd>El menor entre RAM total / 4, RAM disponible / 3 y 2 GiB.</dd>
+<dt>Permisos</dt><dd>0700, root. Opciones nosuid y nodev. Se permite ejecutar herramientas.</dd>
+<dt>Duración</dt><dd>El contenido se pierde al reiniciar o apagar. Guardar fuera los informes que deban conservarse.</dd>
+<dt>Memoria insuficiente</dt><dd>Si el límite resulta inferior a 64 MiB, el servicio falla con un diagnóstico; no utiliza un disco del cliente como sustituto.</dd></dl>
+<p>La imagen no activa swap de los discos del cliente. El siguiente código es la fuente versionada
+de la receta 5.0.1-dev.5, conservada también en la ISO fija. No necesita una aplicación pesada.</p>
+<p><a href="downloads/work.py" download>Descargar work.py</a> · <a href="downloads/work.py.sha256">SHA-256 del código</a> · <a href="iso-guide.html">Construcción y manifiesto</a></p>
+<pre><code>@@WORK_SOURCE@@</code></pre>
+<h2>Inspeccionar desde la ISO</h2><pre>findmnt /work
+df -h /work
+free -h
+stat -c '%U:%G %a' /work</pre>
+<p>Un chroot necesita además su raíz, montajes y configuración de red. El límite de /work puede
+ser insuficiente para una distribución completa; comprobar el tamaño antes de descargar o extraer.</p></section>
