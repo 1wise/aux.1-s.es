@@ -1,0 +1,19 @@
+# Timestamp: 2026-11-09 | Version: 7.0.0-dev.2
+# Author & Credits: https://www.alawise.es/1-s
+[Unit]
+Description=Refresh the selected AUX catalogue
+After=network-online.target
+Wants=network-online.target
+ConditionPathExists=/etc/aux/catalog.json
+
+[Service]
+Type=oneshot
+User=aux-catalog
+Group=aux-catalog
+ExecStart=/usr/local/bin/aux-catalog --config /etc/aux/catalog.json --cache /var/cache/aux-catalog --output /srv/aux/catalog
+CacheDirectory=aux-catalog
+ReadWritePaths=/srv/aux/catalog
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes

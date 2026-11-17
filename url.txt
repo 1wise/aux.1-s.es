@@ -1,0 +1,348 @@
+# Timestamp: 2026-11-15 | Version: 7.0.1-beta.3
+# Author & Credits: https://www.alawise.es/1-s
+# Selection review only. No code, crawler rules or boot recipes are changed.
+# One active payload URL per line. Comment lines are ignored by AUX.
+# Ordered union of Light (43) and Heavy (18): 61 active payloads.
+# Origin choices below are comments and cannot accidentally be downloaded.
+# LIGHT
+
+# Network boot clients
+https://archlinux.org/static/netboot/ipxe-arch.efi
+https://archlinux.org/static/netboot/ipxe-arch.lkrn
+https://archlinux.org/static/netboot/ipxe-arch.pxe
+https://github.com/netbootxyz/netboot.xyz/releases/download/3.0.3/netboot.xyz-arm64.efi
+https://github.com/netbootxyz/netboot.xyz/releases/download/3.0.3/netboot.xyz.efi
+https://github.com/netbootxyz/netboot.xyz/releases/download/3.0.3/netboot.xyz.kpxe
+https://github.com/netbootxyz/netboot.xyz/releases/download/3.0.3/netboot.xyz.lkrn
+
+# Native netboot archives
+https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/aarch64/alpine-netboot-3.24.4-aarch64.tar.gz
+https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86/alpine-netboot-3.24.4-x86.tar.gz
+https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86_64/alpine-netboot-3.24.4-x86_64.tar.gz
+# Debian 13 amd64; keep only one generic netboot.tar.gz in the flat cache.
+https://deb.debian.org/debian/dists/trixie/main/installer-amd64/current/images/netboot/netboot.tar.gz
+# Local iPXE recipe must be tested; package presence is not a boot test.
+https://releases.ubuntu.com/26.04.1/ubuntu-26.04.1-netboot-amd64.tar.gz
+# Local iPXE recipe must be tested.
+https://cdimage.ubuntu.com/ubuntu/releases/26.04.1/release/ubuntu-26.04.1-netboot-arm64.tar.gz
+
+# Small systems for recipe tests
+# Tiny Core: download/extraction only until a reviewed local recipe exists.
+# Cached media availability does not prove that beta.20 can generate a boot recipe.
+https://distro.ibiblio.org/tinycorelinux/17.x/x86/release/Core-17.1.iso
+# Tiny Core: download/extraction only until a reviewed local recipe exists.
+# Cached media availability does not prove that beta.20 can generate a boot recipe.
+https://distro.ibiblio.org/tinycorelinux/17.x/x86_64/release/CorePure64-17.1.iso
+# NixOS minimal: local recipe pending; use the upstream iPXE entry meanwhile.
+# Cached media availability does not prove that beta.20 can generate a boot recipe.
+https://releases.nixos.org/nixos/26.05/nixos-26.05.14234.f1e5c356f35d/nixos-minimal-26.05.14234.f1e5c356f35d-x86_64-linux.iso
+# SliTaz: reviewed local iPXE recipe still required.
+# Cached media availability does not prove that beta.20 can generate a boot recipe.
+https://mirror.slitaz.org/iso/rolling/slitaz-rolling-core.iso
+# SliTaz: reviewed local iPXE recipe still required.
+# Cached media availability does not prove that beta.20 can generate a boot recipe.
+https://mirror.slitaz.org/iso/rolling/slitaz-rolling-core64.iso
+
+# Network installation ISO fallbacks
+https://repo.almalinux.org/almalinux/10/isos/x86_64/AlmaLinux-10.2-x86_64-boot.iso
+https://mirror.stream.centos.org/10-stream/BaseOS/x86_64/iso/CentOS-Stream-10-latest-x86_64-boot.iso
+https://download.fedoraproject.org/pub/fedora/linux/releases/45/Server/x86_64/iso/Fedora-Server-netinst-x86_64-45-1.4.iso
+https://download.rockylinux.org/pub/rocky/10/isos/x86_64/Rocky-10.2-x86_64-boot.iso
+# Local iPXE recipe support must be checked in beta.20.
+https://download.opensuse.org/distribution/leap/16.0/installer/iso/agama-installer.x86_64-Leap_16.0.iso
+https://cdimage.debian.org/cdimage/archive/12.15.0/i386/iso-cd/debian-12.15.0-i386-netinst.iso
+https://cdimage.debian.org/debian-cd/current/arm64/iso-cd/debian-13.7.0-arm64-netinst.iso
+# Local iPXE recipe support must be checked in beta.20.
+https://files.devuan.org/devuan_excalibur/installer-iso/devuan_excalibur_6.1.1_amd64_netinstall.iso
+https://distfiles.gentoo.org/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20261108T170107Z.iso
+https://cdimage.kali.org/current/kali-linux-2026.3-installer-netinst-amd64.iso
+
+# Tools: memory and boot
+https://www.memtest.org/download/v9.00/mt86plus_9.00_i586.iso.zip
+https://www.memtest.org/download/v9.00/mt86plus_9.00_x86_64.grub.iso.zip
+https://www.memtest.org/download/v9.00/mt86plus_9.00_x86_64.iso.zip
+# New upstream filename; beta.20 crawler rule needs review in the next edition.
+# The beta.20 Super GRUB crawler pattern may not recognize this newer filename.
+https://sourceforge.net/projects/supergrub2/files/2.06s4/super_grub2_disk_2.06s4/supergrub2-classic-2.06s4-multiarch-CD.iso/download
+
+# Tools: disks, rescue and diagnostics
+# Download/extraction does not approve a local boot recipe.
+https://sourceforge.net/projects/linux4m/files/52.0/livecd/updates/2/4MLinux-52.2-64bit.iso/download
+# Download/extraction does not approve a local boot recipe.
+https://sourceforge.net/projects/boot-repair-cd/files/boot-repair-disk-64bit.iso/download
+# Download/extraction does not approve a local boot recipe.
+https://sourceforge.net/projects/clonezilla/files/clonezilla_live_testing/3.3.4-23/clonezilla-live-3.3.4-23-amd64.iso/download
+# Download/extraction does not approve a local boot recipe.
+https://sourceforge.net/projects/dban/files/dban/dban-2.3.0/dban-2.3.0_i586.iso/download
+# Download/extraction does not approve a local boot recipe.
+https://downloads.sourceforge.net/project/gparted/gparted-live-stable/1.8.1-6/gparted-live-1.8.1-6-amd64.iso
+# Download/extraction does not approve a local boot recipe.
+https://rescuedisk.s.kaspersky-labs.com/updatable/2018/krd.iso
+# Download/extraction does not approve a local boot recipe.
+https://sourceforge.net/projects/redobackup/files/redorescue-4.0.0.iso/download
+# Download/extraction does not approve a local boot recipe.
+https://sourceforge.net/projects/rescatux/files/rescatux-0.74/rescatux-0.74.iso/download
+# Download/extraction does not approve a local boot recipe.
+https://github.com/rescuezilla/rescuezilla/releases/download/2.6.2/rescuezilla-2.6.2-64bit.resolute.iso
+# Download/extraction does not approve a local boot recipe.
+https://github.com/PartialVolume/shredos.x86_64/releases/download/v2025.11_32_x86-64_0.43.1/shredos-2025.11_32_x86-64_v0.43.1_20261010.iso
+# Download/extraction does not approve a local boot recipe.
+https://fastly-cdn.system-rescue.org/releases/13.03/systemrescue-13.03-amd64.iso
+
+# HEAVY
+
+# Full desktop and installation images
+https://geo.mirror.pkgbuild.com/iso/2026.11.01/archlinux-2026.11.01-x86_64.iso
+https://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/debian-live-13.7.0-amd64-gnome.iso
+https://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/debian-live-13.7.0-amd64-xfce.iso
+https://cdimage.debian.org/cdimage/daily-builds/daily/current/amd64/iso-cd/debian-testing-amd64-netinst.iso
+https://cdimage.debian.org/cdimage/daily-builds/daily/current/arm64/iso-cd/debian-testing-arm64-netinst.iso
+https://cdimage.kali.org/current/kali-linux-2026.3-installer-amd64.iso
+https://cdimage.kali.org/current/kali-linux-2026.3-installer-purple-amd64.iso
+https://distfiles.gentoo.org/releases/amd64/autobuilds/current-livegui-amd64/livegui-amd64-20260913T163055Z.iso
+# NJU mirror. Verify the full download against the upstream SHA-256: 4e88fe416df9b527624a175f24c9aa07c714d3332afb1ee3dbf3879573ef2c6c
+https://mirror.nju.edu.cn/proxmox/iso/proxmox-ve_9.2-1.iso
+https://releases.ubuntu.com/26.04.1/ubuntu-26.04.1-desktop-amd64.iso
+https://releases.ubuntu.com/26.04.1/ubuntu-26.04.1-live-server-amd64.iso
+
+# Fedora complete desktops
+https://download.fedoraproject.org/pub/fedora/linux/releases/45/KDE/aarch64/iso/Fedora-KDE-Desktop-Live-45-1.4.aarch64.iso
+https://download.fedoraproject.org/pub/fedora/linux/releases/45/KDE/x86_64/iso/Fedora-KDE-Desktop-Live-45-1.4.x86_64.iso
+# Full Scientific KDE desktop. Size and URL are announced by Fedora; no full download or boot test was performed.
+https://download.fedoraproject.org/pub/alt/releases/45/Labs/x86_64/iso/Fedora-Scientific_KDE-Live-45-1.4.x86_64.iso
+https://download.fedoraproject.org/pub/fedora/linux/releases/45/Workstation/aarch64/iso/Fedora-Workstation-Live-45-1.4.aarch64.iso
+https://download.fedoraproject.org/pub/fedora/linux/releases/45/Workstation/x86_64/iso/Fedora-Workstation-Live-45-1.4.x86_64.iso
+
+# Additional ARM64 installers
+https://mirror.stream.centos.org/10-stream/BaseOS/aarch64/iso/CentOS-Stream-10-latest-aarch64-boot.iso
+https://download.fedoraproject.org/pub/fedora/linux/releases/45/Server/aarch64/iso/Fedora-Server-netinst-aarch64-45-1.4.iso
+
+# ORIGIN REFERENCE ONLY - not active download entries.
+# These comments preserve upstream menu choices and large alternatives without caching them.
+# Beta.20 does not import these comments as catalogue entries or local iPXE recipes.
+# Upstream menus require network access; neither firmware boot nor every link is validated.
+# ORIGIN | 4MLinux | https://boot.netboot.xyz/4mlinux.ipxe
+# ORIGIN | About | https://boot.netboot.xyz/about.ipxe
+# ORIGIN | AlmaLinux | https://boot.netboot.xyz/almalinux.ipxe
+# ORIGIN | Alpine Linux | https://boot.netboot.xyz/alpinelinux.ipxe
+# ORIGIN | Arch Linux | https://boot.netboot.xyz/archlinux.ipxe
+# ORIGIN | BlackArch | https://boot.netboot.xyz/blackarch.ipxe
+# ORIGIN | Bsd | https://boot.netboot.xyz/bsd.ipxe
+# ORIGIN | CentOS Stream | https://boot.netboot.xyz/centos.ipxe
+# ORIGIN | Clonezilla | https://boot.netboot.xyz/clonezilla.ipxe
+# ORIGIN | Fedora CoreOS | https://boot.netboot.xyz/coreos.ipxe
+# ORIGIN | DBAN | https://boot.netboot.xyz/dban.ipxe
+# ORIGIN | Debian | https://boot.netboot.xyz/debian.ipxe
+# ORIGIN | Devuan | https://boot.netboot.xyz/devuan.ipxe
+# ORIGIN | Endeavouros | https://boot.netboot.xyz/endeavouros.ipxe
+# ORIGIN | Fedora | https://boot.netboot.xyz/fedora.ipxe
+# ORIGIN | Flatcar Container Linux | https://boot.netboot.xyz/flatcar.ipxe
+# ORIGIN | FreeBSD | https://boot.netboot.xyz/freebsd.ipxe
+# ORIGIN | FreeDOS | https://boot.netboot.xyz/freedos.ipxe
+# ORIGIN | Gentoo | https://boot.netboot.xyz/gentoo.ipxe
+# ORIGIN | GParted | https://boot.netboot.xyz/gparted.ipxe
+# ORIGIN | Harvester | https://boot.netboot.xyz/harvester.ipxe
+# ORIGIN | IPFire | https://boot.netboot.xyz/ipfire.ipxe
+# ORIGIN | k3OS | https://boot.netboot.xyz/k3os.ipxe
+# ORIGIN | Kairos | https://boot.netboot.xyz/kairos.ipxe
+# ORIGIN | Kali Linux | https://boot.netboot.xyz/kali.ipxe
+# ORIGIN | Kaspersky Rescue Disk | https://boot.netboot.xyz/kaspersky.ipxe
+# ORIGIN | Linux Arm | https://boot.netboot.xyz/linux-arm.ipxe
+# ORIGIN | Linux I386 | https://boot.netboot.xyz/linux-i386.ipxe
+# ORIGIN | Linux | https://boot.netboot.xyz/linux.ipxe
+# ORIGIN | Arm | https://boot.netboot.xyz/live-arm.ipxe
+# ORIGIN | Backbox | https://boot.netboot.xyz/live-backbox.ipxe
+# ORIGIN | Bluestar | https://boot.netboot.xyz/live-bluestar.ipxe
+# ORIGIN | Bodhi | https://boot.netboot.xyz/live-bodhi.ipxe
+# ORIGIN | Cachyos | https://boot.netboot.xyz/live-cachyos.ipxe
+# ORIGIN | Debian | https://boot.netboot.xyz/live-debian.ipxe
+# ORIGIN | Devuan | https://boot.netboot.xyz/live-devuan.ipxe
+# ORIGIN | Elementary | https://boot.netboot.xyz/live-elementary.ipxe
+# ORIGIN | Endeavouros | https://boot.netboot.xyz/live-endeavouros.ipxe
+# ORIGIN | Fatdog | https://boot.netboot.xyz/live-fatdog.ipxe
+# ORIGIN | Fedora | https://boot.netboot.xyz/live-fedora.ipxe
+# ORIGIN | Feren | https://boot.netboot.xyz/live-feren.ipxe
+# ORIGIN | Garuda | https://boot.netboot.xyz/live-garuda.ipxe
+# ORIGIN | Grml | https://boot.netboot.xyz/live-grml.ipxe
+# ORIGIN | Hrmpf | https://boot.netboot.xyz/live-hrmpf.ipxe
+# ORIGIN | K3Os | https://boot.netboot.xyz/live-k3os.ipxe
+# ORIGIN | Kali | https://boot.netboot.xyz/live-kali.ipxe
+# ORIGIN | Kodachi | https://boot.netboot.xyz/live-kodachi.ipxe
+# ORIGIN | Lite | https://boot.netboot.xyz/live-lite.ipxe
+# ORIGIN | Lxle | https://boot.netboot.xyz/live-lxle.ipxe
+# ORIGIN | Manjaro | https://boot.netboot.xyz/live-manjaro.ipxe
+# ORIGIN | Mint | https://boot.netboot.xyz/live-mint.ipxe
+# ORIGIN | Neon | https://boot.netboot.xyz/live-neon.ipxe
+# ORIGIN | Nitrux | https://boot.netboot.xyz/live-nitrux.ipxe
+# ORIGIN | Omarchy | https://boot.netboot.xyz/live-omarchy.ipxe
+# ORIGIN | Parrot | https://boot.netboot.xyz/live-parrot.ipxe
+# ORIGIN | Peppermint | https://boot.netboot.xyz/live-peppermint.ipxe
+# ORIGIN | Popos | https://boot.netboot.xyz/live-popos.ipxe
+# ORIGIN | Q4Os | https://boot.netboot.xyz/live-q4os.ipxe
+# ORIGIN | Raizo | https://boot.netboot.xyz/live-raizo.ipxe
+# ORIGIN | Regolith | https://boot.netboot.xyz/live-regolith.ipxe
+# ORIGIN | Septor | https://boot.netboot.xyz/live-septor.ipxe
+# ORIGIN | Sparky | https://boot.netboot.xyz/live-sparky.ipxe
+# ORIGIN | Tails | https://boot.netboot.xyz/live-tails.ipxe
+# ORIGIN | Ubuntu | https://boot.netboot.xyz/live-ubuntu.ipxe
+# ORIGIN | Vanillaos | https://boot.netboot.xyz/live-vanillaos.ipxe
+# ORIGIN | Voyager | https://boot.netboot.xyz/live-voyager.ipxe
+# ORIGIN | Zorin | https://boot.netboot.xyz/live-zorin.ipxe
+# ORIGIN | Live | https://boot.netboot.xyz/live.ipxe
+# ORIGIN | Lspci | https://boot.netboot.xyz/lspci.ipxe
+# ORIGIN | Mageia | https://boot.netboot.xyz/mageia.ipxe
+# ORIGIN | Menu | https://boot.netboot.xyz/menu.ipxe
+# ORIGIN | Nbxyz | https://boot.netboot.xyz/nbxyz.ipxe
+# ORIGIN | Netinfo | https://boot.netboot.xyz/netinfo.ipxe
+# ORIGIN | NixOS | https://boot.netboot.xyz/nixos.ipxe
+# ORIGIN | openEuler | https://boot.netboot.xyz/openEuler.ipxe
+# ORIGIN | OpenBSD | https://boot.netboot.xyz/openbsd.ipxe
+# ORIGIN | openSUSE | https://boot.netboot.xyz/opensuse.ipxe
+# ORIGIN | Oracle Linux | https://boot.netboot.xyz/oracle.ipxe
+# ORIGIN | VMware Photon | https://boot.netboot.xyz/photon.ipxe
+# ORIGIN | Proxmox | https://boot.netboot.xyz/proxmox.ipxe
+# ORIGIN | Rescuezilla | https://boot.netboot.xyz/rescuezilla.ipxe
+# ORIGIN | Red Hat Enterprise Linux CoreOS | https://boot.netboot.xyz/rhcos.ipxe
+# ORIGIN | Red Hat Enterprise Linux | https://boot.netboot.xyz/rhel.ipxe
+# ORIGIN | Rocky Linux | https://boot.netboot.xyz/rockylinux.ipxe
+# ORIGIN | CentOS Stream CoreOS | https://boot.netboot.xyz/scos.ipxe
+# ORIGIN | ShredOS | https://boot.netboot.xyz/shredos.ipxe
+# ORIGIN | Slackware | https://boot.netboot.xyz/slackware.ipxe
+# ORIGIN | SmartOS | https://boot.netboot.xyz/smartos.ipxe
+# ORIGIN | System Rescue CD | https://boot.netboot.xyz/systemrescue.ipxe
+# ORIGIN | Talos | https://boot.netboot.xyz/talos.ipxe
+# ORIGIN | Tiny Core Linux | https://boot.netboot.xyz/tinycore.ipxe
+# ORIGIN | Ubuntu Spins | https://boot.netboot.xyz/ubuntu-spins.ipxe
+# ORIGIN | Ubuntu | https://boot.netboot.xyz/ubuntu.ipxe
+# ORIGIN | Unix | https://boot.netboot.xyz/unix.ipxe
+# ORIGIN | Utils Arm | https://boot.netboot.xyz/utils-arm.ipxe
+# ORIGIN | Utils Efi | https://boot.netboot.xyz/utils-efi.ipxe
+# ORIGIN | Utils Pcbios 32 | https://boot.netboot.xyz/utils-pcbios-32.ipxe
+# ORIGIN | Utils Pcbios 64 | https://boot.netboot.xyz/utils-pcbios-64.ipxe
+# ORIGIN | VMware ESXi | https://boot.netboot.xyz/vmware.ipxe
+# ORIGIN | VyOS | https://boot.netboot.xyz/vyos.ipxe
+# ORIGIN | Windows | https://boot.netboot.xyz/windows.ipxe
+# ORIGIN | Zen Installer Arch | https://boot.netboot.xyz/zeninstall.ipxe
+# ORIGIN | Fedora Python_Classroom x86_64 | https://download.fedoraproject.org/pub/alt/releases/45/Labs/x86_64/images/Fedora-Python-Classroom-Vagrant-VirtualBox-45-1.4.x86_64.vagrant.virtualbox.box
+# ORIGIN | Fedora Python_Classroom x86_64 | https://download.fedoraproject.org/pub/alt/releases/45/Labs/x86_64/images/Fedora-Python-Classroom-Vagrant-libvirt-45-1.4.x86_64.vagrant.libvirt.box
+# ORIGIN | Fedora Scientific x86_64 | https://download.fedoraproject.org/pub/alt/releases/45/Labs/x86_64/images/Fedora-Scientific-Vagrant-VirtualBox-45-1.4.x86_64.vagrant.virtualbox.box
+# ORIGIN | Fedora Scientific x86_64 | https://download.fedoraproject.org/pub/alt/releases/45/Labs/x86_64/images/Fedora-Scientific-Vagrant-libvirt-45-1.4.x86_64.vagrant.libvirt.box
+# ORIGIN | Fedora Astronomy_KDE x86_64 | https://download.fedoraproject.org/pub/alt/releases/45/Labs/x86_64/iso/Fedora-Astronomy_KDE-Live-45-1.4.x86_64.iso
+# ORIGIN | Fedora Design_suite x86_64 | https://download.fedoraproject.org/pub/alt/releases/45/Labs/x86_64/iso/Fedora-Design_suite-Live-45-1.4.x86_64.iso
+# ORIGIN | Fedora Games x86_64 | https://download.fedoraproject.org/pub/alt/releases/45/Labs/x86_64/iso/Fedora-Games-Live-45-1.4.x86_64.iso
+# ORIGIN | Fedora Jam_KDE x86_64 | https://download.fedoraproject.org/pub/alt/releases/45/Labs/x86_64/iso/Fedora-Jam_KDE-Live-45-1.4.x86_64.iso
+# ORIGIN | Fedora Python_Classroom x86_64 | https://download.fedoraproject.org/pub/alt/releases/45/Labs/x86_64/iso/Fedora-Python-Classroom-Live-45-1.4.x86_64.iso
+# ORIGIN | Fedora Security x86_64 | https://download.fedoraproject.org/pub/alt/releases/45/Labs/x86_64/iso/Fedora-Security-Live-45-1.4.x86_64.iso
+# ORIGIN | Fedora Cloud_Base ppc64le | https://download.fedoraproject.org/pub/fedora-secondary/releases/45/Cloud/ppc64le/images/Fedora-Cloud-Base-Generic-45-1.4.ppc64le.qcow2
+# ORIGIN | Fedora Cloud_Base s390x | https://download.fedoraproject.org/pub/fedora-secondary/releases/45/Cloud/s390x/images/Fedora-Cloud-Base-Generic-45-1.4.s390x.qcow2
+# ORIGIN | Fedora Container_Base ppc64le | https://download.fedoraproject.org/pub/fedora-secondary/releases/45/Container/ppc64le/images/Fedora-Container-Base-Generic-45-1.4.ppc64le.oci.tar.xz
+# ORIGIN | Fedora Container_Minimal_Base ppc64le | https://download.fedoraproject.org/pub/fedora-secondary/releases/45/Container/ppc64le/images/Fedora-Container-Base-Generic-Minimal-45-1.4.ppc64le.oci.tar.xz
+# ORIGIN | Fedora Container_Toolbox ppc64le | https://download.fedoraproject.org/pub/fedora-secondary/releases/45/Container/ppc64le/images/Fedora-Container-Toolbox-45-1.4.ppc64le.oci.tar.xz
+# ORIGIN | Fedora Container_Base s390x | https://download.fedoraproject.org/pub/fedora-secondary/releases/45/Container/s390x/images/Fedora-Container-Base-Generic-45-1.4.s390x.oci.tar.xz
+# ORIGIN | Fedora Container_Minimal_Base s390x | https://download.fedoraproject.org/pub/fedora-secondary/releases/45/Container/s390x/images/Fedora-Container-Base-Generic-Minimal-45-1.4.s390x.oci.tar.xz
+# ORIGIN | Fedora Container_Toolbox s390x | https://download.fedoraproject.org/pub/fedora-secondary/releases/45/Container/s390x/images/Fedora-Container-Toolbox-45-1.4.s390x.oci.tar.xz
+# ORIGIN | Fedora Everything ppc64le | https://download.fedoraproject.org/pub/fedora-secondary/releases/45/Everything/ppc64le/iso/Fedora-Everything-netinst-ppc64le-45-1.4.iso
+# ORIGIN | Fedora Everything s390x | https://download.fedoraproject.org/pub/fedora-secondary/releases/45/Everything/s390x/iso/Fedora-Everything-netinst-s390x-45-1.4.iso
+# ORIGIN | Fedora KDE ppc64le | https://download.fedoraproject.org/pub/fedora-secondary/releases/45/KDE/ppc64le/iso/Fedora-KDE-Desktop-Live-45-1.4.ppc64le.iso
+# ORIGIN | Fedora Server_KVM ppc64le | https://download.fedoraproject.org/pub/fedora-secondary/releases/45/Server/ppc64le/images/Fedora-Server-Guest-Generic-45-1.4.ppc64le.qcow2
+# ORIGIN | Fedora Server ppc64le | https://download.fedoraproject.org/pub/fedora-secondary/releases/45/Server/ppc64le/iso/Fedora-Server-dvd-ppc64le-45-1.4.iso
+# ORIGIN | Fedora Server ppc64le | https://download.fedoraproject.org/pub/fedora-secondary/releases/45/Server/ppc64le/iso/Fedora-Server-netinst-ppc64le-45-1.4.iso
+# ORIGIN | Fedora Server s390x | https://download.fedoraproject.org/pub/fedora-secondary/releases/45/Server/s390x/iso/Fedora-Server-dvd-s390x-45-1.4.iso
+# ORIGIN | Fedora Server s390x | https://download.fedoraproject.org/pub/fedora-secondary/releases/45/Server/s390x/iso/Fedora-Server-netinst-s390x-45-1.4.iso
+# ORIGIN | Fedora Budgie-Atomic x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Budgie-Atomic/x86_64/images/Fedora-Budgie-Atomic-x86_64-45.1.4.ociarchive
+# ORIGIN | Fedora Budgie-Atomic x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Budgie-Atomic/x86_64/iso/Fedora-BudgieAtomic-Installer-45-1.4.x86_64.iso
+# ORIGIN | Fedora COSMIC-Atomic aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/COSMIC-Atomic/aarch64/images/Fedora-COSMIC-Atomic-aarch64-45.1.4.ociarchive
+# ORIGIN | Fedora COSMIC-Atomic aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/COSMIC-Atomic/aarch64/iso/Fedora-CosmicAtomic-Installer-45-1.4.aarch64.iso
+# ORIGIN | Fedora COSMIC-Atomic x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/COSMIC-Atomic/x86_64/images/Fedora-COSMIC-Atomic-x86_64-45.1.4.ociarchive
+# ORIGIN | Fedora COSMIC-Atomic x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/COSMIC-Atomic/x86_64/iso/Fedora-CosmicAtomic-Installer-45-1.4.x86_64.iso
+# ORIGIN | Fedora Cloud_Base aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Cloud/aarch64/images/Fedora-Cloud-Base-AmazonEC2-45-1.4.aarch64.raw.xz
+# ORIGIN | Fedora Cloud_Base aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Cloud/aarch64/images/Fedora-Cloud-Base-Azure-45-1.4.aarch64.vhdfixed.xz
+# ORIGIN | Fedora Cloud_Base aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Cloud/aarch64/images/Fedora-Cloud-Base-GCE-45-1.4.aarch64.tar.gz
+# ORIGIN | Fedora Cloud_Base aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Cloud/aarch64/images/Fedora-Cloud-Base-Generic-45-1.4.aarch64.qcow2
+# ORIGIN | Fedora Cloud_Base_UKI aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Cloud/aarch64/images/Fedora-Cloud-Base-UEFI-UKI-45-1.4.aarch64.qcow2
+# ORIGIN | Fedora Cloud_Base aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Cloud/aarch64/images/Fedora-Cloud-Base-Vagrant-libvirt-45-1.4.aarch64.vagrant.libvirt.box
+# ORIGIN | Fedora Cloud_Base x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Cloud/x86_64/images/Fedora-Cloud-Base-AmazonEC2-45-1.4.x86_64.raw.xz
+# ORIGIN | Fedora Cloud_Base x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Cloud/x86_64/images/Fedora-Cloud-Base-Azure-45-1.4.x86_64.vhdfixed.xz
+# ORIGIN | Fedora Cloud_Base x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Cloud/x86_64/images/Fedora-Cloud-Base-GCE-45-1.4.x86_64.tar.gz
+# ORIGIN | Fedora Cloud_Base x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Cloud/x86_64/images/Fedora-Cloud-Base-Generic-45-1.4.x86_64.qcow2
+# ORIGIN | Fedora Cloud_Base_UKI x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Cloud/x86_64/images/Fedora-Cloud-Base-UEFI-UKI-45-1.4.x86_64.qcow2
+# ORIGIN | Fedora Cloud_Base x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Cloud/x86_64/images/Fedora-Cloud-Base-Vagrant-VirtualBox-45-1.4.x86_64.vagrant.virtualbox.box
+# ORIGIN | Fedora Cloud_Base x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Cloud/x86_64/images/Fedora-Cloud-Base-Vagrant-libvirt-45-1.4.x86_64.vagrant.libvirt.box
+# ORIGIN | Fedora Container_Base aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Container/aarch64/images/Fedora-Container-Base-Generic-45-1.4.aarch64.oci.tar.xz
+# ORIGIN | Fedora Container_Minimal_Base aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Container/aarch64/images/Fedora-Container-Base-Generic-Minimal-45-1.4.aarch64.oci.tar.xz
+# ORIGIN | Fedora Container_Toolbox aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Container/aarch64/images/Fedora-Container-Toolbox-45-1.4.aarch64.oci.tar.xz
+# ORIGIN | Fedora WSL_Base aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Container/aarch64/images/Fedora-WSL-Base-45-1.4.aarch64.wsl
+# ORIGIN | Fedora Container_Base x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Container/x86_64/images/Fedora-Container-Base-Generic-45-1.4.x86_64.oci.tar.xz
+# ORIGIN | Fedora Container_Minimal_Base x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Container/x86_64/images/Fedora-Container-Base-Generic-Minimal-45-1.4.x86_64.oci.tar.xz
+# ORIGIN | Fedora Container_Toolbox x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Container/x86_64/images/Fedora-Container-Toolbox-45-1.4.x86_64.oci.tar.xz
+# ORIGIN | Fedora FEX_RootFS x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Container/x86_64/images/Fedora-FEX-RootFS-45-1.4.x86_64.erofs.xz
+# ORIGIN | Fedora WSL_Base x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Container/x86_64/images/Fedora-WSL-Base-45-1.4.x86_64.wsl
+# ORIGIN | Fedora Everything aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Everything/aarch64/iso/Fedora-Everything-netinst-aarch64-45-1.4.iso
+# ORIGIN | Fedora Everything x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/iso/Fedora-Everything-netinst-x86_64-45-1.4.iso
+# ORIGIN | Fedora KDE aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/KDE/aarch64/images/Fedora-KDE-Desktop-Disk-45-1.4.aarch64.raw.xz
+# ORIGIN | Fedora Kinoite aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Kinoite/aarch64/images/Fedora-Kinoite-Disk-45-1.4.aarch64.raw.xz
+# ORIGIN | Fedora Kinoite aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Kinoite/aarch64/images/Fedora-Kinoite-QCOW-45-1.4.aarch64.qcow2
+# ORIGIN | Fedora Kinoite aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Kinoite/aarch64/images/Fedora-Kinoite-aarch64-45.1.4.ociarchive
+# ORIGIN | Fedora Kinoite aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Kinoite/aarch64/iso/Fedora-Kinoite-Installer-45-1.4.aarch64.iso
+# ORIGIN | Fedora Kinoite x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Kinoite/x86_64/images/Fedora-Kinoite-QCOW-45-1.4.x86_64.qcow2
+# ORIGIN | Fedora Kinoite x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Kinoite/x86_64/images/Fedora-Kinoite-x86_64-45.1.4.ociarchive
+# ORIGIN | Fedora Kinoite x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Kinoite/x86_64/iso/Fedora-Kinoite-Installer-45-1.4.x86_64.iso
+# ORIGIN | Fedora Python_Classroom aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Labs/aarch64/images/Fedora-Python-Classroom-Disk-45-1.4.aarch64.raw.xz
+# ORIGIN | Fedora Python_Classroom aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Labs/aarch64/images/Fedora-Python-Classroom-Vagrant-libvirt-45-1.4.aarch64.vagrant.libvirt.box
+# ORIGIN | Fedora Scientific aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Labs/aarch64/images/Fedora-Scientific-Vagrant-libvirt-45-1.4.aarch64.vagrant.libvirt.box
+# ORIGIN | Fedora Scientific_KDE aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Labs/aarch64/images/Fedora-Scientific_KDE-Disk-45-1.4.aarch64.raw.xz
+# ORIGIN | Fedora Python_Classroom aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Labs/aarch64/iso/Fedora-Python-Classroom-Live-45-1.4.aarch64.iso
+# ORIGIN | Fedora Scientific_KDE aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Labs/aarch64/iso/Fedora-Scientific_KDE-Live-45-1.4.aarch64.iso
+# ORIGIN | Fedora Server_KVM aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Server/aarch64/images/Fedora-Server-Guest-Generic-45-1.4.aarch64.qcow2
+# ORIGIN | Fedora Server aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Server/aarch64/images/Fedora-Server-Host-Generic-45-1.4.aarch64.raw.xz
+# ORIGIN | Fedora Server aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Server/aarch64/iso/Fedora-Server-dvd-aarch64-45-1.4.iso
+# ORIGIN | Fedora Server_KVM x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Server/x86_64/images/Fedora-Server-Guest-Generic-45-1.4.x86_64.qcow2
+# ORIGIN | Fedora Server x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Server/x86_64/iso/Fedora-Server-dvd-x86_64-45-1.4.iso
+# ORIGIN | Fedora Silverblue aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Silverblue/aarch64/images/Fedora-Silverblue-Disk-45-1.4.aarch64.raw.xz
+# ORIGIN | Fedora Silverblue aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Silverblue/aarch64/images/Fedora-Silverblue-QCOW-45-1.4.aarch64.qcow2
+# ORIGIN | Fedora Silverblue aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Silverblue/aarch64/images/Fedora-Silverblue-aarch64-45.1.4.ociarchive
+# ORIGIN | Fedora Silverblue aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Silverblue/aarch64/iso/Fedora-Silverblue-Installer-45-1.4.aarch64.iso
+# ORIGIN | Fedora Silverblue x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Silverblue/x86_64/images/Fedora-Silverblue-QCOW-45-1.4.x86_64.qcow2
+# ORIGIN | Fedora Silverblue x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Silverblue/x86_64/images/Fedora-Silverblue-x86_64-45.1.4.ociarchive
+# ORIGIN | Fedora Silverblue x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Silverblue/x86_64/iso/Fedora-Silverblue-Installer-45-1.4.x86_64.iso
+# ORIGIN | Fedora COSMIC aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/aarch64/images/Fedora-COSMIC-Disk-45-1.4.aarch64.raw.xz
+# ORIGIN | Fedora KDE_Mobile aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/aarch64/images/Fedora-KDE-Mobile-Disk-45-1.4.aarch64.raw.xz
+# ORIGIN | Fedora LXQt aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/aarch64/images/Fedora-LXQt-Disk-45-1.4.aarch64.raw.xz
+# ORIGIN | Fedora Minimal aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/aarch64/images/Fedora-Minimal-45-1.4.aarch64.raw.xz
+# ORIGIN | Fedora MiracleWM aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/aarch64/images/Fedora-MiracleWM-Disk-45-1.4.aarch64.raw.xz
+# ORIGIN | Fedora SoaS aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/aarch64/images/Fedora-SoaS-Disk-45-1.4.aarch64.raw.xz
+# ORIGIN | Fedora Xfce aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/aarch64/images/Fedora-Xfce-Disk-45-1.4.aarch64.raw.xz
+# ORIGIN | Fedora COSMIC aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/aarch64/iso/Fedora-COSMIC-Live-45-1.4.aarch64.iso
+# ORIGIN | Fedora KDE_Mobile aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/aarch64/iso/Fedora-KDE-Mobile-Live-45-1.4.aarch64.iso
+# ORIGIN | Fedora LXQt aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/aarch64/iso/Fedora-LXQt-Live-45-1.4.aarch64.iso
+# ORIGIN | Fedora MiracleWM aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/aarch64/iso/Fedora-MiracleWM-Live-45-1.4.aarch64.iso
+# ORIGIN | Fedora SoaS aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/aarch64/iso/Fedora-SoaS-Live-45-1.4.aarch64.iso
+# ORIGIN | Fedora Xfce aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/aarch64/iso/Fedora-Xfce-Live-45-1.4.aarch64.iso
+# ORIGIN | Fedora i3 aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/aarch64/iso/Fedora-i3-Live-45-1.4.aarch64.iso
+# ORIGIN | Fedora Budgie x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-Budgie-Live-45-1.4.x86_64.iso
+# ORIGIN | Fedora COSMIC x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-COSMIC-Live-45-1.4.x86_64.iso
+# ORIGIN | Fedora Cinnamon x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-Cinnamon-Live-45-1.4.x86_64.iso
+# ORIGIN | Fedora KDE_Mobile x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-KDE-Mobile-Live-45-1.4.x86_64.iso
+# ORIGIN | Fedora LXDE x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-LXDE-Live-45-1.4.x86_64.iso
+# ORIGIN | Fedora LXQt x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-LXQt-Live-45-1.4.x86_64.iso
+# ORIGIN | Fedora Mate x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-MATE_Compiz-Live-45-1.4.x86_64.iso
+# ORIGIN | Fedora MiracleWM x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-MiracleWM-Live-45-1.4.x86_64.iso
+# ORIGIN | Fedora SoaS x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-SoaS-Live-45-1.4.x86_64.iso
+# ORIGIN | Fedora Sway x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-Sway-Live-45-1.4.x86_64.iso
+# ORIGIN | Fedora Xfce x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-Xfce-Live-45-1.4.x86_64.iso
+# ORIGIN | Fedora i3 x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-i3-Live-45-1.4.x86_64.iso
+# ORIGIN | Fedora Sway-Atomic aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Sway-Atomic/aarch64/images/Fedora-Sway-Atomic-aarch64-45.1.4.ociarchive
+# ORIGIN | Fedora Sway-Atomic x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Sway-Atomic/x86_64/images/Fedora-Sway-Atomic-x86_64-45.1.4.ociarchive
+# ORIGIN | Fedora Sway-Atomic x86_64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Sway-Atomic/x86_64/iso/Fedora-SwayAtomic-Installer-45-1.4.x86_64.iso
+# ORIGIN | Fedora Workstation aarch64 | https://download.fedoraproject.org/pub/fedora/linux/releases/45/Workstation/aarch64/images/Fedora-Workstation-Disk-45-1.4.aarch64.raw.xz
+
+# REVIEW NOTES FOR THE NEXT EDITION - beta.20 remains the working baseline.
+# RAM deployment must default to the explicit Light selection, not every cached image.
+# The selector needs current size metadata; unknown size must not silently discard a Light choice.
+# A provider menu is not a locally cached distribution image.
+# Native netboot archives should have recipes checked before being advertised as bootable.
+# Bastion needs an independently verified remote inventory; local os.walk is insufficient.
+# Generate must render the actual version in index.html and asset references.
+# Local generation, transfer and public verification need separate results and explicit failures.
+# ./aux needs visible action descriptions, aligned panels and contextual F1 help.
+# Proposed cleanup must be reviewed separately; do not rename or purge the beta.20 baseline.
