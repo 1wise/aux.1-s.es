@@ -1,0 +1,195 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+
+Files: *
+Copyright:
+ 1999-2002 Randolph Chung
+ 1999-2014 Joey Hess
+ 2006-2010 René Rebe
+ 2006 Tapio Lehtonen
+ 2008 Frans Pop
+ 2008 Eddy Petrișor
+ 2010 Josip Rodin
+ 2010 Andrei Popescu
+ 2011 Theppitak Karoonboonyanan
+ 2006-2012 Otavio Salvador
+ 2012 Bastian Blank
+ 2006-2012 Per Olofsson
+ 2013 Steven Chamberlain
+ 2014 Paul Wise
+ 2014 Karsten Merker
+ 2015 Scott Kitterman
+ 2016 Dimitri John Ledkov
+ 2013-2017 Kenshi Muto
+ 2006-2018 Christian Perrier
+ 2018 Steve McIntyre
+ 2018 Henrique de Moraes Holschuh
+ 2018 Luigi Toscano
+ 2019 Guillem Jover
+ 2019 Daniel Lewart
+ 2019 Adam Borowski
+ 2019 Aron Xu
+ 2018-2019 Nicolas Braud-Santoni
+ 2020 Didier Raboud
+ 2020 Timo Jyrinki
+ 2020 Bryan Quigley
+ 2020 Sven Joachim
+ 2019-2020 Raphaël Hertzog
+ 2020 nicoo
+ 2021 YOSHINO Yoshihito
+ 2021 Shengjing Zhu
+ 2021 Євгеній Мещеряков
+ 2014-2022 Samuel Thibault
+ 2023 Aurélien Couderc
+ 2023 Arnaud Rebillout
+ 2010-2023 Andrew Lee
+ 2021-2023 Philip Hands
+ 2011-2024 Rene Engelhard
+ 2024 Guido Berhoerster
+ 2023 Guido Günther
+ 2018-2025 Roland Clobus
+ 2025 Hideki Yamane
+ 2011-2025 Cyril Brulebois
+ 2014-2025 Changwoo Ryu
+ 2011-2025 Yves-Alexis Perez
+ 2017-2025 Boyuan Yang
+ 2018-2026 Michael Biebl
+ 2026 Graham Inggs
+ 2026 Jeremy Bícha
+ 2026 Pascal Hambourg
+ 2018-2026 Holger Wansing
+ 2024-2026 Dmitry Shachnev
+License: GPL-2
+ See /usr/share/common-licenses/GPL-2 for the full text of the GPL.
+
+Files: debian/po/*.po
+Comment:
+ Translation files. Author attributions are derived from package's git logs
+ resp. the po file headers itself.
+Copyright: 2004 Abdulaziz Al-Arfaj
+           2005 Ossama M. Khayat
+           2009 malditoastur
+           2007 Pavel Piatruk
+           2004-2006 Ognyan Kulev
+           2006-2010 Israt Jahan
+           2010 Armin Besirovic
+           2004-2006 Safir Secerovic
+           2001-2006 Jordi Mallach
+           2003-2005 Miroslav Kure
+           2000 Petr Cech
+           2012 Daffyd Tomos
+           2002-2005 Claus Hindsgaul
+           2018-2021 Holger Wansing
+           2004-2006 Jens Seidel
+           2003 Kurt Gramlich
+           2006 Pema Geyleg
+           2010 Socrates VAVILIS
+           2004-2010 George Papamichelakis
+           2010 Emmanuel Galatoulas
+           2004-2005 Konstantinos Margaritis
+           2006 Serge Leblanc
+           2003-2005 Javier Fernandez-Sanguino Pena
+           2000 Enrique Zanardi
+           2005 Siim Põder
+           2004-2007 Piarres Beobide Egaña
+           2004 Arash Bijanzadeh
+           2010 Behrad Eslamifar
+           2004-2006 Tapio Lehtonen
+           2003 Tommi Vainikainen
+           2004-2005 Christian Perrier
+           2003 Denis Barbier
+           2008 Kevin Scannell
+           2012 Jorge Barreiro
+           2001-2005 Jacobo Tarrio
+           2006 Kartik Mistry
+           2004-2006 Lior Kaplan
+           2006 Nishant Sharma
+           2006 Josip Rodin
+           2006-2008 SZERVÁC Attila
+           2004 VERÓK István
+           2008 Vardan Gevorgyan
+           2004-2005 Parlin Imanuel Toh
+           2010-2012 Sveinn í Felli
+           2002-2005 Giuseppe Sacco
+           2004-2006 Kenshi Muto
+           2003-2004 Tomohiro KUBOTA
+           2006 Aiet Kolkhi
+           2009-2010 Baurzhan Muftakhidinov
+           2006 kakada hok
+           2004-2007 Changwoo Ryu
+           2005-2006 Sunjae Park
+           2008 Erdal Ronahi
+           2004-2005 Kęstutis Biliūnas
+           2012 Rūdolfs Mazurs
+           2006 Aigars Mahinovs
+           2005-2006 Jaonary Rabarisoa
+           2004-2006 Georgi Stanojevski
+           2006-2008 Praveen A
+           2007 Priti Patil
+           2004-2006 Bjørn Steensrud
+           2004 Petter Reinholdtsen
+           2006 Paras Pradhan
+           2013 Thijs Kinkhorst
+           2003-2006 Bart Cornelis
+           2004-2006 Håvard Korsvoll
+           2006 Amanpreet Singh Alam
+           2004-2005 Bartosz Feński
+           2001 Marcin Owsiany
+           2008 Felipe Augusto van de Wiel
+           2004-2005 Andre Luis Lopes
+           2004-2005 Miguel Figueiredo
+           2004 Rene Engelhard
+           2004-2008 Eddy Petrișor
+           2005 Yuri Kozlov
+           2004 Nikolai Prokoschenko
+           2004-2006 Peter Mann
+           2006 Matej Kovačič
+           2004 Jure Cuhalev
+           2004-2006 Elian Myftiu
+           2010 Janos Guljas
+           2005-2006 Daniel Nylander
+           2000 Peter Karlsson
+           2004 Per Olofsson
+           2006 Vasudevan Tirumurti
+           2006 Damodharan Rajalingam
+           2008 Y Giridhar Appaji Nag
+           2019 Victor Ibragimov
+           2006 Theppitak Karoonboonyanan
+           2005-2006 Eric Pareja
+           2017 Mert Dirik
+           2004-2005 Recai Oktas
+           2012 Sahran
+           2004-2006 Eugeniy Meshcheryakov
+           2005-2006 Clytie Siddall
+           2005-2006 Mouhamadou Mamoune Mbacke
+           2009 YunQiang Su
+           2004-2005 Carlos Z.F. Liu
+           2004-2006 Tetralet
+           2023 Luna Jernberg
+           2022 Atila KOÇ
+           2022 Andika Triwidada
+           2021 Valentin Vidic
+           2020 Damyan Ivanov
+           2019 Joe Dalton
+           2018 Andrei POPESCU
+           2018 Viktar Siarheichyk
+           2015 Timur Birsh
+           2012 Vikram Vincent
+           2010 Hadi Soufi
+           2006 Arief S Fitrianto
+           2006 Stefano Canepa
+           2006 Khoem Sokhem
+           2006 kinley tshering
+           2018 Alban Vidal
+           2009 Milo Casagrande
+           2012 Rimas Kudelis
+           2008 Arangel Angov
+           2018 Frans Spiesschaert
+           2006 A S Alam
+           2018 Adriano Rafael Gomes
+           2011 Danishka Navin
+           2009 Ivan Masár
+           2006 drtvasudevan
+           2009 苏运强
+           2025 Michał Kułach
+License: GPL-2
+ See /usr/share/common-licenses/GPL-2 for the full text of the GPL.
