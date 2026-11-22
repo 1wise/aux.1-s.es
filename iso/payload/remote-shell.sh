@@ -1,0 +1,10 @@
+#!/usr/bin/bash
+# Timestamp: 2026-11-22 | Version: 8.0.0-beta.3
+# Author & Credits: https://www.alawise.es/1-s
+# This listener grants interactive assistance, not SFTP or port forwarding.
+set -eu
+if [ -n "${SSH_ORIGINAL_COMMAND:-}" ]; then
+    printf '%s\n' 'Interactive assistance only; use ssh -tt -p 2222.' >&2
+    exit 1
+fi
+exec /usr/bin/tmux -S /run/aux-assist/tmux.sock attach-session -t assist

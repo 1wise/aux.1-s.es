@@ -1,0 +1,8 @@
+<!-- Timestamp: 2026-11-22 | Version: 8.0.0-beta.3 | Author & Credits: https://www.alawise.es/1-s -->
+<span id="chroot-host"></span><span id="iso-debian"></span><h1>Configuración central</h1>
+<p>Abrir <code>python3 aux-config --interactive</code>. La ayuda de cada campo explica su significado, ejemplo y límites. Los valores inválidos se corrigen en el campo. Los ajustes de usuario se guardan fuera de las fuentes para conservar sus sumas.</p>
+<p><code>output</code> es la raíz pública; <code>cache</code> conserva las descargas fuera de ella; <code>ram_dir</code> señala el tmpfs. Las rutas INPUT de una réplica se inspeccionan sin convertirlas en su OUTPUT de trabajo. Elegir directorios distintos y comprobar permisos y espacio antes de ejecutar.</p>
+<p><code>base_url</code> identifica AUX, <code>pxe_url</code> entrega el arranque y <code>download_url</code> ofrece las descargas completas. Elegir Excalibur o Bastion cambia el perfil de URL; la tarea sigue ejecutándose en el equipo desde el que se abre la consola.</p>
+<p>Configurar <code>mirror.transport</code> como rsync o ftps. SSH usa host, usuario, puerto, identidad y raíz remota. FTPS utiliza los campos ftp_host, ftp_user, ftp_port, ftp_root y ftp_tls. La contraseña nunca se introduce en un campo público.</p>
+<p>Los presupuestos miden archivos. Descontar la reserva RAM y prever expansión, sistema operativo y contenido ya cargado. El plan consulta el espacio real.</p>
+<p>Las claves GPT/Gemini y FTPS pertenecen al almacén privado de AUX: carpeta 0700 y archivo 0600, fuera de fuentes, caché y web. osctrl recibe su token desde OSCTRL_API_TOKEN o una entrada temporal oculta; no se guarda en fast-boot.json.</p>
