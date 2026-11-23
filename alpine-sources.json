@@ -1,0 +1,76 @@
+{
+  "_meta": {
+    "Timestamp": "2026-10-13",
+    "Version": "5.1.0",
+    "Author & Credits": "https://www.alawise.es/1-s"
+  },
+  "release": "3.24.2",
+  "status": "Seven upstream downloads matched SHA256 in the earlier isolated test; GPG and hardware boot not verified.",
+  "resources": [
+    {
+      "filename": "alpine-netboot-3.24.2-aarch64.tar.gz",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/aarch64/alpine-netboot-3.24.2-aarch64.tar.gz",
+      "variant": "netboot",
+      "architecture": "aarch64",
+      "bytes": 432082685,
+      "sha256": "124087f5df9ac698bb4e942d603eaae96721e451cdc4706c71a5e42ff863b589",
+      "list": "light"
+    },
+    {
+      "filename": "alpine-netboot-3.24.2-x86.tar.gz",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86/alpine-netboot-3.24.2-x86.tar.gz",
+      "variant": "netboot",
+      "architecture": "x86",
+      "bytes": 272093864,
+      "sha256": "b8aa4249d2b83c22554e5fcecb6f196260b392f258a72942f5ed79e8447b96ad",
+      "list": "light"
+    },
+    {
+      "filename": "alpine-netboot-3.24.2-x86_64.tar.gz",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86_64/alpine-netboot-3.24.2-x86_64.tar.gz",
+      "variant": "netboot",
+      "architecture": "x86_64",
+      "bytes": 392497909,
+      "sha256": "bbdd643360fac384a7933d8bebc7132eb720002e58d1321edcde4a5a3c3b83c6",
+      "list": "light"
+    },
+    {
+      "filename": "alpine-standard-3.24.2-x86.iso",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86/alpine-standard-3.24.2-x86.iso",
+      "variant": "standard",
+      "architecture": "x86",
+      "bytes": 290455552,
+      "sha256": "deb7d2fbd0749c7ff1bdfeb9d2541da6d611a902869ea1d16881a7acd5f85eee",
+      "list": "light"
+    },
+    {
+      "filename": "alpine-standard-3.24.2-x86_64.iso",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86_64/alpine-standard-3.24.2-x86_64.iso",
+      "variant": "standard",
+      "architecture": "x86_64",
+      "bytes": 370147328,
+      "sha256": "20c026e3a788bfb75fc8b50a54bcc12aee85e3c75909740bba6a6f4563d63296",
+      "list": "light"
+    },
+    {
+      "filename": "alpine-extended-3.24.2-x86.iso",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86/alpine-extended-3.24.2-x86.iso",
+      "variant": "extended",
+      "architecture": "x86",
+      "bytes": 1297121280,
+      "sha256": "2c769b4f23020b1ba40a97deb8eb420f974963954afdb15b25e054aa0536526a",
+      "list": "heavy"
+    },
+    {
+      "filename": "alpine-extended-3.24.2-x86_64.iso",
+      "url": "https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86_64/alpine-extended-3.24.2-x86_64.iso",
+      "variant": "extended",
+      "architecture": "x86_64",
+      "bytes": 1456766976,
+      "sha256": "a22115a46a1bcd876234a6cd43797fe19f4acfc4512fb41ea64e16cc2ffb4d90",
+      "list": "heavy"
+    }
+  ],
+  "netboot_extracted_bytes": 1219516325,
+  "light_copy_plus_extraction_bytes": 2976793663
+}
