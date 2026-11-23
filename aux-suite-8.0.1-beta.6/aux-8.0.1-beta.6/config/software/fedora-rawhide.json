@@ -1,0 +1,2052 @@
+{
+  "groups": [
+    {
+      "id": "3d-printing",
+      "label": "Impresi\u00f3n 3D",
+      "description": "Software de impresi\u00f3n 3D",
+      "visible": true,
+      "package_types": {
+        "default": 9
+      }
+    },
+    {
+      "id": "anaconda-tools",
+      "label": "Herramientas Anaconda",
+      "description": "",
+      "visible": false,
+      "package_types": {
+        "mandatory": 34,
+        "optional": 4
+      }
+    },
+    {
+      "id": "audio",
+      "label": "Producci\u00f3n de audio",
+      "description": "Herramientas de s\u00edntesis de audio y producci\u00f3n musical.",
+      "visible": true,
+      "package_types": {
+        "default": 87
+      }
+    },
+    {
+      "id": "authoring-and-publishing",
+      "label": "Autor\u00eda y publicaci\u00f3n",
+      "description": "Estas herramientas le permiten crear documentos en el formato DocBook y convertirlos a HTML, PDF, Postscript y texto.",
+      "visible": true,
+      "package_types": {
+        "default": 13,
+        "optional": 18
+      }
+    },
+    {
+      "id": "base-graphical",
+      "label": "base-graphical",
+      "description": "Common packages for any graphical session",
+      "visible": false,
+      "package_types": {
+        "mandatory": 3
+      }
+    },
+    {
+      "id": "base-x",
+      "label": "base-x",
+      "description": "Servidor X.org local",
+      "visible": false,
+      "package_types": {
+        "mandatory": 17
+      }
+    },
+    {
+      "id": "basic-desktop",
+      "label": "Escritorio B\u00e1sico",
+      "description": "Sistema b\u00e1sico X Windows con un gestor de ventanas a elegir.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 9
+      }
+    },
+    {
+      "id": "budgie-desktop",
+      "label": "Budgie",
+      "description": "Budgie Desktop is a feature-rich, modern desktop environment.",
+      "visible": true,
+      "package_types": {
+        "mandatory": 6,
+        "default": 28
+      }
+    },
+    {
+      "id": "budgie-desktop-apps",
+      "label": "Budgie Desktop Applications",
+      "description": "Recommended applications to use with Budgie Desktop",
+      "visible": true,
+      "package_types": {
+        "default": 15
+      }
+    },
+    {
+      "id": "buildsys-build",
+      "label": "Sistema de construcci\u00f3n",
+      "description": "",
+      "visible": false,
+      "package_types": {
+        "mandatory": 22
+      }
+    },
+    {
+      "id": "c-development",
+      "label": "Herramientas y Librer\u00edas de Desarrollo en C",
+      "description": "Estas herramientas incluyen herramientas clave de desarrollo como automake, gcc y debuggers.",
+      "visible": true,
+      "package_types": {
+        "mandatory": 13,
+        "default": 9,
+        "optional": 14
+      }
+    },
+    {
+      "id": "cinnamon-desktop",
+      "label": "Cinnamon",
+      "description": "Cinnamon proporciona un entorno de escritorio tradicional, con caracter\u00edsticas avanzadas, f\u00e1cil de usar, potente y flexible.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 60,
+        "default": 9
+      }
+    },
+    {
+      "id": "cloud-bootloader-tools",
+      "label": "Bootloader tools for Cloud images",
+      "description": "Bootloader software for images that run in \"cloud\" environments",
+      "visible": false,
+      "package_types": {
+        "mandatory": 9
+      }
+    },
+    {
+      "id": "cloud-infrastructure",
+      "label": "Infraestructura de Nube",
+      "description": "Paquetes de la infraestructura para la computaci\u00f3n en nube.",
+      "visible": true,
+      "package_types": {
+        "optional": 4
+      }
+    },
+    {
+      "id": "cloud-management",
+      "label": "Herramientas de administraci\u00f3n de \"nube\"",
+      "description": "Programas de gesti\u00f3n de servidores e im\u00e1genes de sistema que se ejecutan en entornos de \"nube\"",
+      "visible": true,
+      "package_types": {
+        "default": 6,
+        "optional": 1
+      }
+    },
+    {
+      "id": "cloud-server",
+      "label": "Herramientas de servidores de nube",
+      "description": "Software para servidores e im\u00e1genes de sistema que se ejecutan en entornos de \"nube\"",
+      "visible": false,
+      "package_types": {
+        "mandatory": 6,
+        "default": 6
+      }
+    },
+    {
+      "id": "compiz",
+      "label": "Compiz",
+      "description": "Este grupo del paquete agrega Compiz y Emerald.",
+      "visible": true,
+      "package_types": {
+        "mandatory": 13
+      }
+    },
+    {
+      "id": "container-management",
+      "label": "Administraci\u00f3n de contenedores",
+      "description": "Herramientas para gestionar contenedores de Linux",
+      "visible": true,
+      "package_types": {
+        "default": 1,
+        "optional": 5
+      }
+    },
+    {
+      "id": "core",
+      "label": "N\u00facleo",
+      "description": "Instalaci\u00f3n lo m\u00e1s peque\u00f1a posible",
+      "visible": false,
+      "package_types": {
+        "mandatory": 31,
+        "default": 10,
+        "optional": 3
+      }
+    },
+    {
+      "id": "cosmic-desktop",
+      "label": "COSMIC Desktop",
+      "description": "The COSMIC Desktop is a multi-purpose desktop developed by System76 and independent contributors.",
+      "visible": true,
+      "package_types": {
+        "mandatory": 5,
+        "default": 6
+      }
+    },
+    {
+      "id": "cosmic-desktop-apps",
+      "label": "COSMIC Desktop Supplementary Applications",
+      "description": "Apps that supplement the COSMIC desktop.",
+      "visible": true,
+      "package_types": {
+        "default": 8
+      }
+    },
+    {
+      "id": "critical-path-anaconda",
+      "label": "Critical Path (anaconda)",
+      "description": "A set of packages that provide the Critical Path functionality for installing Fedora with anaconda",
+      "visible": false,
+      "package_types": {
+        "mandatory": 3
+      }
+    },
+    {
+      "id": "critical-path-apps",
+      "label": "Camino Cr\u00edtico (Aplicaciones)",
+      "description": "Un conjunto de aplicaciones que se consideran de camino cr\u00edtico",
+      "visible": false,
+      "package_types": {
+        "default": 1
+      }
+    },
+    {
+      "id": "critical-path-base",
+      "label": "Camino Cr\u00edtico (Base)",
+      "description": "Un conjunto de paquetes que proveen la plataforma compartida para la funcionalidad de Camino Cr\u00edtico en todos los spins de Fedora",
+      "visible": false,
+      "package_types": {
+        "mandatory": 5
+      }
+    },
+    {
+      "id": "critical-path-build",
+      "label": "Critical Path (Build)",
+      "description": "A set of packages that provide the Critical Path functionality for building Fedora packages",
+      "visible": false,
+      "package_types": {
+        "mandatory": 5
+      }
+    },
+    {
+      "id": "critical-path-cloud",
+      "label": "Critical Path (Cloud)",
+      "description": "A set of packages that provide the Critical Path functionality for Fedora Cloud",
+      "visible": false,
+      "package_types": {
+        "mandatory": 1
+      }
+    },
+    {
+      "id": "critical-path-compose",
+      "label": "Critical Path (Compose)",
+      "description": "A set of packages that provide the Critical Path functionality for building Fedora deliverables",
+      "visible": false,
+      "package_types": {
+        "mandatory": 10
+      }
+    },
+    {
+      "id": "critical-path-gnome",
+      "label": "Camino Cr\u00edtico (GNOME)",
+      "description": "Un conjunto de paquetes para proveer la funcionalidad de Camino Cr\u00edtico para el escritorio GNOME",
+      "visible": false,
+      "package_types": {
+        "mandatory": 9,
+        "default": 7
+      }
+    },
+    {
+      "id": "critical-path-kde",
+      "label": "Camino Cr\u00edtico (KDE)",
+      "description": "Un conjunto de paquetes para proveer la funcionalidad de Camino Cr\u00edtico para el escritorio KDE",
+      "visible": false,
+      "package_types": {
+        "mandatory": 23
+      }
+    },
+    {
+      "id": "critical-path-lxde",
+      "label": "Camino Cr\u00edtico (LXDE)",
+      "description": "Un conjunto de paquetes para proveer la funcionalidad de Camino Cr\u00edtico para el escritorio LXDE",
+      "visible": false,
+      "package_types": {
+        "mandatory": 1,
+        "default": 1
+      }
+    },
+    {
+      "id": "critical-path-lxqt",
+      "label": "Camino Cr\u00edtico (LXQt)",
+      "description": "Un conjunto de paquetes para proveer la funcionalidad de Camino Cr\u00edtico para el escritorio LXQt",
+      "visible": false,
+      "package_types": {
+        "mandatory": 1,
+        "default": 1
+      }
+    },
+    {
+      "id": "critical-path-server",
+      "label": "Critical Path (Server)",
+      "description": "A set of packages that provide the Critical Path functionality for the Server edition",
+      "visible": false,
+      "package_types": {
+        "mandatory": 8
+      }
+    },
+    {
+      "id": "critical-path-standard",
+      "label": "Critical Path (standard)",
+      "description": "A set of packages that relate to Critical Path functionality and are in standard but not base",
+      "visible": false,
+      "package_types": {
+        "mandatory": 2
+      }
+    },
+    {
+      "id": "critical-path-xfce",
+      "label": "Camino Cr\u00edtico (Xfce)",
+      "description": "Un conjunto de paquetes para proveer la funcionalidad de Camino Cr\u00edtico para el escritorio Xfce",
+      "visible": false,
+      "package_types": {
+        "mandatory": 2
+      }
+    },
+    {
+      "id": "d-development",
+      "label": "Herramientas y bibliotecas de desarrollo D",
+      "description": "Se incluyen herramientas de desarrollo y bibliotecas como lcd y geany-tag.",
+      "visible": true,
+      "package_types": {
+        "mandatory": 3,
+        "default": 2,
+        "optional": 6
+      }
+    },
+    {
+      "id": "design-suite",
+      "label": "Suite de Dise\u00f1o",
+      "description": "A collection of creative applications for graphic design, illustration, photography, animation, video production, web design, and digital publishing.",
+      "visible": true,
+      "package_types": {
+        "default": 36,
+        "optional": 22,
+        "conditional": 4
+      }
+    },
+    {
+      "id": "desktop-accessibility",
+      "label": "Desktop accessibility",
+      "description": "This group contains essential accessibility stack to be used with desktop environments.",
+      "visible": true,
+      "package_types": {
+        "default": 5
+      }
+    },
+    {
+      "id": "development-libs",
+      "label": "Bibliotecas de desarrollo",
+      "description": "Este paquete incluye bibliotecas necesarias para desarrollar aplicaciones.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 6,
+        "default": 25,
+        "optional": 22
+      }
+    },
+    {
+      "id": "development-tools",
+      "label": "Herramientas de desarrollo",
+      "description": "Estas herramientas incluyen herramientas de desarrollo general como git y cvs.",
+      "visible": true,
+      "package_types": {
+        "mandatory": 1,
+        "default": 7,
+        "optional": 33
+      }
+    },
+    {
+      "id": "dial-up",
+      "label": "Soporte de Red por M\u00f3dem",
+      "description": "",
+      "visible": false,
+      "package_types": {
+        "mandatory": 1,
+        "default": 6,
+        "optional": 5
+      }
+    },
+    {
+      "id": "directory-server",
+      "label": "Servidor de Directorio",
+      "description": "Servidores de identidad de equipos y usuarios.",
+      "visible": false,
+      "package_types": {
+        "optional": 6
+      }
+    },
+    {
+      "id": "dns-server",
+      "label": "Servidor de nombres DNS",
+      "description": "Este paquete le permite ejecutar un servidor de nombres DNS (BIND) en el sistema.",
+      "visible": false,
+      "package_types": {
+        "default": 1,
+        "optional": 8
+      }
+    },
+    {
+      "id": "dogtag",
+      "label": "Sistema de Certificaci\u00f3n Dogtag",
+      "description": "Autoridad Certificadora de c\u00f3digo abierto de clase empresarial",
+      "visible": false,
+      "package_types": {
+        "mandatory": 1,
+        "default": 3,
+        "optional": 3
+      }
+    },
+    {
+      "id": "domain-client",
+      "label": "Uni\u00f3n a dominios",
+      "description": "Soporte para unirse a dominios FreeIPA o Active Directory",
+      "visible": true,
+      "package_types": {
+        "mandatory": 7,
+        "default": 3
+      }
+    },
+    {
+      "id": "editors",
+      "label": "Editores",
+      "description": "Estos programas permiten crear y modificar archivos de texto. A veces se los conoce como editores de texto. Estos incluyen Emacs y Vi.",
+      "visible": true,
+      "package_types": {
+        "optional": 14
+      }
+    },
+    {
+      "id": "education",
+      "label": "Software Educacional",
+      "description": "Software educacional para aprendizaje",
+      "visible": true,
+      "package_types": {
+        "optional": 30
+      }
+    },
+    {
+      "id": "electronic-lab",
+      "label": "Laboratorio Electr\u00f3nico",
+      "description": "Herramientas de dise\u00f1o y simulaci\u00f3n para ingenieros de hardware",
+      "visible": true,
+      "package_types": {
+        "default": 68,
+        "optional": 2
+      }
+    },
+    {
+      "id": "engineering-and-scientific",
+      "label": "Ingenier\u00eda y ciencia",
+      "description": "El grupo incluye paquetes para ejecutar c\u00e1lculos matem\u00e1ticos y cient\u00edficos, as\u00ed como trazados y conversi\u00f3n de unidades.",
+      "visible": true,
+      "package_types": {
+        "mandatory": 13,
+        "optional": 107
+      }
+    },
+    {
+      "id": "enlightenment-desktop",
+      "label": "Enlightenment",
+      "description": "Enlightenment es un entorno de escritorio limpio, r\u00e1pido, modular y muy extensible.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 3
+      }
+    },
+    {
+      "id": "fedora-packager",
+      "label": "Empaquetador de Fedora",
+      "description": "Herramientas y utilidades necesarias para cualquier empaquetador de Fedora",
+      "visible": false,
+      "package_types": {
+        "mandatory": 11,
+        "optional": 2
+      }
+    },
+    {
+      "id": "firefox",
+      "label": "Navegador Firefox",
+      "description": "El navegador Firefox",
+      "visible": false,
+      "package_types": {
+        "mandatory": 2,
+        "default": 1
+      }
+    },
+    {
+      "id": "font-design",
+      "label": "Dise\u00f1o y empaquetamiento de Fuentes",
+      "description": "Este grupo es un conjunto de herramientas que se usan en el dise\u00f1o, modificaci\u00f3n, manipulaci\u00f3n y empaquetado de fuentes (tipos de letras).",
+      "visible": false,
+      "package_types": {
+        "mandatory": 1,
+        "default": 11,
+        "optional": 16
+      }
+    },
+    {
+      "id": "fonts",
+      "label": "Fuentes",
+      "description": "Paquete de fuentes para renderizar texto en el escritorio.",
+      "visible": false,
+      "package_types": {
+        "default": 11,
+        "optional": 382
+      }
+    },
+    {
+      "id": "freeipa-server",
+      "label": "Servidor FreeIPA",
+      "description": "Servicios de directorio centralizado para identidad, gesti\u00f3n de pol\u00edticas y auditor\u00eda.",
+      "visible": true,
+      "package_types": {
+        "mandatory": 1,
+        "default": 4
+      }
+    },
+    {
+      "id": "ftp-server",
+      "label": "Servidor FTP",
+      "description": "Estas herramientas le permiten ejecutar un servidor FTP en el sistema.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 1,
+        "optional": 2
+      }
+    },
+    {
+      "id": "games",
+      "label": "Juegos y entretenimiento",
+      "description": "Varias maneras de relajarse y pasar el tiempo libre.",
+      "visible": true,
+      "package_types": {
+        "optional": 237
+      }
+    },
+    {
+      "id": "gnome-desktop",
+      "label": "GNOME",
+      "description": "GNOME es un entorno de escritorio muy intuitivo y amigable.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 13,
+        "default": 66
+      }
+    },
+    {
+      "id": "gnome-games",
+      "label": "Juegos extra para el escritorio GNOME",
+      "description": "Una variedad de juegos para el escritorio GNOME",
+      "visible": false,
+      "package_types": {
+        "mandatory": 17
+      }
+    },
+    {
+      "id": "gnome-software-development",
+      "label": "Desarrollo de software para GNOME",
+      "description": "Instale estos paquetes para desarrollar aplicaciones gr\u00e1ficas GTK+ y GNOME.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 9,
+        "default": 17,
+        "optional": 10
+      }
+    },
+    {
+      "id": "graphical-internet",
+      "label": "Internet gr\u00e1fica",
+      "description": "El grupo incluye clientes gr\u00e1ficos de correo electr\u00f3nico, web y charla.",
+      "visible": false,
+      "package_types": {
+        "optional": 37
+      }
+    },
+    {
+      "id": "graphics",
+      "label": "Gr\u00e1ficos",
+      "description": "Este grupo incluye paquetes que le permitir\u00e1n manipular y escanear im\u00e1genes.",
+      "visible": false,
+      "package_types": {
+        "optional": 46
+      }
+    },
+    {
+      "id": "guest-agents",
+      "label": "Agentes Invitados",
+      "description": "Agentes usados cuando se corre bajo un hypervisor.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 2
+      }
+    },
+    {
+      "id": "guest-desktop-agents",
+      "label": "Agentes de Escritorio Invitados",
+      "description": "Agentes usados cuando se corre como un escritorio virtualizado.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 6
+      }
+    },
+    {
+      "id": "ha",
+      "label": "Alta disponibilidad",
+      "description": "Infraestructura de alta disponibilidad para servicios y/o almacenamiento compartido.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 4
+      }
+    },
+    {
+      "id": "haproxy",
+      "label": "HAProxy",
+      "description": "Balanceador de Carga TCP/HTTP.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 1
+      }
+    },
+    {
+      "id": "hardware-support",
+      "label": "Soporte para Hardware",
+      "description": "Este grupo es un conjunto de herramientas para diversas finalidades espec\u00edficas al hardware.",
+      "visible": false,
+      "package_types": {
+        "default": 22,
+        "optional": 24
+      }
+    },
+    {
+      "id": "haskell",
+      "label": "Haskell",
+      "description": "Soporte para el desarrollo de programas en el lenguaje de programaci\u00f3n Haskell.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 7
+      }
+    },
+    {
+      "id": "headless-management",
+      "label": "Administraci\u00f3n de sistemas sin gr\u00e1ficos",
+      "description": "Herramientas para la administraci\u00f3n del sistema sin necesidad de la conexi\u00f3n de una consola gr\u00e1fica.",
+      "visible": true,
+      "package_types": {
+        "mandatory": 3,
+        "default": 6
+      }
+    },
+    {
+      "id": "i3",
+      "label": "i3 window manager",
+      "description": "i3 is a tiling window manager primarily targeted at advanced users and developers. This group is a minimal, lightweight group of packages to use i3wm with other system components.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 15,
+        "default": 5
+      }
+    },
+    {
+      "id": "i3-extended",
+      "label": "i3 window manager (supplemental packages)",
+      "description": "i3 is a tiling window manager primarily targeted at advanced users and developers. This group includes supplemental, optional packages for the i3 window manager.",
+      "visible": false,
+      "package_types": {
+        "default": 10
+      }
+    },
+    {
+      "id": "input-methods",
+      "label": "M\u00e9todos de Entrada",
+      "description": "Los paquetes de m\u00e9todos de entrada para la entrada de texto internacional.",
+      "visible": false,
+      "package_types": {
+        "default": 7,
+        "optional": 33,
+        "conditional": 6
+      }
+    },
+    {
+      "id": "input-methods-xorg",
+      "label": "Input Methods (X.org)",
+      "description": "Input method packages that are only useful on X.org.",
+      "visible": false,
+      "package_types": {
+        "default": 3,
+        "conditional": 2
+      }
+    },
+    {
+      "id": "java",
+      "label": "Java",
+      "description": "Soporte para ejecutar programas escritos en el lenguaje de programaci\u00f3n Java.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 1
+      }
+    },
+    {
+      "id": "java-development",
+      "label": "Desarrollo en Java",
+      "description": "Soporte para el desarrollo de programas en el lenguaje de programaci\u00f3n Java.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 3,
+        "default": 41,
+        "optional": 2
+      }
+    },
+    {
+      "id": "javaenterprise",
+      "label": "Servidor de aplicaciones Java",
+      "description": "Servidor de aplicaciones Java.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 3
+      }
+    },
+    {
+      "id": "kde-apps",
+      "label": "Aplicaciones KDE",
+      "description": "Un conjunto de aplicaciones KDE de uso com\u00fan",
+      "visible": true,
+      "package_types": {
+        "default": 13
+      }
+    },
+    {
+      "id": "kde-desktop",
+      "label": "KDE",
+      "description": "Los espacios de trabajo KDE plasma tienen una interfaz totalmente configurable, que incluye un panel, un escritorio, sistema de iconos y widgets y muchas aplicaciones de KDE.",
+      "visible": true,
+      "package_types": {
+        "mandatory": 6,
+        "default": 86
+      }
+    },
+    {
+      "id": "kde-education",
+      "label": "Aplicaciones educativas KDE",
+      "description": "Aplicaciones educativas KDE",
+      "visible": true,
+      "package_types": {
+        "mandatory": 20
+      }
+    },
+    {
+      "id": "kde-media",
+      "label": "Soporte Multimedia KDE",
+      "description": "Soporte Multimedia para KDE",
+      "visible": true,
+      "package_types": {
+        "default": 8
+      }
+    },
+    {
+      "id": "kde-mobile",
+      "label": "KDE Mobile",
+      "description": "KDE Plasma Mobile, a highly-configurable graphical user interface optimized for mobile devices.",
+      "visible": true,
+      "package_types": {
+        "mandatory": 3,
+        "default": 9
+      }
+    },
+    {
+      "id": "kde-mobile-apps",
+      "label": "KDE Mobile Apps",
+      "description": "A set of commonly used KDE Plasma Mobile applications",
+      "visible": true,
+      "package_types": {
+        "default": 18,
+        "optional": 18
+      }
+    },
+    {
+      "id": "kde-office",
+      "label": "KDE Office",
+      "description": "Aplicaciones KDE Office",
+      "visible": true,
+      "package_types": {
+        "mandatory": 4
+      }
+    },
+    {
+      "id": "kde-pim",
+      "label": "KDE PIM",
+      "description": "Personal information management tools for KDE",
+      "visible": true,
+      "package_types": {
+        "default": 6
+      }
+    },
+    {
+      "id": "kde-software-development",
+      "label": "Desarrollo de software para KDE",
+      "description": "Instale estos paquetes para desarrollar aplicaciones gr\u00e1ficas Qt y KDE.",
+      "visible": true,
+      "package_types": {
+        "mandatory": 1,
+        "default": 11,
+        "optional": 8
+      }
+    },
+    {
+      "id": "kf6-software-development",
+      "label": "KDE Frameworks 6 Software Development",
+      "description": "Install these packages to develop applications using Qt6 and KDE Frameworks 6.",
+      "visible": true,
+      "package_types": {
+        "mandatory": 3,
+        "default": 142
+      }
+    },
+    {
+      "id": "legacy-fonts",
+      "label": "Tipograf\u00edas heredadas",
+      "description": "Paquetes para tipograf\u00edas de mapas de bit y vectoriales",
+      "visible": false,
+      "package_types": {
+        "default": 4,
+        "optional": 52
+      }
+    },
+    {
+      "id": "legacy-network-server",
+      "label": "Servidores de red heredados",
+      "description": "Estos paquetes incluyen servidores para antiguos protocolos de red, tales como rsh y telnet.",
+      "visible": false,
+      "package_types": {
+        "optional": 5
+      }
+    },
+    {
+      "id": "libreoffice",
+      "label": "LibreOffice",
+      "description": "Paquete ofim\u00e1tico LibreOffice",
+      "visible": true,
+      "package_types": {
+        "mandatory": 5,
+        "optional": 4
+      }
+    },
+    {
+      "id": "libreoffice-development",
+      "label": "Desarrollo de LibreOffice",
+      "description": "Estos paquetes son \u00fatiles para desarrollar extensiones o macros en LibreOffice.",
+      "visible": false,
+      "package_types": {
+        "optional": 2
+      }
+    },
+    {
+      "id": "load-balancer",
+      "label": "Balanceador de Carga",
+      "description": "Soporte de balance de carga para tr\u00e1fico de red",
+      "visible": false,
+      "package_types": {
+        "mandatory": 2
+      }
+    },
+    {
+      "id": "lxde-apps",
+      "label": "Aplicaciones para el escritorio LXDE",
+      "description": "Un conjunto de aplicaciones de uso com\u00fan del escritorio LXDE",
+      "visible": false,
+      "package_types": {
+        "mandatory": 4
+      }
+    },
+    {
+      "id": "lxde-desktop",
+      "label": "Entorno de Escritorio LXDE",
+      "description": "LXDE es un entorno de escritorio de X11 liviano dise\u00f1ado para computadoras con bajas especificaciones de hardware como las netbooks, dispositivos m\u00f3viles y computadoras viejas.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 40
+      }
+    },
+    {
+      "id": "lxde-media",
+      "label": "Soporte Multimedia para LXDE",
+      "description": "Soporte Multimedia para LXDE",
+      "visible": false,
+      "package_types": {
+        "mandatory": 4
+      }
+    },
+    {
+      "id": "lxde-office",
+      "label": "LXDE Office",
+      "description": "Paquete ofim\u00e1tico para LXDE",
+      "visible": false,
+      "package_types": {
+        "mandatory": 3
+      }
+    },
+    {
+      "id": "lxqt-apps",
+      "label": "Aplicaciones para el escritorio LXQt",
+      "description": "Un conjunto de aplicaciones de uso com\u00fan del escritorio LXQt",
+      "visible": false,
+      "package_types": {
+        "mandatory": 3
+      }
+    },
+    {
+      "id": "lxqt-desktop",
+      "label": "LXQt",
+      "description": "LXQt is a lightweight desktop environment designed for computers with low hardware specifications like netbooks, mobile devices or older computers.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 45
+      }
+    },
+    {
+      "id": "lxqt-l10n",
+      "label": "Traducciones de LXQt",
+      "description": "Traducciones de LXQt",
+      "visible": false,
+      "package_types": {
+        "mandatory": 18
+      }
+    },
+    {
+      "id": "lxqt-media",
+      "label": "Soporte Multimedia para LXQt",
+      "description": "Soporte Multimedia para LXQt",
+      "visible": false,
+      "package_types": {
+        "mandatory": 1
+      }
+    },
+    {
+      "id": "lxqt-office",
+      "label": "LXQt Office",
+      "description": "Paquete ofim\u00e1tico para LXQt",
+      "visible": false,
+      "package_types": {
+        "mandatory": 3
+      }
+    },
+    {
+      "id": "mail-server",
+      "label": "Servidor de correo",
+      "description": "Estos paquetes le permiten configurar un servidor de correo IMAP o SMTP.",
+      "visible": false,
+      "package_types": {
+        "default": 5,
+        "optional": 17
+      }
+    },
+    {
+      "id": "mate-applications",
+      "label": "Aplicaciones MATE",
+      "description": "Aplicaciones para el escritorio MATE.",
+      "visible": true,
+      "package_types": {
+        "mandatory": 11
+      }
+    },
+    {
+      "id": "mate-desktop",
+      "label": "MATE",
+      "description": "MATE est\u00e1 basado en GNOME 2 y proporciona un potente entorno visual para usuarios que buscan un escritorio simple y tradicional.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 113,
+        "default": 1
+      }
+    },
+    {
+      "id": "milkymist",
+      "label": "Milkymist",
+      "description": "Herramientas encadenadas para ingenieros de hardware Milkymist.",
+      "visible": true,
+      "package_types": {
+        "default": 23
+      }
+    },
+    {
+      "id": "mingw32",
+      "label": "Compilador multi-plataforma MinGW",
+      "description": "Soporte para compilar programas a objetivos de 32-bit, probarlos y crear instaladores, todo desde dentro de Fedora.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 5,
+        "default": 3,
+        "optional": 23,
+        "conditional": 1
+      }
+    },
+    {
+      "id": "miraclewm-desktop",
+      "label": "Miracle Window Manager Desktop",
+      "description": "Miracle is a tiling window manager supporting Wayland compositor protocol and i3-compatible configuration. This group is a minimal set of packages to use Miracle with other system components.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 2,
+        "default": 32
+      }
+    },
+    {
+      "id": "multimedia",
+      "label": "Multimedio",
+      "description": "Marco com\u00fan de audio/v\u00eddeo para escritorios",
+      "visible": false,
+      "package_types": {
+        "mandatory": 16,
+        "conditional": 1
+      }
+    },
+    {
+      "id": "mysql",
+      "label": "Base de datos MariaDB (MySQL)",
+      "description": "Este grupo de paquetes contiene paquetes \u00fatiles para su uso con MariaDB (MySQL).",
+      "visible": false,
+      "package_types": {
+        "mandatory": 1,
+        "default": 6,
+        "optional": 6
+      }
+    },
+    {
+      "id": "network-server",
+      "label": "Servidores de red",
+      "description": "Estos paquetes incluyen servidores basados en la red tales como DHCP, Kerberos y NIS.",
+      "visible": true,
+      "package_types": {
+        "optional": 27
+      }
+    },
+    {
+      "id": "networkmanager-submodules",
+      "label": "M\u00f3dulos habituales de NetworkManager",
+      "description": "Este grupo contiene m\u00f3dulos de NetworkManager bastante comunes, pero que pueden querer ser evitados en configuraciones ligeras.",
+      "visible": false,
+      "package_types": {
+        "default": 6
+      }
+    },
+    {
+      "id": "news-server",
+      "label": "Servidor de noticias",
+      "description": "Este grupo le permite configurar el sistema como un servidor de noticias.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 1,
+        "optional": 3
+      }
+    },
+    {
+      "id": "ocaml",
+      "label": "OCaml",
+      "description": "Soporte para el desarrollar programas utilizando el lenguaje de programaci\u00f3n Objective Caml y sus bibliotecas.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 4,
+        "default": 1,
+        "optional": 16
+      }
+    },
+    {
+      "id": "office",
+      "label": "Oficina y Productividad",
+      "description": "Las aplicaciones incluyen los paquetes de ofim\u00e1tica, los visualizadores de PDF y mucho m\u00e1s.",
+      "visible": true,
+      "package_types": {
+        "optional": 55
+      }
+    },
+    {
+      "id": "perl",
+      "label": "Desarrollo en Perl",
+      "description": "Soporte para el desarrollo de programas en el lenguaje de programaci\u00f3n Perl.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 1,
+        "default": 12,
+        "optional": 4
+      }
+    },
+    {
+      "id": "perl-web",
+      "label": "Perl para la Web",
+      "description": "Soporte de aplicaciones b\u00e1sico de Perl para la web.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 1,
+        "default": 7,
+        "optional": 5
+      }
+    },
+    {
+      "id": "phosh-desktop",
+      "label": "Un entorno UX para tel\u00e9fono/tableta",
+      "description": "Una interfaz de usuario para tel\u00e9fonos y tabletas basada en tecnolog\u00edas GNOME3.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 37,
+        "default": 1,
+        "optional": 1
+      }
+    },
+    {
+      "id": "php",
+      "label": "PHP",
+      "description": "Lenguaje de uso general para el desarrollo de los script para la web.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 15
+      }
+    },
+    {
+      "id": "platform-vmware",
+      "label": "Soporte para la plataforma VMware",
+      "description": "Paquetes para instalar en m\u00e1quinas virtuales VMware",
+      "visible": false,
+      "package_types": {
+        "mandatory": 1
+      }
+    },
+    {
+      "id": "printing",
+      "label": "Soporte para la impresi\u00f3n",
+      "description": "Instale estas herramientas para habilitar el sistema para imprimir o actuar como un servidor de impresi\u00f3n.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 3,
+        "default": 12,
+        "optional": 12
+      }
+    },
+    {
+      "id": "python-classroom",
+      "label": "Python Classroom",
+      "description": "Herramientas utilizadas para ense\u00f1ar y aprender Python.",
+      "visible": true,
+      "package_types": {
+        "default": 29,
+        "optional": 5,
+        "conditional": 1
+      }
+    },
+    {
+      "id": "python-science",
+      "label": "Ciencia con Python",
+      "description": "Herramientas utilizadas para hacer ciencia en Python.",
+      "visible": true,
+      "package_types": {
+        "default": 11,
+        "conditional": 2
+      }
+    },
+    {
+      "id": "rpm-development-tools",
+      "label": "Herramientas de Desarrollo RPM",
+      "description": "Estas herramientas incluyen herramientas clave de desarrollo como rpmbuild.",
+      "visible": true,
+      "package_types": {
+        "mandatory": 2,
+        "default": 3,
+        "optional": 2
+      }
+    },
+    {
+      "id": "ruby",
+      "label": "Ruby",
+      "description": "Soporte b\u00e1sico para el lenguaje de programaci\u00f3n Ruby.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 1,
+        "default": 2
+      }
+    },
+    {
+      "id": "rubyonrails",
+      "label": "Ruby on Rails",
+      "description": "Pila de aplicaci\u00f3n web de Ruby on Rails.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 16
+      }
+    },
+    {
+      "id": "security-lab",
+      "label": "Laboratorio de Seguridad",
+      "description": "Herramientas para la auditor\u00eda de seguridad, medicina forense, el rescate del sistema y las metodolog\u00edas de ense\u00f1anza de pruebas de seguridad.",
+      "visible": true,
+      "package_types": {
+        "default": 136
+      }
+    },
+    {
+      "id": "server-cfg",
+      "label": "Herramientas de configuraci\u00f3n del servidor",
+      "description": "Este grupo contiene todas las herramientas de configuraci\u00f3n del servidor propias de Red Hat.",
+      "visible": false,
+      "package_types": {
+        "default": 1,
+        "optional": 2
+      }
+    },
+    {
+      "id": "server-hardware-support",
+      "label": "Soporte para hardware de servidores",
+      "description": "Conjunto de herramientas para varias utilidades de hardware poco comunes.",
+      "visible": false,
+      "package_types": {
+        "default": 2,
+        "optional": 7
+      }
+    },
+    {
+      "id": "server-product",
+      "label": "N\u00facleo del producto Fedora Server",
+      "description": "Paquetes obligatorios para la variante Servidor.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 4,
+        "default": 3
+      }
+    },
+    {
+      "id": "smb-server",
+      "label": "Servidor de archivos Windows",
+      "description": "Este grupo de paquetes le permite compartir archivos entre los sistemas Linux y MS Windows\u2122.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 2,
+        "default": 1
+      }
+    },
+    {
+      "id": "sound-and-video",
+      "label": "Sonido y v\u00eddeo",
+      "description": "Desde la grabaci\u00f3n de CDs hasta la reproducci\u00f3n de CDs de audio y archivos multimedia, este paquete le permite trabajar con audio y video en su sistema.",
+      "visible": true,
+      "package_types": {
+        "optional": 80
+      }
+    },
+    {
+      "id": "sql-server",
+      "label": "Base de datos PostgreSQL",
+      "description": "Este grupo incluye paquetes \u00fatiles para usar con PostgreSQL.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 1,
+        "default": 5,
+        "optional": 10
+      }
+    },
+    {
+      "id": "standard",
+      "label": "Est\u00e1ndar",
+      "description": "Conjunto de utilidades que ampl\u00edan la instalaci\u00f3n b\u00e1sica.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 73
+      }
+    },
+    {
+      "id": "sugar-apps",
+      "label": "Actividades adicionales Sugar",
+      "description": "Actividades adicionales para usar con el Entorno Sugar.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 6
+      }
+    },
+    {
+      "id": "sugar-desktop",
+      "label": "Entorno de Escritorio Sugar",
+      "description": "Un conjunto de programas para aprender sobre c\u00f3mo aprender.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 40
+      }
+    },
+    {
+      "id": "swaywm",
+      "label": "Sway Window Manager",
+      "description": "Sway is a tiling window manager supporting Wayland compositor protocol and i3-compatible configuration. This group is a minimal set of packages to use Sway with other system components.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 4,
+        "default": 10
+      }
+    },
+    {
+      "id": "swaywm-extended",
+      "label": "Sway Window Manager (supplemental packages)",
+      "description": "Sway is a tiling window manager supporting Wayland compositor protocol and i3-compatible configuration. This group includes additional set of packages for Fedora Sway spin.",
+      "visible": true,
+      "package_types": {
+        "mandatory": 1,
+        "default": 31
+      }
+    },
+    {
+      "id": "system-tools",
+      "label": "Herramientas del sistema",
+      "description": "Este grupo es una colecci\u00f3n de herramientas varias para el sistema, entre ellas se encuentra un cliente para conectarse a particiones SMB, herramientas para monitorizar el tr\u00e1fico de redes, entre otras.",
+      "visible": true,
+      "package_types": {
+        "default": 22,
+        "optional": 132
+      }
+    },
+    {
+      "id": "text-internet",
+      "label": "Internet basada en texto",
+      "description": "Este grupo incluye clientes de texto de correo electr\u00f3nico, web y charla. Estas aplicaciones no necesitan el Sistema de Ventanas X.",
+      "visible": true,
+      "package_types": {
+        "optional": 32
+      }
+    },
+    {
+      "id": "tomcat",
+      "label": "Tomcat",
+      "description": "Servidor de aplicaciones para la web Tomcat.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 4
+      }
+    },
+    {
+      "id": "vagrant",
+      "label": "Vagrant con soporte libvirt",
+      "description": "Estos paquetes proveen Vagrant con soporte proveedor de libvirt",
+      "visible": false,
+      "package_types": {
+        "mandatory": 1,
+        "default": 1,
+        "optional": 2
+      }
+    },
+    {
+      "id": "virtualization",
+      "label": "Virtualizaci\u00f3n",
+      "description": "Paquetes para un entorno de virtualizaci\u00f3n gr\u00e1fico.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 1,
+        "default": 5,
+        "optional": 3
+      }
+    },
+    {
+      "id": "virtualization-headless",
+      "label": "Virtualizaci\u00f3n sin gr\u00e1ficos",
+      "description": "Paquetes para un entorno de virtualizaci\u00f3n sin gr\u00e1ficos.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 1,
+        "default": 4,
+        "optional": 3
+      }
+    },
+    {
+      "id": "vlc",
+      "label": "VideoLAN Client",
+      "description": "The cross-platform open-source multimedia framework, player and server",
+      "visible": true,
+      "package_types": {
+        "mandatory": 1,
+        "default": 4
+      }
+    },
+    {
+      "id": "web-server",
+      "label": "Servidor B\u00e1sico Web",
+      "description": "Estas herramientas le permiten ejecutar un servidor Web en el sistema.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 1,
+        "default": 8,
+        "optional": 19
+      }
+    },
+    {
+      "id": "window-managers",
+      "label": "Administradores de Ventana",
+      "description": "Administradores de ventanas simple que no son parte de un entorno de escritorio m\u00e1s grande.",
+      "visible": true,
+      "package_types": {
+        "optional": 18
+      }
+    },
+    {
+      "id": "workstation-ostree-support",
+      "label": "Soporte de ostree para Fedora Workstation",
+      "description": "Paquetes obligatorios para la variante Estaci\u00f3n de trabajo.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 3
+      }
+    },
+    {
+      "id": "workstation-product",
+      "label": "N\u00facleo del producto Fedora Workstation",
+      "description": "Paquetes obligatorios para la variante Estaci\u00f3n de trabajo.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 10,
+        "default": 96
+      }
+    },
+    {
+      "id": "x-software-development",
+      "label": "Desarrollo de software para X",
+      "description": "Estos paquetes le permiten desarrollar aplicaciones para el Sistema de Ventanas X.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 5,
+        "default": 35,
+        "optional": 5
+      }
+    },
+    {
+      "id": "xfce-apps",
+      "label": "Aplicaciones para el escritorio Xfce",
+      "description": "Un conjunto de aplicaciones de uso com\u00fan del escritorio Xfce",
+      "visible": false,
+      "package_types": {
+        "mandatory": 28
+      }
+    },
+    {
+      "id": "xfce-desktop",
+      "label": "Xfce",
+      "description": "Un entorno de escritorio liviano que funciona bien en m\u00e1quinas peque\u00f1as.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 54
+      }
+    },
+    {
+      "id": "xfce-extra-plugins",
+      "label": "Plugins extra para el panel de Xfce",
+      "description": "Funcionalidad extendida para el panel Xfce",
+      "visible": false,
+      "package_types": {
+        "mandatory": 19
+      }
+    },
+    {
+      "id": "xfce-media",
+      "label": "Soporte Multimedia para Xfce",
+      "description": "Soporte Multimedia para Xfce",
+      "visible": false,
+      "package_types": {
+        "mandatory": 4
+      }
+    },
+    {
+      "id": "xfce-office",
+      "label": "Xfce Office",
+      "description": "Paquete ofim\u00e1tico para Xfce",
+      "visible": false,
+      "package_types": {
+        "mandatory": 2
+      }
+    },
+    {
+      "id": "xfce-software-development",
+      "label": "Desarrollo de Software Xfce",
+      "description": "Instalar estos paquetes con el fin de desarrollar GTK + Xfce y aplicaciones gr\u00e1ficas.",
+      "visible": false,
+      "package_types": {
+        "mandatory": 2,
+        "default": 7
+      }
+    },
+    {
+      "id": "xmonad",
+      "label": "XMonad",
+      "description": "Gestor de ventanas estilo azulejo",
+      "visible": false,
+      "package_types": {
+        "mandatory": 2
+      }
+    },
+    {
+      "id": "xmonad-mate",
+      "label": "XMonad para MATE",
+      "description": "Gestor de ventanas XMonad con MATE",
+      "visible": false,
+      "package_types": {
+        "mandatory": 4
+      }
+    }
+  ],
+  "environments": [
+    {
+      "id": "basic-desktop-environment",
+      "label": "Escritorio B\u00e1sico",
+      "description": "Sistema X Window con una elecci\u00f3n de gestor de ventana.",
+      "required": [
+        "base-x",
+        "basic-desktop",
+        "core",
+        "dial-up",
+        "fonts",
+        "guest-desktop-agents",
+        "hardware-support",
+        "multimedia",
+        "networkmanager-submodules",
+        "standard"
+      ],
+      "optional": [
+        "cinnamon-desktop",
+        "firefox",
+        "gnome-desktop",
+        "input-methods",
+        "input-methods-xorg",
+        "kde-desktop",
+        "legacy-fonts",
+        "libreoffice",
+        "lxde-desktop",
+        "lxqt-desktop",
+        "mate-desktop",
+        "sugar-desktop",
+        "xfce-desktop",
+        "xmonad",
+        "xmonad-mate"
+      ],
+      "default": []
+    },
+    {
+      "id": "budgie-desktop-environment",
+      "label": "Budgie Desktop",
+      "description": "Budgie Desktop is a feature-rich, modern desktop environment.",
+      "required": [
+        "base-x",
+        "budgie-desktop",
+        "budgie-desktop-apps",
+        "core",
+        "desktop-accessibility",
+        "dial-up",
+        "fonts",
+        "guest-desktop-agents",
+        "hardware-support",
+        "input-methods",
+        "multimedia",
+        "networkmanager-submodules",
+        "printing",
+        "standard"
+      ],
+      "optional": [],
+      "default": []
+    },
+    {
+      "id": "cinnamon-desktop-environment",
+      "label": "Escritorio Cinnamon",
+      "description": "Cinnamon proporciona un entorno de escritorio tradicional, con caracter\u00edsticas avanzadas, f\u00e1cil de usar, potente y flexible.",
+      "required": [
+        "base-x",
+        "cinnamon-desktop",
+        "core",
+        "desktop-accessibility",
+        "dial-up",
+        "fonts",
+        "guest-desktop-agents",
+        "hardware-support",
+        "multimedia",
+        "networkmanager-submodules",
+        "printing",
+        "standard"
+      ],
+      "optional": [
+        "3d-printing",
+        "cloud-management",
+        "libreoffice"
+      ],
+      "default": []
+    },
+    {
+      "id": "cloud-server-environment",
+      "label": "Servidor Cloud de Fedora",
+      "description": "Instalaci\u00f3n de servidor con los componentes necesarios para su ejecuci\u00f3n en un entorno de \"nube\".",
+      "required": [
+        "cloud-bootloader-tools",
+        "cloud-server",
+        "container-management",
+        "core"
+      ],
+      "optional": [
+        "directory-server",
+        "dns-server",
+        "dogtag",
+        "domain-client",
+        "freeipa-server",
+        "ftp-server",
+        "guest-agents",
+        "ha",
+        "headless-management",
+        "load-balancer",
+        "mail-server",
+        "mysql",
+        "network-server",
+        "smb-server",
+        "sql-server",
+        "standard",
+        "web-server"
+      ],
+      "default": []
+    },
+    {
+      "id": "cosmic-desktop-environment",
+      "label": "COSMIC Desktop",
+      "description": "COSMIC Desktop is a multi-purpose desktop environment developed by System76 and independent contributors.",
+      "required": [
+        "base-graphical",
+        "core",
+        "cosmic-desktop",
+        "cosmic-desktop-apps",
+        "desktop-accessibility",
+        "dial-up",
+        "firefox",
+        "fonts",
+        "guest-desktop-agents",
+        "hardware-support",
+        "input-methods",
+        "libreoffice",
+        "multimedia",
+        "networkmanager-submodules",
+        "printing",
+        "standard"
+      ],
+      "optional": [],
+      "default": []
+    },
+    {
+      "id": "custom-environment",
+      "label": "Sistema Fedora personalizado",
+      "description": "Bloque b\u00e1sico para la construcci\u00f3n de un sistema Fedora personalizado.",
+      "required": [
+        "core"
+      ],
+      "optional": [
+        "guest-agents",
+        "networkmanager-submodules",
+        "standard"
+      ],
+      "default": []
+    },
+    {
+      "id": "developer-workstation-environment",
+      "label": "Estaci\u00f3n de trabajo para desarrollo y creatividad",
+      "description": "Puesto de trabajo para software, hardware, gr\u00e1ficos o desarrollo de contenidos.",
+      "required": [
+        "base-graphical",
+        "c-development",
+        "core",
+        "desktop-accessibility",
+        "development-libs",
+        "development-tools",
+        "dial-up",
+        "fedora-packager",
+        "firefox",
+        "fonts",
+        "gnome-desktop",
+        "gnome-software-development",
+        "guest-desktop-agents",
+        "hardware-support",
+        "input-methods",
+        "kde-software-development",
+        "kf6-software-development",
+        "multimedia",
+        "networkmanager-submodules",
+        "printing",
+        "rpm-development-tools",
+        "standard",
+        "virtualization",
+        "web-server"
+      ],
+      "optional": [
+        "3d-printing",
+        "cloud-management",
+        "design-suite",
+        "electronic-lab",
+        "font-design",
+        "haskell",
+        "java-development",
+        "javaenterprise",
+        "milkymist",
+        "mingw32",
+        "mysql",
+        "ocaml",
+        "perl-web",
+        "php",
+        "rubyonrails",
+        "sql-server",
+        "vagrant"
+      ],
+      "default": []
+    },
+    {
+      "id": "i3-desktop-environment",
+      "label": "i3 desktop",
+      "description": "Desktop environment with the i3 tiling window manager",
+      "required": [
+        "base-x",
+        "core",
+        "dial-up",
+        "fonts",
+        "hardware-support",
+        "i3",
+        "input-methods",
+        "input-methods-xorg",
+        "multimedia",
+        "networkmanager-submodules",
+        "printing",
+        "standard"
+      ],
+      "optional": [
+        "i3-extended"
+      ],
+      "default": []
+    },
+    {
+      "id": "kde-desktop-environment",
+      "label": "Espacios de trabajo KDE Plasma",
+      "description": "Los espacios de trabajo KDE plasma tienen una interfaz totalmente configurable, que incluye un panel, un escritorio, sistema de iconos y widgets y muchas aplicaciones de KDE.",
+      "required": [
+        "base-graphical",
+        "core",
+        "desktop-accessibility",
+        "dial-up",
+        "fonts",
+        "guest-desktop-agents",
+        "hardware-support",
+        "input-methods",
+        "kde-desktop",
+        "multimedia",
+        "networkmanager-submodules",
+        "printing",
+        "standard"
+      ],
+      "optional": [
+        "3d-printing",
+        "cloud-management",
+        "firefox",
+        "kde-apps",
+        "kde-education",
+        "kde-media",
+        "kde-pim",
+        "libreoffice"
+      ],
+      "default": [
+        "firefox",
+        "kde-apps",
+        "kde-media",
+        "kde-pim",
+        "libreoffice"
+      ]
+    },
+    {
+      "id": "kde-mobile-environment",
+      "label": "KDE Plasma Mobile",
+      "description": "The KDE Plasma Mobile evnironment includes KDE Plasma Mobile and many Plasma Mobile applications.",
+      "required": [
+        "core",
+        "kde-mobile",
+        "kde-mobile-apps"
+      ],
+      "optional": [
+        "firefox",
+        "vlc"
+      ],
+      "default": [
+        "firefox"
+      ]
+    },
+    {
+      "id": "lxde-desktop-environment",
+      "label": "Escritorio LXDE",
+      "description": "LXDE es un entorno de escritorio de X11 liviano dise\u00f1ado para computadoras con bajas especificaciones de hardware como las netbooks, dispositivos m\u00f3viles y computadoras viejas.",
+      "required": [
+        "base-x",
+        "core",
+        "desktop-accessibility",
+        "dial-up",
+        "fonts",
+        "guest-desktop-agents",
+        "hardware-support",
+        "input-methods",
+        "input-methods-xorg",
+        "lxde-desktop",
+        "multimedia",
+        "networkmanager-submodules",
+        "printing",
+        "standard"
+      ],
+      "optional": [
+        "3d-printing",
+        "cloud-management",
+        "lxde-apps",
+        "lxde-media",
+        "lxde-office"
+      ],
+      "default": []
+    },
+    {
+      "id": "lxqt-desktop-environment",
+      "label": "Escritorio LXQt",
+      "description": "LXQt is a lightweight desktop environment designed for computers with low hardware specifications like netbooks, mobile devices or older computers.",
+      "required": [
+        "base-x",
+        "core",
+        "desktop-accessibility",
+        "dial-up",
+        "fonts",
+        "guest-desktop-agents",
+        "hardware-support",
+        "input-methods",
+        "lxqt-desktop",
+        "multimedia",
+        "networkmanager-submodules",
+        "printing",
+        "standard"
+      ],
+      "optional": [
+        "3d-printing",
+        "cloud-management",
+        "lxqt-apps",
+        "lxqt-media",
+        "lxqt-office"
+      ],
+      "default": []
+    },
+    {
+      "id": "mate-desktop-environment",
+      "label": "Escritorio MATE",
+      "description": "MATE est\u00e1 basado en GNOME 2 y proporciona un potente entorno visual para usuarios que buscan un escritorio simple y tradicional.",
+      "required": [
+        "base-x",
+        "core",
+        "desktop-accessibility",
+        "dial-up",
+        "fonts",
+        "guest-desktop-agents",
+        "hardware-support",
+        "input-methods",
+        "input-methods-xorg",
+        "mate-desktop",
+        "multimedia",
+        "networkmanager-submodules",
+        "printing",
+        "standard"
+      ],
+      "optional": [
+        "3d-printing",
+        "compiz",
+        "libreoffice",
+        "mate-applications"
+      ],
+      "default": []
+    },
+    {
+      "id": "miraclewm-desktop-environment",
+      "label": "Miracle WM Desktop Environment",
+      "description": "Miracle WM is a tiling window manager supporting Wayland compositor protocol and i3-compatible configuration.",
+      "required": [
+        "base-graphical",
+        "core",
+        "dial-up",
+        "fonts",
+        "guest-desktop-agents",
+        "hardware-support",
+        "input-methods",
+        "miraclewm-desktop",
+        "multimedia",
+        "networkmanager-submodules",
+        "printing",
+        "standard"
+      ],
+      "optional": [
+        "firefox"
+      ],
+      "default": [
+        "firefox"
+      ]
+    },
+    {
+      "id": "phosh-desktop-environment",
+      "label": "Phosh Desktop",
+      "description": "",
+      "required": [
+        "base-x",
+        "core",
+        "fonts",
+        "hardware-support",
+        "input-methods",
+        "multimedia",
+        "networkmanager-submodules",
+        "phosh-desktop",
+        "standard"
+      ],
+      "optional": [],
+      "default": []
+    },
+    {
+      "id": "server-product-environment",
+      "label": "Fedora Server Edition",
+      "description": "Un servidor integrado y m\u00e1s f\u00e1cil de administrar.",
+      "required": [
+        "core",
+        "hardware-support",
+        "headless-management",
+        "networkmanager-submodules",
+        "server-product",
+        "standard"
+      ],
+      "optional": [
+        "container-management",
+        "domain-client",
+        "guest-agents",
+        "server-hardware-support"
+      ],
+      "default": []
+    },
+    {
+      "id": "sugar-desktop-environment",
+      "label": "Entorno de Escritorio Sugar",
+      "description": "Un conjunto de programas para aprender sobre c\u00f3mo aprender.",
+      "required": [
+        "base-x",
+        "core",
+        "dial-up",
+        "fonts",
+        "guest-desktop-agents",
+        "hardware-support",
+        "input-methods",
+        "input-methods-xorg",
+        "multimedia",
+        "networkmanager-submodules",
+        "standard",
+        "sugar-desktop"
+      ],
+      "optional": [
+        "sugar-apps"
+      ],
+      "default": []
+    },
+    {
+      "id": "sway-desktop-environment",
+      "label": "Sway Desktop",
+      "description": "Sway is a tiling window manager supporting Wayland compositor protocol and i3-compatible configuration.",
+      "required": [
+        "base-graphical",
+        "core",
+        "dial-up",
+        "fonts",
+        "guest-desktop-agents",
+        "hardware-support",
+        "multimedia",
+        "networkmanager-submodules",
+        "printing",
+        "standard",
+        "swaywm"
+      ],
+      "optional": [
+        "firefox",
+        "swaywm-extended"
+      ],
+      "default": [
+        "firefox",
+        "swaywm-extended"
+      ]
+    },
+    {
+      "id": "workstation-product-environment",
+      "label": "Fedora Workstation",
+      "description": "Fedora Workstation es un sistema de escritorio f\u00e1cil de usar, para PC y port\u00e1til.",
+      "required": [
+        "base-graphical",
+        "container-management",
+        "core",
+        "desktop-accessibility",
+        "firefox",
+        "fonts",
+        "gnome-desktop",
+        "guest-desktop-agents",
+        "hardware-support",
+        "libreoffice",
+        "multimedia",
+        "networkmanager-submodules",
+        "printing",
+        "workstation-product"
+      ],
+      "optional": [
+        "domain-client"
+      ],
+      "default": []
+    },
+    {
+      "id": "xfce-desktop-environment",
+      "label": "Escritorio Xfce",
+      "description": "Un entorno de escritorio liviano que funciona bien en m\u00e1quinas peque\u00f1as.",
+      "required": [
+        "base-x",
+        "core",
+        "desktop-accessibility",
+        "dial-up",
+        "fonts",
+        "guest-desktop-agents",
+        "hardware-support",
+        "input-methods",
+        "input-methods-xorg",
+        "multimedia",
+        "networkmanager-submodules",
+        "printing",
+        "standard",
+        "xfce-desktop"
+      ],
+      "optional": [
+        "3d-printing",
+        "cloud-management",
+        "xfce-apps",
+        "xfce-extra-plugins",
+        "xfce-media",
+        "xfce-office"
+      ],
+      "default": [
+        "xfce-apps",
+        "xfce-media"
+      ]
+    }
+  ],
+  "schema": "aux-software-catalog-v1",
+  "distribution": "fedora",
+  "release": "rawhide",
+  "architecture": "x86_64",
+  "retrieved_at": "2026-11-09",
+  "source_url": "https://download.fedoraproject.org/pub/fedora/linux/development/rawhide/Everything/x86_64/os/repodata/repomd.xml",
+  "source_sha256": "1eddf57716cd8aabf3e8de9136fffc0c7b482ae351029ef27e2927fabe5e0596",
+  "comps_compressed_sha256": "a0da79496ce08b0a36d630a92199a6f550ce66535d60fbdc13544e087b443096",
+  "repomd_sha256": "895b899d377448fbb6eb6bdcda56897364448d662b8d95c6aa25155faaef40e6",
+  "digest_sha256": "2d0ebba5b3ee669f527e6da48d9742a5256ea02b95abe92438547536168ad2ca"
+}

@@ -1,0 +1,175 @@
+{
+  "_meta": {
+    "Timestamp": "2026-11-22",
+    "Version": "8.0.1-beta.6",
+    "Author & Credits": "https://www.alawise.es/1-s"
+  },
+  "output": "/var/www/aux.1-s.es/html",
+  "cache": "/var/www/aux.1-s.es/isos",
+  "base_url": "https://aux.1-s.es",
+  "pxe_url": "http://pxe.1-s.es",
+  "download_url": "https://b.1-s.es",
+  "ram_dir": "/dev/shm/aux-fast-boot",
+  "jobs": 4,
+  "ram_budget_gib": 30,
+  "ram_reserve_percent": 0,
+  "generate": {
+    "tec": "auto"
+  },
+  "targets": {
+    "excalibur": {
+      "base_url": "https://aux.1-s.es",
+      "pxe_url": "http://pxe.1-s.es",
+      "download_url": "https://b.1-s.es",
+      "tec_url": "https://tec.1-s.es"
+    },
+    "bastion": {
+      "base_url": "https://b.1-s.es",
+      "pxe_url": "http://p.1-s.es",
+      "download_url": "https://b.1-s.es",
+      "tec_url": "https://tec.1-s.es"
+    },
+    "contingency": {
+      "base_url": "https://aux.1-s.es",
+      "pxe_url": "http://pxe.1-s.es",
+      "download_url": "https://aux.1-s.es",
+      "tec_url": "https://tec.1-s.es"
+    }
+  },
+  "ai": {
+    "enabled": true,
+    "openai": {
+      "model": null
+    },
+    "gemini": {
+      "model": null
+    },
+    "timeout_seconds": 60,
+    "max_output_tokens": 1024
+  },
+  "cli": {
+    "enabled": false,
+    "primary": "excalibur",
+    "nodes": {
+      "excalibur": {
+        "url": "https://cli.1-s.es",
+        "secret_file": "/var/lib/aux-assist/cli-excalibur.secret"
+      },
+      "kamala": {
+        "url": "https://cli-kamala.1-s.es",
+        "secret_file": "/var/lib/aux-assist/cli-kamala.secret"
+      }
+    }
+  },
+  "tec": {
+    "public_url": "https://tec.1-s.es",
+    "mail_from": "tec@1wise.es",
+    "admin_mail": "tec@1wise.es",
+    "data_dir": "/var/lib/aux-assist",
+    "web_dir": "/var/www/aux.1-s.es/web",
+    "session_dir": "/var/lib/php/tec-session",
+    "config_file": "/var/www/aux.1-s.es/fast-boot.json"
+  },
+  "bastion": {
+    "web_hosts": [
+      "b.1-s.es",
+      "b.1-s.eu"
+    ],
+    "cli_hosts": [
+      "p.1-s.es",
+      "p.1-s.eu"
+    ]
+  },
+  "boot": {
+    "assist_timeout_seconds": 60
+  },
+  "hosts": {
+    "aux": [
+      "aux.1-s.es",
+      "aux.1-s.eu"
+    ],
+    "pxe": [
+      "pxe.1-s.es",
+      "pxe.1-s.eu"
+    ],
+    "tec": [
+      "tec.1-s.es",
+      "tec.1-s.eu"
+    ]
+  },
+  "tls": {
+    "certificate": "/etc/letsencrypt/live/ntp1.1-s.eu/fullchain.pem",
+    "key": "/etc/letsencrypt/live/ntp1.1-s.eu/privkey.pem"
+  },
+  "php_profiles": {
+    "fedora": {
+      "aux_socket": "/run/php-fpm/www.sock",
+      "tec_socket": "/run/php-fpm/tec.sock",
+      "web_user": "nginx"
+    },
+    "debian": {
+      "aux_socket": "/run/php/aux.sock",
+      "tec_socket": "/run/php/tec.sock",
+      "web_user": "www-data"
+    }
+  },
+  "platform": "fedora",
+  "ftp_host": null,
+  "ftp_user": null,
+  "ftp_port": 21,
+  "ftp_root": "/",
+  "ftp_tls": true,
+  "ssd_budget_gib": 225,
+  "mirror": {
+    "transport": "rsync",
+    "ssh_host": null,
+    "ssh_user": null,
+    "ssh_port": 22,
+    "ssh_identity": null,
+    "remote_root": null,
+    "state_root": null,
+    "source_root": null,
+    "release_id": "8.0.1-beta.6",
+    "minimum_isos": 93,
+    "ssh_auth": "auto",
+    "ssh_known_hosts": null
+  },
+  "catalog_file": "catalog.json",
+  "catalog_sources_file": "config/catalog.sources.json",
+  "status_file": "state/status.json",
+  "evidence_file": "state/boot-evidence.json",
+  "checkstatus": {
+    "max_age_seconds": 3600,
+    "timeout_seconds": 30,
+    "max_files": 100000,
+    "max_depth": 32,
+    "max_inventory_bytes": 16777216,
+    "bastion": {
+      "enabled": false,
+      "transport": "ftps",
+      "directories": [
+        {
+          "path": "/",
+          "public_url": "https://b.1-s.es"
+        }
+      ],
+      "fallback_ftp": true
+    }
+  },
+  "presets": {
+    "families": [
+      "alpine",
+      "fedora",
+      "debian"
+    ],
+    "common_deploy_methods": [
+      "chroot"
+    ],
+    "light_policy_bits": "015",
+    "heavy_policy_bits": "016",
+    "origin_policy_bits": "004",
+    "preset_ram_gib": 10,
+    "preset_ssd_gib": 75
+  },
+  "catalog_git_repository": null
+}
