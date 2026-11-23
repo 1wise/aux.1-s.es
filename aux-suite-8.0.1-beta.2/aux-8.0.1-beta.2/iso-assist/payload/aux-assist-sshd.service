@@ -1,0 +1,19 @@
+# Timestamp: 2026-10-17 | Version: 6.3.0-dev.1
+# Author & Credits: https://www.alawise.es/1-s
+# PID 1 starts sshd in its standard SELinux domain after explicit local consent.
+[Unit]
+Description=Consent-authorized AUX SSH listener
+ConditionPathExists=/run/aux-assist/sshd.conf
+ConditionKernelCommandLine=aux.assist
+BindsTo=aux-assist.service
+After=network.target aux-assist.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/sshd -D -e -f /run/aux-assist/sshd.conf
+StandardInput=null
+StandardOutput=journal
+StandardError=journal
+KillMode=control-group
+TimeoutStopSec=5
+UMask=0077

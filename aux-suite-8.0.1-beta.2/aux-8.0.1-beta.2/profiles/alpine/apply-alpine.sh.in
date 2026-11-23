@@ -1,0 +1,12 @@
+#!/bin/sh
+# Timestamp: 2026-11-23 | Version: 8.0.1-beta.2
+# Author & Credits: https://www.alawise.es/1-s
+# Preserve configured repositories and require explicit application on Alpine.
+set -eu
+if [ "${1:-}" != "--apply" ]; then
+    printf '%s\n' 'Revisar paquetes y ejecutar con --apply dentro del Alpine de destino.'
+    exit 0
+fi
+[ "$(id -u)" = 0 ] || { printf '%s\n' 'Se requiere root.' >&2; exit 1; }
+[ -f /etc/alpine-release ] || { printf '%s\n' 'Se requiere Alpine.' >&2; exit 1; }
+apk add --no-cache __AUX_PACKAGES__

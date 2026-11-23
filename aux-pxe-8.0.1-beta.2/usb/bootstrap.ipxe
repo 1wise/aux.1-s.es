@@ -1,0 +1,23 @@
+#!ipxe
+# Timestamp: 2026-10-12 | Version: 1.1.0
+# Author & Credits: https://www.alawise.es/1-s
+# iPXE project: https://ipxe.org
+# The USB configures its client only; the server's three phases remain independent.
+echo aux / iPXE USB - BIOS or x86_64 UEFI
+echo Menu: http://pxe.1-s.es/menu.ipxe
+prompt --key 0x02 --timeout 3000 Press Ctrl-B for the iPXE shell... && shell ||
+dhcp || goto error
+chain --autofree http://pxe.1-s.es/menu.ipxe || goto error
+goto console
+
+:error
+echo Boot stopped. Keep the complete iPXE error URL shown above.
+echo To separate download from execution, try:
+echo imgfetch --name aux_menu http://pxe.1-s.es/menu.ipxe
+echo imgstat
+echo chain aux_menu
+
+:console
+ifstat
+route
+shell

@@ -1,0 +1,422 @@
+{
+  "schema": "aux-matrioshka-v2",
+  "version": "8.0.1-beta.2",
+  "budget": {
+    "suite_source_bytes": 20154376,
+    "suite_limit_bytes": 24000000,
+    "outer_layers_counted_separately": true
+  },
+  "repository": {
+    "source_directory": "suite",
+    "source_prefix": "aux-8.0.1-beta.2/",
+    "deliverables_in_root": true,
+    "git_metadata_included": false
+  },
+  "minimal_image": {
+    "type": "GRUB hybrid ISO/USB iPXE bootstrap",
+    "compression": null,
+    "raw_size_bytes": 13887488,
+    "raw_sha256": "d624bdb44fd7d9ba6f25d6f0337e4abd5133517ff62e1f8f1340039c5e427842",
+    "menu_url": "http://pxe.1-s.es/menu.ipxe",
+    "new_linux_rescue": false,
+    "boot_test": "not-tested"
+  },
+  "layers": {
+    "web": {
+      "path": "layers/web.zip",
+      "sha256": "ff939d5030b1156ca20712c51f0e1478bd5a345a6ff56f4cf91e4b0bfbc5fe62",
+      "size_bytes": 2969653,
+      "download_name": null
+    },
+    "sources": {
+      "path": "aux-suite-8.0.1-beta.2.zip",
+      "sha256": "498de59e77f72747f10ef2962d1a027a9eef2c0e0b9d78d87b444b7f5085baf6",
+      "size_bytes": 6205816,
+      "download_name": "aux-suite-8.0.1-beta.2.zip"
+    },
+    "image": {
+      "path": "aux-minimal-ipxe-8.0.1-beta.2.img",
+      "sha256": "d624bdb44fd7d9ba6f25d6f0337e4abd5133517ff62e1f8f1340039c5e427842",
+      "size_bytes": 13887488,
+      "download_name": "aux-minimal-ipxe-8.0.1-beta.2.img"
+    },
+    "aux-pxe": {
+      "path": "aux-pxe-8.0.1-beta.2.zip",
+      "sha256": "e8f44247798f31115eeaa701d3795933429082e22dcaa2d1fb2e32869efefbd1",
+      "size_bytes": 5932539,
+      "download_name": "aux-pxe-8.0.1-beta.2.zip"
+    },
+    "tec-cli": {
+      "path": "tec-cli-8.0.1-beta.2.zip",
+      "sha256": "0f2027290b63645ae9519754755b185185261e7bb2cc9a73d24276376b8cc424",
+      "size_bytes": 272350,
+      "download_name": "tec-cli-8.0.1-beta.2.zip"
+    }
+  },
+  "web_restore": [
+    {
+      "path": "assets/aux-featured.webp",
+      "layer": "aux-pxe",
+      "member": "assets/aux-featured.webp",
+      "sha256": "4995ec196608980b4d91a499ea04d73a818cb7c2a42da0f70adf77eafdcdbe6c",
+      "size_bytes": 567924
+    },
+    {
+      "path": "assets/aux-logo.png",
+      "layer": "aux-pxe",
+      "member": "assets/aux-logo.png",
+      "sha256": "f879b5be952d17e97d449102b7629bac32cfd60deed6878c65e2f4e8811cc90b",
+      "size_bytes": 90731
+    },
+    {
+      "path": "assets/blue-hibou.svg",
+      "layer": "aux-pxe",
+      "member": "assets/blue-hibou.svg",
+      "sha256": "d577f6133eb0610ceb175cff0ab465f41eb16d3304ae410bc92b7a69e13a0e4b",
+      "size_bytes": 52381
+    },
+    {
+      "path": "assets/favicon.png",
+      "layer": "aux-pxe",
+      "member": "assets/favicon.png",
+      "sha256": "8726235324e2c31afebf8da440723c93dfa37700787a007a710e4dc350e86efd",
+      "size_bytes": 22461
+    },
+    {
+      "path": "assets/maria-auxiliadora.jpg",
+      "layer": "aux-pxe",
+      "member": "assets/maria-auxiliadora.jpg",
+      "sha256": "0fe9cb4dd19cbce5e9ac28f6bd43025360bc9a9d04085ab5b0e9c78f6be52e1d",
+      "size_bytes": 392822
+    },
+    {
+      "path": "assets/portal.css",
+      "layer": "aux-pxe",
+      "member": "src/portal.css",
+      "sha256": "4eaa585f90172ad9a1c3212e7da4596caa06efc05f0d867dd7b6a45f93ade8aa",
+      "size_bytes": 30866
+    },
+    {
+      "path": "assets/portal.js",
+      "layer": "aux-pxe",
+      "member": "src/portal.js",
+      "sha256": "0e5b060e69f821c90429a932ee6e69fd66e7acb92ee49df7a91764c9277ae770",
+      "size_bytes": 18117
+    },
+    {
+      "path": "assets/red-robin.webp",
+      "layer": "aux-pxe",
+      "member": "assets/red-robin.webp",
+      "sha256": "2bd3d19a1f556c22c445a5402d6ae54b671f4c4441f3d4d0bdf8a0d6308f4e64",
+      "size_bytes": 744118
+    },
+    {
+      "path": "assets/workspace.js",
+      "layer": "aux-pxe",
+      "member": "ui/workspace.js",
+      "sha256": "a9f4ee843f5e4b210509d071867ba60e33eb74786db53f5c69e33c4c5abfe17a",
+      "size_bytes": 29490
+    },
+    {
+      "path": "catalog/catalog.json",
+      "layer": "aux-pxe",
+      "member": "catalog.json",
+      "sha256": "bf7f3c9757938e4b5c9167b69fb1bad65c64715b7b1da59a865a91a7ae7587c6",
+      "size_bytes": 458999
+    },
+    {
+      "path": "catalog.audit.json",
+      "layer": "aux-pxe",
+      "member": "config/catalog.audit.json",
+      "sha256": "b4fa0858534bfcfc3c46f01fb82d43a4ea4a10789fceabc3dfbbed0cff632b55",
+      "size_bytes": 158441
+    },
+    {
+      "path": "downloads/assist/payload/assist.py",
+      "layer": "aux-pxe",
+      "member": "assist/payload/assist.py",
+      "sha256": "e9e946fefc7162db628a37b0091c6648069ba228a39e52ae3c103f9babd8089c",
+      "size_bytes": 18213
+    },
+    {
+      "path": "downloads/assist/payload/aux_exec.py",
+      "layer": "aux-pxe",
+      "member": "assist/payload/aux_exec.py",
+      "sha256": "879adc6c28b942564259287f6c34d4000e06750a8c251e98f36fa1e786e4049f",
+      "size_bytes": 19350
+    },
+    {
+      "path": "downloads/assist/test_ai.py",
+      "layer": "aux-pxe",
+      "member": "assist/test_ai.py",
+      "sha256": "97c3207e70e1c15bc8d05f682f250237f94a9d79430e945b06bfb1bfca50f5c9",
+      "size_bytes": 16554
+    },
+    {
+      "path": "downloads/auxlib/catalog.py",
+      "layer": "aux-pxe",
+      "member": "auxlib/catalog.py",
+      "sha256": "5ea1834533b3e2d947caa3a312c63d8a6a93db964a3e6ab483f62d5044913cc4",
+      "size_bytes": 26742
+    },
+    {
+      "path": "downloads/auxlib/catalog_downloads.py",
+      "layer": "aux-pxe",
+      "member": "auxlib/catalog_downloads.py",
+      "sha256": "1e623f35afc6d73ad21073ebcf6247c5e9bc77c110b236e8771480c704192a5b",
+      "size_bytes": 18644
+    },
+    {
+      "path": "downloads/auxlib/catalog_profile.py",
+      "layer": "aux-pxe",
+      "member": "auxlib/catalog_profile.py",
+      "sha256": "db590b0f121868471a71ab5757fabda486caa28388629ede93a35ad382419266",
+      "size_bytes": 18477
+    },
+    {
+      "path": "downloads/auxlib/catalog_v8.py",
+      "layer": "aux-pxe",
+      "member": "auxlib/catalog_v8.py",
+      "sha256": "b0a145228783e8a4a9c26d443eacbd4c130dcbf6f85defc5a32e0e6f4574449e",
+      "size_bytes": 17223
+    },
+    {
+      "path": "downloads/auxlib/checkstatus.py",
+      "layer": "aux-pxe",
+      "member": "auxlib/checkstatus.py",
+      "sha256": "536eb28fc2d4ab0d98513275cd2f2bab7434175cc045b783de8f53d51c96b55d",
+      "size_bytes": 18734
+    },
+    {
+      "path": "downloads/auxlib/localtools.py",
+      "layer": "aux-pxe",
+      "member": "auxlib/localtools.py",
+      "sha256": "63950199ddb8cee767bd1147ca93d1dcead298ba96379f9036304099054b550f",
+      "size_bytes": 23380
+    },
+    {
+      "path": "downloads/auxlib/observe.py",
+      "layer": "aux-pxe",
+      "member": "auxlib/observe.py",
+      "sha256": "c5fab3251ec50176c8f30d59d4275df620ebacf52b56bb1b2cf205b48992b9d8",
+      "size_bytes": 17674
+    },
+    {
+      "path": "downloads/auxlib/setup.py",
+      "layer": "aux-pxe",
+      "member": "auxlib/setup.py",
+      "sha256": "e27fd817924771ee5b49c92b67665f1e549a9bbfb9ef65635b34c5166a2f3dc5",
+      "size_bytes": 19859
+    },
+    {
+      "path": "downloads/auxlib/v8.py",
+      "layer": "aux-pxe",
+      "member": "auxlib/v8.py",
+      "sha256": "417b253ab24f1b1592c76a0237f281c1f15bb9bc3dfef334de53c22287b05a2a",
+      "size_bytes": 30731
+    },
+    {
+      "path": "downloads/auxlib/webapps.py",
+      "layer": "aux-pxe",
+      "member": "auxlib/webapps.py",
+      "sha256": "79504a8c7a8507db84b0c35fac64396d3441d441fd4e5d8941a13bde8b5a2f17",
+      "size_bytes": 28938
+    },
+    {
+      "path": "downloads/catalog.json",
+      "layer": "aux-pxe",
+      "member": "catalog.json",
+      "sha256": "bf7f3c9757938e4b5c9167b69fb1bad65c64715b7b1da59a865a91a7ae7587c6",
+      "size_bytes": 458999
+    },
+    {
+      "path": "downloads/cli/server.py",
+      "layer": "tec-cli",
+      "member": "cli/server.py",
+      "sha256": "83eab6beabcc71d8479ffe3e8d8a8df8ace17acb46c5bdd67b9b643e72d4f4f4",
+      "size_bytes": 29372
+    },
+    {
+      "path": "downloads/cli/test_cli.py",
+      "layer": "tec-cli",
+      "member": "cli/test_cli.py",
+      "sha256": "ae4dbb2a2840f4bd71308c65431e6589d4a3ca661233e78722bac86228e4200d",
+      "size_bytes": 19227
+    },
+    {
+      "path": "downloads/config/catalog.audit.json",
+      "layer": "aux-pxe",
+      "member": "config/catalog.audit.json",
+      "sha256": "b4fa0858534bfcfc3c46f01fb82d43a4ea4a10789fceabc3dfbbed0cff632b55",
+      "size_bytes": 158441
+    },
+    {
+      "path": "downloads/config/catalog.remote.snapshot.json",
+      "layer": "aux-pxe",
+      "member": "config/catalog.remote.snapshot.json",
+      "sha256": "57d37e7545f8d2ae50246e110faf6c40cddc1abff84b3944e43cf0c58bb1293a",
+      "size_bytes": 253170
+    },
+    {
+      "path": "downloads/config/catalog.sources.example.json",
+      "layer": "aux-pxe",
+      "member": "config/catalog.sources.example.json",
+      "sha256": "9beb79f8ee94ed043192523c730d120bf9ce7c72402fdfbf86a4267500c05ecd",
+      "size_bytes": 37566
+    },
+    {
+      "path": "downloads/config/catalog.sources.json",
+      "layer": "aux-pxe",
+      "member": "config/catalog.sources.json",
+      "sha256": "b90498bf0f46ea668fcfdad222cc84bfa07d2c29f5bdd331caf9c0c03caa001c",
+      "size_bytes": 54158
+    },
+    {
+      "path": "downloads/config/products.aux.json",
+      "layer": "aux-pxe",
+      "member": "config/products.aux.json",
+      "sha256": "c91f17cdfe135cb825618745825e62fe05ce9d583b9ef86552dfffc3f44949ed",
+      "size_bytes": 77456
+    },
+    {
+      "path": "downloads/config/software/debian.json",
+      "layer": "aux-pxe",
+      "member": "config/software/debian.json",
+      "sha256": "b198deef20790b0bf7e0cc6656d1ab23ce132b0f103575c7aff66eeb8dac924d",
+      "size_bytes": 65262
+    },
+    {
+      "path": "downloads/config/software/fedora-rawhide.json",
+      "layer": "aux-pxe",
+      "member": "config/software/fedora-rawhide.json",
+      "sha256": "45e25d5c60cf7683b8e2c649e72b82af1385ca72d28a2a6d8ac4c709c0efe612",
+      "size_bytes": 58217
+    },
+    {
+      "path": "downloads/config/software/fedora.json",
+      "layer": "aux-pxe",
+      "member": "config/software/fedora-rawhide.json",
+      "sha256": "45e25d5c60cf7683b8e2c649e72b82af1385ca72d28a2a6d8ac4c709c0efe612",
+      "size_bytes": 58217
+    },
+    {
+      "path": "downloads/deploy.sh",
+      "layer": "aux-pxe",
+      "member": "deploy.sh",
+      "sha256": "f704fb47664bdbe5c551689e392e13698aab56183811c15f76860ebc310cb5bd",
+      "size_bytes": 22562
+    },
+    {
+      "path": "downloads/generate.sh",
+      "layer": "aux-pxe",
+      "member": "generate.sh",
+      "sha256": "bba0f549de219ba2a4323591df2297f9a83b349c095304ee7340f1fe2da52de3",
+      "size_bytes": 95024
+    },
+    {
+      "path": "downloads/install-web.py",
+      "layer": "aux-pxe",
+      "member": "install-web.py",
+      "sha256": "b95b33974fc7817dfa840268b7b3ca27b2293df550221b9921ea05fcec730f3d",
+      "size_bytes": 21027
+    },
+    {
+      "path": "downloads/iso-assist/payload/assist.py",
+      "layer": "aux-pxe",
+      "member": "iso-assist/payload/assist.py",
+      "sha256": "53fa9b04ff6ee1fa91603b4730dcbacac9ab5005977da1d41aea0880389866c7",
+      "size_bytes": 19486
+    },
+    {
+      "path": "downloads/iso-assist/payload/aux_exec.py",
+      "layer": "aux-pxe",
+      "member": "assist/payload/aux_exec.py",
+      "sha256": "879adc6c28b942564259287f6c34d4000e06750a8c251e98f36fa1e786e4049f",
+      "size_bytes": 19350
+    },
+    {
+      "path": "downloads/iso-assist/test_ai.py",
+      "layer": "aux-pxe",
+      "member": "iso-assist/test_ai.py",
+      "sha256": "1e8ccceff82e77f9126ace5459dd32ea533aff603ae7318ecf94e0d073b798ba",
+      "size_bytes": 16821
+    },
+    {
+      "path": "downloads/src/common.py",
+      "layer": "aux-pxe",
+      "member": "src/common.py",
+      "sha256": "9c84541fa90f80df56c0b81cbab45458a5658d06e6b59c3e4f238a6a6d4d44a2",
+      "size_bytes": 40499
+    },
+    {
+      "path": "downloads/src/portal.css",
+      "layer": "aux-pxe",
+      "member": "src/portal.css",
+      "sha256": "4eaa585f90172ad9a1c3212e7da4596caa06efc05f0d867dd7b6a45f93ade8aa",
+      "size_bytes": 30866
+    },
+    {
+      "path": "downloads/src/portal.js",
+      "layer": "aux-pxe",
+      "member": "src/portal.js",
+      "sha256": "0e5b060e69f821c90429a932ee6e69fd66e7acb92ee49df7a91764c9277ae770",
+      "size_bytes": 18117
+    },
+    {
+      "path": "downloads/tec/web/cases.php.txt",
+      "layer": "tec-cli",
+      "member": "tec/web/cases.php",
+      "sha256": "06310ab13a59f55ee57b7be25b9bbd26223f210737e839b1ed019395a6cd762b",
+      "size_bytes": 16384
+    },
+    {
+      "path": "downloads/tec/web/lib.php.txt",
+      "layer": "tec-cli",
+      "member": "tec/web/lib.php",
+      "sha256": "e804a6636f6bd2a64fce80a49acc6eb241a5570cf5c38ecc89cf70845a12243b",
+      "size_bytes": 26531
+    },
+    {
+      "path": "downloads/tec/web/products.aux.json",
+      "layer": "aux-pxe",
+      "member": "config/products.aux.json",
+      "sha256": "c91f17cdfe135cb825618745825e62fe05ce9d583b9ef86552dfffc3f44949ed",
+      "size_bytes": 77456
+    },
+    {
+      "path": "downloads/tec/web/vendor/xterm.js",
+      "layer": "tec-cli",
+      "member": "tec/web/vendor/xterm.js",
+      "sha256": "14903579ff54664cd72f8e8699e6961a6272c21863ec1c3b118cdc8af5d4a972",
+      "size_bytes": 488663
+    },
+    {
+      "path": "downloads/ui/workspace.js",
+      "layer": "aux-pxe",
+      "member": "ui/workspace.js",
+      "sha256": "a9f4ee843f5e4b210509d071867ba60e33eb74786db53f5c69e33c4c5abfe17a",
+      "size_bytes": 29490
+    },
+    {
+      "path": "downloads/usb/LICENSE-GRUB.txt",
+      "layer": "aux-pxe",
+      "member": "usb/LICENSE-GRUB.txt",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "size_bytes": 35149
+    },
+    {
+      "path": "downloads/usb/aux-ipxe-usb.img",
+      "layer": "image",
+      "member": null,
+      "sha256": "d624bdb44fd7d9ba6f25d6f0337e4abd5133517ff62e1f8f1340039c5e427842",
+      "size_bytes": 13887488
+    },
+    {
+      "path": "downloads/verify.py",
+      "layer": "aux-pxe",
+      "member": "verify.py",
+      "sha256": "d3ffa6a1847cd8607c24331098f08b0685363135ac7fd1a2c1bdca48c86450cf",
+      "size_bytes": 101610
+    }
+  ]
+}
