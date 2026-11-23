@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AUX 8 observed status",
+  "_meta": {
+    "Timestamp": "2026-11-22",
+    "Version": "8.0.1-beta.4",
+    "Author & Credits": "https://www.alawise.es/1-s"
+  },
+  "type": "object",
+  "required": [
+    "schema",
+    "checked_at",
+    "catalog_sha256",
+    "configuration_sha256",
+    "entries"
+  ],
+  "properties": {
+    "schema": {
+      "const": "aux-status-v1"
+    },
+    "checked_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "catalog_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-fA-F]{64}$"
+    },
+    "configuration_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-fA-F]{64}$"
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "identity",
+          "word24",
+          "availability",
+          "state",
+          "locations"
+        ],
+        "properties": {
+          "identity": {
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{64}$"
+          },
+          "word24": {
+            "type": "string",
+            "pattern": "^0[0-9A-F]{5}$"
+          },
+          "availability": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 15
+          },
+          "state": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 15
+          },
+          "locations": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

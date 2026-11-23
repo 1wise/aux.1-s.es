@@ -1,0 +1,8 @@
+{
+  "module": "aux-pxe",
+  "version": "8.0.1-beta.4",
+  "requires_other_module": false,
+  "runtime": "Python 3 + Bash",
+  "private_state_included": false,
+  "installation": "python3 install-web.py --modules aux-pxe"
+}

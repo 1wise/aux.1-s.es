@@ -1,0 +1,7 @@
+{
+  "enabled": true,
+  "openai": {"model": null},
+  "gemini": {"model": null},
+  "timeout_seconds": 60,
+  "max_output_tokens": 1024
+}
