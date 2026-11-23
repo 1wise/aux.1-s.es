@@ -1,0 +1,200 @@
+{
+  "$schema": "./platform.metadata.schema.json",
+  "title": "AUX Platform Master Metadata & SEO Registry",
+  "version": "8.0.1-beta.5",
+  "status": "active",
+  "architecture": {
+    "target_os": [
+      "Debian Testing (amd64)",
+      "Fedora Rawhide (x86_64)",
+      "Alpine Linux edge (x86_64)"
+    ],
+    "core_binaries": [
+      "aux-setup",
+      "aux-profile",
+      "aux-catalog",
+      "aux-enter",
+      "aux-tools",
+      "aux-assist"
+    ],
+    "extra_binaries": [
+      "aux",
+      "aux-images",
+      "aux-config",
+      "aux-release",
+      "aux-observe"
+    ],
+    "roles": [
+      "base",
+      "desktop",
+      "disks",
+      "forensics",
+      "network",
+      "admin",
+      "build"
+    ],
+    "components": [
+      "aux-assist"
+    ]
+  },
+  "project": {
+    "name": "AUX Suite",
+    "codename": "El bebé de hacer bebés",
+    "description": "Plataforma de despliegue rápido, alta robustez, cero dependencias innecesarias y control bare-metal absoluto para arquitecturas Linux descentralizadas.",
+    "extended_description": "Plataforma soberana de automatización, generación de imágenes PXE/ISO, traducción de perfiles tasksel/comps/apk, rastreo de catálogos con SHA-256 y pasarela de diagnóstico forense bajo un modelo de diseño sin cajas negras.",
+    "url": "https://aux.1-s.es",
+    "repository": "https://github.com/alawise/aux-suite",
+    "license": "CC BY-NC-SA 4.0 (Contenidos y perfiles) / GPL-3.0-or-later (Scripts de infraestructura)"
+  },
+  "author": {
+    "name": "1wise",
+    "organization": "Alawise",
+    "holding": "1wise Cooperative Holding",
+    "domain": "alawise.es",
+    "network_hub": "https://www.alawise.es/1-s",
+    "region": "Andorra"
+  },
+  "seo_meta_tags": {
+    "standard": {
+      "charset": "utf-8",
+      "viewport": "width=device-width, initial-scale=1",
+      "title": "AUX Suite · Infraestructura Bare-Metal, Despliegue PXE y Pasarela de Sistemas",
+      "description": "Despliegue Linux y control bare-metal con perfiles Debian Testing, Fedora Rawhide y Alpine Linux, catálogos SHA-256 y herramientas de recuperación y chroot.",
+      "keywords": [
+        "aux",
+        "pxe",
+        "tec",
+        "bare-metal",
+        "fedora",
+        "debian",
+        "alpine",
+        "apk",
+        "openrc",
+        "sysadmin",
+        "infraestructura",
+        "redes",
+        "automatización",
+        "chroot",
+        "debootstrap",
+        "dnf",
+        "xorriso",
+        "alawise",
+        "1wise"
+      ],
+      "author": "1wise / alawise.es",
+      "generator": "AUX Suite 8.0.1-beta.5",
+      "canonical": "https://aux.1-s.es/",
+      "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      "googlebot": "index, follow, notranslate, noimageindex",
+      "rating": "safe for kids",
+      "copyright": "CC BY-NC-SA 4.0 (contenidos y perfiles); GPL-3.0-or-later (infraestructura propia)",
+      "application_name": "AUX Platform Core"
+    },
+    "open_graph": {
+      "og:type": "website",
+      "og:site_name": "AUX Ecosystem (1-s.es / alawise.es)",
+      "og:title": "AUX Suite · Arquitectura de Sistemas y Despliegue Descentralizado",
+      "og:description": "Automatización soberana para Debian, Fedora y Alpine, gestión de nodos y control de infraestructura sin cajas negras.",
+      "og:url": "https://aux.1-s.es/",
+      "og:locale": "es_ES",
+      "og:locale:alternate": [
+        "ca_AD",
+        "en_US"
+      ],
+      "og:image": "https://aux.1-s.es/assets/aux-featured.webp",
+      "og:image:secure_url": "https://aux.1-s.es/assets/aux-featured.webp",
+      "og:image:type": "image/png",
+      "og:image:width": 1254,
+      "og:image:height": 1254,
+      "og:image:alt": "AUX Suite: gnomo, GNU y compañeros de sistemas en los Alpes"
+    },
+    "twitter_card": {
+      "twitter:card": "summary_large_image",
+      "twitter:site": "@1wise_es",
+      "twitter:creator": "@1wise_es",
+      "twitter:title": "AUX Suite · Infraestructura Bare-Metal y Despliegue PXE",
+      "twitter:description": "Despliegue Debian, Fedora y Alpine, catálogos y pasarela de asistencia técnica.",
+      "twitter:image": "https://aux.1-s.es/assets/aux-featured.webp"
+    },
+    "specialized_networks": {
+      "mastodon": {
+        "fediverse:creator": "@1wise@mastodon.social"
+      },
+      "github_explore": {
+        "topics": [
+          "linux",
+          "sysadmin",
+          "pxe",
+          "debian",
+          "fedora",
+          "alpine",
+          "infrastructure",
+          "devops",
+          "automation"
+        ],
+        "language": "Python / Shell / HTML"
+      },
+      "ai_crawlers_directives": {
+        "gptbot": "index, follow",
+        "claudebot": "index, follow",
+        "perplexitybot": "index, follow",
+        "anthropic-ai": "allow",
+        "chatgpt-user": "allow"
+      }
+    }
+  },
+  "structured_data_json_ld": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "AUX Suite",
+        "softwareVersion": "8.0.1-beta.5",
+        "operatingSystem": "Linux (Debian Testing, Fedora Rawhide, Alpine Linux)",
+        "applicationCategory": "SystemAdministrationApplication",
+        "license": [
+          "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+          "https://www.gnu.org/licenses/gpl-3.0.html"
+        ],
+        "author": {
+          "@type": "Organization",
+          "name": "Alawise",
+          "url": "https://www.alawise.es/1-s"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "1wise Cooperative Holding",
+          "url": "https://www.1wise.es"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "url": "https://aux.1-s.es/",
+        "name": "AUX Platform",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://aux.1-s.es/catalogue.html?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    ]
+  },
+  "capabilities": {
+    "alpine": {
+      "branch": "edge",
+      "architecture": "x86_64",
+      "profiles": "apk collections and explicit post-install script",
+      "root": "apk bootstrap on a builder with trusted Alpine keys",
+      "existing": "uses configured host repositories",
+      "iso": "preserves setup-alpine; explicit post-install profile",
+      "boot_test": "not-run",
+      "assistance_services": "manual on OpenRC; systemd units are not installed"
+    }
+  },
+  "license_scope_note": "Licencias de contenido y scripts propios según la declaración del proyecto. Los componentes de terceros conservan sus licencias y avisos."
+}

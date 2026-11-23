@@ -1,0 +1,9 @@
+{
+  "REPLACE_WITH_EXACT_ENTRY_ID": {
+    "identity": "REPLACE_WITH_IDENTITY_FROM_CATALOG_JSON",
+    "deployed_urls": "not-checked",
+    "bios_boot": "not-tested",
+    "uefi_boot": "not-tested",
+    "secure_boot": "not-tested"
+  }
+}

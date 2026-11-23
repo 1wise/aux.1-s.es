@@ -1,0 +1,22 @@
+# Timestamp: 2026-11-09 | Version: 7.0.0-dev.2
+# Author & Credits: https://www.alawise.es/1-s
+[Unit]
+Description=AUX physical support controls on VT6
+After=network.target
+Conflicts=getty@tty6.service
+
+[Service]
+Type=simple
+ExecStartPre=/usr/bin/install -d -m 0700 /work /storage /run/aux-assist
+ExecStart=/usr/bin/python3 /usr/local/lib/aux/assist/payload/assist.py
+StandardInput=tty
+StandardOutput=tty
+StandardError=tty
+TTYPath=/dev/tty6
+TTYReset=yes
+TTYVHangup=yes
+Environment=TERM=linux
+Environment=HOME=/root
+UMask=0077
+KillMode=control-group
+Restart=no

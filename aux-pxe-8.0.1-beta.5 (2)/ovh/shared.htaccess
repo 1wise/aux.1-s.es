@@ -1,0 +1,14 @@
+# Timestamp: 2026-11-23 | Version: 8.0.1-beta.5
+# Author & Credits: https://www.alawise.es/1-s
+# B/P share physical files. TEC stays on the independent Excalibur portal.
+DirectoryIndex index.html
+Options -Indexes
+AddType text/plain .ipxe
+AddType application/octet-stream .iso .img .efi .kpxe .lkrn .bin .bzi
+RewriteEngine On
+RewriteRule (?:^|/)(?:[.]git|[.]env|[.]ssh|manage[.]php|credentials[.]json|usuarios[.]json|tecnicos[.]json|solicitudes[.]json)(?:/|$) - [F,L,NC]
+RewriteRule ^(?:tec|assist|cli)(?:/|$) - [F,L,NC]
+RewriteRule [.]php$ - [F,L,NC]
+RewriteCond %{HTTP_HOST} ^p[.]1-s[.](?:es|eu)(?::[0-9]+)?$ [NC]
+RewriteRule ^(?:index[.](?:php|html))?$ cli.html [L]
+# Keep HTTP available for firmware; never force iPXE through a TLS redirect.
