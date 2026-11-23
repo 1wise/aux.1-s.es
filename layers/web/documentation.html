@@ -1,0 +1,867 @@
+<!doctype html><html lang="es"><meta charset="utf-8"><title>AUX 8 / Documentación</title>
+<h1>AUX 8 / Documentación</h1><nav><a href="index.html">AUX</a> | <a href="catalogue.html">Catálogo</a> | <a href="components.ipxe">Componentes iPXE</a></nav><ul>
+<li><a href="#BETA2-8.0.1.md">8.0.1-beta.3: tablero y precauciones</a> (<a href="docs/BETA2-8.0.1.md">Markdown</a>)</li>
+<li><a href="#RED-ROBIN-8.md">Red Robin: precauciones y herramientas sensibles</a> (<a href="docs/RED-ROBIN-8.md">Markdown</a>)</li>
+<li><a href="#BOARD-8.0.1.md">Tablero común de 24 casillas</a> (<a href="docs/BOARD-8.0.1.md">Markdown</a>)</li>
+<li><a href="#MATRIOSHKA-8.0.1.md">8.0.1: cuatro entregas junto al Git</a> (<a href="docs/MATRIOSHKA-8.0.1.md">Markdown</a>)</li>
+<li><a href="#KERNEL-MODELER-8.md">Kernel Modeler: constructor y laboratorio</a> (<a href="docs/KERNEL-MODELER-8.md">Markdown</a>)</li>
+<li><a href="#BETA8-8.md">Kernel Modeler: preset y destinos</a> (<a href="docs/BETA8-8.md">Markdown</a>)</li>
+<li><a href="#BETA7-8.md">Conservar prioridad en actualizaciones</a> (<a href="docs/BETA7-8.md">Markdown</a>)</li>
+<li><a href="#BETA6-8.md">Lotes, capacidad y enlaces de réplicas</a> (<a href="docs/BETA6-8.md">Markdown</a>)</li>
+<li><a href="#BETA5-8.md">Descargas y verificación de integridad</a> (<a href="docs/BETA5-8.md">Markdown</a>)</li>
+<li><a href="#BETA4-8.md">Corrección de rutas del catálogo</a> (<a href="docs/BETA4-8.md">Markdown</a>)</li>
+<li><a href="#BETA3-8.md">Catálogo, matrioshka y self-assamblers</a> (<a href="docs/BETA3-8.md">Markdown</a>)</li>
+<li><a href="#BETA2-8.md">Identidad, productos y GPT/Gemini</a> (<a href="docs/BETA2-8.md">Markdown</a>)</li>
+<li><a href="#SCHEMA-8.md">24 bits y catálogo</a> (<a href="docs/SCHEMA-8.md">Markdown</a>)</li>
+<li><a href="#OPERATIONS-8.md">Operación y migración</a> (<a href="docs/OPERATIONS-8.md">Markdown</a>)</li>
+<li><a href="#NAVIGATION-8.md">Mapa de navegación y diagramas</a> (<a href="docs/NAVIGATION-8.md">Markdown</a>)</li>
+<li><a href="#CHECKLIST-8.md">Checklist de aceptación</a> (<a href="docs/CHECKLIST-8.md">Markdown</a>)</li>
+<li><a href="#TESTING-8.md">Validación de la beta</a> (<a href="docs/TESTING-8.md">Markdown</a>)</li>
+<li><a href="#CDN-8.md">Piloto CDN</a> (<a href="docs/CDN-8.md">Markdown</a>)</li>
+</ul>
+<section id="BETA2-8.0.1.md"><h2>8.0.1-beta.3: tablero y precauciones</h2><pre style="white-space:pre-wrap"># AUX 8.0.1-beta.2 — tablero común y Red Robin
+
+Timestamp: 2026-11-23 | Version: 8.0.1-beta.2  
+Author &amp; Credits: https://www.alawise.es/1-s
+
+Estado y selector de catálogo comparten una tabla: una fila por recurso y 24 casillas PASCDE en orden 23–0. P/CDE son editables; A/S siguen siendo observaciones, con desconocidos distintos de ausencia. Info abre la ficha completa. Buscar, filtrar, presets, previsiones, exportación e importación siguen disponibles. Las vistas web conservan políticas y selección durante la sesión y preparan comandos para checkstatus, download, deploy y generate.
+
+El mismo tablero está disponible en dialog/curses mediante ./aux catalog board o ./aux checkstatus --interactive. En 80 columnas se muestran los 24 estados en seis grupos, con búsqueda, ficha, ayuda F1, previsión RAM/SSD/Bastion y acceso a las fases. Guardar requiere revisar las casillas y APLICAR; ejecutar cambios conserva su plan y EJECUTAR. El filtro es de visualización; las fases usan la política del catálogo completo.
+
+Blue Hibou identifica guías de despliegue. Red Robin y RED TEAM identifican precauciones de control remoto, escrituras persistentes, carga y cuotas. Se incorporan el featured WebP original y ambos emblemas proporcionados. Hay una guía HTML compatible con Links y documentación detallada. AUX Assist y el rol de administración con Cockpit quedan fuera de la selección inicial y se pueden activar expresamente. La acción local de Cockpit requiere INICIAR COCKPIT.
+
+Se comprueba espacio disponible antes de descargas nuevas de tamaño conocido y de despliegues locales; RAM usa MemAvailable y conserva al menos 512 MiB o 20 % de MemTotal, el mayor. Disco conserva 1 GiB. Las previsiones no reservan recursos ni limitan CPU/I/O; la extracción y otros procesos pueden variar el consumo. No se han habilitado nuevos servicios, cargas permanentes ni pruebas de estrés.
+
+La suite conserva un límite de 24 MB, con réplicas, secciones, imagen básica y envoltorio contabilizados aparte. La raíz del Git mantiene las cuatro entregas actuales con SHA-256. Los archivos anteriores permanecen en el historial de entregas.
+
+Validación: 497 casos Python, 478 ejecutados y 19 omitidos; 17 casos nuevos de tablero, destinos remotos, planes, reserva de recursos, controles opcionales y Cockpit. DOM de las dos vistas e instalador, pantalla de 80 columnas y navegador con 283 filas/24 casillas. La aceptación de arranque hasta login y los servicios reales requieren pruebas en el equipo de destino.
+</pre></section>
+<section id="RED-ROBIN-8.md"><h2>Red Robin: precauciones y herramientas sensibles</h2><pre style="white-space:pre-wrap"># Blue Hibou y Red Robin — despliegue y precauciones
+
+Timestamp: 2026-11-23 | Version: 8.0.1-beta.3  
+Author &amp; Credits: https://www.alawise.es/1-s
+
+Blue Hibou identifica las notas y procedimientos de despliegue rápido. Red Robin identifica avisos y precauciones; la etiqueta RED TEAM señala herramientas u operaciones que requieren especial atención. La etiqueta describe su capacidad e impacto operativo, no acusa al programa de ser malicioso ni acredita una auditoría de seguridad.
+
+| Área | Riesgo concreto | Medida operativa |
+| --- | --- | --- |
+| aux-assist, SSH, Cockpit y gateways | Abrir terminales o administración con privilegios y exponer servicios a la red. | Selección opcional; comprobar identidad, destino, puertos, firewall/VPN y consentimiento; revisar el cierre. |
+| Instalación en sistema actual | Cambiar paquetes, cuentas, servicios o configuración del equipo real. | Revisar hostname y plan antes de APLICAR; contar con recuperación y acceso local. |
+| RAM y tmpfs | Agotar memoria que usan el sistema y otros procesos, aunque la cuota nominal parezca suficiente. | Leer MemAvailable; conservar reserva; reducir selección y concurrencia. |
+| Caché, extracción y réplicas | Consumir SSD, inodos, ancho de banda e I/O; un árbol extraído puede crecer más que su ISO. | Separar imágenes/deploys, comprobar espacio real y dejar margen. |
+| Escrituras y arranque USB | Escribir en un destino equivocado o modificar datos y cargadores. | Identificar ruta y dispositivo; verificar sumas y copias antes de grabar. |
+| Tareas permanentes y cargas intensivas | Mantener CPU, RAM, I/O o red ocupados durante tiempo indefinido. | Definir duración, límites, supervisión y parada antes de habilitar un servicio o timer. |
+
+## Herramientas remotas
+
+AUX Assist y el rol de administración que contiene Cockpit quedan fuera de la selección inicial. Se pueden elegir expresamente. La base conserva el cliente SSH y deja de incluir el servidor SSH; la tarea Debian ssh-server también queda sin preseleccionar. Instalar un paquete no equivale a autorizar una intervención. Las unidades propias de asistencia siguen siendo de inicio manual; los paquetes de la distribución pueden iniciar servicios o sockets según sus políticas. Revisar el estado y los puertos reales después de instalar.
+
+La acción local de Cockpit muestra la advertencia y exige escribir INICIAR COCKPIT antes de iniciar cockpit.socket. La web prepara la selección y abre una URL indicada; no instala ni inicia servicios en los servidores por sí misma. El cliente de asistencia mantiene sus controles de consentimiento, identidad y cierre. Antes de permitir root, verificar el contacto y la huella del técnico.
+
+## Cuotas, disponibilidad y carga
+
+Los presets 10 GiB RAM / 75 GiB SSD por preset son propuestas para una máquina de referencia. No son un requisito para usar AUX ni una reserva física. El tablero mantiene las previsiones y los límites configurados; una máquina compartida necesita valores menores y margen para su trabajo habitual.
+
+Antes de una nueva descarga de tamaño conocido se contrasta el espacio pendiente con el sistema de archivos de caché, dejando 1 GiB de reserva. Antes de desplegar se comprueba el destino local: en RAM se usa MemAvailable y se conserva al menos 512 MiB o el 20 % de MemTotal, el mayor; en disco, 1 GiB. Las comprobaciones no sustituyen la medición del árbol extraído ni un límite de CPU, I/O o memoria por proceso. No pueden reservar capacidad frente a otros procesos concurrentes.
+
+No se habilitan nuevas cargas de estrés ni tareas permanentes mediante el tablero. Cualquier futura herramienta de carga debe incluir alcance, duración, límites efectivos y una parada verificable. Un timer, socket o daemon necesita revisión propia, además de la cuota del catálogo.
+
+## Cierre de la intervención
+
+Cerrar la sesión autorizada y comprobar que los accesos temporales han terminado. Revisar servicios y sockets que se hayan iniciado, procesos, montajes, cuentas o claves temporales y tareas programadas. Conservar el informe y las evidencias necesarias. No detener servicios ajenos a la intervención sin conocer su función.
+
+Los avisos aparecen junto a las herramientas, en los planes y en la documentación; los emblemas no sustituyen el texto, para que las precauciones sigan siendo legibles en Links, consola y lectores de pantalla.
+</pre></section>
+<section id="BOARD-8.0.1.md"><h2>Tablero común de 24 casillas</h2><pre style="white-space:pre-wrap"># Tablero común de 24 casillas
+
+Timestamp: 2026-11-23 | Version: 8.0.1-beta.3  
+Author &amp; Credits: https://www.alawise.es/1-s
+
+Estado y selector de catálogo comparten una tabla: una fila por recurso, 24 casillas en orden 23–0 y una ficha Info. La cabecera explica P A S C D E una sola vez. Buscar y filtrar permite trabajar con catálogos amplios; la fila no se reparte en tarjetas. En pantallas estrechas la tabla se desplaza horizontalmente. Una raya significa observación desconocida.
+
+P y CDE se editan. A y S solo reflejan observaciones de checkstatus; marcar una política no declara presencia, integridad ni arranque hasta login. Los menús remotos conservan sus restricciones de destino. La ficha desglosa procedencia, versión, arquitectura, tamaño, checksum, observaciones y avisos Red Robin.
+
+En web, elegir recursos y ajustar casillas. Las dos vistas conservan selección y política durante la misma sesión, vinculadas al catálogo y artefacto actuales. Descargar la selección como catalog.json y revisar los comandos de la fase elegida en el equipo configurado. También se puede exportar el catálogo completo e importar una instantánea reciente de checkstatus del mismo artefacto. La web no ejecuta comandos locales ni abre administración remota por seleccionar un recurso.
+
+| Fase | Contrato |
+| --- | --- |
+| Checkstatus | Observar inventario y evidencias; actualizar A/S y guardar status.json. |
+| Download | Adquirir lo indicado por D, resolver según C, verificar y presentar errores del lote. |
+| Deploy | Usar fuentes disponibles y los destinos E; mostrar previsión y precauciones de memoria/escrituras. |
+| Generate | Publicar desde un checkstatus vigente para el catálogo y la configuración actuales. |
+
+Después de download o deploy, repetir checkstatus antes de generate. Los cuatro pasos permanecen independientes.
+
+En consola: `./aux catalog board` o `./aux checkstatus --interactive`. Los menús de download/deploy/generate también dan acceso al tablero. Flechas: fila y casilla; Espacio: cambiar; /: buscar; I o Enter: ficha; F1: ayuda. S revisa y guarda P/CDE con APLICAR. C/D/P/G abren las fases; las que aplican cambios conservan su plan y EJECUTAR. Esc vuelve y descarta ediciones sin guardar. El filtro cambia la vista, no el alcance de las fases: estas usan la política del catálogo completo.
+
+La consola de 80 columnas conserva los 24 estados en seis grupos de cuatro caracteres: x activo, punto inactivo y ? desconocido. Se mantienen alternativas de texto sin pantalla completa. RAM/SSD/Bastion y el exceso previsto permanecen visibles. Los avisos Red Robin explican que las cuotas no reservan recursos ni limitan por sí solas cargas permanentes.
+</pre></section>
+<section id="MATRIOSHKA-8.0.1.md"><h2>8.0.1: cuatro entregas junto al Git</h2><pre style="white-space:pre-wrap"># AUX 8.0.1-beta.3 — cuatro entregas junto al Git
+
+Timestamp: 2026-11-23 | Version: 8.0.1-beta.3  
+Author &amp; Credits: https://www.alawise.es/1-s
+
+La versión pasa a 8.0.1-beta.3 al cerrar el uso de los 24 bits. PASCDE conserva sus posiciones y contratos: los cuatro bits P son usuario, tendencia del sector, obligatorio y sugerido por IA para el sector. No hay una migración adicional de bits ni se cambian las decisiones del catálogo.
+
+La matrioshka reúne cuatro entregas hermanas en la raíz del repositorio, al mismo nivel que .git y suite/:
+
+| Archivo | Contenido |
+| --- | --- |
+| aux-suite-8.0.1-beta.3.zip | Suite completa de fuentes con ambos módulos. |
+| aux-pxe-8.0.1-beta.3.zip | Catálogo, Netboot, web y herramientas AUX/PXE. |
+| tec-cli-8.0.1-beta.3.zip | Comunidad, cuentas y asistencia TEC/CLI. |
+| aux-minimal-ipxe-8.0.1-beta.3.img | Imagen básica USB iPXE, ya sin comprimir. |
+
+Cada entrega tiene su .sha256. RELEASE.json identifica las cuatro, sus tamaños y hashes. La imagen USB conserva el bootstrap existente BIOS/UEFI x86_64; no acredita una nueva Rescue Linux ni una prueba hasta login.
+
+Las fuentes viven en suite/. Los cuatro paquetes se generan fuera de ese árbol para evitar que el paquete completo se incluya recursivamente a sí mismo. El límite de 24.000.000 bytes corresponde al árbol fuente de la suite; las entregas repetidas y el envoltorio se contabilizan aparte.
+
+Desde suite/, preparar las cuatro entregas en la raíz del Git:
+
+    python3 package-release.py --output ..
+
+Conservar una entrega publicada inmutable; usar un destino nuevo para una reconstrucción de revisión. Crear el envoltorio exterior:
+
+    python3 package-matrioshka.py --source-zip ../aux-suite-8.0.1-beta.3.zip --output ../release-artifacts/aux-matrioshka-8.0.1-beta.3.zip
+
+El ZIP exterior contiene las cuatro entregas en su raíz, sus hashes, el desplegador y la web como capa auxiliar. Los metadatos .git no se incluyen en el ZIP. El repositorio Git real conserva su historial y contiene las cuatro entregas.
+
+Después de extraer la matrioshka, revisar el plan:
+
+    python3 DEPLOY.py --web-root ./web-para-subir --sources-root ./repositorio-aux
+
+Aplicar después de revisar:
+
+    python3 DEPLOY.py --web-root ./web-para-subir --sources-root ./repositorio-aux --apply
+
+La web recibe las cuatro descargas. El directorio de trabajo recibe suite/ y, a su lado, las mismas cuatro entregas. Se eligen destinos nuevos; todos los hashes, ZIP y rutas se validan antes de crearlos. El desplegador acepta también las matrioshkas antiguas de tres capas sin cambiar su extracción anterior.
+
+La imagen .img puede usarse con la herramienta habitual de grabación USB. DEPLOY.py solo prepara archivos y no escribe dispositivos. Para Bastion sin Python, preparar la web localmente y subir su contenido por FTPS.
+
+Se conserva Kernel Modeler. Las aportaciones de AP continúan en revisión independiente y no sustituyen el catálogo ni sus resoluciones comprobadas.
+
+El límite de 24 MB corresponde a la suite completa. Réplicas, secciones e imagen básica se contabilizan aparte. La capa web reutiliza los recursos idénticos de las cuatro entregas y los restaura automáticamente al desplegar; los paquetes de producto permanecen completos. Se validan esas referencias antes de escribir. El límite del alojamiento por archivo es independiente del presupuesto del proyecto.
+</pre></section>
+<section id="KERNEL-MODELER-8.md"><h2>Kernel Modeler: constructor y laboratorio</h2><pre style="white-space:pre-wrap"># Kernel Modeler — banco de trabajo de núcleos
+
+Timestamp: 2026-11-23 | Version: 8.0.1-beta.3  
+Author &amp; Credits: https://www.alawise.es/1-s
+
+Kernel Modeler prepara las aplicaciones y la ficha de trabajo para configurar, compilar e inspeccionar un kernel Linux propio. Es un preset especializado, disponible para Fedora, Debian y Alpine. El destino es explícito: instalador ISO, raíz nueva o sistema existente. La selección inicial es una base de consola con base + kernel-modeler; los complementos pueden ajustarse antes de ejecutar.
+
+La suite incluye el selector y las guías. Los paquetes, fuentes Linux, árboles de compilación e imágenes resultantes se obtienen o construyen fuera de sus 24 MB de fuentes. El espacio real depende del kernel, configuración, información de depuración, paquetes y paralelismo. Conviene conservar ese presupuesto separado de las imágenes publicadas y sus despliegues.
+
+## Entradas y destinos
+
+En web: Instalar → Operación → Kernel Modeler → elegir destino. Exportar la selección JSON y revisar el plan en el constructor. El botón de perfil nativo exporta la selección de paquetes para el instalador de la distribución; el JSON permite además incluir las fuentes y aplicaciones AUX mediante el constructor ISO.
+
+En terminal: `./aux kernel-modeler --interactive` o la opción Kernel Modeler del submenú ISO y medios. La configuración y la ejecución mantienen el mismo preset. Antes de aplicar se revisa el plan y se escribe APLICAR. Instalar sobre el sistema actual es un destino explícito y está al final de los selectores.
+
+Plan para una raíz nueva:
+
+    ./aux kernel-modeler --target-mode root --distro debian --root /mnt/kernel-lab
+
+Plan para preparar un instalador:
+
+    ./aux-setup --mode kernel-modeler --target-mode iso --distro fedora --iso /srv/iso/oficial.iso --iso-sha256 SHA256 --output /srv/build/kernel-lab.iso
+
+`--apply` ejecuta el plan revisado; ISO requiere además `--check-packages`. La raíz nueva requiere un directorio vacío distinto de /. Sigue pendiente completar su disco, cargador y cuenta mediante el procedimiento de instalación. En Alpine se conserva setup-alpine y se entrega un perfil para aplicar expresamente después de instalar.
+
+## Herramientas del preset
+
+| Labor | Herramientas y equivalentes nativos |
+| --- | --- |
+| Configurar | make, ncurses, GCC; menuconfig/nconfig pertenecen a las fuentes Linux. |
+| Compilar | GCC/C++, make/binutils, bc, bison, flex, Perl y Python. |
+| Inspeccionar | ELF/libelf, OpenSSL y pahole/dwarves para BTF; file y las herramientas de binutils. |
+| Preparar el arranque | kmod, Device Tree Compiler, cpio y compresores; dracut, initramfs-tools o mkinitfs según la base. |
+| Revisar procedencia y firmas | Git, patch/diff, GnuPG, OpenSSL, pesign o sbsigntool y mokutil. |
+| Laboratorio x86 | QEMU y OVMF para pruebas BIOS/UEFI. |
+
+El compilador es nativo del constructor; el laboratorio QEMU/OVMF incluido se orienta a x86. La compilación cruzada exige elegir explícitamente una toolchain adicional y su arquitectura.
+
+LLVM/Clang y Rust son alternativas o requisitos de configuraciones concretas; deben seleccionarse según la versión Linux que se vaya a compilar. El preset GCC no afirma cubrir cualquier configuración futura. Las aplicaciones se comprueban contra los repositorios nativos del constructor antes de generar la ISO; una comprobación de nombres no equivale a haber instalado o arrancado el resultado.
+
+## Secuencia de trabajo
+
+1. Definir arquitectura, hardware, controladores y firmware necesarios, objetivo de arranque —disco, ISO o iPXE— y modelo de amenazas.
+2. Elegir una versión exacta de Linux y verificar su procedencia. Kernel.org firma el tar sin comprimir: una firma de `.tar` no se verifica directamente contra `.tar.xz`. Conservar URL, checksum, firma, firmante y fecha.
+3. Conservar la configuración inicial y usar Kconfig de esa misma versión para resolver sus dependencias. Revisar los símbolos nuevos y el diff; no asumir que una configuración antigua equivale a una nueva.
+4. Revisar reducción de superficie, protecciones de memoria, módulos, depuración e interfaces disponibles. El conjunto soportado depende de arquitectura, compilador y versión. La guía de autoprotección del kernel es una referencia, no una certificación automática.
+5. Compilar en un directorio separado y conservar versión del compilador, `.config`, logs y hashes. Preparar módulos de la misma versión, firmware e initramfs compatibles.
+6. Revisar firma de módulos y cadena de arranque antes de aplicar una política de rechazo. Preparar claves en un espacio privado; su generación o enrolamiento no se ejecutan desde este preset.
+7. Probar el conjunto en VM y en el hardware previsto, guardar evidencias y registrar la prueba real en checkstatus. Preparar una ISO o disponer de paquetes no acredita llegada al login.
+
+Los perfiles generados incorporan `kernel-modeler/model.json`, paquetes y esta guía. Una instalación que elija el rol recibe las plantillas en `/usr/local/share/aux/kernel-modeler` y espacio privado en `/work/kernel-modeler`. El modelo empieza con fuente y configuración pendientes, kernel_build=not-run y boot_test=not-tested. Es un banco de trabajo; la compilación de un kernel propio y la aceptación de seguridad son labores posteriores verificables.
+
+## Referencias de origen
+
+- Requisitos de la versión Linux seleccionada: https://docs.kernel.org/process/changes.html
+- Kconfig y editores: https://docs.kernel.org/kbuild/kconfig.html
+- Autoprotección: https://docs.kernel.org/security/self-protection.html
+- Procedencia y firmas: https://www.kernel.org/signature.html
+- Firma de módulos: https://docs.kernel.org/admin-guide/module-signing.html
+</pre></section>
+<section id="BETA8-8.md"><h2>Kernel Modeler: preset y destinos</h2><pre style="white-space:pre-wrap"># AUX 8.0.1-beta.3 — Kernel Modeler
+
+Timestamp: 2026-11-23 | Version: 8.0.1-beta.3  
+Author &amp; Credits: https://www.alawise.es/1-s
+
+Kernel Modeler añade un preset especializado al selector web, al submenú ISO y medios y a `./aux kernel-modeler`. Se elige expresamente instalador ISO, raíz nueva o sistema actual. El sistema actual permanece al final del selector. La base inicial es de consola, con base + kernel-modeler y complementos ajustables.
+
+Debian, Fedora y Alpine reciben sus paquetes nativos para Kconfig, GCC, compilación, ELF/BTF, initramfs, procedencia, firmas y laboratorio QEMU/OVMF x86. Los índices oficiales contienen respectivamente los 30, 33 y 31 nombres del rol, con fuentes y hashes en `config/kernel-modeler.packages.json`. Antes de generar una ISO se exige resolver los paquetes en el constructor. El compilador es nativo; la compilación cruzada requiere una toolchain explícita.
+
+Los perfiles contienen `kernel-modeler/model.json`, lista de paquetes y guía. El sistema preparado recibe plantillas en `/usr/local/share/aux/kernel-modeler` y un espacio privado en `/work/kernel-modeler`. No se sobrescribe una ficha existente. La fuente y configuración empiezan pendientes; kernel_build=not-run y boot_test=not-tested. La construcción del kernel, revisión de hardening, claves, enrolamiento y prueba real hasta login forman fases posteriores explícitas. La guía detalla procedencia, Kconfig de la versión elegida, hardware, módulos, firmware, compilación separada y aceptación.
+
+Los paquetes y árboles de trabajo se contabilizan fuera de los 24.000.000 bytes de fuentes de AUX. No se genera una nueva Rescue ni se modifica el arranque de los equipos al descargar o extraer este paquete.
+
+Validación: 472 casos Python, 453 ejecutados y 19 omitidos; diez pruebas nuevas. Paridad DOM Python/JavaScript y comprobación visual de los tres destinos y las tres distribuciones. Se prueba instalación de plantillas en una raíz temporal. No se ha compilado ni arrancado un kernel propio ni instalado paquetes en Excalibur/Bastion.
+</pre></section>
+<section id="BETA7-8.md"><h2>Conservar prioridad en actualizaciones</h2><pre style="white-space:pre-wrap"># AUX 8.0.1-beta.3 — prioridades conservadas al refrescar
+
+Timestamp: 2026-11-23 | Version: 8.0.1-beta.3  
+Author &amp; Credits: https://www.alawise.es/1-s
+
+Incluye el cierre funcional descrito en BETA6-8.md: lotes, progreso, previsiones, réplicas y PASCDE. El regenerador de recetas propias conserva policy, priority y priority_sectors antes de sustituir metadatos de versión y fuentes. Una prueba adicional verifica el cambio de versión sin pérdida de prioridad o ámbito manual. Total: 462 casos Python, 443 ejecutados y 19 omitidos.
+</pre></section>
+<section id="BETA6-8.md"><h2>Lotes, capacidad y enlaces de réplicas</h2><pre style="white-space:pre-wrap"># AUX 8.0.1-beta.3 — lotes, capacidad y réplicas
+
+Timestamp: 2026-11-23 | Version: 8.0.1-beta.3  
+Author &amp; Credits: https://www.alawise.es/1-s
+
+Download continúa después de un fallo individual de resolución, HTTP, transferencia o integridad. Muestra líneas completas por recurso: RESOLVE, SKIP, DOWNLOAD, VERIFY y DONE/ERROR. Durante la transferencia muestra bytes, porcentaje cuando hay tamaño y velocidad media. Al finalizar presenta los errores y guarda `download-report.json` junto al status configurado; devuelve código 1 si hubo fallos, sin cancelar los recursos válidos restantes. `--json` conserva un informe procesable y el progreso se escribe en stderr.
+
+NixOS minimal utiliza la tabla del canal oficial para resolver revisión, tamaño y SHA-256. Agama obtiene el tamaño del Metalink del proveedor y exige el SHA-256 de su sidecar oficial; si Metalink aporta también hash deben coincidir. No es necesario autorizar un mirror arbitrario para consultar esos metadatos. Las dos imágenes se descargaron completas y se verificaron. Esa integridad no acredita un arranque hasta login.
+
+## Presupuesto y presets
+
+| Selección | RAM | SSD | Bastion |
+| --- | ---: | ---: | ---: |
+| Un preset | 10 GiB | 75 GiB | 75 GiB |
+| Tres presets | 30 GiB | 225 GiB | 225 GiB |
+
+Se usan GiB explícitos en ambas interfaces. `fast-boot.json` nuevo declara 30/225 GiB, reserva RAM 0 y cuotas 10/75 por preset; una instalación conserva sus límites físicos personalizados. La reserva RAM sigue disponible. Bastion deriva siempre su límite del SSD. El presupuesto del paquete de fuentes sigue siendo 24.000.000 bytes.
+
+La web ofrece una tabla viva y ajustes en Catálogo; el diálogo muestra la previsión en el panel de detalle antes de ejecutar y permite ajustar presupuestos o selección en esa pantalla. `aux-config -i` incluye presupuestos por preset. La exportación web incluye `planning`, y `catalog import --input catalog.json --apply` conserva esa previsión; nunca eleva los límites físicos del equipo por encima de su configuración.
+
+El fondo común es la suma de los presets seleccionados. Cada ID compartido se cuenta una sola vez; el ahorro y margen quedan visibles para ampliar manualmente la selección. Las propuestas de preset dan prioridad a chroot, recetas, medios ligeros y x86, e incorporan solo lo que cabe por tamaño conocido. Conservan como origen los excesos; una elección manual tiene prioridad y puede producir una advertencia de exceso. Los recursos sin tamaño aparecen pendientes y no permiten asegurar que el conjunto cabe. Download vuelve a resolver los metadatos permitidos antes de transferir y admite solo las imágenes que caben en el fondo SSD; la previsión de deploy puede requerir ajustes posteriores.
+
+Las columnas distinguen imágenes y deploys. SSD incluye la caché de adquisición y las copias públicas físicas; una ISO extraída puede ocupar caché + copia ISO + árbol. El árbol se estima igual al tamaño ISO hasta disponer de `deployment_size_bytes`, que permite fijar una medida. Los montajes RAM no duplican un árbol ISO. El montaje SSD reutiliza la caché. Bastion recibe archivos de imagen en el deploy actual. No se promete un tamaño exacto de extracción ni se elimina caché antigua automáticamente.
+
+## Enlaces de las réplicas
+
+Checkstatus reconoce tanto rutas versionadas como copias anteriores en subdirectorios, cuando nombre y tamaño identifican un único archivo. Dos candidatos se consideran ambiguos. Presencia no equivale a integridad ni a arranque comprobado. El generador conserva enlaces observados RAM/SSD/Bastion en el portal, catálogo de trabajo y JSON público, además del origen. También conserva la evidencia del descubrimiento local y no pierde una copia por existir el mismo nombre en dos ubicaciones.
+
+La ruta personalizada de status se transmite a las páginas de estado. En `aux-config -i` se añaden activación, transporte y directorios del inventario Bastion. Cada directorio declara una ruta remota y la URL pública de esa misma raíz. No se adivina disponibilidad desde los bits E.
+
+Después de actualizar: revisar configuración y selección, Download, deploy, checkstatus y generate. Si ya existen los medios, repetir checkstatus y generate es suficiente para regenerar enlaces; el resumen indica cuántas copias de Bastion se reconocieron. Esta entrega no instala ni configura Excalibur/Bastion a distancia.
+
+## Prioridad: los 24 bits en uso
+
+El formato pasa de RASCDE a **PASCDE**. El dígito antes reservado es P: usuario `1`, tendencia del sector `2`, obligatorio `4`, sugerido por IA para el sector `8`. Son indicadores independientes, combinables, no niveles 0–15. `priority` mantiene ese hexadecimal; `priority_sectors` puede limitar las sugerencias de tendencia/IA a Fedora, Debian o Alpine. El defecto `0` conserva los catálogos anteriores.
+
+La web de estado muestra 24 casillas, bits 23 a 0: P/CDE editables y A/S observados. El catálogo, CLI y dialog permiten editar P. La prioridad no activa acciones, no salta verificaciones y no acredita login. Los obligatorios conservan la selección ante excesos y se informa del conflicto; siguen sujetos a límites físicos. Las propuestas IA aprobadas se señalan con bit 8, conservando las preferencias usuario/obligatorio existentes. La importación de estado no modifica P ni CDE manuales.
+</pre></section>
+<section id="BETA5-8.md"><h2>Descargas y verificación de integridad</h2><pre style="white-space:pre-wrap"># Descargas: resolución previa, Gentoo fechado y firmas de Arch
+
+Timestamp: 2026-11-23 | Version: 8.0.1-beta.3
+Author &amp; Credits: https://www.alawise.es/1-s
+
+La orden download comprueba primero los alias cambiantes, las referencias sin integridad fijada y las actualizaciones solicitadas que permiten resolver mediante C. Las imágenes de versión fija con hash conocido conservan su versión. Actualiza sus metadatos oficiales y conserva la política y el ID. Después transfiere y verifica los bytes. Los recursos con caché completa y hash correcto pueden reutilizarse sin red; una política fijada sin permiso de resolución se conserva. --dry-run no consulta ni descarga.
+
+Debian Testing publica una URL que cambia de contenido. El SHA-256 se resuelve antes de una transferencia nueva; una copia con hash incorrecto nunca se publica. El catálogo incluido fija los metadatos comprobados el 23/11/2026.
+
+Gentoo minimal utiliza el manifiesto oficial latest de autobuilds y publica la URL del directorio fechado, evitando que un cambio del enlace current borre la imagen anunciada. Se admiten tanto los manifiestos antiguos sin directorio como los nuevos con fecha/nombre. También se corrigen las configuraciones que siguen usando el índice current antiguo.
+
+Arch netboot publica firmas PGP, no un manifiesto SHA256SUMS para estos ejecutables. AUX verifica la firma con GnuPG y la clave pública cuyo fingerprint está fijado en config/trust. Sólo entonces calcula y fija un SHA-256 local, marcado como computed-after-pgp-verification. No se presenta como checksum oficial. Se usa un keyring temporal; no se cambia el del usuario ni se importan claves desconocidas. Si falta gpg, el mensaje indica el paquete requerido.
+
+La reanudación toma ETag/Last-Modified de la respuesta final. Una descarga parcial ya completa y válida se recupera sin red. Si el espejo rechaza la reanudación se reinicia una vez desde cero. Los errores incluyen el código de curl y HTTP. Un fallo de integridad no se convierte en éxito.
+
+Verificación con datos reales: Debian Testing (977.272.832 bytes), Gentoo minimal (1.051.629.568 bytes) y las tres variantes Arch netboot. Se ejecutó la orden download partiendo del SHA antiguo de Debian, la URL Gentoo caducada y Arch sin SHA; las tres descargas terminaron con hashes correctos. Se rechazó una copia Arch alterada. No se certifica arranque hasta login.
+</pre></section>
+<section id="BETA4-8.md"><h2>Corrección de rutas del catálogo</h2><pre style="white-space:pre-wrap"># Corrección de catalog.sources.json en configuraciones personales
+
+Timestamp: 2026-11-23 | Version: 8.0.1-beta.3
+Author &amp; Credits: https://www.alawise.es/1-s
+
+Una configuración antigua en ~/.config/aux/config.json podía resolver la ruta predeterminada config/catalog.sources.json dentro de ~/.config/aux/config/, aunque las reglas están incluidas en el directorio config/ de la suite. Ocurría también cuando esa ruta errónea había quedado guardada como absoluta.
+
+La beta.4 utiliza el archivo incluido cuando falta esa referencia predeterminada. Una copia existente junto a la configuración tiene prioridad. Las rutas personalizadas se conservan: si falta su archivo, el mensaje identifica catalog_sources_file y la forma de configurarlo. No se crean reglas vacías ni se sustituye el catálogo seleccionado. Las rutas de caché, salida, catálogo y estado siguen resolviéndose respecto a la configuración.
+
+Para corregir una instalación anterior desde la raíz de fuentes:
+
+```sh
+./aux-config set catalog_sources_file &quot;$(realpath config/catalog.sources.json)&quot;
+```
+
+El campo también está disponible en INPUT / OUTPUT y catálogos del configurador interactivo, con ayuda F1. No requiere rehacer la imagen iPXE ni volver a descargar distribuciones.
+
+Ocho pruebas cubren clave ausente, ruta relativa antigua, ruta absoluta antigua, copia local existente, rutas personalizadas, error explicativo, separación de rutas mutables y ejecución CLI real desde la configuración personal.
+</pre></section>
+<section id="BETA3-8.md"><h2>Catálogo, matrioshka y self-assamblers</h2><pre style="white-space:pre-wrap"># Cierre beta.3: catálogo, matrioshka y self-assamblers
+
+Timestamp: 2026-11-23 | Version: 8.0.1-beta.3
+Author &amp; Credits: https://www.alawise.es/1-s
+
+Se añaden los 69 perfiles de Ei al catálogo AUX, que pasa a 283 registros. La máscara propuesta se descarta. Se conservan nombres, versiones propuestas, arquitecturas, URLs, artefactos y procedencia. Se muestran como referencias de origen; la importación no activa descargas ni acredita arranques. Para Finnix, cuyo registro no aportaba URL, se enlaza su página de descarga del proyecto. La auditoría anterior sigue distinguiendo 140 URL comprobadas, 74 para revisión y 69 incorporadas sin nueva auditoría.
+
+Los asistentes de transformación se llaman **self-assamblers**. `./aux self-assamble` es la entrada principal y `evolve` continúa como alias. La carpeta `self-assamble/` trae `requests/`, `proposals/` y `builds/`. Puede crearse una copia nueva en builds; la carpeta de trabajo se excluye de la copia, del contexto enviado y de futuras entregas, evitando recursión o publicación de trabajo privado.
+
+El presupuesto es **24.000.000 bytes de fuentes de la suite**. El archivo completo de despliegue puede ocupar más: contiene una matrioshka con capas web, fuentes e imagen mínima, verificadas por separado. No se cuenta repetidamente el código presente en varias capas para medir el presupuesto de la suite. MANIFEST.json distingue el árbol de fuentes, los archivos comprimidos y el tamaño bruto de la imagen.
+
+```sh
+python3 package-matrioshka.py --source-zip /ruta/aux-suite-8.0.1-beta.3.zip --output /ruta/aux-matrioshka-8.0.1-beta.3.zip
+```
+
+Extraer el envoltorio y ejecutar su DEPLOY.py. El modo predeterminado muestra un plan; --apply exige un directorio web nuevo. La web incluye las descargas de la suite y la imagen. --sources-root permite extraer además las fuentes a un destino de trabajo separado. Para Bastion se prepara el árbol localmente y se sube su contenido por FTPS; el alojamiento no necesita Python. No se cambian servicios del sistema ni se graba ningún disco.
+
+La imagen mínima incluida es la imagen iPXE actual de 13.887.488 bytes, con SHA-256 verificado, para BIOS y UEFI x86_64. No es una Rescue Linux nueva ni una prueba de login. El código de Rescue se conserva en la suite para construirla y probarla después.
+</pre></section>
+<section id="BETA2-8.md"><h2>Identidad, productos y GPT/Gemini</h2><pre style="white-space:pre-wrap"># Identidad, productos y adaptación experimental
+
+Timestamp: 2026-11-23 | Version: 8.0.1-beta.3
+Author &amp; Credits: https://www.alawise.es/1-s
+
+## Identidad del equipo de destino
+
+El instalador web, los perfiles CLI y el configurador interactivo permiten hostname, locale, timezone y usuario. La selección es opcional. El hostname debe ser único y estable por equipo; clonar el mismo nombre en varias máquinas produce colisiones. Las contraseñas no se guardan en el JSON. Debian las solicita en el instalador; las cuentas preparadas en Fedora, Alpine o un árbol raíz quedan bloqueadas hasta definir una contraseña localmente. Se conservan las cuentas personales existentes sin modificar sus contraseñas.
+
+Ejemplo de preparación, sin modificar el sistema actual:
+
+```sh
+./aux-profile --help
+./aux-setup --help
+./aux-observe enrollment --help
+```
+
+El enrolamiento nuevo propone `--host_identifier=hostname`; UUID e instance siguen disponibles. Esta opción de osquery elige la identidad enviada al servicio: no cambia el UUID del hardware ni migra los nodos ya registrados. El selector TUI muestra las tres alternativas. Referencia: https://osquery.readthedocs.io/en/latest/installation/cli-flags/
+
+## Tres productos mantenidos
+
+`recipes.html` presenta el libro AUX: Debian y Fedora netboot, Alpine kernel/initrd/modloop, y el procedimiento Gentoo stage3/chroot. Los tres primeros se compilan desde el catálogo en `components.ipxe`, accesible desde `menu.ipxe`. Cada receta fija versión, arquitectura, componentes y origen oficial. La aprobación editorial permite publicarla como candidata; no acredita un arranque. Las recetas propias de perfiles anteriores se conservan en el mismo libro.
+
+`catalogue.html` ofrece los tres presets acumulativos y las políticas CDE. `urls.html` separa los orígenes con respuesta HTTP comprobada del registro de mirrors; la presencia de cada copia requiere checkstatus. El foro tiene tres tableros, recetas PXE, políticas de despliegue y URL/mirrors. Las ampliaciones enlazan la receta de partida y pasan por moderación antes de alterar el catálogo.
+
+```sh
+./aux catalog audit
+./aux catalog audit --apply
+python3 -m auxlib.seed_recipes --apply
+python3 -m auxlib.products --apply
+```
+
+La auditoría HTTP no descarga imágenes completas, no calcula su checksum y no prueba el arranque. Publica fechas, redirecciones, errores y discrepancias de tamaño. La revisión semanal conserva la referencia anterior cuando falla un resolver. El timer systemd incluido requiere instalación explícita; no se activa al extraer el paquete.
+
+## Estado y edición de JSON
+
+`status.html` usa el mismo modelo y exportador JSON del catálogo. Cada recurso tiene una fila horizontal de 20 casillas: A/S observados y C/D/E editables. El contenedor permite desplazamiento horizontal en pantallas estrechas. Info abre versión, arquitectura, tamaño, checksum, origen y observaciones. Los cuatro bits reservados permanecen en cero. Una raya representa observación desconocida; no significa ausencia.
+
+C es un campo de cuatro bits con dos bits bajos que forman el nivel de crawl (0 a 3), más candidato PXE y resolución. D controla descarga, actualización, conservación y archivo. E propone ubicaciones simultáneas. «Archivar» implica conservación aunque su casilla individual esté desmarcada.
+
+La exportación `catalog.json` contiene recursos y políticas. `status-public.json` es una proyección de observaciones, sin rutas privadas de evidencias. Importar checkstatus requiere una instantánea reciente del mismo artefacto; no cambia CDE. La casilla Login sólo se activa con evidencia del instalador hasta la pantalla de acceso.
+
+## GPT / Gemini experimental
+
+La suite puede describir sus módulos y contratos, exportar una solicitud y pedir una adaptación mediante las APIs ya soportadas. Esto es autodescripción y adaptación asistida, no consciencia. La página `adapt.html` prepara el objetivo; las claves y las consultas permanecen en la consola privada.
+
+```sh
+./aux evolve --describe
+./aux evolve --goal &#x27;Preparar un aula de sistemas&#x27; --file README.md --output solicitud.json
+./aux evolve --request aux-adaptation-request.json --interactive
+./aux evolve --proposal propuesta.json
+./aux evolve --proposal propuesta.json --apply --output /ruta/nueva/aux-aula
+```
+
+Una consulta real requiere proveedor, modelo disponible y clave privada. Se muestran objetivo y límite de tokens antes de confirmarla. El resultado pasa por validación de esquema, hash de revisión, rutas y tamaño. Se presenta un diff y sólo se guarda en un directorio nuevo. Los originales, estado, credenciales y datos del foro no se envían ni se sobrescriben. Las comprobaciones propuestas por la IA quedan `not-run` hasta ejecutarlas. Esta entrega no ha efectuado consultas de pago ni aplicado código generado por un asistente.
+</pre></section>
+<section id="SCHEMA-8.md"><h2>24 bits y catálogo</h2><pre style="white-space:pre-wrap"># Contrato de datos y palabra de 24 bits
+
+Timestamp: 2026-11-23 | Version: 8.0.1-beta.3  
+Author &amp; Credits: https://www.alawise.es/1-s
+
+El formato de esta beta se fija como **PASCDE**, seis hexadecimales. La política
+editable es CDE y P; A y S proceden de observaciones. Se utilizan los 24 bits.
+`policy24.py` comprueba el ancho de cada campo y mantiene sus funciones separadas.
+
+| Campo | Bits | Codificación |
+| --- | --- | --- |
+| P | 23–20 | Usuario `1`, tendencia del sector `2`, obligatorio `4`, sugerido por IA para el sector `8`. |
+| A | 19–16 | RAM `1`, SSD `2`, origen `4`, Bastion `8`; disponibilidad observada. |
+| S | 15–12 | Fuente `1`, desplegada `2`, receta `4`, comprobada hasta login `8`. |
+| C | 11–8 | Nivel en bits 9–8; candidato PXE `4`, resolver `8` dentro del dígito. |
+| D | 7–4 | Descargar `1`, actualizar `2`, preservar `4`, archivar `8`. |
+| E | 3–0 | RAM `1`, SSD `2`, origen `4`, Bastion `8`; ubicaciones deseadas. |
+
+Un cero observado significa que no existe evidencia positiva vigente. El detalle
+JSON distingue ausencia, error, desconocido, ambigüedad y datos históricos. Los
+bits compactos no sustituyen esa información.
+
+## Reglas de combinación
+
+| Combinación | Comportamiento |
+| --- | --- |
+| Descargar o actualizar, sin destino local | Adquirir en caché; no desplegar. |
+| Destino local, sin descargar/actualizar | Usar caché existente; si falta, detener la fase con explicación. |
+| RAM y SSD | Dos destinos solicitados; se evalúan por separado. |
+| Bastion | Respaldo para balancear descargas; presupuesto igual al SSD, uso independiente. |
+| Origen | Mantener procedencia y enlace; no implica transferencia propia. |
+| Preservar y actualizar | Conservar el artefacto anterior y adquirir el nuevo con identidad separada. |
+| Archivar | Implica preservación efectiva, sin reescribir la política introducida. No activa borrados. |
+| Receta existente | Activa su presencia; su prueba de arranque se registra aparte. |
+| Candidato PXE | Solicitud de investigación, sin aprobación automática de receta. |
+| Resolver | Permite sustituir una referencia dinámica por un artefacto concreto dentro de su regla. |
+
+Niveles C: `0` desactivado; `1` consulta de fuente declarada; `2` versión,
+arquitectura, mirror y checksum según adaptador; `3` habilita el alcance profundo
+que ofrezca el adaptador. Los límites y hosts de confianza se conservan. La
+cobertura efectiva depende de los adaptadores incluidos; no se afirma que todos
+los índices y procedimientos de todas las distribuciones estén soportados.
+
+## Catálogo
+
+`schema` es `aux-catalog-v8`; `entries` contiene recursos con `id`, `family`,
+`release`, `architecture`, `kind`, `original_url` y `policy`. El ID es estable.
+La identidad de artefacto depende de procedencia, versión, arquitectura y hash.
+La identidad de prueba incluye además componentes y receta.
+
+`artifact_type` distingue ISO, componente, sistema raíz o manifiesto. Los recursos
+chroot declaran `deploy_method` y `procedure_url`. `paths` permite fijar rutas
+relativas por destino. Sin ellas, la publicación usa un prefijo de destino,
+recurso, versión y pin que conserva copias separadas en RAM y SSD, y archivos
+distintos con el mismo nombre. El pin de
+los archivos no cambia el identificador de las páginas.
+
+Los checksums oficiales conservan `checksum_source`; una suma local no acredita
+la firma del editor. Los metadatos anteriores siguen siendo históricos hasta
+resolver y comprobar sus fuentes.
+
+Las recetas utilizan datos estructurados: Linux o menú de proveedor admitido,
+firmware, arquitectura, kernel, initrd y argumentos. No se ejecuta shell recibida
+como dato de receta. Solo las recetas aprobadas entran en el menú de componentes;
+la aprobación no activa S:8.
+
+## Estado
+
+`status.json` utiliza `aux-status-v1`: fecha, huellas del catálogo/configuración,
+observaciones por ubicación y máscara por recurso. `generate` exige una
+instantánea vigente para el mismo catálogo/configuración.
+
+La prueba usa `aux-boot-evidence-v1`: recurso, identidad, resultado `login-reached`,
+fecha, entorno, firmware y hash del log. El log permanece privado. Modificar el
+artefacto/receta o perder la evidencia invalida la afirmación para esa combinación.
+Los informes públicos no incluyen rutas privadas de logs.
+
+Los 69 perfiles aportados por Ei se incorporan en beta.3 como referencias de origen, sin capability_mask. Sus arquitecturas declaradas, artefactos y procedencia se conservan como metadatos; no se convierten en pruebas de descarga, firma ni login.
+
+## Prioridad P
+
+`priority` es un hexadecimal independiente de `policy` CDE; su defecto es `0`, compatible con catálogos anteriores. Los indicadores se combinan: `5` significa usuario y obligatorio; no es una escala numérica. `priority_sectors` delimita las preferencias de tendencia/IA a Fedora, Debian o Alpine; sin ámbito explícito se usa la afinidad del recurso. P no activa download, deploy, checksum, disponibilidad ni login.
+
+La propuesta ordena primero obligatorio, después usuario, tendencia y sugerencia IA dentro de su sector, y finalmente los criterios técnicos. Obligatorio conserva su selección si excede el presupuesto y muestra el conflicto; no elude los límites de ejecución ni permite bytes sin integridad. Una sugerencia IA no equivale a una receta aprobada. Las preferencias manuales se conservan.
+
+    ./aux catalog set-priority --resource ID --priority 5 --apply
+    ./aux catalog set-priority --resource ID --priority A --sector fedora --apply
+
+El dígito anterior R queda sustituido por P. Los A/S de instantáneas importadas no sobrescriben P ni CDE editados. Se conservan los ocho bits observados y se muestran 24 casillas en orden 23…0.
+</pre></section>
+<section id="OPERATIONS-8.md"><h2>Operación y migración</h2><pre style="white-space:pre-wrap"># Operación de AUX 8
+
+Timestamp: 2026-11-23 | Version: 8.0.1-beta.3  
+Author &amp; Credits: https://www.alawise.es/1-s
+
+## Configuración y migración
+
+Trabajar con una copia revisable de configuración y catálogo. Cada ruta relativa
+se interpreta junto al archivo de configuración utilizado. Las claves siguen en
+el almacén privado, fuera del código y las raíces públicas.
+
+`./aux catalog migrate --input /ruta/al/perfil.json` muestra la importación.
+Admite catálogos/selecciones JSON y listas anteriores como entrada explícita.
+`--apply` guarda el resultado en el catálogo configurado. Se combinan recursos por
+ID; la lista antigua no se convierte en fuente activa. Para una selección aislada
+se puede utilizar `--catalog`.
+
+## Catálogo e IA
+
+```bash
+./aux catalog --interactive
+./aux catalog preset --preset alpine --preset fedora --apply
+./aux catalog set-policy --resource ID --policy E16
+./aux catalog set-policy --resource ID --policy E16 --apply
+./aux catalog refresh --resource ID --apply
+```
+
+Los presets añaden valores sin borrar cambios manuales. Resolver una referencia
+dinámica modifica la identidad del artefacto; comprobar de nuevo antes de generar.
+Los recursos sin regla única se conservan y se explica el fallo.
+
+Cada guardado genera el sidecar SHA-256 del catálogo. La opción `refresh --commit`
+utiliza `catalog_git_repository`, comprueba que el catálogo esté dentro y que Git
+tenga identidad configurada, y confirma solo el catálogo y su sidecar. No hace
+push ni confirma otros cambios preparados. El temporizador semanal conserva su
+calendario; antes de activarlo hay que preparar el repositorio y la configuración
+del servicio. Esta entrega no activa el temporizador.
+
+GPT/Gemini permite elegir proveedor, modelo, objetivo y Max tokens. Se revisa la
+consulta y se verifican fuentes antes de aceptar. La confirmación final guarda
+recursos/políticas en el catálogo; no instala ni acredita pruebas de arranque.
+
+Las descargas usan `jobs` de `fast-boot.json` (1–16); `--jobs N` permite
+cambiarlo en una ejecución. Cada parcial mantiene su propia identidad y los
+errores de transferencia se notifican antes de terminar la fase.
+
+El asistente de réplica `aux-release` conserva su flujo por fases. Tras verificar
+los hashes remotos, genera una instantánea compatible con checkstatus y la
+publicación la consume. Una verificación sin fecha o caducada exige repetir
+`verify`; regenerar páginas no renueva la fecha de observación remota.
+
+## Inventario de Bastion
+
+En `fast-boot.json`, `checkstatus.bastion` contiene:
+
+| Campo | Uso |
+| --- | --- |
+| `enabled` | Activar la consulta al servidor configurado. |
+| `transport` | `rsync`, `ftps` o `ftp`, según el acceso disponible. |
+| `directories` | Pares `path` y `public_url`: directorio remoto y descarga pública. |
+
+FTPS utiliza los campos FTP y el almacén privado. Rsync utiliza los parámetros
+SSH de `mirror` y los hosts conocidos de SSH. Hay límites de tiempo, profundidad
+y archivos. No hace falta Python en Bastion para listar mediante FTPS o rsync.
+
+Un acceso fallido queda como desconocido/error y conserva la observación positiva
+anterior como historia. No se publica como disponibilidad actual. Las rutas
+relativas ambiguas requieren separar prefijos o configurar rutas explícitas.
+
+## Descargar, desplegar y generar
+
+La descarga exige SHA-256 fijado, admite parciales con validador HTTP para reanudar
+y conserva una copia válida ante un error. Los artefactos distintos se separan.
+La descarga y el despliegue requieren sus propios planes y `--apply`.
+
+RAM/disco reutiliza el preparador de ISO. Los componentes se publican por su tipo.
+Un stage3 alojado necesita todavía su procedimiento chroot: copiar el archivo no
+crea un sistema instalado. La réplica integral sigue en aux-release.
+
+Tras desplegar, ejecutar checkstatus. `generate` consume el inventario y publica
+índices, documentación, catálogos y menús; no consulta Bastion durante esa fase.
+Los enlaces de Bastion proceden de las URL públicas observadas.
+
+## Prueba hasta login
+
+Arrancar el instalador en el entorno elegido y conservar un log identificable.
+Registrar después con `./aux checkstatus --help`. La atestación del operador no
+es una interpretación automática del texto del log ni sustituye la prueba real.
+Checksum y login son evidencias distintas.
+
+## Instalación, mantenimiento y API
+
+`aux-setup` conserva ISO/base nueva/sistema actual, con el sistema actual al final
+y plan confirmado. `aux-enter` conserva inspección, montajes, LVM y chroot;
+`aux-observe` conserva osquery/osctrl. Se incluye el contrato anterior
+`docs/api/aux-go-openapi-v0.1-draft.yaml` como material de revisión. No se crea un
+servidor nuevo de administración ni se modifica el contrato osctrl. Las nuevas
+API de mantenimiento/instalación siguen pendientes de definición funcional.
+</pre></section>
+<section id="NAVIGATION-8.md"><h2>Mapa de navegación y diagramas</h2><pre style="white-space:pre-wrap"># Navegación de AUX 8
+
+Timestamp: 2026-11-23 | Version: 8.0.1-beta.3  
+Author &amp; Credits: https://www.alawise.es/1-s
+
+El menú conserva su posición al volver de una aplicación. F1 abre ayuda y vuelve
+al mismo campo. La configuración usa índigo; la ejecución y los medios usan cian.
+Esc permite cancelar el diálogo actual. La consola serie conserva alternativas
+de texto cuando no hay interfaz de pantalla completa disponible.
+
+## Mapa mental del conjunto
+
+```mermaid
+mindmap
+  root((AUX 8))
+    Preparar medios
+      Imágenes
+        Cuatro entregas y matrioshka
+        ISO
+        USB
+        Live
+      Perfiles
+        Debian
+        Fedora
+        Alpine
+      Instalación
+        ISO
+        Base nueva
+        Kernel Modeler
+        Sistema actual
+    Publicar Netboot
+      Configuración
+        Rutas y presupuestos
+        Accesos privados
+      Catálogo
+        Presets y CDE
+        Orígenes y componentes
+        GPT y Gemini
+      Operación
+        Download y deploy
+        Checkstatus
+        Tablero de 24 casillas
+        Generate
+      Réplica
+        Inventario
+        Transferencia
+        Verificación
+    Asistir equipos
+      Observación
+        Osquery local
+        Osctrl remoto
+        Enrolamiento
+      Sistemas
+        Inspección
+        LVM y montajes
+        Chroot
+      Sesión
+        Asistencia local
+        Terminales y consentimiento
+        Cockpit
+    Comunidad y ayuda
+      Web
+        Inicio y selector
+        Catálogo
+        Sistemas
+      TEC
+        Cuenta y casos
+        URL y Mirrors
+        Deploy y PXE Recipes
+      Documentación
+        F1 y CLI
+        Manuales y checklist
+        CDN y API en revisión
+```
+
+## Rutas exactas desde el menú principal
+
+| Área | Entrada | Aplicación independiente | Opciones y resultado |
+| --- | --- | --- | --- |
+| ISO | Imágenes, perfiles y medios | `aux-images` | Planes de Live/ISO/USB y perfiles; construcción explícita. |
+| ISO | Kernel Modeler | `aux kernel-modeler` | Banco de trabajo de núcleos: ISO, raíz nueva o sistema actual explícito. |
+| Asistencia | Observación local/flota | `aux-observe` | Estado, tablas locales, entornos, nodos, consultas/resultados y preparación de enrolamiento. |
+| Asistencia | Sistemas y chroot | `aux-enter` | Detectar dispositivos, inspección, montajes, LVM y reparación. |
+| Asistencia | Controles locales VT6 | `aux-assist` | Sesión local y asistencia consentida. |
+| Asistencia / herramientas | Cockpit | `aux-tools --tool cockpit` | Dirección y servicio del equipo. |
+| Asistencia / herramientas | Área web local | `aux-tools --gui` | Acceso local al área de trabajo. |
+| Despliegue | Settings | `aux-config` | Rutas, destinos, parámetros de IA, accesos y diagnóstico. |
+| Despliegue | Catálogo | `aux-catalog` | Mostrar, validar, importar/migrar, presets, CDE, resolver y asistencia IA. |
+| Despliegue | Perfiles | `aux-profile` | Selección nativa y exportación de perfiles de software. |
+| Despliegue | Réplica íntegra | `aux-release` | Inventario, revisión, transferencia, verificación y publicación por fases. |
+| Despliegue | Estado e inventario | `aux-checkstatus` | Estado local/remoto, hash opcional, consulta y registro de prueba hasta login. |
+| Despliegue | Descargar | `download.sh` / `aux download` | Plan de adquisición y descarga a caché. |
+| Despliegue | Desplegar | `deploy.sh` / `aux deploy` | Destinos de la política: RAM, disco y Bastion. |
+| Despliegue | Generar | `generate.sh` / `aux generate` | Publicar desde una instantánea vigente. |
+| Sistema actual al final | Instalar y personalizar | `aux-setup` | ISO, raíz nueva o modificación explícita del sistema actual. |
+
+## Catálogo y observación
+
+```mermaid
+flowchart TD
+    Catalogo[&quot;catalog.json: recurso y política&quot;] --&gt; Plan[&quot;Revisar plan&quot;]
+    Plan --&gt; Download[&quot;Download&quot;]
+    Plan --&gt; Deploy[&quot;Deploy con fuente existente&quot;]
+    Download --&gt; Deploy
+    Deploy --&gt; Check[&quot;Checkstatus&quot;]
+    Bastion[&quot;Inventario rsync o FTP&quot;] --&gt; Check
+    Pruebas[&quot;Prueba registrada hasta login&quot;] --&gt; Check
+    Check --&gt; Estado[&quot;status.json: observaciones&quot;]
+    Estado --&gt; Generate[&quot;Generate&quot;]
+    Catalogo --&gt; Generate
+    Generate --&gt; Web[&quot;Web, catálogo e iPXE&quot;]
+```
+
+## Entradas web e iPXE
+
+| Página o menú | Acceso y función |
+| --- | --- |
+| `index.html` / `index.php` | Portal gráfico y catálogo publicado. |
+| `index-pxe.html`, `cli.html`, `cli-all.html` | Navegación terminal/Links. |
+| `workspace.html` | Entrada a instalar, catálogo, sistemas y TEC. |
+| `installer.html` | Distribución, destino, tareas/grupos nativos y herramientas AUX. |
+| `catalogue.html` | Presets acumulables, búsqueda, políticas, origen y exportación JSON. |
+| `systems.html` | Comandos para entrada guiada al sistema y Cockpit. |
+| `contents.html` y páginas de recurso | Archivos y árboles de los medios realmente disponibles. |
+| `menu.ipxe` | Jerarquía de arranque, proveedores y recetas preparadas. |
+| `components.ipxe` | Recetas aprobadas por componentes, con procedencia visible. |
+| `tec.1-s.es` | Cuenta, casos, cliente/USB, consola autorizada y foros. |
+| `forum.php?board=urls` | URL &amp; Mirrors. |
+| `forum.php?board=deploy` | Deploy / 12 bits: propuestas de política. |
+| `forum.php?board=pxe` | PXE Recipes: procedimientos y recetas moderadas. |
+
+## Rescue Live en dialog
+
+El selector ofrece instalación, catálogo, sistemas/chroot, Cockpit, carga de
+técnicos, asistencia SSH/web, terminal local, configuración de red y control de
+apagado. GPT/Gemini y sus claves aparecen cuando esa capacidad está habilitada.
+Las acciones conservan sus confirmaciones y su consentimiento. Un Esc vuelve al
+selector y la ayuda explica el alcance; el menú no acredita pruebas de hardware.
+
+El tablero común de Estado/Catálogo está en web y en `aux catalog board`. La guía Blue Hibou / Red Robin está en precautions.html y docs/RED-ROBIN-8.md.
+</pre></section>
+<section id="CHECKLIST-8.md"><h2>Checklist de aceptación</h2><pre style="white-space:pre-wrap"># Checklist de entrega de la primera beta
+
+Timestamp: 2026-11-23 | Version: 8.0.1-beta.3  
+Author &amp; Credits: https://www.alawise.es/1-s
+
+La entrega es una beta de fuentes. «Implementado» describe código e integración;
+la aceptación en servidores y equipos reales se registra por separado.
+
+| Requisito | Entrega | Validación |
+| --- | --- | --- |
+| Base completa y aplicaciones independientes | Conservadas desde 7.0.1-beta.4. | Regresión de la suite. |
+| Catálogo único JSON | `catalog.json`, importación y migración explícitas. | Validación y planes CLI. |
+| 24 bits y cuatro reservados | RASCDE, política CDE separada de A/S. | Recorrido de las 4096 políticas y rechazo de reservas activas. |
+| Combinaciones de adquisición/retención/destino | Reglas documentadas y ejecución por fases. | Pruebas de política, archivos y planes. |
+| Checkstatus | Aplicación CLI/TUI, instantánea atómica, vigencia e historial. | Pruebas de ausencia, archivos reales, hashes, errores y evidencias. |
+| Bastion antes de generate | Inventario rsync/FTP/FTPS y correspondencia de URL. | Simulación de FTPS y publicación desde inventario remoto. |
+| Presupuesto de Bastion | Se deriva del SSD; selección independiente. | Prueba de igualdad de presupuesto. |
+| Presets Alpine/Fedora/Debian/Todos | Selección acumulable web/CLI, decisiones manuales conservadas. | Pruebas de DOM y catálogo. |
+| Chroot compartido | Gentoo declarado en los tres, procedimiento y manifiesto oficial. | Prueba de pertenencia; resolución real requiere acceso a la fuente. |
+| Instaladores ligeros y componentes | Se conservan los instaladores; menú estructurado de componentes. | Validadores y generación. |
+| Origen exacto | Procedencia, versión, arquitectura, checksum y referencias separados de mirrors. | Validación de catálogo y pruebas heredadas de adaptadores. |
+| Tres foros y enlaces de usuario | Parche integrado en las ocho rutas de código. | Sintaxis PHP y pruebas de moderación/validación. |
+| IA y Max tokens | Campo editable y guardado revisado en catálogo. | Pruebas de límites y cancelación; llamadas reales no realizadas. |
+| Rescue en dialog | Selector y dependencia añadidos a payloads. | Compilación de fuentes y prueba del selector simulado. |
+| Ayudas, manual y navegación | README, contrato, operación, mapa mental y diagramas. | Revisión de referencias y empaquetado. |
+| Presupuesto del paquete | Máximo 28 MB extraídos; cifra exacta en el informe. | Medición y manifiesto SHA-256. |
+| CDN | Guía del piloto preparada con documentación OVH. | Activación y pruebas reales pendientes de oferta/acceso. |
+| API de control y mantenimiento | Aplicaciones existentes conservadas; contrato previo incluido como borrador. | Nuevo alcance funcional pendiente de definición. |
+
+## Aceptación operativa todavía necesaria
+
+- Configurar los accesos de Bastion y comprobar su inventario real y la réplica.
+- Actualizar las fuentes que se quieran descargar; los metadatos importados son
+  históricos y algunas referencias pueden haber cambiado.
+- Construir la Rescue de esta edición y comprobar el selector dialog en la Live.
+- Arrancar instaladores reales por BIOS/UEFI hasta login y registrar evidencias.
+- Probar instalación/chroot sobre los sistemas y arquitecturas seleccionados.
+- Identificar la oferta CDN y ejecutar su piloto.
+
+Los fixtures automatizados no se exportan como pruebas aprobadas de los recursos
+del catálogo. Ningún recurso recibe «comprobada» por el hecho de empaquetar esta
+beta o superar las pruebas unitarias.
+</pre></section>
+<section id="TESTING-8.md"><h2>Validación de la beta</h2><pre style="white-space:pre-wrap"># Validación de AUX 8
+
+Timestamp: 2026-11-23 | Version: 8.0.1-beta.3  
+Author &amp; Credits: https://www.alawise.es/1-s
+
+Resultados de la beta de fuentes del 23/11/2026:
+
+| Comprobación | Resultado |
+| --- | --- |
+| Regresión de la suite | 298 casos, sin fallos, 12 omitidos. |
+| Política, catálogo, checkstatus e integración AUX 8 | 117 casos, sin fallos. |
+| Preparación y agentes de Rescue | 82 casos, sin fallos, 7 omitidos. |
+| DOM del catálogo | Presets acumulables, chroot compartido, edición manual, destinos y exportación JSON correctos. |
+| DOM del instalador y portal de orígenes | Ambas suites correctas. |
+| PHP | 19 archivos con sintaxis correcta; cinco suites de foro, registro, CLI y enrolamiento correctas. |
+| Generación web desde fuentes | 283 recursos, 144 orígenes comprobados por HTTP, aplicaciones y documentación generadas. |
+| Manifiesto y paquete | SHA-256 por archivo y verificación integral del archivo comprimido. |
+
+Son 497 casos Python: 478 ejecutados y 19 omitidos. Las omisiones corresponden
+principalmente a herramientas de construcción de imágenes, integración de medios
+y contratos que requieren privilegios del sistema o sockets AF_UNIX. No acreditan esas funciones
+en este entorno. Los detalles de cada caso se obtienen con `unittest -v`.
+
+Las pruebas usan directorios temporales, archivos de ejemplo y servicios locales
+o simulados. La publicación desde inventario de Bastion se comprueba sin abrir
+conexiones a Bastion. RAM y SSD mantienen copias distintas de un mismo recurso;
+el catálogo público conserva una identidad y ofrece ambas ubicaciones observadas.
+La prueba Git confirma solo catálogo y sidecar, conservando otros cambios preparados.
+Los fallos de los trabajadores de descarga se propagan a la aplicación.
+
+## Reproducción
+
+Desde la raíz de fuentes, con Python 3.12 o posterior:
+
+```bash
+python3 -m unittest discover -s tests7 -p &#x27;test_*.py&#x27;
+python3 -m unittest discover -s tests8 -p &#x27;test_*.py&#x27;
+python3 -m unittest discover -s iso-assist -p &#x27;test_*.py&#x27;
+python3 build.py --output /ruta/nueva/preview
+sha256sum -c SHA256SUMS
+```
+
+Las pruebas de agentes usan las dependencias declaradas en `cli/requirements.txt`;
+la ejecución de esta entrega usó asyncssh 2.24.0 en un directorio de pruebas externo
+a las fuentes. Las pruebas DOM requieren Node y jsdom:
+
+```bash
+node tests8/test_status_ui.cjs
+node tests8/test_catalog_ui.cjs
+node tests7/test_installer_ui.cjs
+node tests7/test_origin_portal.cjs
+```
+
+Las cinco suites PHP son `tec/test_forum.php`, `tec/test_forums8.php`,
+`tec/test_registry.php`, `tec/test_cli.php` y `tec/test_enroll.php`.
+Cada una recibe un directorio temporal vacío como primer argumento. Se utilizó
+PHP 8.4.27 con sus extensiones; no se enviaron correos ni se usaron cuentas reales.
+
+## Límites de aceptación
+
+El catálogo distribuido no contiene pruebas de login aprobadas. La generación
+web no convierte ningún fixture en evidencia de un recurso del catálogo.
+
+Quedan pendientes el inventario y despliegue real en Bastion, las descargas que
+requieran resolver metadatos históricos, construir esta Rescue, arrancar por
+BIOS/UEFI hasta login, probar procedimientos chroot y ejecutar el piloto CDN.
+La publicación Sites se valida por separado; los timers systemd incluidos no se activan al extraer las fuentes. El nuevo alcance de API
+para control y mantenimiento sigue pendiente de definición; el contrato previo
+se conserva como borrador en `docs/api/`.
+
+## Ampliaciones beta.2
+
+Doce pruebas adicionales cubren identidad y perfiles nativos, escritura acotada al destino, límites de auditoría HTTP, bits observados, hash de revisión y adaptación en copia nueva sin estado privado. El DOM de estado comprueba orden de los 20 bits, ocho observados, ficha Info, edición CDE, exportación canónica e importación fijada al artefacto. El DOM de instalación compara también la identidad con los perfiles Python en las tres distribuciones. El foro Node prueba tableros, recetas base y aportaciones de políticas; las cinco suites PHP conservan sus contratos. No se han efectuado consultas pagadas GPT/Gemini, enrolamientos ni instalaciones reales.
+
+Beta.3 añade cinco pruebas: despliegue offline por capas con fuentes opcionales, detección de corrupción antes de escribir, rechazo de escape de rutas ZIP, importación de los 69 perfiles sin máscara y copias self-assambler sin recursión ni trabajo privado. El paquete real se extrae en un directorio temporal y se comprueban sus fuentes e imagen por SHA-256.
+
+Beta.4 añade ocho pruebas de resolución de catalog_sources_file y de CLI desde configuraciones personales antiguas. Las rutas personalizadas y la configuración personal permanecen intactas.
+
+Beta.5 añade dieciséis pruebas de preparación de metadatos, políticas, caché, curl real con HTTP local, reanudación, errores HTTP, rechazo de hashes y fingerprints, CLI y manifiestos Gentoo fechados/antiguos. Se verificaron además descargas completas reales y firmas Arch, con rechazo de un payload alterado.
+
+Beta.6: dieciséis pruebas nuevas verifican fallos mixtos de lote, informes y progreso, presupuestos y límites físicos, selección limitada, unión de presets, importación web, canal NixOS, Metalink y sidecar Agama y réplicas anidadas. El DOM compara el cálculo JavaScript con Python; comprobación en navegador de los presets y ajuste de límites. Descargas completas: NixOS 1.744.830.464 bytes y Agama 756.236.288 bytes, ambas con SHA-256 oficial coincidente.
+
+Prioridad: combinaciones P de 0 a F, independencia de CDE y evidencia de login, validación de ámbitos, orden de usuario, retención de obligatorio ante exceso, CLI y exportación/importación web de 24 bits.
+
+Beta.8 añade diez pruebas de Kernel Modeler: destino explícito, planes ISO/raíz/host, rechazo de raíz /, paquetes nativos en las tres bases, plantillas sin sustitución del arranque, preservación de fichas y selección web/dialog coherente. El DOM comprueba mínimos de consola, rol obligatorio del preset y destinos efectivos. La auditoría de nombres en índices oficiales encuentra los 30/33/31 paquetes de Debian/Fedora/Alpine; no equivale a instalación ni a compilación.
+
+8.0.1-beta.3 añade ocho pruebas de matrioshka: cuatro entregas hermanas idénticas en web y directorio de trabajo; rechazo previo a escritura de corrupción, nombres de descarga fuera de raíz, prefijo incorrecto y módulos ausentes; exclusión del directorio de salida del árbol fuente. Se conserva la compatibilidad de las matrioshkas anteriores. El despliegue offline del paquete real comprueba los cuatro hashes y la estructura suite/ + entregas.
+
+8.0.1-beta.3 añade 17 pruebas: tablero común, edición y observaciones, destinos remotos, comandos por fase, conservación de artefacto, consola 80 columnas, selección remota opcional, reservas físicas y activación explícita de Cockpit. El DOM comprueba 24 casillas por fila y persistencia de selección entre vistas. Se ha revisado el navegador con 283 filas y los dos emblemas.
+</pre></section>
+<section id="CDN-8.md"><h2>Piloto CDN</h2><pre style="white-space:pre-wrap"># CDN: primer piloto para AUX
+
+Timestamp: 2026-11-23 | Version: 8.0.1-beta.3  
+Author &amp; Credits: https://www.alawise.es/1-s
+
+Inventario y réplica Excalibur/Bastion deben funcionar antes del piloto. La CDN
+añade distribución HTTP con caché; no acredita réplica ni pruebas de arranque.
+
+1. Revisar el apartado CDN del alojamiento OVH: oferta incluida/contratada o
+   disponible y dominios afectados.
+2. Elegir un dominio piloto y unos pocos archivos públicos estáticos versionados,
+   por ejemplo estilos e imágenes.
+3. Preparar reglas de duración de caché, actualización y purga para esa oferta.
+4. Verificar origen/CDN, contenido/hashes y actualización tras publicar una nueva
+   versión, conservando una vía de acceso al origen.
+5. Evaluar aparte ISO grandes y componentes: tamaño admitido, reanudación,
+   solicitudes parciales y cliente iPXE concreto.
+
+El catálogo mutable, menu.ipxe, sesiones, formularios TEC/CLI y API requieren
+tratamiento propio; el primer piloto no los incorpora automáticamente a caché.
+Este paquete no modifica DNS, contrata opciones ni activa CDN.
+
+Referencia oficial consultada el 22/11/2026:
+https://docs.ovhcloud.com/en/guides/web-cloud/web-hosting/cdn-how-to-use-cdn
+
+Los límites deben comprobarse para el servicio concreto; un cupo de precarga no
+se toma como límite general de tamaño de una ISO.
+</pre></section>
+</html>

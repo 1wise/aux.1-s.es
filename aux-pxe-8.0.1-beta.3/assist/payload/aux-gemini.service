@@ -1,0 +1,32 @@
+# Timestamp: 2026-10-17 | Version: 6.3.0-dev.1
+# Author & Credits: https://www.alawise.es/1-s
+[Unit]
+Description=Gemini Assist API terminal on tty5 (manual start)
+After=NetworkManager.service
+Requires=aux-exec.service
+After=aux-exec.service
+Conflicts=getty@tty5.service
+
+[Service]
+Type=simple
+User=aux-ai
+Group=aux-ai
+SupplementaryGroups=tty
+ExecStart=/usr/bin/python3 /usr/share/aux-assist/ai.py --provider gemini --agent
+StandardInput=tty
+StandardOutput=tty
+StandardError=tty
+TTYPath=/dev/tty5
+TTYReset=yes
+TTYVHangup=yes
+Environment=TERM=linux
+Environment=PYTHONDONTWRITEBYTECODE=1
+UMask=0077
+LimitCORE=0
+NoNewPrivileges=yes
+CapabilityBoundingSet=
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=no
+# No Install section: API access must never start just because the Live booted.

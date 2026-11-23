@@ -1,0 +1,14 @@
+{
+  "version": "8.0.1-beta.3",
+  "applications": [
+    "workspace.html",
+    "installer.html",
+    "catalogue.html",
+    "systems.html",
+    "status.html",
+    "recipes.html",
+    "urls.html",
+    "adapt.html"
+  ],
+  "compiled_new_isos": false
+}

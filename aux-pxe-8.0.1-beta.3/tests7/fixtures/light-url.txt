@@ -1,0 +1,93 @@
+# Timestamp: 2026-11-15 | Version: 7.0.1-beta.4
+# Author & Credits: https://www.alawise.es/1-s
+# Selection review only. No code, crawler rules or boot recipes are changed.
+# One active payload URL per line. Comment lines are ignored by AUX.
+# LIGHT: native network boot and minimal systems first, then every selected tool.
+# 43 payloads; advertised compressed total: 22.51 GiB.
+# RAM budget: 28 GiB nominal, 25.2 GiB after reserve. Extraction is additional.
+# Existing RAM contents also count. Deployment must check actual free space.
+# Use an explicit Light list; beta.20 RAM deployment may otherwise select the whole cache.
+# bash deploy.sh ram --list light --light-url-file "$PWD/light-url.txt" --dry-run
+
+# Network boot clients
+https://archlinux.org/static/netboot/ipxe-arch.efi
+https://archlinux.org/static/netboot/ipxe-arch.lkrn
+https://archlinux.org/static/netboot/ipxe-arch.pxe
+https://github.com/netbootxyz/netboot.xyz/releases/download/3.0.3/netboot.xyz-arm64.efi
+https://github.com/netbootxyz/netboot.xyz/releases/download/3.0.3/netboot.xyz.efi
+https://github.com/netbootxyz/netboot.xyz/releases/download/3.0.3/netboot.xyz.kpxe
+https://github.com/netbootxyz/netboot.xyz/releases/download/3.0.3/netboot.xyz.lkrn
+
+# Native netboot archives
+https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/aarch64/alpine-netboot-3.24.4-aarch64.tar.gz
+https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86/alpine-netboot-3.24.4-x86.tar.gz
+https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86_64/alpine-netboot-3.24.4-x86_64.tar.gz
+# Debian 13 amd64; keep only one generic netboot.tar.gz in the flat cache.
+https://deb.debian.org/debian/dists/trixie/main/installer-amd64/current/images/netboot/netboot.tar.gz
+# Local iPXE recipe must be tested; package presence is not a boot test.
+https://releases.ubuntu.com/26.04.1/ubuntu-26.04.1-netboot-amd64.tar.gz
+# Local iPXE recipe must be tested.
+https://cdimage.ubuntu.com/ubuntu/releases/26.04.1/release/ubuntu-26.04.1-netboot-arm64.tar.gz
+
+# Small systems for recipe tests
+# Tiny Core: download/extraction only until a reviewed local recipe exists.
+# Cached media availability does not prove that beta.20 can generate a boot recipe.
+https://distro.ibiblio.org/tinycorelinux/17.x/x86/release/Core-17.1.iso
+# Tiny Core: download/extraction only until a reviewed local recipe exists.
+# Cached media availability does not prove that beta.20 can generate a boot recipe.
+https://distro.ibiblio.org/tinycorelinux/17.x/x86_64/release/CorePure64-17.1.iso
+# NixOS minimal: local recipe pending; use the upstream iPXE entry meanwhile.
+# Cached media availability does not prove that beta.20 can generate a boot recipe.
+https://releases.nixos.org/nixos/26.05/nixos-26.05.14234.f1e5c356f35d/nixos-minimal-26.05.14234.f1e5c356f35d-x86_64-linux.iso
+# SliTaz: reviewed local iPXE recipe still required.
+# Cached media availability does not prove that beta.20 can generate a boot recipe.
+https://mirror.slitaz.org/iso/rolling/slitaz-rolling-core.iso
+# SliTaz: reviewed local iPXE recipe still required.
+# Cached media availability does not prove that beta.20 can generate a boot recipe.
+https://mirror.slitaz.org/iso/rolling/slitaz-rolling-core64.iso
+
+# Network installation ISO fallbacks
+https://repo.almalinux.org/almalinux/10/isos/x86_64/AlmaLinux-10.2-x86_64-boot.iso
+https://mirror.stream.centos.org/10-stream/BaseOS/x86_64/iso/CentOS-Stream-10-latest-x86_64-boot.iso
+https://download.fedoraproject.org/pub/fedora/linux/releases/45/Server/x86_64/iso/Fedora-Server-netinst-x86_64-45-1.4.iso
+https://download.rockylinux.org/pub/rocky/10/isos/x86_64/Rocky-10.2-x86_64-boot.iso
+# Local iPXE recipe support must be checked in beta.20.
+https://download.opensuse.org/distribution/leap/16.0/installer/iso/agama-installer.x86_64-Leap_16.0.iso
+https://cdimage.debian.org/cdimage/archive/12.15.0/i386/iso-cd/debian-12.15.0-i386-netinst.iso
+https://cdimage.debian.org/debian-cd/current/arm64/iso-cd/debian-13.7.0-arm64-netinst.iso
+# Local iPXE recipe support must be checked in beta.20.
+https://files.devuan.org/devuan_excalibur/installer-iso/devuan_excalibur_6.1.1_amd64_netinstall.iso
+https://distfiles.gentoo.org/releases/amd64/autobuilds/current-install-amd64-minimal/install-amd64-minimal-20261108T170107Z.iso
+https://cdimage.kali.org/current/kali-linux-2026.3-installer-netinst-amd64.iso
+
+# Tools: memory and boot
+https://www.memtest.org/download/v9.00/mt86plus_9.00_i586.iso.zip
+https://www.memtest.org/download/v9.00/mt86plus_9.00_x86_64.grub.iso.zip
+https://www.memtest.org/download/v9.00/mt86plus_9.00_x86_64.iso.zip
+# New upstream filename; beta.20 crawler rule needs review in the next edition.
+# The beta.20 Super GRUB crawler pattern may not recognize this newer filename.
+https://sourceforge.net/projects/supergrub2/files/2.06s4/super_grub2_disk_2.06s4/supergrub2-classic-2.06s4-multiarch-CD.iso/download
+
+# Tools: disks, rescue and diagnostics
+# Download/extraction does not approve a local boot recipe.
+https://sourceforge.net/projects/linux4m/files/52.0/livecd/updates/2/4MLinux-52.2-64bit.iso/download
+# Download/extraction does not approve a local boot recipe.
+https://sourceforge.net/projects/boot-repair-cd/files/boot-repair-disk-64bit.iso/download
+# Download/extraction does not approve a local boot recipe.
+https://sourceforge.net/projects/clonezilla/files/clonezilla_live_testing/3.3.4-23/clonezilla-live-3.3.4-23-amd64.iso/download
+# Download/extraction does not approve a local boot recipe.
+https://sourceforge.net/projects/dban/files/dban/dban-2.3.0/dban-2.3.0_i586.iso/download
+# Download/extraction does not approve a local boot recipe.
+https://downloads.sourceforge.net/project/gparted/gparted-live-stable/1.8.1-6/gparted-live-1.8.1-6-amd64.iso
+# Download/extraction does not approve a local boot recipe.
+https://rescuedisk.s.kaspersky-labs.com/updatable/2018/krd.iso
+# Download/extraction does not approve a local boot recipe.
+https://sourceforge.net/projects/redobackup/files/redorescue-4.0.0.iso/download
+# Download/extraction does not approve a local boot recipe.
+https://sourceforge.net/projects/rescatux/files/rescatux-0.74/rescatux-0.74.iso/download
+# Download/extraction does not approve a local boot recipe.
+https://github.com/rescuezilla/rescuezilla/releases/download/2.6.2/rescuezilla-2.6.2-64bit.resolute.iso
+# Download/extraction does not approve a local boot recipe.
+https://github.com/PartialVolume/shredos.x86_64/releases/download/v2025.11_32_x86-64_0.43.1/shredos-2025.11_32_x86-64_v0.43.1_20261010.iso
+# Download/extraction does not approve a local boot recipe.
+https://fastly-cdn.system-rescue.org/releases/13.03/systemrescue-13.03-amd64.iso

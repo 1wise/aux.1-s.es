@@ -1,0 +1,15 @@
+#!ipxe
+# Timestamp: 2026-11-10 | Version: 8.0.1-beta.3
+# Author & Credits: https://www.alawise.es/1-s
+set arch ${buildarch}
+iseq ${buildarch} i386 && cpuid --ext 29 && set arch x86_64 ||
+chain --autofree https://boot.netboot.xyz/boot.cfg || goto origin_error
+set space:hex 20:20
+set space ${space:string}
+set menu live-mint
+chain --autofree https://boot.netboot.xyz/live-mint.ipxe || goto origin_error
+exit
+:origin_error
+echo Upstream menu failed. Check network and firmware.
+prompt Press a key to return...
+exit
