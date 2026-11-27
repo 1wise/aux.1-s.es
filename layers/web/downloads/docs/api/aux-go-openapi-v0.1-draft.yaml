@@ -1,0 +1,498 @@
+# Timestamp: 2026-11-21
+# Version: 0.1.0-draft
+# Author & Credits: https://www.alawise.es/1-s
+# AUX Go: An ISO is a board intersection and a bitmask change is a move.
+# A proposed move must never execute privileged commands by itself.
+openapi: 3.1.0
+info:
+  title: AUX Go - Catalog Board API
+  version: 0.1.0-draft
+  description: |
+    A proposal/commit API for the unified 8-bit ISO catalog. All commands are
+    plans until an authorized operator explicitly commits a move or executes
+    a separately reviewed job. Origin checks do not download image bodies.
+servers:
+  - url: https://aux.example.invalid/api
+    description: Placeholder; configure the deployment's canonical HTTPS origin.
+security:
+  - bearerAuth: []
+tags:
+  - name: Board
+  - name: Moves
+  - name: Jobs
+  - name: Audit
+paths:
+  /v1/board:
+    get:
+      tags: [Board]
+      summary: Return the catalog as an N-by-8 board with an immutable revision.
+      operationId: getBoard
+      responses:
+        '200':
+          description: Current catalog and capacity snapshot.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Board'
+  /v1/moves:
+    post:
+      tags: [Moves]
+      summary: Propose a single move; do not change the board.
+      operationId: proposeMove
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MoveProposal'
+            example:
+              resource_id: fedora-server-x86_64
+              expected_revision: 42
+              set_mask: '0x3A'
+              reason: Cache the current ISO and prepare disk plus verified Bastion backup.
+      responses:
+        '201':
+          description: Pending proposal with server-computed validation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Move'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '422':
+          $ref: '#/components/responses/InvalidMove'
+  /v1/moves/{move_id}:
+    get:
+      tags: [Moves]
+      summary: Read a proposed or committed move and its audit status.
+      operationId: getMove
+      parameters:
+        - $ref: '#/components/parameters/MoveId'
+      responses:
+        '200':
+          description: Move status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Move'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v1/moves/{move_id}/commit:
+    post:
+      tags: [Moves]
+      summary: Commit a reviewed move atomically; never start a deployment.
+      operationId: commitMove
+      description: |
+        Requires an authorized human operator. Rechecks catalog revision,
+        legal mask, resource identity and budgets. Assistant credentials may
+        propose moves but may not commit them.
+      parameters:
+        - $ref: '#/components/parameters/MoveId'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [expected_revision]
+              properties:
+                expected_revision:
+                  type: integer
+                  minimum: 0
+      responses:
+        '200':
+          description: Committed catalog change; no download or deploy yet.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Move'
+        '403':
+          description: Human operator approval is required.
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '422':
+          $ref: '#/components/responses/InvalidMove'
+  /v1/jobs/plan:
+    post:
+      tags: [Jobs]
+      summary: Validate and plan a crawler, cache or deployment job.
+      operationId: planJob
+      description: A plan is read-only and has no side effects on live services.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JobRequest'
+            example:
+              action: download
+              resource_ids: [fedora-server-x86_64]
+              expected_revision: 43
+              release_id: aux-2026-11-21
+      responses:
+        '200':
+          description: Plan, prerequisite checks and projected resource use.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobPlan'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '422':
+          $ref: '#/components/responses/InvalidMove'
+  /v1/jobs/{job_id}/execute:
+    post:
+      tags: [Jobs]
+      summary: Start a previously reviewed job with human approval.
+      operationId: executeJob
+      description: |
+        Revalidate the source hashes, authorized roots, revision, locks and
+        current capacity before every mutating phase. No implicit download
+        during deploy; no implicit delete on Bastion. Execution credentials
+        must be narrower than the public read-only API credentials.
+      parameters:
+        - $ref: '#/components/parameters/JobId'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [expected_revision]
+              properties:
+                expected_revision:
+                  type: integer
+                  minimum: 0
+      responses:
+        '202':
+          description: Accepted for monitored execution.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobPlan'
+        '403':
+          description: Explicit human approval or role is missing.
+        '409':
+          $ref: '#/components/responses/Conflict'
+  /v1/jobs/{job_id}:
+    get:
+      tags: [Jobs]
+      summary: Read job progress and verification evidence.
+      operationId: getJob
+      parameters:
+        - $ref: '#/components/parameters/JobId'
+      responses:
+        '200':
+          description: Current job record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobPlan'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v1/events:
+    get:
+      tags: [Audit]
+      summary: Read immutable, paginated board and job events.
+      operationId: listEvents
+      parameters:
+        - name: after
+          in: query
+          required: false
+          schema:
+            type: string
+            maxLength: 128
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 30
+      responses:
+        '200':
+          description: Audit log page with its continuation cursor.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+                required: [events]
+                properties:
+                  next_cursor:
+                    type: [string, 'null']
+                  events:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Event'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: opaque-access-token
+  parameters:
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      schema:
+        type: string
+        minLength: 16
+        maxLength: 128
+    MoveId:
+      name: move_id
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: '^[A-Za-z0-9_-]{8,80}$'
+    JobId:
+      name: job_id
+      in: path
+      required: true
+      schema:
+        type: string
+        pattern: '^[A-Za-z0-9_-]{8,80}$'
+  responses:
+    Conflict:
+      description: Revision is stale or another operation holds the lock.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InvalidMove:
+      description: The move violates policy, source identity or capacity.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Mask:
+      type: string
+      pattern: '^0x[0-9A-Fa-f]{2}$'
+      description: |
+        Bits 0-3 are deployment flags L=1, H=2, O=4, B=8;
+        bits 4-7 are acquisition flags D=16, U=32, P=64, A=128.
+        Mask expresses desired policy, not verified execution status.
+      examples: ['0x10', '0x3A', '0xFF']
+    Resource:
+      type: object
+      additionalProperties: false
+      required: [id, family, architecture, original_url, mask, verification]
+      properties:
+        id:
+          type: string
+          maxLength: 120
+        family:
+          type: string
+        release:
+          type: [string, 'null']
+        architecture:
+          type: string
+        original_url:
+          type: string
+          format: uri
+        mask:
+          $ref: '#/components/schemas/Mask'
+        size_bytes:
+          type: [integer, 'null']
+          minimum: 0
+        sha256:
+          type: [string, 'null']
+          pattern: '^[a-fA-F0-9]{64}$'
+        cached:
+          type: boolean
+          default: false
+        verification:
+          type: object
+          additionalProperties: false
+          properties:
+            origin_http:
+              type: string
+              enum: [passed, failed, not-checked]
+            download_sha256:
+              type: string
+              enum: [passed, failed, not-checked]
+            bastion_sha256:
+              type: string
+              enum: [passed, failed, not-checked]
+            bios_boot:
+              type: string
+              enum: [passed, failed, not-tested]
+            uefi_boot:
+              type: string
+              enum: [passed, failed, not-tested]
+    Board:
+      type: object
+      additionalProperties: false
+      required: [revision, resources, limits]
+      properties:
+        revision:
+          type: integer
+          minimum: 0
+        resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/Resource'
+        limits:
+          type: object
+          additionalProperties: false
+          required: [ram_bytes, disk_bytes]
+          properties:
+            ram_bytes:
+              type: integer
+              minimum: 0
+            disk_bytes:
+              type: integer
+              minimum: 0
+            bastion_bytes:
+              type: [integer, 'null']
+              minimum: 0
+    MoveProposal:
+      type: object
+      additionalProperties: false
+      required: [resource_id, expected_revision, set_mask, reason]
+      properties:
+        resource_id:
+          type: string
+          minLength: 1
+          maxLength: 120
+        expected_revision:
+          type: integer
+          minimum: 0
+        set_mask:
+          $ref: '#/components/schemas/Mask'
+        reason:
+          type: string
+          minLength: 1
+          maxLength: 1000
+    Move:
+      type: object
+      additionalProperties: false
+      required: [id, resource_id, status, before, after, expected_revision, warnings, requires_human_approval]
+      properties:
+        id:
+          type: string
+        resource_id:
+          type: string
+        status:
+          type: string
+          enum: [proposed, rejected, committed, superseded]
+        before:
+          $ref: '#/components/schemas/Mask'
+        after:
+          $ref: '#/components/schemas/Mask'
+        expected_revision:
+          type: integer
+          minimum: 0
+        committed_revision:
+          type: [integer, 'null']
+          minimum: 0
+        warnings:
+          type: array
+          items:
+            type: string
+        requires_human_approval:
+          type: boolean
+        reason:
+          type: string
+    JobRequest:
+      type: object
+      additionalProperties: false
+      required: [action, resource_ids, expected_revision]
+      properties:
+        action:
+          type: string
+          enum: [crawl, download, deploy_ram, deploy_hard, backup_bastion, generate]
+        resource_ids:
+          type: array
+          minItems: 1
+          uniqueItems: true
+          items:
+            type: string
+            minLength: 1
+        expected_revision:
+          type: integer
+          minimum: 0
+        release_id:
+          type: [string, 'null']
+          maxLength: 100
+    JobPlan:
+      type: object
+      additionalProperties: false
+      required: [id, action, status, eligible, steps, warnings, revision]
+      properties:
+        id:
+          type: string
+        action:
+          type: string
+          enum: [crawl, download, deploy_ram, deploy_hard, backup_bastion, generate]
+        status:
+          type: string
+          enum: [planned, accepted, running, completed, failed, blocked]
+        eligible:
+          type: boolean
+        revision:
+          type: integer
+          minimum: 0
+        steps:
+          type: array
+          items:
+            type: string
+        warnings:
+          type: array
+          items:
+            type: string
+        evidence:
+          type: array
+          items:
+            type: string
+    Event:
+      type: object
+      additionalProperties: false
+      required: [id, timestamp, actor_role, kind, summary]
+      properties:
+        id:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        actor_role:
+          type: string
+          enum: [operator, assistant, system]
+        kind:
+          type: string
+          enum: [move_proposed, move_committed, job_planned, job_executed, job_failed]
+        summary:
+          type: string
+        resource_id:
+          type: [string, 'null']
+        revision:
+          type: [integer, 'null']
+          minimum: 0
+    Error:
+      type: object
+      additionalProperties: false
+      required: [code, message]
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        current_revision:
+          type: [integer, 'null']
+          minimum: 0

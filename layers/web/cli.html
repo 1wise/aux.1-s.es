@@ -1,0 +1,1456 @@
+<!doctype html>
+<!-- Timestamp: 2026-11-28 | Version: 8.0.1-beta.9 | Author & Credits: https://www.alawise.es/1-s -->
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Downloads &amp; network boot | PXE_</title>
+<style>
+@font-face { font-family: "PXE Bits"; src: url("assets/pxe-bits.ttf") format("truetype"); font-display: swap; unicode-range: U+0045,U+0050,U+0058,U+005F; }
+body { color: #f8fafc; background: #0f172a; max-width: 100ch; margin: 2rem auto; padding: 0 1rem; font: 15px/1.5 ui-monospace, SFMono-Regular, Consolas, monospace; }
+a { color: #34d399; text-decoration: underline; }
+a:hover { color: #6ee7b7; background: #1e293b; }
+h1, h2, h3, h4 { color: #38bdf8; font-weight: 600; }
+h1 { border-bottom: 2px solid #38bdf8; padding-bottom: .6rem; }
+p { color: #cbd5e1; }
+li { padding: .35rem 0; overflow-wrap: anywhere; }
+pre { color: #f8fafc; background: #1e293b; border: 1px solid #475569; padding: 1rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+hr { border: 0; border-top: 1px solid #334155; }
+details { margin: .65rem 0; }
+summary { color: #38bdf8; cursor: pointer; padding: .35rem 0; font-weight: 600; overflow-wrap: anywhere; }
+summary:hover { color: #7dd3fc; text-decoration: underline; }
+summary h2, summary h3, summary h4 { display: inline; font-size: 1em; }
+.menu-branch { border-left: 1px dashed #475569; margin: .35rem 0 .8rem .5rem; padding-left: 1.2rem; }
+.menu-branch ul { padding-left: 1.3rem; }
+.mirror-panel { border: 1px dashed #fbbf24; background: #1e293b; padding: 1rem; margin: 1.5rem 0; }
+.mirror-panel > strong { color: #fbbf24; }
+.iso-link { color: #fbbf24; font-weight: 600; }
+.dir-link { color: #c4b5fd; font-weight: 600; }
+.bin-link { color: #f9a8d4; }
+.badge { color: #94a3b8; font-size: .9em; }
+.pxe-wordmark { color: #57f578; background: #06120a; font-family: "PXE Bits", ui-monospace, monospace; font-weight: normal; letter-spacing: .02em; padding: .12em .2em; white-space: nowrap; }
+.tec-wordmark { color: #a5b4fc; font-family: ui-monospace, "Liberation Mono", Consolas, monospace; font-weight: 600; letter-spacing: -.04em; }
+.pxe-cursor { animation: pxe-blink 1.2s steps(1, end) infinite; }
+@keyframes pxe-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .pxe-cursor { animation: none; } }
+h1 .pxe-wordmark { display: block; width: fit-content; font-size: 2.5rem; line-height: 1.2; margin-bottom: .35rem; }
+table { width: 100%; border-collapse: collapse; text-align: left; margin: 1rem 0; }
+th, td { padding: .65rem; border-bottom: 1px solid #334155; vertical-align: top; overflow-wrap: anywhere; }
+th { color: #7dd3fc; }
+.view-nav { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1.2rem; margin: 1rem 0; }
+.view-nav a { display: inline-block; }
+.catalog-tree { border-top: 1px solid #334155; border-bottom: 1px solid #334155; margin: 1.5rem 0; padding: .5rem 0; }
+.catalog-tree ul { list-style: none; padding-left: 1.5rem; }
+.catalog-tree > ul { padding-left: 0; }
+.catalog-tree li { padding: .15rem 0; }
+.view-nav .aux-switch { color: #f8fafc; }
+.aux-wordmark { font: 800 1.8rem/1.2 "Helvetica Neue", Arial, sans-serif; letter-spacing: -.08em; }
+.aux-wordmark span, .aux-wordmark i { color: #f18a5b; }
+.aux-wordmark i { font-style: normal; font-weight: 400; margin-left: .25em; }
+a:focus-visible, summary:focus-visible { outline: 2px solid #38bdf8; outline-offset: 4px; }
+.project-footer { display:flex;align-items:center;gap:24px;flex-wrap:wrap; }
+.featured-art { display:block;flex:0 0 auto;width:144px;max-width:100%;margin:0; }
+.featured-art img { display:block;width:100%;height:auto;object-fit:contain;border-radius:8px; }
+.featured-art figcaption { margin-top:8px;font-size:12px;line-height:1.5; }
+.featured-download { display:block; }
+.featured-size { display:block;color:#94a3b8;font-size:11px; }
+@media(max-width:680px) { .featured-art { width:112px; } }
+</style><link rel="canonical" href="https://aux.1-s.es/cli.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AUX Ecosystem (1-s.es / alawise.es)">
+<meta property="og:title" content="Downloads &amp; network boot | PXE_">
+<meta property="og:description" content="Perfiles Debian Testing, Fedora Rawhide y Alpine Linux, catálogo netboot y herramientas de instalación, recuperación y administración.">
+<meta property="og:url" content="https://aux.1-s.es/cli.html">
+<meta property="og:image" content="https://aux.1-s.es/assets/aux-featured.webp?v=8.0.1-beta.9">
+<meta property="og:image:type" content="image/webp">
+<meta property="og:image:width" content="1254">
+<meta property="og:image:height" content="1254">
+<meta property="og:image:alt" content="Gnomo junto a GNU y Tux en una bahía alpina. Blue Hibou lleva el escudo del búho y Red Robin el del petirrojo.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Downloads &amp; network boot | PXE_">
+<meta name="twitter:description" content="Perfiles Debian Testing, Fedora Rawhide y Alpine Linux, catálogo netboot y herramientas de instalación, recuperación y administración.">
+<meta name="twitter:image" content="https://aux.1-s.es/assets/aux-featured.webp?v=8.0.1-beta.9">
+<meta name="twitter:image:alt" content="Gnomo junto a GNU y Tux en una bahía alpina. Blue Hibou lleva el escudo del búho y Red Robin el del petirrojo.">
+<meta name="author" content="1wise / alawise.es">
+<meta name="generator" content="AUX Suite 8.0.1-beta.9">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="googlebot" content="index, follow, notranslate, noimageindex">
+<meta name="rating" content="safe for kids">
+<meta name="copyright" content="CC BY-NC-SA 4.0 (contenidos y perfiles); GPL-3.0-or-later (infraestructura propia)">
+<meta name="description" content="Perfiles Debian Testing, Fedora Rawhide y Alpine Linux, catálogo netboot y herramientas de instalación, recuperación y administración.">
+<meta name="keywords" content="aux, pxe, tec, bare-metal, fedora, debian, alpine, apk, openrc, sysadmin, infraestructura, redes, automatización, chroot, debootstrap, dnf, xorriso, alawise, 1wise">
+<meta name="application-name" content="AUX Platform Core">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:site" content="@1wise_es">
+<meta name="twitter:creator" content="@1wise_es">
+<meta name="fediverse:creator" content="@1wise@mastodon.social">
+<meta property="og:locale:alternate" content="ca_AD">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:image:secure_url" content="https://aux.1-s.es/assets/aux-featured.webp?v=8.0.1-beta.9">
+<script type="application/ld+json" data-aux-seo>{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"AUX Suite","softwareVersion":"8.0.1-beta.9","operatingSystem":"Linux (Debian Testing, Fedora Rawhide, Alpine Linux)","applicationCategory":"SystemAdministrationApplication","license":["https://creativecommons.org/licenses/by-nc-sa/4.0/","https://www.gnu.org/licenses/gpl-3.0.html"],"author":{"@type":"Organization","name":"Alawise","url":"https://www.alawise.es/1-s"},"publisher":{"@type":"Organization","name":"1wise Cooperative Holding","url":"https://www.1wise.es"},"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}},{"@type":"WebSite","url":"https://aux.1-s.es/","name":"AUX Platform","potentialAction":{"@type":"SearchAction","target":"https://aux.1-s.es/catalogue.html?q={search_term_string}","query-input":"required name=search_term_string"}}]}</script>
+</head>
+<body>
+<h1><span class="pxe-wordmark">PXE&gt;<span class="pxe-cursor">_</span></span>Downloads &amp; network boot</h1>
+<nav class="view-nav" aria-label="Main navigation"><a class="aux-switch" href="https://aux.1-s.es/"><span class="aux-wordmark"><span>./</span>aux</span> Volver a ./aux</a><a href="http://pxe.1-s.es/"><span class="pxe-wordmark">PXE&gt;<span class="pxe-cursor">_</span></span> Terminal / Links</a><a href="https://tec.1-s.es/?view=pxe"><span class="tec-wordmark">tec.*</span> Técnicos / asistencia</a><a href="workspace.html">AUX 7 / Aplicaciones</a><a href="installer.html">Instalar</a><a href="pxe/commands.html">Guías de comandos</a><a href="catalogue.html">Seleccionar catálogo</a><a href="systems.html">Sistemas</a><a href="contents.html">Browse ISO files</a><a href="#nav_distribution">Distros</a><a href="#nav_tools">Tools</a><a href="#network">iPXE</a></nav>
+<section class="mirror-panel" aria-label="Download routing"><strong>[ DOWNLOAD ROUTER ]</strong>
+<p>Complete downloads default to <strong>Bastion · France</strong>. Choose Excalibur · Canada or the upstream beside any file. PXE and individual files inside deployed images use <strong>Excalibur</strong>.</p>
+<p>Open "commands" for resumable wget/curl commands for each server, file size and SHA-256. All links work in Links/Lynx without JavaScript.</p>
+<p><a href="cli.html">[ Compact menus ]</a> | <a href="cli-all.html">[ All expanded ]</a> | <a href="downloads/isos.tsv">[ ISO list / TSV ]</a></p></section>
+<details open><summary><h2 id="nav_assistance">0. Remote assistance</h2></summary><div class="menu-branch">
+<p>The latest complete compatible assistance image starts after 60 seconds in iPXE. Any key stops the timer; remote access still requires consent inside the ISO. <a href="https://tec.1-s.es/?view=pxe">[ Choose a technician ]</a></p>
+<p>No assistance ISO deployed yet.</p>
+</div></details>
+<details open><summary><h2 id="nav_distribution">1. Distros</h2></summary><div class="menu-branch">
+<details><summary><h3 id="nav_distribution_alpine">1.1. Alpine Linux</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_alpine_netinstall">1.1.1. Netinstall</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="iso-link" href="https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/aarch64/alpine-netboot-3.24.4-aarch64.tar.gz">[TAR.GZ] alpine-netboot-3.24.4-aarch64.tar.gz</a> <span class="badge">[arm64; upstream]</span> <a href="files/alpine-netboot-arm64-alpine-netboot-3.html">commands</a><br><a href="https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/aarch64/alpine-netboot-3.24.4-aarch64.tar.gz">Original URL</a></li>
+<li><a class="iso-link" href="https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86/alpine-netboot-3.24.4-x86.tar.gz">[TAR.GZ] alpine-netboot-3.24.4-x86.tar.gz</a> <span class="badge">[i386; upstream]</span> <a href="files/alpine-netboot-i386-alpine-netboot-3.html">commands</a><br><a href="https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86/alpine-netboot-3.24.4-x86.tar.gz">Original URL</a></li>
+<li><a class="iso-link" href="https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86_64/alpine-netboot-3.24.4-x86_64.tar.gz">[TAR.GZ] alpine-netboot-3.24.4-x86_64.tar.gz</a> <span class="badge">[x86_64; upstream]</span> <a href="files/alpine-netboot-x86_64-alpine-netboot-3.html">commands</a><br><a href="https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86_64/alpine-netboot-3.24.4-x86_64.tar.gz">Original URL</a></li>
+<li><a class="bin-link" href="https://dl-cdn.alpinelinux.org/alpine/latest-stable/releases/x86_64/netboot/">[URL] netboot</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_5af4604f0ddaaac38bfe.html">commands</a><br><a href="https://dl-cdn.alpinelinux.org/alpine/latest-stable/releases/x86_64/netboot/">Original URL</a></li>
+<li><a class="bin-link" href="https://dl-cdn.alpinelinux.org/alpine/v3.23/releases/x86_64/netboot/">[URL] netboot</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_3b0f9fb8cd06291a3e74.html">commands</a><br><a href="https://dl-cdn.alpinelinux.org/alpine/v3.23/releases/x86_64/netboot/">Original URL</a></li>
+<li><a class="bin-link" href="https://dl-cdn.alpinelinux.org/alpine/v3.22/releases/x86_64/netboot/">[URL] netboot</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_39323696d529b9fd476b.html">commands</a><br><a href="https://dl-cdn.alpinelinux.org/alpine/v3.22/releases/x86_64/netboot/">Original URL</a></li>
+<li><a class="bin-link" href="https://dl-cdn.alpinelinux.org/alpine/v3.21/releases/x86_64/netboot/">[URL] netboot</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_e8459e16b5c0c9be8d18.html">commands</a><br><a href="https://dl-cdn.alpinelinux.org/alpine/v3.21/releases/x86_64/netboot/">Original URL</a></li>
+<li><a class="bin-link" href="https://dl-cdn.alpinelinux.org/alpine/edge/releases/x86_64/netboot/">[URL] netboot</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_eca666b37a21e4373e7c.html">commands</a><br><a href="https://dl-cdn.alpinelinux.org/alpine/edge/releases/x86_64/netboot/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_centos">1.2. CentOS Stream</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_centos_install">1.2.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="iso-link" href="https://mirror.stream.centos.org/10-stream/BaseOS/x86_64/iso/CentOS-Stream-10-latest-x86_64-boot.iso">[ISO] CentOS-Stream-10-latest-x86_64-boot.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/centos-install-x86_64-centos-stream-10-latest-x86_64-boot.html">commands</a><br><a href="https://mirror.stream.centos.org/10-stream/BaseOS/x86_64/iso/CentOS-Stream-10-latest-x86_64-boot.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://mirror.stream.centos.org/10-stream/BaseOS/aarch64/iso/CentOS-Stream-10-latest-aarch64-boot.iso">[ISO] CentOS-Stream-10-latest-aarch64-boot.iso</a> <span class="badge">[arm64; upstream]</span> <a href="files/centos-install-arm64-centos-stream-10-latest-aarch64-boot.html">commands</a><br><a href="https://mirror.stream.centos.org/10-stream/BaseOS/aarch64/iso/CentOS-Stream-10-latest-aarch64-boot.iso">Original URL</a></li>
+<li><a class="bin-link" href="https://boot.netboot.xyz/centos.ipxe">[MENU] centos.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_4372cbdcef8e051652e4.html">commands</a> | <a href="origins/origin_4372cbdcef8e051652e4.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/centos.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://mirror.stream.centos.org/10-stream/BaseOS/x86_64/os/images/pxeboot/vmlinuz">[URL] vmlinuz</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_887499a66f1b7c32ad5b.html">commands</a><br><a href="https://mirror.stream.centos.org/10-stream/BaseOS/x86_64/os/images/pxeboot/vmlinuz">Original URL</a></li>
+<li><a class="bin-link" href="https://mirror.stream.centos.org/9-stream/BaseOS/x86_64/os/images/pxeboot/vmlinuz">[URL] vmlinuz</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_2ed54175edc33bbf2c6e.html">commands</a><br><a href="https://mirror.stream.centos.org/9-stream/BaseOS/x86_64/os/images/pxeboot/vmlinuz">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_fedora">1.3. Fedora</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_fedora_netinstall">1.3.1. Netinstall</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Everything/aarch64/iso/Fedora-Everything-netinst-aarch64-45-1.4.iso">[ISO] Fedora-Everything-netinst-aarch64-45-1.4.iso</a> <span class="badge">[arm64; upstream]</span> <a href="files/fedora-current-fedora-everything-netinst-aarc.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Everything/aarch64/iso/Fedora-Everything-netinst-aarch64-45-1.4.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora-secondary/releases/45/Everything/ppc64le/iso/Fedora-Everything-netinst-ppc64le-45-1.4.iso">[ISO] Fedora-Everything-netinst-ppc64le-45-1.4.iso</a> <span class="badge">[ppc64le; upstream]</span> <a href="files/fedora-current-fedora-everything-netinst-ppc6.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora-secondary/releases/45/Everything/ppc64le/iso/Fedora-Everything-netinst-ppc64le-45-1.4.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora-secondary/releases/45/Everything/s390x/iso/Fedora-Everything-netinst-s390x-45-1.4.iso">[ISO] Fedora-Everything-netinst-s390x-45-1.4.iso</a> <span class="badge">[s390x; upstream]</span> <a href="files/fedora-current-fedora-everything-netinst-s390.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora-secondary/releases/45/Everything/s390x/iso/Fedora-Everything-netinst-s390x-45-1.4.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/iso/Fedora-Everything-netinst-x86_64-45-1.4.iso">[ISO] Fedora-Everything-netinst-x86_64-45-1.4.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/fedora-current-fedora-everything-netinst-x86.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/iso/Fedora-Everything-netinst-x86_64-45-1.4.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Server/aarch64/iso/Fedora-Server-netinst-aarch64-45-1.4.iso">[ISO] Fedora-Server-netinst-aarch64-45-1.4.iso</a> <span class="badge">[arm64; upstream]</span> <a href="files/fedora-current-fedora-server-netinst-aarch64.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Server/aarch64/iso/Fedora-Server-netinst-aarch64-45-1.4.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora-secondary/releases/45/Server/ppc64le/iso/Fedora-Server-netinst-ppc64le-45-1.4.iso">[ISO] Fedora-Server-netinst-ppc64le-45-1.4.iso</a> <span class="badge">[ppc64le; upstream]</span> <a href="files/fedora-current-fedora-server-netinst-ppc64le.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora-secondary/releases/45/Server/ppc64le/iso/Fedora-Server-netinst-ppc64le-45-1.4.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora-secondary/releases/45/Server/s390x/iso/Fedora-Server-netinst-s390x-45-1.4.iso">[ISO] Fedora-Server-netinst-s390x-45-1.4.iso</a> <span class="badge">[s390x; upstream]</span> <a href="files/fedora-current-fedora-server-netinst-s390x-45.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora-secondary/releases/45/Server/s390x/iso/Fedora-Server-netinst-s390x-45-1.4.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Server/x86_64/iso/Fedora-Server-netinst-x86_64-45-1.4.iso">[ISO] Fedora-Server-netinst-x86_64-45-1.4.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/fedora-current-fedora-server-netinst-x86-64-4.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Server/x86_64/iso/Fedora-Server-netinst-x86_64-45-1.4.iso">Original URL</a></li>
+</ul>
+</div></details>
+<details><summary><h4 id="nav_distribution_fedora_install">1.3.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Budgie-Atomic/x86_64/iso/Fedora-BudgieAtomic-Installer-45-1.4.x86_64.iso">[ISO] Fedora-BudgieAtomic-Installer-45-1.4.x86_64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/fedora-current.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Budgie-Atomic/x86_64/iso/Fedora-BudgieAtomic-Installer-45-1.4.x86_64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/COSMIC-Atomic/aarch64/iso/Fedora-CosmicAtomic-Installer-45-1.4.aarch64.iso">[ISO] Fedora-CosmicAtomic-Installer-45-1.4.aarch64.iso</a> <span class="badge">[arm64; upstream]</span> <a href="files/fedora-current-fedora-cosmicatomic-installer.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/COSMIC-Atomic/aarch64/iso/Fedora-CosmicAtomic-Installer-45-1.4.aarch64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/COSMIC-Atomic/x86_64/iso/Fedora-CosmicAtomic-Installer-45-1.4.x86_64.iso">[ISO] Fedora-CosmicAtomic-Installer-45-1.4.x86_64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/fedora-current-fedora-cosmicatomic-installer-3.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/COSMIC-Atomic/x86_64/iso/Fedora-CosmicAtomic-Installer-45-1.4.x86_64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Kinoite/aarch64/iso/Fedora-Kinoite-Installer-45-1.4.aarch64.iso">[ISO] Fedora-Kinoite-Installer-45-1.4.aarch64.iso</a> <span class="badge">[arm64; upstream]</span> <a href="files/fedora-current-fedora-kinoite-installer-45-1.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Kinoite/aarch64/iso/Fedora-Kinoite-Installer-45-1.4.aarch64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Kinoite/x86_64/iso/Fedora-Kinoite-Installer-45-1.4.x86_64.iso">[ISO] Fedora-Kinoite-Installer-45-1.4.x86_64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/fedora-current-fedora-kinoite-installer-45-1-12.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Kinoite/x86_64/iso/Fedora-Kinoite-Installer-45-1.4.x86_64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Server/aarch64/iso/Fedora-Server-dvd-aarch64-45-1.4.iso">[ISO] Fedora-Server-dvd-aarch64-45-1.4.iso</a> <span class="badge">[arm64; upstream]</span> <a href="files/fedora-current-fedora-server-dvd-aarch64-45-1.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Server/aarch64/iso/Fedora-Server-dvd-aarch64-45-1.4.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora-secondary/releases/45/Server/ppc64le/iso/Fedora-Server-dvd-ppc64le-45-1.4.iso">[ISO] Fedora-Server-dvd-ppc64le-45-1.4.iso</a> <span class="badge">[ppc64le; upstream]</span> <a href="files/fedora-current-fedora-server-dvd-ppc64le-45-1.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora-secondary/releases/45/Server/ppc64le/iso/Fedora-Server-dvd-ppc64le-45-1.4.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora-secondary/releases/45/Server/s390x/iso/Fedora-Server-dvd-s390x-45-1.4.iso">[ISO] Fedora-Server-dvd-s390x-45-1.4.iso</a> <span class="badge">[s390x; upstream]</span> <a href="files/fedora-current-fedora-server-dvd-s390x-45-1-4.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora-secondary/releases/45/Server/s390x/iso/Fedora-Server-dvd-s390x-45-1.4.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Server/x86_64/iso/Fedora-Server-dvd-x86_64-45-1.4.iso">[ISO] Fedora-Server-dvd-x86_64-45-1.4.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/fedora-current-fedora-server-dvd-x86-64-45-1.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Server/x86_64/iso/Fedora-Server-dvd-x86_64-45-1.4.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Silverblue/aarch64/iso/Fedora-Silverblue-Installer-45-1.4.aarch64.iso">[ISO] Fedora-Silverblue-Installer-45-1.4.aarch64.iso</a> <span class="badge">[arm64; upstream]</span> <a href="files/fedora-current-fedora-silverblue-installer-45.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Silverblue/aarch64/iso/Fedora-Silverblue-Installer-45-1.4.aarch64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Silverblue/x86_64/iso/Fedora-Silverblue-Installer-45-1.4.x86_64.iso">[ISO] Fedora-Silverblue-Installer-45-1.4.x86_64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/fedora-current-fedora-silverblue-installer-45-31.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Silverblue/x86_64/iso/Fedora-Silverblue-Installer-45-1.4.x86_64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Sway-Atomic/x86_64/iso/Fedora-SwayAtomic-Installer-45-1.4.x86_64.iso">[ISO] Fedora-SwayAtomic-Installer-45-1.4.x86_64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/fedora-current-fedora-swayatomic-installer-45.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Sway-Atomic/x86_64/iso/Fedora-SwayAtomic-Installer-45-1.4.x86_64.iso">Original URL</a></li>
+<li><a class="bin-link" href="https://boot.netboot.xyz/fedora.ipxe">[MENU] fedora.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_855cf693ae546140a676.html">commands</a> | <a href="origins/origin_855cf693ae546140a676.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/fedora.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-fedora.ipxe">[MENU] live-fedora.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_02361b22ab93283fd94f.html">commands</a> | <a href="origins/origin_02361b22ab93283fd94f.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-fedora.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/45.20261030.3.1/x86_64/fedora-coreos-45.20261030.3.1-live-kernel.x86_64">[URL] fedora-coreos-45.20261030.3.1-live-kernel.x86_64</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_1f6730b8b5327d8d9505.html">commands</a><br><a href="https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/45.20261030.3.1/x86_64/fedora-coreos-45.20261030.3.1-live-kernel.x86_64">Original URL</a></li>
+<li><a class="bin-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/images/pxeboot/">[URL] pxeboot</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_794f5cd91d0df86f5332.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/images/pxeboot/">Original URL</a></li>
+<li><a class="bin-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/44/Everything/x86_64/os/images/pxeboot/">[URL] pxeboot</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_88fbd8df04ec256cbc16.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/44/Everything/x86_64/os/images/pxeboot/">Original URL</a></li>
+<li><a class="bin-link" href="https://ftp.upjs.sk/pub/fedora/linux/development/rawhide/Everything/x86_64/os/images/pxeboot/">[URL] pxeboot</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_71e250a60a360b8b1de4.html">commands</a><br><a href="https://ftp.upjs.sk/pub/fedora/linux/development/rawhide/Everything/x86_64/os/images/pxeboot/">Original URL</a></li>
+<li><a class="bin-link" href="https://fedoraproject.org/atomic-desktops/kinoite/download/">[URL] kinoite</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_2037a83940a48be90bc9.html">commands</a><br><a href="https://fedoraproject.org/atomic-desktops/kinoite/download/">Original URL</a></li>
+</ul>
+</div></details>
+<details><summary><h4 id="nav_distribution_fedora_live">1.3.3. Live</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/KDE/aarch64/iso/Fedora-KDE-Desktop-Live-45-1.4.aarch64.iso">[ISO] Fedora-KDE-Desktop-Live-45-1.4.aarch64.iso</a> <span class="badge">[arm64; upstream]</span> <a href="files/fedora-current-fedora-kde-desktop-live-45-1-4.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/KDE/aarch64/iso/Fedora-KDE-Desktop-Live-45-1.4.aarch64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora-secondary/releases/45/KDE/ppc64le/iso/Fedora-KDE-Desktop-Live-45-1.4.ppc64le.iso">[ISO] Fedora-KDE-Desktop-Live-45-1.4.ppc64le.iso</a> <span class="badge">[ppc64le; upstream]</span> <a href="files/fedora-current-fedora-kde-desktop-live-45-1-4-9.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora-secondary/releases/45/KDE/ppc64le/iso/Fedora-KDE-Desktop-Live-45-1.4.ppc64le.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/KDE/x86_64/iso/Fedora-KDE-Desktop-Live-45-1.4.x86_64.iso">[ISO] Fedora-KDE-Desktop-Live-45-1.4.x86_64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/fedora-current-fedora-kde-desktop-live-45-1-4-10.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/KDE/x86_64/iso/Fedora-KDE-Desktop-Live-45-1.4.x86_64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Labs/aarch64/iso/Fedora-Python-Classroom-Live-45-1.4.aarch64.iso">[ISO] Fedora-Python-Classroom-Live-45-1.4.aarch64.iso</a> <span class="badge">[arm64; upstream]</span> <a href="files/fedora-current-fedora-python-classroom-live-4.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Labs/aarch64/iso/Fedora-Python-Classroom-Live-45-1.4.aarch64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Labs/aarch64/iso/Fedora-Scientific_KDE-Live-45-1.4.aarch64.iso">[ISO] Fedora-Scientific_KDE-Live-45-1.4.aarch64.iso</a> <span class="badge">[arm64; upstream]</span> <a href="files/fedora-current-fedora-scientific-kde-live-45.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Labs/aarch64/iso/Fedora-Scientific_KDE-Live-45-1.4.aarch64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/alt/releases/45/Labs/x86_64/iso/Fedora-Astronomy_KDE-Live-45-1.4.x86_64.iso">[ISO] Fedora-Astronomy_KDE-Live-45-1.4.x86_64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/fedora-current-fedora-astronomy-kde-live-45-1.html">commands</a><br><a href="https://download.fedoraproject.org/pub/alt/releases/45/Labs/x86_64/iso/Fedora-Astronomy_KDE-Live-45-1.4.x86_64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/alt/releases/45/Labs/x86_64/iso/Fedora-Design_suite-Live-45-1.4.x86_64.iso">[ISO] Fedora-Design_suite-Live-45-1.4.x86_64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/fedora-current-fedora-design-suite-live-45-1.html">commands</a><br><a href="https://download.fedoraproject.org/pub/alt/releases/45/Labs/x86_64/iso/Fedora-Design_suite-Live-45-1.4.x86_64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/alt/releases/45/Labs/x86_64/iso/Fedora-Games-Live-45-1.4.x86_64.iso">[ISO] Fedora-Games-Live-45-1.4.x86_64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/fedora-current-fedora-games-live-45-1-4-x86-6.html">commands</a><br><a href="https://download.fedoraproject.org/pub/alt/releases/45/Labs/x86_64/iso/Fedora-Games-Live-45-1.4.x86_64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/alt/releases/45/Labs/x86_64/iso/Fedora-Jam_KDE-Live-45-1.4.x86_64.iso">[ISO] Fedora-Jam_KDE-Live-45-1.4.x86_64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/fedora-current-fedora-jam-kde-live-45-1-4-x86.html">commands</a><br><a href="https://download.fedoraproject.org/pub/alt/releases/45/Labs/x86_64/iso/Fedora-Jam_KDE-Live-45-1.4.x86_64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/alt/releases/45/Labs/x86_64/iso/Fedora-Python-Classroom-Live-45-1.4.x86_64.iso">[ISO] Fedora-Python-Classroom-Live-45-1.4.x86_64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/fedora-current-fedora-python-classroom-live-4-19.html">commands</a><br><a href="https://download.fedoraproject.org/pub/alt/releases/45/Labs/x86_64/iso/Fedora-Python-Classroom-Live-45-1.4.x86_64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/alt/releases/45/Labs/x86_64/iso/Fedora-Scientific_KDE-Live-45-1.4.x86_64.iso">[ISO] Fedora-Scientific_KDE-Live-45-1.4.x86_64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/fedora-current-fedora-scientific-kde-live-45-20.html">commands</a><br><a href="https://download.fedoraproject.org/pub/alt/releases/45/Labs/x86_64/iso/Fedora-Scientific_KDE-Live-45-1.4.x86_64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/alt/releases/45/Labs/x86_64/iso/Fedora-Security-Live-45-1.4.x86_64.iso">[ISO] Fedora-Security-Live-45-1.4.x86_64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/fedora-current-fedora-security-live-45-1-4-x8.html">commands</a><br><a href="https://download.fedoraproject.org/pub/alt/releases/45/Labs/x86_64/iso/Fedora-Security-Live-45-1.4.x86_64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/aarch64/iso/Fedora-COSMIC-Live-45-1.4.aarch64.iso">[ISO] Fedora-COSMIC-Live-45-1.4.aarch64.iso</a> <span class="badge">[arm64; upstream]</span> <a href="files/fedora-current-fedora-cosmic-live-45-1-4-aarc.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/aarch64/iso/Fedora-COSMIC-Live-45-1.4.aarch64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/aarch64/iso/Fedora-KDE-Mobile-Live-45-1.4.aarch64.iso">[ISO] Fedora-KDE-Mobile-Live-45-1.4.aarch64.iso</a> <span class="badge">[arm64; upstream]</span> <a href="files/fedora-current-fedora-kde-mobile-live-45-1-4.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/aarch64/iso/Fedora-KDE-Mobile-Live-45-1.4.aarch64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/aarch64/iso/Fedora-LXQt-Live-45-1.4.aarch64.iso">[ISO] Fedora-LXQt-Live-45-1.4.aarch64.iso</a> <span class="badge">[arm64; upstream]</span> <a href="files/fedora-current-fedora-lxqt-live-45-1-4-aarch6.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/aarch64/iso/Fedora-LXQt-Live-45-1.4.aarch64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/aarch64/iso/Fedora-MiracleWM-Live-45-1.4.aarch64.iso">[ISO] Fedora-MiracleWM-Live-45-1.4.aarch64.iso</a> <span class="badge">[arm64; upstream]</span> <a href="files/fedora-current-fedora-miraclewm-live-45-1-4-a.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/aarch64/iso/Fedora-MiracleWM-Live-45-1.4.aarch64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/aarch64/iso/Fedora-SoaS-Live-45-1.4.aarch64.iso">[ISO] Fedora-SoaS-Live-45-1.4.aarch64.iso</a> <span class="badge">[arm64; upstream]</span> <a href="files/fedora-current-fedora-soas-live-45-1-4-aarch6.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/aarch64/iso/Fedora-SoaS-Live-45-1.4.aarch64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/aarch64/iso/Fedora-Xfce-Live-45-1.4.aarch64.iso">[ISO] Fedora-Xfce-Live-45-1.4.aarch64.iso</a> <span class="badge">[arm64; upstream]</span> <a href="files/fedora-current-fedora-xfce-live-45-1-4-aarch6.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/aarch64/iso/Fedora-Xfce-Live-45-1.4.aarch64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/aarch64/iso/Fedora-i3-Live-45-1.4.aarch64.iso">[ISO] Fedora-i3-Live-45-1.4.aarch64.iso</a> <span class="badge">[arm64; upstream]</span> <a href="files/fedora-current-fedora-i3-live-45-1-4-aarch64.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/aarch64/iso/Fedora-i3-Live-45-1.4.aarch64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-Budgie-Live-45-1.4.x86_64.iso">[ISO] Fedora-Budgie-Live-45-1.4.x86_64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/fedora-current-fedora-budgie-live-45-1-4-x86.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-Budgie-Live-45-1.4.x86_64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-COSMIC-Live-45-1.4.x86_64.iso">[ISO] Fedora-COSMIC-Live-45-1.4.x86_64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/fedora-current-fedora-cosmic-live-45-1-4-x86.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-COSMIC-Live-45-1.4.x86_64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-Cinnamon-Live-45-1.4.x86_64.iso">[ISO] Fedora-Cinnamon-Live-45-1.4.x86_64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/fedora-current-fedora-cinnamon-live-45-1-4-x8.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-Cinnamon-Live-45-1.4.x86_64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-KDE-Mobile-Live-45-1.4.x86_64.iso">[ISO] Fedora-KDE-Mobile-Live-45-1.4.x86_64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/fedora-current-fedora-kde-mobile-live-45-1-4-42.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-KDE-Mobile-Live-45-1.4.x86_64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-LXDE-Live-45-1.4.x86_64.iso">[ISO] Fedora-LXDE-Live-45-1.4.x86_64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/fedora-current-fedora-lxde-live-45-1-4-x86-64.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-LXDE-Live-45-1.4.x86_64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-LXQt-Live-45-1.4.x86_64.iso">[ISO] Fedora-LXQt-Live-45-1.4.x86_64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/fedora-current-fedora-lxqt-live-45-1-4-x86-64.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-LXQt-Live-45-1.4.x86_64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-MATE_Compiz-Live-45-1.4.x86_64.iso">[ISO] Fedora-MATE_Compiz-Live-45-1.4.x86_64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/fedora-current-fedora-mate-compiz-live-45-1-4.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-MATE_Compiz-Live-45-1.4.x86_64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-MiracleWM-Live-45-1.4.x86_64.iso">[ISO] Fedora-MiracleWM-Live-45-1.4.x86_64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/fedora-current-fedora-miraclewm-live-45-1-4-x.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-MiracleWM-Live-45-1.4.x86_64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-SoaS-Live-45-1.4.x86_64.iso">[ISO] Fedora-SoaS-Live-45-1.4.x86_64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/fedora-current-fedora-soas-live-45-1-4-x86-64.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-SoaS-Live-45-1.4.x86_64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-Sway-Live-45-1.4.x86_64.iso">[ISO] Fedora-Sway-Live-45-1.4.x86_64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/fedora-current-fedora-sway-live-45-1-4-x86-64.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-Sway-Live-45-1.4.x86_64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-Xfce-Live-45-1.4.x86_64.iso">[ISO] Fedora-Xfce-Live-45-1.4.x86_64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/fedora-current-fedora-xfce-live-45-1-4-x86-64.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-Xfce-Live-45-1.4.x86_64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-i3-Live-45-1.4.x86_64.iso">[ISO] Fedora-i3-Live-45-1.4.x86_64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/fedora-current-fedora-i3-live-45-1-4-x86-64-i.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Spins/x86_64/iso/Fedora-i3-Live-45-1.4.x86_64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Workstation/aarch64/iso/Fedora-Workstation-Live-45-1.4.aarch64.iso">[ISO] Fedora-Workstation-Live-45-1.4.aarch64.iso</a> <span class="badge">[arm64; upstream]</span> <a href="files/fedora-current-fedora-workstation-live-45-1-4.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Workstation/aarch64/iso/Fedora-Workstation-Live-45-1.4.aarch64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Workstation/x86_64/iso/Fedora-Workstation-Live-45-1.4.x86_64.iso">[ISO] Fedora-Workstation-Live-45-1.4.x86_64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/fedora-current-fedora-workstation-live-45-1-4-53.html">commands</a><br><a href="https://download.fedoraproject.org/pub/fedora/linux/releases/45/Workstation/x86_64/iso/Fedora-Workstation-Live-45-1.4.x86_64.iso">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_debian">1.4. Debian</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_debian_netinstall">1.4.1. Netinstall</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="iso-link" href="https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-netinst.iso">[ISO] debian-testing-amd64-netinst.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/debian-testing-amd64.html">commands</a><br><a href="https://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-netinst.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://deb.debian.org/debian/dists/trixie/main/installer-amd64/current/images/netboot/netboot.tar.gz">[TAR.GZ] netboot.tar.gz</a> <span class="badge">[x86_64; upstream]</span> <a href="files/debian-netboot-x86_64-netboot.html">commands</a><br><a href="https://deb.debian.org/debian/dists/trixie/main/installer-amd64/current/images/netboot/netboot.tar.gz">Original URL</a></li>
+<li><a class="iso-link" href="https://cdimage.debian.org/cdimage/archive/12.15.0/i386/iso-cd/debian-12.15.0-i386-netinst.iso">[ISO] debian-12.15.0-i386-netinst.iso</a> <span class="badge">[i386; upstream]</span> <a href="files/debian-install-i386-debian-12.html">commands</a><br><a href="https://cdimage.debian.org/cdimage/archive/12.15.0/i386/iso-cd/debian-12.15.0-i386-netinst.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://cdimage.debian.org/debian-cd/current/arm64/iso-cd/debian-13.7.0-arm64-netinst.iso">[ISO] debian-13.7.0-arm64-netinst.iso</a> <span class="badge">[arm64; upstream]</span> <a href="files/debian-install-arm64-debian-13.html">commands</a><br><a href="https://cdimage.debian.org/debian-cd/current/arm64/iso-cd/debian-13.7.0-arm64-netinst.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://cdimage.debian.org/cdimage/daily-builds/daily/current/amd64/iso-cd/debian-testing-amd64-netinst.iso">[ISO] debian-testing-amd64-netinst.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/debian-install-x86_64-debian-testing-amd64-netinst.html">commands</a><br><a href="https://cdimage.debian.org/cdimage/daily-builds/daily/current/amd64/iso-cd/debian-testing-amd64-netinst.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://cdimage.debian.org/cdimage/daily-builds/daily/current/arm64/iso-cd/debian-testing-arm64-netinst.iso">[ISO] debian-testing-arm64-netinst.iso</a> <span class="badge">[arm64; upstream]</span> <a href="files/debian-install-arm64-debian-testing-arm64-netinst.html">commands</a><br><a href="https://cdimage.debian.org/cdimage/daily-builds/daily/current/arm64/iso-cd/debian-testing-arm64-netinst.iso">Original URL</a></li>
+</ul>
+</div></details>
+<details><summary><h4 id="nav_distribution_debian_install">1.4.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://deb.debian.org/debian/dists/trixie/main/installer-amd64/current/images/netboot/debian-installer/amd64/linux">[FILE] linux</a> <span class="badge">[x86_64; upstream]</span> <a href="files/aux-debian-netboot-amd64.html">commands</a><br><a href="https://deb.debian.org/debian/dists/trixie/main/installer-amd64/current/images/netboot/debian-installer/amd64/linux">Original URL</a></li>
+<li><a class="bin-link" href="https://boot.netboot.xyz/debian.ipxe">[MENU] debian.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_3a87bb2c5fe7c0860bf7.html">commands</a> | <a href="origins/origin_3a87bb2c5fe7c0860bf7.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/debian.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-debian.ipxe">[MENU] live-debian.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_5edfc2332b645b334004.html">commands</a> | <a href="origins/origin_5edfc2332b645b334004.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-debian.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://deb.debian.org/debian/dists/trixie/main/installer-amd64/current/images/netboot/debian-installer/amd64/">[URL] amd64</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_419372b5b3237a62dc8f.html">commands</a><br><a href="https://deb.debian.org/debian/dists/trixie/main/installer-amd64/current/images/netboot/debian-installer/amd64/">Original URL</a></li>
+<li><a class="bin-link" href="https://deb.debian.org/debian/dists/bookworm/main/installer-amd64/current/images/netboot/debian-installer/amd64/">[URL] amd64</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_be316d98ed9e7ed4a09d.html">commands</a><br><a href="https://deb.debian.org/debian/dists/bookworm/main/installer-amd64/current/images/netboot/debian-installer/amd64/">Original URL</a></li>
+<li><a class="bin-link" href="https://deb.debian.org/debian/dists/forky/main/installer-amd64/current/images/netboot/debian-installer/amd64/">[URL] amd64</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_8bbb14c485368266b219.html">commands</a><br><a href="https://deb.debian.org/debian/dists/forky/main/installer-amd64/current/images/netboot/debian-installer/amd64/">Original URL</a></li>
+<li><a class="bin-link" href="https://d-i.debian.org/daily-images/amd64/daily/netboot/debian-installer/amd64/">[URL] amd64</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_bb75c7d8c1ea8830f215.html">commands</a><br><a href="https://d-i.debian.org/daily-images/amd64/daily/netboot/debian-installer/amd64/">Original URL</a></li>
+<li><a class="bin-link" href="https://cdimage.debian.org/cdimage/release/current-live/amd64/iso-hybrid/">[URL] iso-hybrid</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_31850b4626d53df02924.html">commands</a><br><a href="https://cdimage.debian.org/cdimage/release/current-live/amd64/iso-hybrid/">Original URL</a></li>
+</ul>
+</div></details>
+<details><summary><h4 id="nav_distribution_debian_live">1.4.3. Live</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="iso-link" href="https://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/debian-live-13.7.0-amd64-gnome.iso">[ISO] debian-live-13.7.0-amd64-gnome.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/debian-live-x86_64-debian-live-13.html">commands</a><br><a href="https://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/debian-live-13.7.0-amd64-gnome.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/debian-live-13.7.0-amd64-xfce.iso">[ISO] debian-live-13.7.0-amd64-xfce.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/debian-live-x86_64-debian-live-13-debian-live-13-7-0-amd64-xfce.html">commands</a><br><a href="https://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/debian-live-13.7.0-amd64-xfce.iso">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_ubuntu">1.5. Ubuntu</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_ubuntu_netinstall">1.5.1. Netinstall</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="iso-link" href="https://releases.ubuntu.com/26.04.1/ubuntu-26.04.1-netboot-amd64.tar.gz">[TAR.GZ] ubuntu-26.04.1-netboot-amd64.tar.gz</a> <span class="badge">[x86_64; upstream]</span> <a href="files/ubuntu-netboot-x86_64-ubuntu-26.html">commands</a><br><a href="https://releases.ubuntu.com/26.04.1/ubuntu-26.04.1-netboot-amd64.tar.gz">Original URL</a></li>
+<li><a class="iso-link" href="https://cdimage.ubuntu.com/ubuntu/releases/26.04.1/release/ubuntu-26.04.1-netboot-arm64.tar.gz">[TAR.GZ] ubuntu-26.04.1-netboot-arm64.tar.gz</a> <span class="badge">[arm64; upstream]</span> <a href="files/ubuntu-netboot-arm64-ubuntu-26.html">commands</a><br><a href="https://cdimage.ubuntu.com/ubuntu/releases/26.04.1/release/ubuntu-26.04.1-netboot-arm64.tar.gz">Original URL</a></li>
+</ul>
+</div></details>
+<details><summary><h4 id="nav_distribution_ubuntu_install">1.5.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="iso-link" href="https://releases.ubuntu.com/26.04.1/ubuntu-26.04.1-live-server-amd64.iso">[ISO] ubuntu-26.04.1-live-server-amd64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/ubuntu-live-x86_64-ubuntu-26-ubuntu-26-04-1-live-server-amd.html">commands</a><br><a href="https://releases.ubuntu.com/26.04.1/ubuntu-26.04.1-live-server-amd64.iso">Original URL</a></li>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-ubuntu.ipxe">[MENU] live-ubuntu.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_eabd7937debc5378eb74.html">commands</a> | <a href="origins/origin_eabd7937debc5378eb74.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-ubuntu.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://boot.netboot.xyz/ubuntu.ipxe">[MENU] ubuntu.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_a6eeaeb405e5d191170c.html">commands</a> | <a href="origins/origin_a6eeaeb405e5d191170c.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/ubuntu.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://releases.ubuntu.com/26.04.1/netboot/amd64/linux">[URL] linux</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_6939257a6f1fe26a7e1e.html">commands</a><br><a href="https://releases.ubuntu.com/26.04.1/netboot/amd64/linux">Original URL</a></li>
+<li><a class="bin-link" href="https://releases.ubuntu.com/24.04/">[URL] 24.04</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_2e6d702e51742642c8f6.html">commands</a><br><a href="https://releases.ubuntu.com/24.04/">Original URL</a></li>
+<li><a class="bin-link" href="https://releases.ubuntu.com/26.10/">[URL] 26.10</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_afb6f807b2a62101cb3f.html">commands</a><br><a href="https://releases.ubuntu.com/26.10/">Original URL</a></li>
+<li><a class="bin-link" href="https://cdimage.ubuntu.com/ubuntu-budgie/releases/26.04.1/release/">[URL] release</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_7d8d27dcd0e7f13377f9.html">commands</a><br><a href="https://cdimage.ubuntu.com/ubuntu-budgie/releases/26.04.1/release/">Original URL</a></li>
+<li><a class="bin-link" href="https://cdimage.ubuntu.com/ubuntucinnamon/releases/resolute/release/">[URL] release</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_1c80720bcc8134d39f9d.html">commands</a><br><a href="https://cdimage.ubuntu.com/ubuntucinnamon/releases/resolute/release/">Original URL</a></li>
+<li><a class="bin-link" href="https://cdimage.ubuntu.com/ubuntustudio/releases/26.04.1/release/">[URL] release</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_f3d8b4b69e527d3e60c5.html">commands</a><br><a href="https://cdimage.ubuntu.com/ubuntustudio/releases/26.04.1/release/">Original URL</a></li>
+</ul>
+</div></details>
+<details><summary><h4 id="nav_distribution_ubuntu_live">1.5.3. Live</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="iso-link" href="https://releases.ubuntu.com/26.04.1/ubuntu-26.04.1-desktop-amd64.iso">[ISO] ubuntu-26.04.1-desktop-amd64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/ubuntu-live-x86_64-ubuntu-26.html">commands</a><br><a href="https://releases.ubuntu.com/26.04.1/ubuntu-26.04.1-desktop-amd64.iso">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_gentoo">1.6. Gentoo</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_gentoo_chroot">1.6.1. Chroot environment</h4></summary><div class="menu-branch">
+<p>Gentoo media for entering a Linux environment and preparing a chroot. A chroot session starts inside a running system.</p>
+<ul>
+<li><a class="iso-link" href="https://distfiles.gentoo.org/releases/amd64/autobuilds/20261122T164601Z/install-amd64-minimal-20261122T164601Z.iso">[ISO] install-amd64-minimal-20261122T164601Z.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/gentoo-minimal.html">commands</a><br><a href="https://distfiles.gentoo.org/releases/amd64/autobuilds/20261122T164601Z/install-amd64-minimal-20261122T164601Z.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://distfiles.gentoo.org/releases/amd64/autobuilds/current-livegui-amd64/livegui-amd64-20260913T163055Z.iso">[ISO] livegui-amd64-20260913T163055Z.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/gentoo-livegui.html">commands</a><br><a href="https://distfiles.gentoo.org/releases/amd64/autobuilds/current-livegui-amd64/livegui-amd64-20260913T163055Z.iso">Original URL</a></li>
+<li><a class="bin-link" href="https://boot.netboot.xyz/gentoo.ipxe">[MENU] gentoo.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_256831e2105376dff87b.html">commands</a> | <a href="origins/origin_256831e2105376dff87b.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/gentoo.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://distfiles.gentoo.org/releases/amd64/">[URL] amd64</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_1b3f4a7311318d80b153.html">commands</a><br><a href="https://distfiles.gentoo.org/releases/amd64/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_arch">1.7. Arch Linux</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_arch_netinstall">1.7.1. Netinstall</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://archlinux.org/static/netboot/ipxe-arch.efi">[EFI] ipxe-arch.efi</a> <span class="badge">[x86_64; upstream]</span> <a href="files/arch-netboot-x86_64-ipxe-arch.html">commands</a><br><a href="https://archlinux.org/static/netboot/ipxe-arch.efi">Original URL</a></li>
+<li><a class="bin-link" href="https://archlinux.org/static/netboot/ipxe-arch.lkrn">[LKRN] ipxe-arch.lkrn</a> <span class="badge">[x86_64; upstream]</span> <a href="files/arch-netboot-x86_64-ipxe-arch-ipxe-arch-lkrn.html">commands</a><br><a href="https://archlinux.org/static/netboot/ipxe-arch.lkrn">Original URL</a></li>
+<li><a class="bin-link" href="https://archlinux.org/static/netboot/ipxe-arch.pxe">[PXE] ipxe-arch.pxe</a> <span class="badge">[x86_64; upstream]</span> <a href="files/arch-netboot-x86_64-ipxe-arch-ipxe-arch-pxe.html">commands</a><br><a href="https://archlinux.org/static/netboot/ipxe-arch.pxe">Original URL</a></li>
+</ul>
+</div></details>
+<details><summary><h4 id="nav_distribution_arch_install">1.7.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://ipxe.archlinux.org/releng/netboot/archlinux.ipxe">[URL] archlinux.ipxe</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_211e296fbe7ca9d759eb.html">commands</a><br><a href="https://ipxe.archlinux.org/releng/netboot/archlinux.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+<details><summary><h4 id="nav_distribution_arch_live">1.7.3. Live</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="iso-link" href="https://geo.mirror.pkgbuild.com/iso/2026.11.01/archlinux-2026.11.01-x86_64.iso">[ISO] archlinux-2026.11.01-x86_64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/arch-live-x86_64-archlinux-2026.html">commands</a><br><a href="https://geo.mirror.pkgbuild.com/iso/2026.11.01/archlinux-2026.11.01-x86_64.iso">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_kali">1.8. Kali Linux</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_kali_netinstall">1.8.1. Netinstall</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="iso-link" href="https://cdimage.kali.org/current/kali-linux-2026.3-installer-netinst-amd64.iso">[ISO] kali-linux-2026.3-installer-netinst-amd64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/kali-install-x86_64-kali-linux-2026.html">commands</a><br><a href="https://cdimage.kali.org/current/kali-linux-2026.3-installer-netinst-amd64.iso">Original URL</a></li>
+</ul>
+</div></details>
+<details><summary><h4 id="nav_distribution_kali_install">1.8.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="iso-link" href="https://cdimage.kali.org/current/kali-linux-2026.3-installer-amd64.iso">[ISO] kali-linux-2026.3-installer-amd64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/kali-install-x86_64-kali-linux-2026-kali-linux-2026-3-installer-am.html">commands</a><br><a href="https://cdimage.kali.org/current/kali-linux-2026.3-installer-amd64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://cdimage.kali.org/current/kali-linux-2026.3-installer-purple-amd64.iso">[ISO] kali-linux-2026.3-installer-purple-amd64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/kali-install-x86_64-kali-linux-2026-kali-linux-2026-3-installer-pu.html">commands</a><br><a href="https://cdimage.kali.org/current/kali-linux-2026.3-installer-purple-amd64.iso">Original URL</a></li>
+<li><a class="bin-link" href="https://boot.netboot.xyz/kali.ipxe">[MENU] kali.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_273b4e6133f650351a1d.html">commands</a> | <a href="origins/origin_273b4e6133f650351a1d.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/kali.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-kali.ipxe">[MENU] live-kali.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_5688af3298792e05031b.html">commands</a> | <a href="origins/origin_5688af3298792e05031b.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-kali.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://http.kali.org/kali/dists/kali-rolling/main/installer-amd64/current/images/netboot/debian-installer/amd64/">[URL] amd64</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_edc1fcef61118a1748ad.html">commands</a><br><a href="https://http.kali.org/kali/dists/kali-rolling/main/installer-amd64/current/images/netboot/debian-installer/amd64/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_proxmox">1.9. Proxmox VE</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_proxmox_install">1.9.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="iso-link" href="https://mirror.nju.edu.cn/proxmox/iso/proxmox-ve_9.2-1.iso">[ISO] proxmox-ve_9.2-1.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/proxmox-install-x86_64-proxmox-ve_9.html">commands</a><br><a href="https://mirror.nju.edu.cn/proxmox/iso/proxmox-ve_9.2-1.iso">Original URL</a></li>
+<li><a class="bin-link" href="https://boot.netboot.xyz/proxmox.ipxe">[MENU] proxmox.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_ab514c59caf74a1e085d.html">commands</a> | <a href="origins/origin_ab514c59caf74a1e085d.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/proxmox.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://enterprise.proxmox.com/iso/proxmox-ve_9.2-1.iso">[URL] proxmox-ve_9.2-1.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_5fb986538c47d11b8340.html">commands</a><br><a href="https://enterprise.proxmox.com/iso/proxmox-ve_9.2-1.iso">Original URL</a></li>
+<li><a class="bin-link" href="https://enterprise.proxmox.com/iso/">[URL] iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_63cba00750b6f0e09e8b.html">commands</a><br><a href="https://enterprise.proxmox.com/iso/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_4mlinux">1.10. 4Mlinux</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_4mlinux_install">1.10.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://sourceforge.net/projects/linux4m/files/53.0/livecd/4MLinux-53.0-64bit.iso/download">[URL] 4MLinux-53.0-64bit.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_a17f671345a3075db256.html">commands</a><br><a href="https://sourceforge.net/projects/linux4m/files/53.0/livecd/4MLinux-53.0-64bit.iso/download">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_about">1.11. About</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_about_install">1.11.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/about.ipxe">[MENU] about.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_e491b7c8b9265a6a1b1d.html">commands</a> | <a href="origins/origin_e491b7c8b9265a6a1b1d.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/about.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_almalinux">1.12. Almalinux</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_almalinux_install">1.12.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/almalinux.ipxe">[MENU] almalinux.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_72475958f4e4c3bc8af8.html">commands</a> | <a href="origins/origin_72475958f4e4c3bc8af8.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/almalinux.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://repo.almalinux.org/almalinux/10/BaseOS/x86_64/os/images/pxeboot/vmlinuz">[URL] vmlinuz</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_d247172ca1adf7ba31ec.html">commands</a><br><a href="https://repo.almalinux.org/almalinux/10/BaseOS/x86_64/os/images/pxeboot/vmlinuz">Original URL</a></li>
+<li><a class="bin-link" href="https://repo.almalinux.org/almalinux/10/BaseOS/x86_64_v2/os/images/pxeboot/vmlinuz">[URL] vmlinuz</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_461232a71167fc9675f2.html">commands</a><br><a href="https://repo.almalinux.org/almalinux/10/BaseOS/x86_64_v2/os/images/pxeboot/vmlinuz">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_alpinelinux">1.13. Alpinelinux</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_alpinelinux_install">1.13.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/alpinelinux.ipxe">[MENU] alpinelinux.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_7e73752401a89fa31684.html">commands</a> | <a href="origins/origin_7e73752401a89fa31684.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/alpinelinux.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_antix">1.14. Antix</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_antix_install">1.14.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://sourceforge.net/projects/antix-linux/files/Final/antiX-26.1/antiX-26.1_x64-full.iso/download">[URL] antiX-26.1_x64-full.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_b7d616fa7d8a9823ba91.html">commands</a><br><a href="https://sourceforge.net/projects/antix-linux/files/Final/antiX-26.1/antiX-26.1_x64-full.iso/download">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_archlinux">1.15. Archlinux</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_archlinux_install">1.15.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/archlinux.ipxe">[MENU] archlinux.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_c2a696b5b28879ca0fa3.html">commands</a> | <a href="origins/origin_c2a696b5b28879ca0fa3.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/archlinux.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_arm">1.16. Arm</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_arm_install">1.16.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-arm.ipxe">[MENU] live-arm.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_05d283aab5055a0b5356.html">commands</a> | <a href="origins/origin_05d283aab5055a0b5356.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-arm.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_artix">1.17. Artix</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_artix_install">1.17.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://artixlinux.org/download.php">[URL] download.php</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_9ca073c03d5502e55b18.html">commands</a><br><a href="https://artixlinux.org/download.php">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_backbox">1.18. Backbox</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_backbox_install">1.18.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-backbox.ipxe">[MENU] live-backbox.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_70dee97b983d16c6e143.html">commands</a> | <a href="origins/origin_70dee97b983d16c6e143.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-backbox.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_bazzite">1.19. Bazzite</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_bazzite_install">1.19.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://github.com/ublue-os/bazzite/releases">[URL] releases</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_6abc7658ee480dce737e.html">commands</a><br><a href="https://github.com/ublue-os/bazzite/releases">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_blackarch">1.20. Blackarch</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_blackarch_install">1.20.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/blackarch.ipxe">[MENU] blackarch.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_a8b944755c54d6962a44.html">commands</a> | <a href="origins/origin_a8b944755c54d6962a44.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/blackarch.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://blackarch.org/downloads.html">[URL] downloads.html</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_cbea63d4f745d2765c7b.html">commands</a><br><a href="https://blackarch.org/downloads.html">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_bluestar">1.21. Bluestar</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_bluestar_install">1.21.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-bluestar.ipxe">[MENU] live-bluestar.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_1fdce485537904ade6b5.html">commands</a> | <a href="origins/origin_1fdce485537904ade6b5.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-bluestar.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_bodhi">1.22. Bodhi</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_bodhi_install">1.22.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-bodhi.ipxe">[MENU] live-bodhi.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_ec4fab97d6dc7cfe6488.html">commands</a> | <a href="origins/origin_ec4fab97d6dc7cfe6488.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-bodhi.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://www.bodhilinux.com/download/">[URL] origin_4c53563c2870862edcb3</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_4c53563c2870862edcb3.html">commands</a><br><a href="https://www.bodhilinux.com/download/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_boot">1.23. Boot</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_boot_install">1.23.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://sourceforge.net/projects/boot-repair-cd/">[URL] boot-repair-cd</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_37317973f4f9c655bec8.html">commands</a><br><a href="https://sourceforge.net/projects/boot-repair-cd/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_bsd">1.24. Bsd</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_bsd_install">1.24.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/bsd.ipxe">[MENU] bsd.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_3e11abbedbdbe2d8ab67.html">commands</a> | <a href="origins/origin_3e11abbedbdbe2d8ab67.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/bsd.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_cachyos">1.25. Cachyos</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_cachyos_install">1.25.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-cachyos.ipxe">[MENU] live-cachyos.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_a9b8e088be5b7913d02c.html">commands</a> | <a href="origins/origin_a9b8e088be5b7913d02c.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-cachyos.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://cachyos.org/download/">[URL] origin_61588e31dc75f00aac26</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_61588e31dc75f00aac26.html">commands</a><br><a href="https://cachyos.org/download/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_caine">1.26. Caine</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_caine_install">1.26.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://www.caine-live.net/">[URL] origin_7fac1f0b8d4659154a6f</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_7fac1f0b8d4659154a6f.html">commands</a><br><a href="https://www.caine-live.net/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_chimera">1.27. Chimera</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_chimera_install">1.27.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://repo.chimera-linux.org/live/latest/">[URL] latest</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_6a412c91964b106e0fac.html">commands</a><br><a href="https://repo.chimera-linux.org/live/latest/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_coreos">1.28. Coreos</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_coreos_install">1.28.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/coreos.ipxe">[MENU] coreos.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_d1b2a9c71863e52fbc04.html">commands</a> | <a href="origins/origin_d1b2a9c71863e52fbc04.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/coreos.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_dasharo">1.29. Dasharo</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_dasharo_install">1.29.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://github.com/Dasharo/meta-dts/releases">[URL] releases</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_21aa69058085f8721726.html">commands</a><br><a href="https://github.com/Dasharo/meta-dts/releases">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_deepin">1.30. Deepin</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_deepin_install">1.30.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://www.deepin.org/en/download/">[URL] en</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_0e4af9606604a7f9d6c8.html">commands</a><br><a href="https://www.deepin.org/en/download/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_devuan">1.31. Devuan</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_devuan_install">1.31.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/devuan.ipxe">[MENU] devuan.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_1a621691d7a570bc58ce.html">commands</a> | <a href="origins/origin_1a621691d7a570bc58ce.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/devuan.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-devuan.ipxe">[MENU] live-devuan.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_1c909be1fd4fc89d20cc.html">commands</a> | <a href="origins/origin_1c909be1fd4fc89d20cc.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-devuan.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://files.devuan.org/devuan_excalibur/">[URL] devuan_excalibur</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_838c4032d2a456af3436.html">commands</a><br><a href="https://files.devuan.org/devuan_excalibur/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_dietpi">1.32. Dietpi</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_dietpi_install">1.32.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://dietpi.com/downloads/images/">[URL] images</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_6303fd2d674acc4549e6.html">commands</a><br><a href="https://dietpi.com/downloads/images/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_dragonflybsd">1.33. Dragonflybsd</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_dragonflybsd_install">1.33.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://avalon.dragonflybsd.org/iso-images/">[URL] iso-images</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_1d8ef2a1b0f52b3d6263.html">commands</a><br><a href="https://avalon.dragonflybsd.org/iso-images/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_edk2">1.34. Edk2</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_edk2_install">1.34.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://github.com/tianocore/edk2/releases">[URL] releases</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_da99337d47fa694e907e.html">commands</a><br><a href="https://github.com/tianocore/edk2/releases">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_edubuntu">1.35. Edubuntu</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_edubuntu_install">1.35.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://cdimage.ubuntu.com/edubuntu/releases/26.04.1/release/">[URL] release</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_6150c4230a9a539b01e4.html">commands</a><br><a href="https://cdimage.ubuntu.com/edubuntu/releases/26.04.1/release/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_elementary">1.36. Elementary</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_elementary_install">1.36.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-elementary.ipxe">[MENU] live-elementary.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_46a6700c3ccbca3f9690.html">commands</a> | <a href="origins/origin_46a6700c3ccbca3f9690.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-elementary.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://elementary.io">[URL] origin_c7807b9df0e063a8eb21</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_c7807b9df0e063a8eb21.html">commands</a><br><a href="https://elementary.io">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_endeavouros">1.37. Endeavouros</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_endeavouros_install">1.37.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/endeavouros.ipxe">[MENU] endeavouros.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_f2a58398fcedd2d4e0b0.html">commands</a> | <a href="origins/origin_f2a58398fcedd2d4e0b0.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/endeavouros.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-endeavouros.ipxe">[MENU] live-endeavouros.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_71ce0b532bf8f2e787cc.html">commands</a> | <a href="origins/origin_71ce0b532bf8f2e787cc.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-endeavouros.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://endeavouros.com/download/">[URL] origin_93f7973fb62ce0fd609e</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_93f7973fb62ce0fd609e.html">commands</a><br><a href="https://endeavouros.com/download/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_fatdog">1.38. Fatdog</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_fatdog_install">1.38.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-fatdog.ipxe">[MENU] live-fatdog.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_ebc057f4885525769610.html">commands</a> | <a href="origins/origin_ebc057f4885525769610.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-fatdog.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_fatdog64">1.39. Fatdog64</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_fatdog64_install">1.39.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://distro.ibiblio.org/fatdog/iso/">[URL] iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_f88346acbd3765f10467.html">commands</a><br><a href="https://distro.ibiblio.org/fatdog/iso/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_feren">1.40. Feren</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_feren_install">1.40.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-feren.ipxe">[MENU] live-feren.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_2189b13c14682e880295.html">commands</a> | <a href="origins/origin_2189b13c14682e880295.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-feren.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_finnix">1.41. Finnix</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_finnix_install">1.41.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://www.finnix.org/">[URL] origin_a8c42a299adfe3c06301</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_a8c42a299adfe3c06301.html">commands</a><br><a href="https://www.finnix.org/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_flatcar">1.42. Flatcar</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_flatcar_install">1.42.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/flatcar.ipxe">[MENU] flatcar.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_b10516d71c4bc3ce4a94.html">commands</a> | <a href="origins/origin_b10516d71c4bc3ce4a94.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/flatcar.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://stable.release.flatcar-linux.net/amd64-usr/current/flatcar_production_pxe.vmlinuz">[URL] flatcar_production_pxe.vmlinuz</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_2d9c2aab7c4193474c0a.html">commands</a><br><a href="https://stable.release.flatcar-linux.net/amd64-usr/current/flatcar_production_pxe.vmlinuz">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_foxclone">1.43. Foxclone</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_foxclone_install">1.43.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://www.foxclone.org/downloads.html">[URL] downloads.html</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_e85efa500dc3dacb2e66.html">commands</a><br><a href="https://www.foxclone.org/downloads.html">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_freebsd">1.44. Freebsd</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_freebsd_install">1.44.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/freebsd.ipxe">[MENU] freebsd.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_8f6e5d6ae718d80f8bb7.html">commands</a> | <a href="origins/origin_8f6e5d6ae718d80f8bb7.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/freebsd.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://mfsbsd.vx.sk/">[URL] origin_0703a7962f17efb47038</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_0703a7962f17efb47038.html">commands</a><br><a href="https://mfsbsd.vx.sk/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_freedos">1.45. Freedos</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_freedos_install">1.45.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/freedos.ipxe">[MENU] freedos.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_e8987744136072061d9f.html">commands</a> | <a href="origins/origin_e8987744136072061d9f.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/freedos.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_garuda">1.46. Garuda</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_garuda_install">1.46.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-garuda.ipxe">[MENU] live-garuda.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_8f022ff4c532be81a6fc.html">commands</a> | <a href="origins/origin_8f022ff4c532be81a6fc.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-garuda.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://garudalinux.org/downloads">[URL] downloads</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_6e64b038c4b3da517e8d.html">commands</a><br><a href="https://garudalinux.org/downloads">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_ghostbsd">1.47. Ghostbsd</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_ghostbsd_install">1.47.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://download.ghostbsd.org/releases/amd64/latest/">[URL] latest</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_f81a1d5847094a8114f0.html">commands</a><br><a href="https://download.ghostbsd.org/releases/amd64/latest/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_grml">1.48. Grml</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_grml_install">1.48.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-grml.ipxe">[MENU] live-grml.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_9ab35847f26a8da1ff79.html">commands</a> | <a href="origins/origin_9ab35847f26a8da1ff79.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-grml.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://download.grml.org/grml-full-2026.04-amd64.iso">[URL] grml-full-2026.04-amd64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_dff354f36f9aba367330.html">commands</a><br><a href="https://download.grml.org/grml-full-2026.04-amd64.iso">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_haiku">1.49. Haiku</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_haiku_install">1.49.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://download.haiku-os.org/">[URL] origin_dbd55c4465827b908676</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_dbd55c4465827b908676.html">commands</a><br><a href="https://download.haiku-os.org/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_harvester">1.50. Harvester</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_harvester_install">1.50.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/harvester.ipxe">[MENU] harvester.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_9b8f05d63013411e1fa8.html">commands</a> | <a href="origins/origin_9b8f05d63013411e1fa8.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/harvester.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://releases.rancher.com/harvester/v1.9.1/harvester-v1.9.1-vmlinuz-amd64">[URL] harvester-v1.9.1-vmlinuz-amd64</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_dd1303feece6d53f0a28.html">commands</a><br><a href="https://releases.rancher.com/harvester/v1.9.1/harvester-v1.9.1-vmlinuz-amd64">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_hrmpf">1.51. Hrmpf</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_hrmpf_install">1.51.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-hrmpf.ipxe">[MENU] live-hrmpf.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_c59f550d0db70ee78af4.html">commands</a> | <a href="origins/origin_c59f550d0db70ee78af4.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-hrmpf.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://github.com/leahneukirchen/hrmpf/releases">[URL] releases</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_4746d61c1db82de417da.html">commands</a><br><a href="https://github.com/leahneukirchen/hrmpf/releases">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_ipfire">1.52. Ipfire</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_ipfire_install">1.52.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/ipfire.ipxe">[MENU] ipfire.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_b1a3bc87636ba76608a9.html">commands</a> | <a href="origins/origin_b1a3bc87636ba76608a9.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/ipfire.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://www.ipfire.org/downloads/ipfire-2.29-core206">[URL] ipfire-2.29-core206</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_4f7a1777f12eaa7bd1de.html">commands</a><br><a href="https://www.ipfire.org/downloads/ipfire-2.29-core206">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_k3os">1.53. K3Os</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_k3os_install">1.53.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/k3os.ipxe">[MENU] k3os.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_2c82a2959a88a7f865c2.html">commands</a> | <a href="origins/origin_2c82a2959a88a7f865c2.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/k3os.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-k3os.ipxe">[MENU] live-k3os.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_c2c1fb62323479326b60.html">commands</a> | <a href="origins/origin_c2c1fb62323479326b60.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-k3os.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_kairos">1.54. Kairos</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_kairos_install">1.54.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/kairos.ipxe">[MENU] kairos.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_579e2681441a693417f4.html">commands</a> | <a href="origins/origin_579e2681441a693417f4.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/kairos.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://kairos.io/">[URL] origin_006179cc11c839f9d2ea</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_006179cc11c839f9d2ea.html">commands</a><br><a href="https://kairos.io/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_kaos">1.55. Kaos</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_kaos_install">1.55.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://sourceforge.net/projects/kaosx/files/ISO/KaOS-2026.11-x86_64.iso/download">[URL] KaOS-2026.11-x86_64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_2a23077bdd595f502a41.html">commands</a><br><a href="https://sourceforge.net/projects/kaosx/files/ISO/KaOS-2026.11-x86_64.iso/download">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_kaspersky">1.56. Kaspersky</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_kaspersky_install">1.56.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://www.kaspersky.com/downloads/free-rescue-disk">[URL] free-rescue-disk</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_2ea2e8a6d9e40b1d69e3.html">commands</a><br><a href="https://www.kaspersky.com/downloads/free-rescue-disk">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_kde">1.57. Kde</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_kde_install">1.57.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://files.kde.org/neon/images/user/current/neon-user-current.iso">[URL] neon-user-current.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_8b0214d27f2ac70460e6.html">commands</a><br><a href="https://files.kde.org/neon/images/user/current/neon-user-current.iso">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_kodachi">1.58. Kodachi</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_kodachi_install">1.58.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-kodachi.ipxe">[MENU] live-kodachi.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_3566347413d648aef449.html">commands</a> | <a href="origins/origin_3566347413d648aef449.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-kodachi.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_kubuntu">1.59. Kubuntu</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_kubuntu_install">1.59.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://cdimage.ubuntu.com/kubuntu/releases/26.04.1/release/">[URL] release</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_937375a02f8ae61cbb9e.html">commands</a><br><a href="https://cdimage.ubuntu.com/kubuntu/releases/26.04.1/release/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_linux">1.60. Linux</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_linux_install">1.60.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/linux.ipxe">[MENU] linux.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_d10b83cd292fb57a155a.html">commands</a> | <a href="origins/origin_d10b83cd292fb57a155a.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/linux.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://pub.linuxmint.io/stable/22.3/">[URL] 22.3</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_b1748d9862ea3bfa7394.html">commands</a><br><a href="https://pub.linuxmint.io/stable/22.3/">Original URL</a></li>
+<li><a class="bin-link" href="https://www.linuxliteos.com/download.php">[URL] download.php</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_e425a8e90f1f5d70362e.html">commands</a><br><a href="https://www.linuxliteos.com/download.php">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_linux-arm">1.61. Linux Arm</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_linux-arm_install">1.61.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/linux-arm.ipxe">[MENU] linux-arm.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_e7c6f3e3a85972f5d436.html">commands</a> | <a href="origins/origin_e7c6f3e3a85972f5d436.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/linux-arm.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_linux-i386">1.62. Linux I386</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_linux-i386_install">1.62.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/linux-i386.ipxe">[MENU] linux-i386.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_8cc0019e5c692e1fb52b.html">commands</a> | <a href="origins/origin_8cc0019e5c692e1fb52b.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/linux-i386.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_lite">1.63. Lite</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_lite_install">1.63.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-lite.ipxe">[MENU] live-lite.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_e2a8e634e01a27bddcf8.html">commands</a> | <a href="origins/origin_e2a8e634e01a27bddcf8.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-lite.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_live">1.64. Live</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_live_install">1.64.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live.ipxe">[MENU] live.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_baaf114c2a1f78959d76.html">commands</a> | <a href="origins/origin_baaf114c2a1f78959d76.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_lmde">1.65. Lmde</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_lmde_install">1.65.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://linuxmint.com/download_lmde.php">[URL] download_lmde.php</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_dd1cd49c5f99458e9862.html">commands</a><br><a href="https://linuxmint.com/download_lmde.php">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_lspci">1.66. Lspci</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_lspci_install">1.66.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/lspci.ipxe">[MENU] lspci.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_f707fbcd4a6da2448b8c.html">commands</a> | <a href="origins/origin_f707fbcd4a6da2448b8c.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/lspci.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_lubuntu">1.67. Lubuntu</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_lubuntu_install">1.67.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://cdimage.ubuntu.com/lubuntu/releases/26.04.1/release/">[URL] release</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_8e12ca887f86970d2320.html">commands</a><br><a href="https://cdimage.ubuntu.com/lubuntu/releases/26.04.1/release/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_lxle">1.68. Lxle</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_lxle_install">1.68.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-lxle.ipxe">[MENU] live-lxle.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_67956e9c97b1357679cd.html">commands</a> | <a href="origins/origin_67956e9c97b1357679cd.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-lxle.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_macos">1.69. Macos</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_macos_install">1.69.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://www.apple.com/la/os/macos/">[URL] macos</a> <span class="badge">[aarch64; upstream]</span> <a href="files/origin_a27d3174026a37334614.html">commands</a><br><a href="https://www.apple.com/la/os/macos/">Original URL</a></li>
+<li><a class="bin-link" href="https://support.apple.com/en-us/122867">[URL] 122867</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_415da9889b2146eee47f.html">commands</a><br><a href="https://support.apple.com/en-us/122867">Original URL</a></li>
+<li><a class="bin-link" href="https://support.apple.com/en-us/120282">[URL] 120282</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_3b270d96f4753acbb682.html">commands</a><br><a href="https://support.apple.com/en-us/120282">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_mageia">1.70. Mageia</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_mageia_install">1.70.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/mageia.ipxe">[MENU] mageia.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_7d7547da5c1ed0f8f47e.html">commands</a> | <a href="origins/origin_7d7547da5c1ed0f8f47e.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/mageia.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://mageia.org/en/downloads/">[URL] downloads</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_53b32191576201d2642c.html">commands</a><br><a href="https://mageia.org/en/downloads/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_manjaro">1.71. Manjaro</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_manjaro_install">1.71.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-manjaro.ipxe">[MENU] live-manjaro.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_75e062034200e6baf55a.html">commands</a> | <a href="origins/origin_75e062034200e6baf55a.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-manjaro.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://download.manjaro.org/xfce/26.1.0/manjaro-xfce-26.1.0-260812-linux71.iso">[URL] manjaro-xfce-26.1.0-260812-linux71.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_bcbbc287f55c98cda592.html">commands</a><br><a href="https://download.manjaro.org/xfce/26.1.0/manjaro-xfce-26.1.0-260812-linux71.iso">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_memtest86plus">1.72. Memtest86Plus</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_memtest86plus_install">1.72.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://www.memtest.org/download/v9.00/mt86plus_9.00.binaries.zip">[URL] mt86plus_9.00.binaries.zip</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_4f57780fd5c3cb014a31.html">commands</a><br><a href="https://www.memtest.org/download/v9.00/mt86plus_9.00.binaries.zip">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_menu">1.73. Menu</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_menu_install">1.73.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/menu.ipxe">[MENU] menu.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_7a6ea7db19271bf08047.html">commands</a> | <a href="origins/origin_7a6ea7db19271bf08047.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/menu.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_mint">1.74. Mint</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_mint_install">1.74.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-mint.ipxe">[MENU] live-mint.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_f7d0998679ef633822ad.html">commands</a> | <a href="origins/origin_f7d0998679ef633822ad.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-mint.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_mist">1.75. Mist</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_mist_install">1.75.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://github.com/ninxsoft/mist-cli/releases">[URL] releases</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_243615054867602b9233.html">commands</a><br><a href="https://github.com/ninxsoft/mist-cli/releases">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_mx">1.76. Mx</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_mx_install">1.76.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://mxlinux.org/download-links/">[URL] download-links</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_32c4a1fd558c1a154d76.html">commands</a><br><a href="https://mxlinux.org/download-links/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_nbxyz">1.77. Nbxyz</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_nbxyz_install">1.77.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/nbxyz.ipxe">[MENU] nbxyz.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_936490553fdaadf41fc5.html">commands</a> | <a href="origins/origin_936490553fdaadf41fc5.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/nbxyz.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_neon">1.78. Neon</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_neon_install">1.78.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-neon.ipxe">[MENU] live-neon.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_9393d6056f1a8c49be08.html">commands</a> | <a href="origins/origin_9393d6056f1a8c49be08.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-neon.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_netbsd">1.79. Netbsd</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_netbsd_install">1.79.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://cdn.netbsd.org/pub/NetBSD/images/11.1/NetBSD-11.1-amd64.iso">[URL] NetBSD-11.1-amd64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_6b4f76d5956b4c1bb4cf.html">commands</a><br><a href="https://cdn.netbsd.org/pub/NetBSD/images/11.1/NetBSD-11.1-amd64.iso">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_netinfo">1.80. Netinfo</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_netinfo_install">1.80.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/netinfo.ipxe">[MENU] netinfo.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_7205415372aefab2b563.html">commands</a> | <a href="origins/origin_7205415372aefab2b563.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/netinfo.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_nitrux">1.81. Nitrux</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_nitrux_install">1.81.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-nitrux.ipxe">[MENU] live-nitrux.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_ce64791d3b787e5885e4.html">commands</a> | <a href="origins/origin_ce64791d3b787e5885e4.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-nitrux.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_nixos">1.82. Nixos</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_nixos_install">1.82.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/nixos.ipxe">[MENU] nixos.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_7e2ce2417988372de6aa.html">commands</a> | <a href="origins/origin_7e2ce2417988372de6aa.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/nixos.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://channels.nixos.org/nixos-26.05">[URL] nixos-26.05</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_acb9493092071190dd6a.html">commands</a><br><a href="https://channels.nixos.org/nixos-26.05">Original URL</a></li>
+<li><a class="bin-link" href="https://channels.nixos.org/nixos-unstable">[URL] nixos-unstable</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_cd3f746962c97bcf45d1.html">commands</a><br><a href="https://channels.nixos.org/nixos-unstable">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_omarchy">1.83. Omarchy</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_omarchy_install">1.83.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-omarchy.ipxe">[MENU] live-omarchy.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_ed2d974391500c5f245f.html">commands</a> | <a href="origins/origin_ed2d974391500c5f245f.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-omarchy.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_omnios">1.84. Omnios</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_omnios_install">1.84.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://omnios.org/download">[URL] origin_fc78a9d6f8b375666e30</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_fc78a9d6f8b375666e30.html">commands</a><br><a href="https://omnios.org/download">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_openbsd">1.85. Openbsd</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_openbsd_install">1.85.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/openbsd.ipxe">[MENU] openbsd.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_9531f5ff1f6ee999eb28.html">commands</a> | <a href="origins/origin_9531f5ff1f6ee999eb28.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/openbsd.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://cdn.openbsd.org/pub/OpenBSD/8.0/amd64/bsd.rd">[URL] bsd.rd</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_f28fb937e3cf8136e13a.html">commands</a><br><a href="https://cdn.openbsd.org/pub/OpenBSD/8.0/amd64/bsd.rd">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_opencore">1.86. Opencore</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_opencore_install">1.86.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://github.com/acidanthera/OpenCorePkg/releases">[URL] releases</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_3a0a7f1fbadf45e629c7.html">commands</a><br><a href="https://github.com/acidanthera/OpenCorePkg/releases">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_openeuler">1.87. Openeuler</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_openeuler_install">1.87.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/openEuler.ipxe">[MENU] openEuler.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_28dfc3e2a547973591e8.html">commands</a> | <a href="origins/origin_28dfc3e2a547973591e8.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/openEuler.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://www.openeuler.org/en/download/">[URL] en</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_7cdf07dfb801cb70e334.html">commands</a><br><a href="https://www.openeuler.org/en/download/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_openindiana">1.88. Openindiana</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_openindiana_install">1.88.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://www.openindiana.org/downloads/">[URL] downloads</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_87351315cd18aefe1a51.html">commands</a><br><a href="https://www.openindiana.org/downloads/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_openmandriva">1.89. Openmandriva</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_openmandriva_install">1.89.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://sourceforge.net/projects/openmandriva/files/release/ROME/">[URL] ROME</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_392517345e53ffb70ee9.html">commands</a><br><a href="https://sourceforge.net/projects/openmandriva/files/release/ROME/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_openmediavault">1.90. Openmediavault</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_openmediavault_install">1.90.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://www.openmediavault.org/">[URL] origin_b5fe45ed403f349524c2</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_b5fe45ed403f349524c2.html">commands</a><br><a href="https://www.openmediavault.org/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_opensuse">1.91. Opensuse</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_opensuse_install">1.91.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/opensuse.ipxe">[MENU] opensuse.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_3e8e4b072d3d37a312ca.html">commands</a> | <a href="origins/origin_3e8e4b072d3d37a312ca.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/opensuse.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://get.opensuse.org/leap/16.0/">[URL] 16.0</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_4c39765b2d55f9a614ae.html">commands</a><br><a href="https://get.opensuse.org/leap/16.0/">Original URL</a></li>
+<li><a class="bin-link" href="https://download.opensuse.org/distribution/leap/15.6/repo/oss/boot/x86_64/loader/">[URL] loader</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_2329253a34126cbe521f.html">commands</a><br><a href="https://download.opensuse.org/distribution/leap/15.6/repo/oss/boot/x86_64/loader/">Original URL</a></li>
+<li><a class="bin-link" href="https://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/">[URL] loader</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_4d7e6367c4742aa95c84.html">commands</a><br><a href="https://download.opensuse.org/tumbleweed/repo/oss/boot/x86_64/loader/">Original URL</a></li>
+<li><a class="bin-link" href="https://get.opensuse.org/microos/">[URL] microos</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_1069533220a51a1a5b1d.html">commands</a><br><a href="https://get.opensuse.org/microos/">Original URL</a></li>
+<li><a class="bin-link" href="https://download.opensuse.org/distribution/leap/16.1/">[URL] 16.1</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_67b015f055b313ac1f8e.html">commands</a><br><a href="https://download.opensuse.org/distribution/leap/16.1/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_openwrt">1.92. Openwrt</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_openwrt_install">1.92.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://downloads.openwrt.org/releases/25.12.6/targets/x86/64/openwrt-25.12.6-x86-64-generic-kernel.bin">[URL] openwrt-25.12.6-x86-64-generic-kernel.bin</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_72639527687eefe1f567.html">commands</a><br><a href="https://downloads.openwrt.org/releases/25.12.6/targets/x86/64/openwrt-25.12.6-x86-64-generic-kernel.bin">Original URL</a></li>
+<li><a class="bin-link" href="https://downloads.openwrt.org/snapshots/targets/x86/64/openwrt-x86-64-generic-kernel.bin">[URL] openwrt-x86-64-generic-kernel.bin</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_edef195eb7daa7776fb0.html">commands</a><br><a href="https://downloads.openwrt.org/snapshots/targets/x86/64/openwrt-x86-64-generic-kernel.bin">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_opnsense">1.93. Opnsense</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_opnsense_netinstall">1.93.1. Netinstall</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://github.com/netbootxyz/netboot.xyz">[URL] netboot.xyz</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_653d4ee332ef8f3d0d51.html">commands</a><br><a href="https://github.com/netbootxyz/netboot.xyz">Original URL</a></li>
+</ul>
+</div></details>
+<details><summary><h4 id="nav_distribution_opnsense_install">1.93.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://opnsense.c0urier.net/releases/26.7/">[URL] 26.7</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_765803a5356aeb94ab7d.html">commands</a><br><a href="https://opnsense.c0urier.net/releases/26.7/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_oracle">1.94. Oracle</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_oracle_install">1.94.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/oracle.ipxe">[MENU] oracle.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_7b181f9d02bec7233611.html">commands</a> | <a href="origins/origin_7b181f9d02bec7233611.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/oracle.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_oraclelinux">1.95. Oraclelinux</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_oraclelinux_install">1.95.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://yum.oracle.com/ISOS/OracleLinux/OL10/">[URL] OL10</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_0cb4b9ee0c39a2d00d12.html">commands</a><br><a href="https://yum.oracle.com/ISOS/OracleLinux/OL10/">Original URL</a></li>
+<li><a class="bin-link" href="https://yum.oracle.com/repo/OracleLinux/OL9/9/baseos/base/x86_64/">[URL] x86_64</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_ffc7c6602eb9797c4f6f.html">commands</a><br><a href="https://yum.oracle.com/repo/OracleLinux/OL9/9/baseos/base/x86_64/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_parrot">1.96. Parrot</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_parrot_install">1.96.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-parrot.ipxe">[MENU] live-parrot.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_db670e19f41d97ae2c78.html">commands</a> | <a href="origins/origin_db670e19f41d97ae2c78.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-parrot.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://parrotsec.org/download/">[URL] origin_8dd9fc01f71918f870ba</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_8dd9fc01f71918f870ba.html">commands</a><br><a href="https://parrotsec.org/download/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_peppermint">1.97. Peppermint</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_peppermint_install">1.97.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-peppermint.ipxe">[MENU] live-peppermint.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_e3f40676fde7ddbabf0e.html">commands</a> | <a href="origins/origin_e3f40676fde7ddbabf0e.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-peppermint.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://peppermintos.com/trixie-base-downloads/">[URL] trixie-base-downloads</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_9a4eb3f83b5f6ae7c196.html">commands</a><br><a href="https://peppermintos.com/trixie-base-downloads/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_pfsense">1.98. Pfsense</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_pfsense_install">1.98.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://www.pfsense.org/download/">[URL] origin_ac03a747ef9d5321500a</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_ac03a747ef9d5321500a.html">commands</a><br><a href="https://www.pfsense.org/download/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_photon">1.99. Photon</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_photon_install">1.99.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/photon.ipxe">[MENU] photon.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_67be4397e352b8c7119f.html">commands</a> | <a href="origins/origin_67be4397e352b8c7119f.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/photon.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_pop">1.100. Pop</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_pop_install">1.100.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://pop.system76.com">[URL] origin_5462fa150bcc3fa36d47</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_5462fa150bcc3fa36d47.html">commands</a><br><a href="https://pop.system76.com">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_popos">1.101. Popos</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_popos_install">1.101.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-popos.ipxe">[MENU] live-popos.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_f853865be79f85590e3a.html">commands</a> | <a href="origins/origin_f853865be79f85590e3a.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-popos.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_q4os">1.102. Q4Os</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_q4os_install">1.102.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-q4os.ipxe">[MENU] live-q4os.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_4e138ec78d33c4cc0b9f.html">commands</a> | <a href="origins/origin_4e138ec78d33c4cc0b9f.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-q4os.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://q4os.org/">[URL] origin_f3af96f906ec0ff90f1c</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_f3af96f906ec0ff90f1c.html">commands</a><br><a href="https://q4os.org/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_qubes">1.103. Qubes</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_qubes_install">1.103.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://mirrors.edge.kernel.org/qubes/iso/Qubes-R4.3.2-x86_64.iso">[URL] Qubes-R4.3.2-x86_64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_00f1a58a22bf2f3c8556.html">commands</a><br><a href="https://mirrors.edge.kernel.org/qubes/iso/Qubes-R4.3.2-x86_64.iso">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_raizo">1.104. Raizo</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_raizo_install">1.104.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-raizo.ipxe">[MENU] live-raizo.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_33f3ec24590d95f1c885.html">commands</a> | <a href="origins/origin_33f3ec24590d95f1c885.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-raizo.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_refind">1.105. Refind</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_refind_install">1.105.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://sourceforge.net/projects/refind/">[URL] refind</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_fea9aa6f6d02356c482e.html">commands</a><br><a href="https://sourceforge.net/projects/refind/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_regolith">1.106. Regolith</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_regolith_install">1.106.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-regolith.ipxe">[MENU] live-regolith.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_0013bd397426347dab86.html">commands</a> | <a href="origins/origin_0013bd397426347dab86.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-regolith.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_rescuezilla">1.107. Rescuezilla</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_rescuezilla_install">1.107.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://rescuezilla.com/download">[URL] origin_08c329fc290d0d917226</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_08c329fc290d0d917226.html">commands</a><br><a href="https://rescuezilla.com/download">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_rhcos">1.108. Rhcos</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_rhcos_install">1.108.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/rhcos.ipxe">[MENU] rhcos.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_4ea64f47d371b49a88f7.html">commands</a> | <a href="origins/origin_4ea64f47d371b49a88f7.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/rhcos.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_rhel">1.109. Rhel</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_rhel_install">1.109.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/rhel.ipxe">[MENU] rhel.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_86bd0f92f42b917f206c.html">commands</a> | <a href="origins/origin_86bd0f92f42b917f206c.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/rhel.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_rocky">1.110. Rocky</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_rocky_install">1.110.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://dl.rockylinux.org/pub/rocky/10/BaseOS/x86_64/os/images/pxeboot/vmlinuz">[URL] vmlinuz</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_1cf1a2a816727f035f77.html">commands</a><br><a href="https://dl.rockylinux.org/pub/rocky/10/BaseOS/x86_64/os/images/pxeboot/vmlinuz">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_rockylinux">1.111. Rockylinux</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_rockylinux_install">1.111.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/rockylinux.ipxe">[MENU] rockylinux.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_db9c42abf9a65a996a47.html">commands</a> | <a href="origins/origin_db9c42abf9a65a996a47.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/rockylinux.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_scos">1.112. Scos</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_scos_install">1.112.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/scos.ipxe">[MENU] scos.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_cd1b3c3552447185a975.html">commands</a> | <a href="origins/origin_cd1b3c3552447185a975.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/scos.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_septor">1.113. Septor</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_septor_install">1.113.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-septor.ipxe">[MENU] live-septor.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_4d805f49fa543f9fa520.html">commands</a> | <a href="origins/origin_4d805f49fa543f9fa520.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-septor.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_slackware">1.114. Slackware</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_slackware_install">1.114.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/slackware.ipxe">[MENU] slackware.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_311969f8351392ef3320.html">commands</a> | <a href="origins/origin_311969f8351392ef3320.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/slackware.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://mirrors.slackware.com/slackware/slackware-15.0/">[URL] slackware-15.0</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_e12d1ddcfed43ec0c030.html">commands</a><br><a href="https://mirrors.slackware.com/slackware/slackware-15.0/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_slackware64">1.115. Slackware64</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_slackware64_install">1.115.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://mirrors.slackware.com/slackware/slackware64-current/">[URL] slackware64-current</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_927ddb941fa4437c0a71.html">commands</a><br><a href="https://mirrors.slackware.com/slackware/slackware64-current/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_smartos">1.116. Smartos</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_smartos_install">1.116.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/smartos.ipxe">[MENU] smartos.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_c3ac8444c1bed45860c6.html">commands</a> | <a href="origins/origin_c3ac8444c1bed45860c6.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/smartos.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://netboot.smartos.org/smartos.ipxe">[URL] smartos.ipxe</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_c8fa7d659b394c4aab90.html">commands</a><br><a href="https://netboot.smartos.org/smartos.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_solus">1.117. Solus</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_solus_install">1.117.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://getsol.us/download/">[URL] origin_ad419c6baf27ba9feed2</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_ad419c6baf27ba9feed2.html">commands</a><br><a href="https://getsol.us/download/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_sparky">1.118. Sparky</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_sparky_install">1.118.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-sparky.ipxe">[MENU] live-sparky.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_91975be111fa891ee89d.html">commands</a> | <a href="origins/origin_91975be111fa891ee89d.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-sparky.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_sparkylinux">1.119. Sparkylinux</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_sparkylinux_install">1.119.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://sparkylinux.org/">[URL] origin_b8a46f55cd7d14dc6baa</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_b8a46f55cd7d14dc6baa.html">commands</a><br><a href="https://sparkylinux.org/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_super">1.120. Super</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_super_install">1.120.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://www.supergrubdisk.org/">[URL] origin_769cc70bad45e3ad6742</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_769cc70bad45e3ad6742.html">commands</a><br><a href="https://www.supergrubdisk.org/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_tails">1.121. Tails</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_tails_install">1.121.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-tails.ipxe">[MENU] live-tails.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_7bc2ea2e64f6171c37a8.html">commands</a> | <a href="origins/origin_7bc2ea2e64f6171c37a8.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-tails.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://tails.net/install/index.en.html">[URL] index.en.html</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_528740324cbdbc7c8199.html">commands</a><br><a href="https://tails.net/install/index.en.html">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_talos">1.122. Talos</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_talos_install">1.122.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/talos.ipxe">[MENU] talos.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_dc03fb26155c581883ff.html">commands</a> | <a href="origins/origin_dc03fb26155c581883ff.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/talos.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://github.com/siderolabs/talos">[URL] talos</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_244a9a14a72d6967cfbe.html">commands</a><br><a href="https://github.com/siderolabs/talos">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_tinycore">1.123. Tinycore</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_tinycore_install">1.123.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/tinycore.ipxe">[MENU] tinycore.ipxe</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_e65889b0a69896ae43e9.html">commands</a> | <a href="origins/origin_e65889b0a69896ae43e9.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/tinycore.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_truenas">1.124. Truenas</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_truenas_install">1.124.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://download.truenas.com/TrueNAS-SCALE-Goldeye/25.10.8/TrueNAS-SCALE-25.10.8.iso">[URL] TrueNAS-SCALE-25.10.8.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_b28d839cde49bd642850.html">commands</a><br><a href="https://download.truenas.com/TrueNAS-SCALE-Goldeye/25.10.8/TrueNAS-SCALE-25.10.8.iso">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_ubcd">1.125. Ubcd</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_ubcd_install">1.125.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://www.ultimatebootcd.com">[URL] origin_13f82acacfa154bbfc27</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_13f82acacfa154bbfc27.html">commands</a><br><a href="https://www.ultimatebootcd.com">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_ubuntu-spins">1.126. Ubuntu Spins</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_ubuntu-spins_install">1.126.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/ubuntu-spins.ipxe">[MENU] ubuntu-spins.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_cbe2867dc8aca07cb23b.html">commands</a> | <a href="origins/origin_cbe2867dc8aca07cb23b.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/ubuntu-spins.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_unix">1.127. Unix</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_unix_install">1.127.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/unix.ipxe">[MENU] unix.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_78f80a083f0d927d7fb9.html">commands</a> | <a href="origins/origin_78f80a083f0d927d7fb9.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/unix.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_utils-arm">1.128. Utils Arm</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_utils-arm_install">1.128.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/utils-arm.ipxe">[MENU] utils-arm.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_22ab8787e6aeb6d2c800.html">commands</a> | <a href="origins/origin_22ab8787e6aeb6d2c800.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/utils-arm.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_utils-efi">1.129. Utils Efi</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_utils-efi_install">1.129.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/utils-efi.ipxe">[MENU] utils-efi.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_d36514bd07d048199fe9.html">commands</a> | <a href="origins/origin_d36514bd07d048199fe9.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/utils-efi.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_utils-pcbios-32">1.130. Utils Pcbios 32</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_utils-pcbios-32_install">1.130.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/utils-pcbios-32.ipxe">[MENU] utils-pcbios-32.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_0a390b13ffd4a9be1a08.html">commands</a> | <a href="origins/origin_0a390b13ffd4a9be1a08.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/utils-pcbios-32.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_utils-pcbios-64">1.131. Utils Pcbios 64</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_utils-pcbios-64_install">1.131.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/utils-pcbios-64.ipxe">[MENU] utils-pcbios-64.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_adaeefa9df599e80161f.html">commands</a> | <a href="origins/origin_adaeefa9df599e80161f.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/utils-pcbios-64.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_vanilla">1.132. Vanilla</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_vanilla_install">1.132.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://vanillaos.org/download">[URL] origin_ed3f93b5b33d5c65936b</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_ed3f93b5b33d5c65936b.html">commands</a><br><a href="https://vanillaos.org/download">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_vanillaos">1.133. Vanillaos</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_vanillaos_install">1.133.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-vanillaos.ipxe">[MENU] live-vanillaos.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_fc08f4eeb603fc1dc84b.html">commands</a> | <a href="origins/origin_fc08f4eeb603fc1dc84b.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-vanillaos.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_ventoy">1.134. Ventoy</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_ventoy_install">1.134.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://www.ventoy.net/en/download.html">[URL] download.html</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_6aada5a50e9afa0f8e15.html">commands</a><br><a href="https://www.ventoy.net/en/download.html">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_vmware">1.135. Vmware</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_vmware_install">1.135.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/vmware.ipxe">[MENU] vmware.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_a9d3080f6d2280ca576f.html">commands</a> | <a href="origins/origin_a9d3080f6d2280ca576f.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/vmware.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://vmware.github.io/photon/">[URL] photon</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_48e77f8bc2ff15e8f495.html">commands</a><br><a href="https://vmware.github.io/photon/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_void">1.136. Void</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_void_install">1.136.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://repo-default.voidlinux.org/live/current/">[URL] current</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_768219dbb81e2b31a9f5.html">commands</a><br><a href="https://repo-default.voidlinux.org/live/current/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_voyager">1.137. Voyager</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_voyager_install">1.137.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-voyager.ipxe">[MENU] live-voyager.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_71bbb16024bb346cb03c.html">commands</a> | <a href="origins/origin_71bbb16024bb346cb03c.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-voyager.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_vyos">1.138. Vyos</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_vyos_install">1.138.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/vyos.ipxe">[MENU] vyos.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_f257d740a016e3dcd62c.html">commands</a> | <a href="origins/origin_f257d740a016e3dcd62c.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/vyos.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://github.com/netbootxyz/netboot.xyz/blob/development/endpoints.yml">[URL] endpoints.yml</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_9d7cd9eaa5a8ac8da76a.html">commands</a><br><a href="https://github.com/netbootxyz/netboot.xyz/blob/development/endpoints.yml">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_windows">1.139. Windows</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_windows_install">1.139.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/windows.ipxe">[MENU] windows.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_936b7b066da56f1b1272.html">commands</a> | <a href="origins/origin_936b7b066da56f1b1272.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/windows.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://www.microsoft.com/en-us/software-download/windows11">[URL] windows11</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_b902a4e67f17e2ecc3f7.html">commands</a><br><a href="https://www.microsoft.com/en-us/software-download/windows11">Original URL</a></li>
+<li><a class="bin-link" href="https://www.microsoft.com/en-us/software-download/windows11arm64">[URL] windows11arm64</a> <span class="badge">[aarch64; upstream]</span> <a href="files/origin_86fc987d70d0b08070f4.html">commands</a><br><a href="https://www.microsoft.com/en-us/software-download/windows11arm64">Original URL</a></li>
+<li><a class="bin-link" href="https://www.microsoft.com/en-us/evalcenter/evaluate-windows-11-enterprise">[URL] evaluate-windows-11-enterprise</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_59562ca05e9afee62feb.html">commands</a><br><a href="https://www.microsoft.com/en-us/evalcenter/evaluate-windows-11-enterprise">Original URL</a></li>
+<li><a class="bin-link" href="https://www.microsoft.com/en-us/evalcenter/evaluate-windows-10-enterprise">[URL] evaluate-windows-10-enterprise</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_05c06e900ece81c16069.html">commands</a><br><a href="https://www.microsoft.com/en-us/evalcenter/evaluate-windows-10-enterprise">Original URL</a></li>
+<li><a class="bin-link" href="https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2025">[URL] evaluate-windows-server-2025</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_2d0f7bbfa37ffc7c509e.html">commands</a><br><a href="https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2025">Original URL</a></li>
+<li><a class="bin-link" href="https://learn.microsoft.com/en-us/windows-hardware/get-started/adk-install">[URL] adk-install</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_c85f2c93efbb1a3b822d.html">commands</a><br><a href="https://learn.microsoft.com/en-us/windows-hardware/get-started/adk-install">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_xcp">1.140. Xcp</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_xcp_install">1.140.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://mirrors.xcp-ng.org/isos/8.3/xcp-ng-8.3.0-20260806.iso?https=1">[URL] xcp-ng-8.3.0-20260806.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_951276997193ae3058fa.html">commands</a><br><a href="https://mirrors.xcp-ng.org/isos/8.3/xcp-ng-8.3.0-20260806.iso?https=1">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_xubuntu">1.141. Xubuntu</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_xubuntu_install">1.141.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://cdimage.ubuntu.com/xubuntu/releases/26.04.1/release/">[URL] release</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_3810436971e70a2923eb.html">commands</a><br><a href="https://cdimage.ubuntu.com/xubuntu/releases/26.04.1/release/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_zeninstall">1.142. Zeninstall</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_zeninstall_install">1.142.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/zeninstall.ipxe">[MENU] zeninstall.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_794110112743248dc3c5.html">commands</a> | <a href="origins/origin_794110112743248dc3c5.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/zeninstall.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_zfsbootmenu">1.143. Zfsbootmenu</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_zfsbootmenu_install">1.143.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://github.com/zbm-dev/zfsbootmenu/releases">[URL] releases</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_8bb5768dbba328916f7e.html">commands</a><br><a href="https://github.com/zbm-dev/zfsbootmenu/releases">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<details><summary><h3 id="nav_distribution_zorin">1.144. Zorin</h3></summary><div class="menu-branch">
+<details><summary><h4 id="nav_distribution_zorin_install">1.144.2. Install</h4></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/live-zorin.ipxe">[MENU] live-zorin.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_cb5e06d516535feb11e8.html">commands</a> | <a href="origins/origin_cb5e06d516535feb11e8.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/live-zorin.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://zorin.com/os/download/">[URL] os</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_ae1527f56fc5a0788995.html">commands</a><br><a href="https://zorin.com/os/download/">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+</div></details>
+<details><summary><h2 id="nav_tools">2. Tools</h2></summary><div class="menu-branch">
+<details><summary><h3 id="nav_tools_systemrescue">2.1. SystemRescue</h3></summary><div class="menu-branch">
+<ul>
+<li><a class="iso-link" href="https://fastly-cdn.system-rescue.org/releases/13.03/systemrescue-13.03-amd64.iso">[ISO] systemrescue-13.03-amd64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/systemrescue-tool-x86_64-systemrescue-13.html">commands</a><br><a href="https://fastly-cdn.system-rescue.org/releases/13.03/systemrescue-13.03-amd64.iso">Original URL</a></li>
+<li><a class="bin-link" href="https://boot.netboot.xyz/systemrescue.ipxe">[MENU] systemrescue.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_3cf01aef9d0afba2b17e.html">commands</a> | <a href="origins/origin_3cf01aef9d0afba2b17e.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/systemrescue.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://www.system-rescue.org/Download/">[URL] Download</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_7071a06cb8066694cb7a.html">commands</a><br><a href="https://www.system-rescue.org/Download/">Original URL</a></li>
+</ul>
+</div></details>
+<details><summary><h3 id="nav_tools_rescatux">2.2. Rescatux</h3></summary><div class="menu-branch">
+<ul>
+<li><a class="iso-link" href="https://sourceforge.net/projects/rescatux/files/rescatux-0.74/rescatux-0.74.iso/download">[ISO] rescatux-0.74.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/rescatux-tool-x86_64-rescatux-0.html">commands</a><br><a href="https://sourceforge.net/projects/rescatux/files/rescatux-0.74/rescatux-0.74.iso/download">Original URL</a></li>
+<li><a class="bin-link" href="https://www.supergrubdisk.org/rescatux/">[URL] rescatux</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_9757c34c9c708e41a790.html">commands</a><br><a href="https://www.supergrubdisk.org/rescatux/">Original URL</a></li>
+</ul>
+</div></details>
+<details><summary><h3 id="nav_tools_redo">2.3. Redo Rescue</h3></summary><div class="menu-branch">
+<ul>
+<li><a class="iso-link" href="https://sourceforge.net/projects/redobackup/files/redorescue-4.0.0.iso/download">[ISO] redorescue-4.0.0.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/redo-tool-x86_64-redorescue-4.html">commands</a><br><a href="https://sourceforge.net/projects/redobackup/files/redorescue-4.0.0.iso/download">Original URL</a></li>
+</ul>
+</div></details>
+<details><summary><h3 id="nav_tools_clonezilla">2.4. Clonezilla</h3></summary><div class="menu-branch">
+<ul>
+<li><a class="iso-link" href="https://sourceforge.net/projects/clonezilla/files/clonezilla_live_testing/3.3.4-23/clonezilla-live-3.3.4-23-amd64.iso/download">[ISO] clonezilla-live-3.3.4-23-amd64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/clonezilla-live-x86_64-clonezilla-live-3.html">commands</a><br><a href="https://sourceforge.net/projects/clonezilla/files/clonezilla_live_testing/3.3.4-23/clonezilla-live-3.3.4-23-amd64.iso/download">Original URL</a></li>
+<li><a class="bin-link" href="https://boot.netboot.xyz/clonezilla.ipxe">[MENU] clonezilla.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_67365b02f840b9de96dd.html">commands</a> | <a href="origins/origin_67365b02f840b9de96dd.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/clonezilla.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://sourceforge.net/projects/clonezilla/files/clonezilla_live_stable/3.3.5-3/">[URL] 3.3.5-3</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_f4501ae556debc377f32.html">commands</a><br><a href="https://sourceforge.net/projects/clonezilla/files/clonezilla_live_stable/3.3.5-3/">Original URL</a></li>
+</ul>
+</div></details>
+<details><summary><h3 id="nav_tools_gparted">2.5. GParted</h3></summary><div class="menu-branch">
+<ul>
+<li><a class="iso-link" href="https://downloads.sourceforge.net/project/gparted/gparted-live-stable/1.8.1-6/gparted-live-1.8.1-6-amd64.iso">[ISO] gparted-live-1.8.1-6-amd64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/gparted-live-x86_64-gparted-live-1.html">commands</a><br><a href="https://downloads.sourceforge.net/project/gparted/gparted-live-stable/1.8.1-6/gparted-live-1.8.1-6-amd64.iso">Original URL</a></li>
+<li><a class="bin-link" href="https://boot.netboot.xyz/gparted.ipxe">[MENU] gparted.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_e1809d9a7c42568653ce.html">commands</a> | <a href="origins/origin_e1809d9a7c42568653ce.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/gparted.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://sourceforge.net/projects/gparted/files/gparted-live-stable/1.8.1-6/">[URL] 1.8.1-6</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_8eb07440cb2f21feed73.html">commands</a><br><a href="https://sourceforge.net/projects/gparted/files/gparted-live-stable/1.8.1-6/">Original URL</a></li>
+</ul>
+</div></details>
+<details><summary><h3 id="nav_tools_memtest">2.6. Memtest86+</h3></summary><div class="menu-branch">
+<ul>
+<li><a class="iso-link" href="https://www.memtest.org/download/v9.00/mt86plus_9.00_i586.iso.zip">[ISO.ZIP] mt86plus_9.00_i586.iso.zip</a> <span class="badge">[i386; upstream]</span> <a href="files/memtest-tool-i386-mt86plus_9.html">commands</a><br><a href="https://www.memtest.org/download/v9.00/mt86plus_9.00_i586.iso.zip">Original URL</a></li>
+<li><a class="iso-link" href="https://www.memtest.org/download/v9.00/mt86plus_9.00_x86_64.grub.iso.zip">[ISO.ZIP] mt86plus_9.00_x86_64.grub.iso.zip</a> <span class="badge">[x86_64; upstream]</span> <a href="files/memtest-tool-x86_64-mt86plus_9.html">commands</a><br><a href="https://www.memtest.org/download/v9.00/mt86plus_9.00_x86_64.grub.iso.zip">Original URL</a></li>
+<li><a class="iso-link" href="https://www.memtest.org/download/v9.00/mt86plus_9.00_x86_64.iso.zip">[ISO.ZIP] mt86plus_9.00_x86_64.iso.zip</a> <span class="badge">[x86_64; upstream]</span> <a href="files/memtest-tool-x86_64-mt86plus_9-mt86plus-9-00-x86-64-iso-zip.html">commands</a><br><a href="https://www.memtest.org/download/v9.00/mt86plus_9.00_x86_64.iso.zip">Original URL</a></li>
+</ul>
+</div></details>
+<details><summary><h3 id="nav_tools_netboot">2.7. netboot.xyz</h3></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://github.com/netbootxyz/netboot.xyz/releases/download/3.0.3/netboot.xyz-arm64.efi">[EFI] netboot.xyz-arm64.efi</a> <span class="badge">[arm64; upstream]</span> <a href="files/netboot-netboot-arm64-netboot.html">commands</a><br><a href="https://github.com/netbootxyz/netboot.xyz/releases/download/3.0.3/netboot.xyz-arm64.efi">Original URL</a></li>
+<li><a class="bin-link" href="https://github.com/netbootxyz/netboot.xyz/releases/download/3.0.3/netboot.xyz.efi">[EFI] netboot.xyz.efi</a> <span class="badge">[x86_64; upstream]</span> <a href="files/netboot-netboot-x86_64-netboot.html">commands</a><br><a href="https://github.com/netbootxyz/netboot.xyz/releases/download/3.0.3/netboot.xyz.efi">Original URL</a></li>
+<li><a class="bin-link" href="https://github.com/netbootxyz/netboot.xyz/releases/download/3.0.3/netboot.xyz.kpxe">[KPXE] netboot.xyz.kpxe</a> <span class="badge">[x86_64; upstream]</span> <a href="files/netboot-netboot-x86_64-netboot-netboot-xyz-kpxe.html">commands</a><br><a href="https://github.com/netbootxyz/netboot.xyz/releases/download/3.0.3/netboot.xyz.kpxe">Original URL</a></li>
+<li><a class="bin-link" href="https://github.com/netbootxyz/netboot.xyz/releases/download/3.0.3/netboot.xyz.lkrn">[LKRN] netboot.xyz.lkrn</a> <span class="badge">[x86_64; upstream]</span> <a href="files/netboot-netboot-x86_64-netboot-netboot-xyz-lkrn.html">commands</a><br><a href="https://github.com/netbootxyz/netboot.xyz/releases/download/3.0.3/netboot.xyz.lkrn">Original URL</a></li>
+</ul>
+</div></details>
+<details><summary><h3 id="nav_tools_bootrepair">2.8. Boot Repair</h3></summary><div class="menu-branch">
+<ul>
+<li><a class="iso-link" href="https://sourceforge.net/projects/boot-repair-cd/files/boot-repair-disk-64bit.iso/download">[ISO] boot-repair-disk-64bit.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/bootrepair-tool-x86_64-boot-repair-disk-64bit.html">commands</a><br><a href="https://sourceforge.net/projects/boot-repair-cd/files/boot-repair-disk-64bit.iso/download">Original URL</a></li>
+</ul>
+</div></details>
+<details><summary><h3 id="nav_tools_dban">2.9. DBAN</h3></summary><div class="menu-branch">
+<ul>
+<li><a class="iso-link" href="https://sourceforge.net/projects/dban/files/dban/dban-2.3.0/dban-2.3.0_i586.iso/download">[ISO] dban-2.3.0_i586.iso</a> <span class="badge">[i386; upstream]</span> <a href="files/dban-tool-i386-dban-2.html">commands</a><br><a href="https://sourceforge.net/projects/dban/files/dban/dban-2.3.0/dban-2.3.0_i586.iso/download">Original URL</a></li>
+<li><a class="bin-link" href="https://boot.netboot.xyz/dban.ipxe">[MENU] dban.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_109fad461a442e4feed6.html">commands</a> | <a href="origins/origin_109fad461a442e4feed6.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/dban.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://dban.org/">[URL] origin_e1d5b737fbf9af2f608d</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_e1d5b737fbf9af2f608d.html">commands</a><br><a href="https://dban.org/">Original URL</a></li>
+</ul>
+</div></details>
+<details><summary><h3 id="nav_tools_supergrub">2.10. Super GRUB2 Disk</h3></summary><div class="menu-branch">
+<ul>
+<li><a class="iso-link" href="https://sourceforge.net/projects/supergrub2/files/2.06s4/super_grub2_disk_2.06s4/supergrub2-classic-2.06s4-multiarch-CD.iso/download">[ISO] supergrub2-classic-2.06s4-multiarch-CD.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/supergrub-tool-x86_64-supergrub2-classic-2.html">commands</a><br><a href="https://sourceforge.net/projects/supergrub2/files/2.06s4/super_grub2_disk_2.06s4/supergrub2-classic-2.06s4-multiarch-CD.iso/download">Original URL</a></li>
+</ul>
+</div></details>
+<details><summary><h3 id="nav_tools_other">2.11. Other tools</h3></summary><div class="menu-branch">
+<ul>
+<li><a class="iso-link" href="https://distro.ibiblio.org/tinycorelinux/17.x/x86/release/Core-17.1.iso">[ISO] Core-17.1.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/other-tool-x86_64-core-17.html">commands</a><br><a href="https://distro.ibiblio.org/tinycorelinux/17.x/x86/release/Core-17.1.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://distro.ibiblio.org/tinycorelinux/17.x/x86_64/release/CorePure64-17.1.iso">[ISO] CorePure64-17.1.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/other-tool-x86_64-corepure64-17.html">commands</a><br><a href="https://distro.ibiblio.org/tinycorelinux/17.x/x86_64/release/CorePure64-17.1.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://releases.nixos.org/nixos/26.05/nixos-26.05.14979.94c3211b0ee8/nixos-minimal-26.05.14979.94c3211b0ee8-x86_64-linux.iso">[ISO] nixos-minimal-26.05.14979.94c3211b0ee8-x86_64-linux.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/other-tool-x86_64-nixos-minimal-26.html">commands</a><br><a href="https://releases.nixos.org/nixos/26.05/nixos-26.05.14979.94c3211b0ee8/nixos-minimal-26.05.14979.94c3211b0ee8-x86_64-linux.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://mirror.slitaz.org/iso/rolling/slitaz-rolling-core.iso">[ISO] slitaz-rolling-core.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/other-tool-x86_64-slitaz-rolling-core.html">commands</a><br><a href="https://mirror.slitaz.org/iso/rolling/slitaz-rolling-core.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://mirror.slitaz.org/iso/rolling/slitaz-rolling-core64.iso">[ISO] slitaz-rolling-core64.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/other-tool-x86_64-slitaz-rolling-core64.html">commands</a><br><a href="https://mirror.slitaz.org/iso/rolling/slitaz-rolling-core64.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://repo.almalinux.org/almalinux/10/isos/x86_64/AlmaLinux-10.2-x86_64-boot.iso">[ISO] AlmaLinux-10.2-x86_64-boot.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/other-tool-x86_64-almalinux-10.html">commands</a><br><a href="https://repo.almalinux.org/almalinux/10/isos/x86_64/AlmaLinux-10.2-x86_64-boot.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.rockylinux.org/pub/rocky/10/isos/x86_64/Rocky-10.2-x86_64-boot.iso">[ISO] Rocky-10.2-x86_64-boot.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/other-tool-x86_64-rocky-10.html">commands</a><br><a href="https://download.rockylinux.org/pub/rocky/10/isos/x86_64/Rocky-10.2-x86_64-boot.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://download.opensuse.org/distribution/leap/16.0/installer/iso/agama-installer.x86_64-Leap_16.0.iso">[ISO] agama-installer.x86_64-Leap_16.0.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/other-tool-x86_64-agama-installer.html">commands</a><br><a href="https://download.opensuse.org/distribution/leap/16.0/installer/iso/agama-installer.x86_64-Leap_16.0.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://files.devuan.org/devuan_excalibur/installer-iso/devuan_excalibur_6.1.1_amd64_netinstall.iso">[ISO] devuan_excalibur_6.1.1_amd64_netinstall.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/other-tool-x86_64-devuan_excalibur_6.html">commands</a><br><a href="https://files.devuan.org/devuan_excalibur/installer-iso/devuan_excalibur_6.1.1_amd64_netinstall.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://sourceforge.net/projects/linux4m/files/52.0/livecd/updates/2/4MLinux-52.2-64bit.iso/download">[ISO] 4MLinux-52.2-64bit.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/other-tool-x86_64-4mlinux-52.html">commands</a><br><a href="https://sourceforge.net/projects/linux4m/files/52.0/livecd/updates/2/4MLinux-52.2-64bit.iso/download">Original URL</a></li>
+<li><a class="iso-link" href="https://rescuedisk.s.kaspersky-labs.com/updatable/2018/krd.iso">[ISO] krd.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/other-tool-x86_64-krd.html">commands</a><br><a href="https://rescuedisk.s.kaspersky-labs.com/updatable/2018/krd.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://github.com/rescuezilla/rescuezilla/releases/download/2.6.2/rescuezilla-2.6.2-64bit.resolute.iso">[ISO] rescuezilla-2.6.2-64bit.resolute.iso</a> <span class="badge">[x86_64; upstream]</span> <a href="files/other-tool-x86_64-rescuezilla-2.html">commands</a><br><a href="https://github.com/rescuezilla/rescuezilla/releases/download/2.6.2/rescuezilla-2.6.2-64bit.resolute.iso">Original URL</a></li>
+<li><a class="iso-link" href="https://github.com/PartialVolume/shredos.x86_64/releases/download/v2025.11_32_x86-64_0.43.1/shredos-2025.11_32_x86-64_v0.43.1_20261010.iso">[ISO] shredos-2025.11_32_x86-64_v0.43.1_20261010.iso</a> <span class="badge">[i386; upstream]</span> <a href="files/other-tool-i386-shredos-2025.html">commands</a><br><a href="https://github.com/PartialVolume/shredos.x86_64/releases/download/v2025.11_32_x86-64_0.43.1/shredos-2025.11_32_x86-64_v0.43.1_20261010.iso">Original URL</a></li>
+<li><a class="bin-link" href="https://distfiles.gentoo.org/releases/amd64/autobuilds/20261122T164601Z/stage3-amd64-openrc-20261122T164601Z.tar.xz">[FILE] stage3-amd64-openrc-20261122T164601Z.tar.xz</a> <span class="badge">[x86_64; upstream]</span> <a href="files/gentoo-stage3-amd64-openrc.html">commands</a><br><a href="https://distfiles.gentoo.org/releases/amd64/autobuilds/20261122T164601Z/stage3-amd64-openrc-20261122T164601Z.tar.xz">Original URL</a></li>
+<li><a class="bin-link" href="https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/images/pxeboot/vmlinuz">[FILE] vmlinuz</a> <span class="badge">[x86_64; upstream]</span> <a href="files/aux-fedora-netboot-x86_64.html">commands</a><br><a href="https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/images/pxeboot/vmlinuz">Original URL</a></li>
+<li><a class="bin-link" href="https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86_64/netboot/vmlinuz-lts">[FILE] vmlinuz-lts</a> <span class="badge">[x86_64; upstream]</span> <a href="files/aux-alpine-netboot-x86_64.html">commands</a><br><a href="https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86_64/netboot/vmlinuz-lts">Original URL</a></li>
+</ul>
+</div></details>
+<details><summary><h3 id="nav_tools_4mlinux">2.12. 4Mlinux</h3></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/4mlinux.ipxe">[MENU] 4mlinux.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_d0e78e136eee7e1509f6.html">commands</a> | <a href="origins/origin_d0e78e136eee7e1509f6.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/4mlinux.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+<details><summary><h3 id="nav_tools_ipxe">2.13. Ipxe</h3></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://github.com/ipxe/wimboot/releases">[URL] releases</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_b37b88c1084bc0202ac0.html">commands</a><br><a href="https://github.com/ipxe/wimboot/releases">Original URL</a></li>
+<li><a class="bin-link" href="https://github.com/ipxe/ipxe/releases/latest/download/ipxeboot.tar.gz">[URL] ipxeboot.tar.gz</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_d05dfdacbd9807c7c21b.html">commands</a><br><a href="https://github.com/ipxe/ipxe/releases/latest/download/ipxeboot.tar.gz">Original URL</a></li>
+</ul>
+</div></details>
+<details><summary><h3 id="nav_tools_kaspersky">2.14. Kaspersky</h3></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/kaspersky.ipxe">[MENU] kaspersky.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_5537687f5ed288da8c4d.html">commands</a> | <a href="origins/origin_5537687f5ed288da8c4d.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/kaspersky.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+<details><summary><h3 id="nav_tools_memtest86">2.15. Memtest86</h3></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://www.memtest86.com/download.htm">[URL] download.htm</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_7e72576cbc4d2d42a46a.html">commands</a><br><a href="https://www.memtest86.com/download.htm">Original URL</a></li>
+</ul>
+</div></details>
+<details><summary><h3 id="nav_tools_rescuezilla">2.16. Rescuezilla</h3></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/rescuezilla.ipxe">[MENU] rescuezilla.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_1754a2df6f206f8b375a.html">commands</a> | <a href="origins/origin_1754a2df6f206f8b375a.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/rescuezilla.ipxe">Original URL</a></li>
+</ul>
+</div></details>
+<details><summary><h3 id="nav_tools_shredos">2.17. Shredos</h3></summary><div class="menu-branch">
+<ul>
+<li><a class="bin-link" href="https://boot.netboot.xyz/shredos.ipxe">[MENU] shredos.ipxe</a> <span class="badge">[upstream; upstream]</span> <a href="files/origin_eef70e3611cb27faa414.html">commands</a> | <a href="origins/origin_eef70e3611cb27faa414.ipxe">iPXE launcher</a><br><a href="https://boot.netboot.xyz/shredos.ipxe">Original URL</a></li>
+<li><a class="bin-link" href="https://github.com/PartialVolume/shredos.x86_64/releases">[URL] releases</a> <span class="badge">[x86_64; upstream]</span> <a href="files/origin_75fff5381150b465c361.html">commands</a><br><a href="https://github.com/PartialVolume/shredos.x86_64/releases">Original URL</a></li>
+</ul>
+</div></details>
+</div></details>
+<h2>Guías operativas</h2><p><a href="pxe/work.html">[ /work RAM ]</a> | <a href="pxe/observability.html">[ osquery / osctrl ]</a> | <a href="catalogue.html">[ Catálogo netboot completo / origen ]</a> | <a href="pxe/operations.html">[ FTP y permisos ]</a> | <a href="pxe/chroot.html">[ Chroot por distribución ]</a> | <a href="chroot-all.html">[ Chroot: todo abierto / Links ]</a> | <a href="pxe/iso-guide.html">[ Crear una ISO / manifiesto AUX Rescue ]</a> | <a href="pxe/usb-guide.html">[ Llave USB ]</a> | <a href="pxe/architectures.html">[ IoT / U-Boot / Cloud ]</a> | <a href="pxe/debian-deploy.html">[ Servidor Debian ]</a> | <a href="tec-502.html">[ TEC: diagnosticar 502 ]</a></p>
+<!-- Timestamp: 2026-11-28 | Version: 8.0.1-beta.9 | Author & Credits: https://www.alawise.es/1-s -->
+<span id="chroot-host"></span><span id="iso-debian"></span><h1>Despliegue y réplica</h1>
+<p>Orden directo: Settings → catálogo → download → deploy → generate. <code>download.sh</code> obtiene las listas seleccionadas; <code>deploy.sh ram|disk|ftp</code> prepara sus medios; <code>generate.sh</code> inspecciona los archivos y publica el portal, catálogos de texto, contenido de imágenes, menu.ipxe y sitemaps.</p>
+<p>Consultar antes los planes:</p>
+<pre><code>bash download.sh --list light --dry-run
+bash deploy.sh ram --list light --dry-run
+bash generate.sh --dry-run</code></pre>
+<p>La réplica por fases se abre con <code>python3 aux-release --interactive</code>. La secuencia es inventory, deploy, verify, generate, publish y verify. Sin --apply, el CLI presenta el plan. El menú muestra el efecto y requiere APLICAR; una entrada incorrecta conserva el plan. Los fallos de comprobación impiden avanzar a la publicación como si la transferencia hubiera terminado.</p>
+<p>Excalibur y Bastion conservan el espejo público íntegro. La prioridad de Excalibur para PXE/RAM y Bastion para descargas completas es una política de servicio, no una exclusión de archivos del espejo. No replicar secretos ni estado privado de TEC/CLI. FTP/FTPS transfiere los medios antes de anunciar los índices generados. rsync sobre SSH conserva el mismo criterio.</p>
+<p>Validar las rutas y el inventario reales. No publicar directorios de código como raíz web. <code>--input-root</code> permite generar en un OUTPUT separado leyendo medios preparados; los enlaces sólo pueden resolver dentro de las raíces INPUT, caché y RAM autorizadas. La verificación remota SHA-256 lee los bytes del espejo; no equivale a una firma oficial ni a un arranque físico.</p>
+<!-- Timestamp: 2026-11-28 | Version: 8.0.1-beta.9 | Author & Credits: https://www.alawise.es/1-s -->
+<span id="chroot-host"></span><span id="iso-debian"></span><h1>Asistencia y sistemas</h1>
+<p><code>aux-enter --interactive</code> inspecciona raíces y contenedores detectados. Elegir primero el destino y después inspección de lectura o reparación mediante chroot. La reparación modifica el sistema de destino y exige el plan y la confirmación indicados. No seleccionar el sistema anfitrión por suposición.</p>
+<p><code>aux-assist</code> conserva los controles de asistencia del equipo. La intervención requiere consentimiento, identidad y contacto verificable del técnico, huella de clave y posibilidad de observar la sesión. El usuario mantiene sus propias terminales y puede interrumpir la intervención.</p>
+<p>TEC es opcional y utiliza su propio servicio, cuentas y configuración. Las rutas públicas AUX/PXE no contienen sus claves ni registros privados. El foro y las aportaciones requieren moderación antes de convertir una receta en parte del catálogo verificado.</p>
+<p><code>aux-observe</code> añade inspección osquery y consulta osctrl a esta área. Los resultados pueden contener inventario del equipo; no se incorporan a la web ni al paquete fuente. Ver OBSERVABILITY.md para configuración y alcance.</p>
+<h2><a id="network" name="network"></a>Network boot · Excalibur</h2>
+<p>At the iPXE prompt, after preparing the mirror:</p><pre>dhcp
+chain http://pxe.1-s.es/menu.ipxe</pre>
+<h2>Project files</h2><p><a href="downloads/aux-suite-8.0.1-beta.9.zip">Command bundle</a> | <a href="downloads/DEPLOYMENT.md">Deployment notes</a> | <a href="urls.html">URL y mirrors</a> | <a href="release-8.html">Descargar la suite</a> | <a href="menu.ipxe">menu.ipxe</a> | <a href="sitemaps-pxe.xml">PXE sitemap</a></p>
+<p>Remote availability has not been checked. Resume depends on the download server. Verify images using the distribution's published checksums/signatures.</p>
+<h2>USB boot client</h2><p><a href="downloads/usb/aux-ipxe-usb.img">aux-ipxe-usb.img</a> | <a href="downloads/usb/SHA256SUMS">SHA256SUMS</a> | <a href="downloads/usb/README.md">USB instructions</a></p><p>BIOS and x86_64 UEFI. DHCP and menu loading are automatic. The custom UEFI executable is unsigned.</p>
+<hr><div class="project-footer"><figure class="featured-art"><a href="assets/aux-featured.webp?v=8.0.1-beta.9" target="_blank" rel="noopener" aria-label="Abrir imagen destacada a resolución completa"><img src="assets/aux-featured.webp?v=8.0.1-beta.9" width="144" height="144" loading="lazy" decoding="async" alt="Gnomo junto a GNU y Tux en una bahía alpina. Blue Hibou lleva el escudo del búho y Red Robin el del petirrojo."></a><figcaption><a class="featured-download" href="assets/aux-featured.webp?v=8.0.1-beta.9" download="aux-featured.webp">Descargar WebP original<span class="featured-size">1254 × 1254 píxeles</span></a></figcaption></figure><footer>CopyLeft 03/2026 · Créditos, Concepto y arquitectura en <a href="https://www.alawise.es/1-s">alawise.es/1-s</a><br>Contenidos publicados bajo licencia <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons CC BY-NC-SA 4.0</a>.</footer></div>
+</body></html>

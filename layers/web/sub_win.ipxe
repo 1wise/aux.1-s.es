@@ -1,0 +1,62 @@
+#!ipxe
+# Timestamp: 2026-11-28 | Version: 8.0.1-beta.9
+# Author & Credits: https://www.alawise.es/1-s
+:start
+menu AUX / Windows / local WinPE media
+set aux_win_arch ${buildarch}
+iseq ${platform} pcbios && cpuid --ext 29 && set aux_win_arch x86_64 ||
+iseq ${buildarch} x86_64 && iseq ${platform} efi && item win11-26h2-x64 Windows 11 26H2 x64 ||
+iseq ${buildarch} arm64 && iseq ${platform} efi && item win11-26h2-arm64 Windows 11 26H2 ARM64 ||
+iseq ${buildarch} x86_64 && iseq ${platform} efi && item win11-24h2-ltsc Windows 11 LTSC 2024 ||
+iseq ${buildarch} arm64 && iseq ${platform} efi && item win11-24h2-ltsc Windows 11 LTSC 2024 ||
+iseq ${buildarch} x86_64 && iseq ${platform} efi && item win10-21h2-iot-ltsc Windows 10 LTSC 2021 ||
+iseq ${aux_win_arch} x86_64 && iseq ${platform} pcbios && item win10-21h2-iot-ltsc Windows 10 LTSC 2021 ||
+iseq ${buildarch} x86_64 && iseq ${platform} efi && item winserv-2025 Windows Server 2025 ||
+iseq ${buildarch} x86_64 && iseq ${platform} efi && item winpe-11-adk Windows PE / ADK ||
+iseq ${buildarch} arm64 && iseq ${platform} efi && item winpe-11-adk Windows PE / ADK ||
+iseq ${aux_win_arch} x86_64 && iseq ${platform} pcbios && item winpe-11-adk Windows PE / ADK ||
+item back Return
+choose --default back choice || goto back
+goto ${choice}
+:win11-26h2-x64
+set aux_win_id win11-26h2-x64
+goto win_boot
+:win11-26h2-arm64
+set aux_win_id win11-26h2-arm64
+goto win_boot
+:win11-24h2-ltsc
+set aux_win_id win11-24h2-ltsc
+goto win_boot
+:win10-21h2-iot-ltsc
+set aux_win_id win10-21h2-iot-ltsc
+goto win_boot
+:winserv-2025
+set aux_win_id winserv-2025
+goto win_boot
+:winpe-11-adk
+set aux_win_id winpe-11-adk
+goto win_boot
+:win_boot
+isset ${aux_win_root} || set aux_win_root media/windows
+set aux_win_dir ${aux_win_root}/${aux_win_id}/${aux_win_arch}
+set aux_loader wimboot
+iseq ${buildarch} arm64 && set aux_loader wimboot.arm64 ||
+imgfree
+iseq ${aux_win_id} winpe-11-adk && goto winpe ||
+kernel ${aux_win_root}/bin/${aux_loader} index=2 || goto error
+initrd ${aux_win_dir}/pxe/winpeshl.ini winpeshl.ini || goto error
+initrd ${aux_win_dir}/pxe/install.bat install.bat || goto error
+goto load_wim
+:winpe
+kernel ${aux_win_root}/bin/${aux_loader} index=1 || goto error
+:load_wim
+initrd ${aux_win_dir}/sources/boot.wim boot.wim || goto error
+boot || goto error
+goto start
+:error
+imgfree
+echo Check local media paths and firmware compatibility.
+prompt Press a key to return...
+goto start
+:back
+exit 0

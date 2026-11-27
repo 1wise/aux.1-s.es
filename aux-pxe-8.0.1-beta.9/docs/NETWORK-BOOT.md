@@ -1,0 +1,20 @@
+# Arranque por red
+
+Timestamp: 2026-11-28 | Version: 8.0.1-beta.9
+Author & Credits: https://www.alawise.es/1-s
+
+El servidor de arranque debe entregar los archivos a la arquitectura y firmware
+del cliente. Desde un cliente iPXE compatible se obtiene red mediante DHCP y
+se carga menu.ipxe desde la URL configurada. El portal privado de consulta no
+reemplaza el servidor PXE que entrega kernel, initrd y árbol de instalación.
+
+Las recetas conservan las rutas originales de kernel, initrd, SquashFS,
+.treeinfo y otros archivos exigidos por la distribución. Las imágenes que no
+tienen receta aprobada siguen disponibles como descargas o referencias de
+origen. No prometer un arranque ISO genérico por HTTP.
+
+Algunos instaladores o modos Live requieren una URL HTTP accesible con IPv4;
+consultar el plan y los requisitos del medio. Los menús remotos del proveedor
+pueden cambiar. La presencia de archivos y la comprobación HTTP no sustituyen
+la prueba del cliente real. Mantener URL semánticas estables para las páginas
+indexables y versiones precisas en las recetas locales.
