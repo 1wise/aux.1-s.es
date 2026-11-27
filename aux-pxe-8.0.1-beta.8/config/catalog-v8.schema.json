@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AUX 8 canonical catalogue",
+  "_meta": {
+    "Timestamp": "2026-11-22",
+    "Version": "8.0.1-beta.8",
+    "Author & Credits": "https://www.alawise.es/1-s"
+  },
+  "type": "object",
+  "required": [
+    "schema",
+    "entries"
+  ],
+  "properties": {
+    "schema": {
+      "const": "aux-catalog-v8"
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "family",
+          "release",
+          "architecture",
+          "kind",
+          "original_url",
+          "policy"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9._-]{0,95}$"
+          },
+          "family": {
+            "type": "string"
+          },
+          "release": {
+            "type": "string"
+          },
+          "architecture": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "original_url": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https?://"
+          },
+          "policy": {
+            "type": "string",
+            "pattern": "^[0-9A-Fa-f]{3}$"
+          },
+          "sha256": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[0-9a-fA-F]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "size_bytes": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "components": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "original_url"
+              ]
+            }
+          },
+          "priority": {
+            "type": "string",
+            "pattern": "^[0-9A-Fa-f]$",
+            "default": "0"
+          },
+          "priority_sectors": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "fedora",
+                "debian",
+                "alpine"
+              ]
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

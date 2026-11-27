@@ -1,0 +1,39 @@
+#!ipxe
+# Timestamp: 2026-11-27 | Version: 8.0.1-beta.8
+# Author & Credits: https://www.alawise.es/1-s
+isset ${menu_arch} || set menu_arch ${buildarch}
+iseq ${menu_arch} i386 && cpuid --ext 29 && set menu_arch x86_64 ||
+:start
+menu AUX / Components / exact origins
+iseq ${menu_arch} x86_64 && item component_aux_debian_netboot_amd64 AUX  Debian netboot / kernel + initrd / 13.8 ||
+iseq ${menu_arch} x86_64 && item component_aux_fedora_netboot_x86_64 AUX  Fedora netboot / kernel + initrd / 45 ||
+iseq ${menu_arch} x86_64 && item component_aux_alpine_netboot_x86_64 AUX  Alpine netboot / kernel + initrd / 3.24.4 ||
+item exit Exit
+choose target && goto ${target} || exit
+
+:component_aux_debian_netboot_amd64
+echo Origin: https://deb.debian.org/debian/dists/trixie/main/installer-amd64/current/images/netboot/debian-installer/amd64/linux
+kernel https://deb.debian.org/debian/dists/trixie/main/installer-amd64/current/images/netboot/debian-installer/amd64/linux initrd=initrd.gz ip=dhcp || goto error
+initrd https://deb.debian.org/debian/dists/trixie/main/installer-amd64/current/images/netboot/debian-installer/amd64/initrd.gz || goto error
+boot || goto error
+goto start
+
+:component_aux_fedora_netboot_x86_64
+echo Origin: https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/images/pxeboot/vmlinuz
+kernel https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/images/pxeboot/vmlinuz initrd=initrd.img ip=dhcp inst.repo=https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/ || goto error
+initrd https://dl.fedoraproject.org/pub/fedora/linux/releases/45/Everything/x86_64/os/images/pxeboot/initrd.img || goto error
+boot || goto error
+goto start
+
+:component_aux_alpine_netboot_x86_64
+echo Origin: https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86_64/netboot/vmlinuz-lts
+kernel https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86_64/netboot/vmlinuz-lts initrd=initramfs-lts ip=dhcp modules=loop,squashfs,sd-mod,usb-storage alpine_repo=https://dl-cdn.alpinelinux.org/alpine/v3.24/main modloop=https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86_64/netboot/modloop-lts || goto error
+initrd https://dl-cdn.alpinelinux.org/alpine/v3.24/releases/x86_64/netboot/initramfs-lts || goto error
+boot || goto error
+goto start
+:exit
+exit
+:error
+echo Component boot failed. Check the pinned recipe and network.
+prompt Press a key to return...
+goto start

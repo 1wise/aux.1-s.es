@@ -1,0 +1,2672 @@
+{
+  "groups": [
+    {
+      "id": "albanian-desktop",
+      "label": "Albanian desktop",
+      "description": "Albanian desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop",
+      "packages": [
+        "task-albanian-desktop"
+      ]
+    },
+    {
+      "id": "amharic",
+      "label": "Amharic environment",
+      "description": "Amharic environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-amharic"
+      ]
+    },
+    {
+      "id": "amharic-desktop",
+      "label": "Amharic desktop",
+      "description": "Amharic desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, amharic",
+      "packages": [
+        "task-amharic-desktop"
+      ]
+    },
+    {
+      "id": "amharic-gnome-desktop",
+      "label": "Amharic GNOME desktop",
+      "description": "Amharic GNOME desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "gnome-desktop, amharic-desktop",
+      "packages": [
+        "task-amharic-gnome-desktop"
+      ]
+    },
+    {
+      "id": "amharic-kde-desktop",
+      "label": "Amharic KDE Plasma desktop",
+      "description": "Amharic KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, amharic-desktop",
+      "packages": [
+        "task-amharic-kde-desktop"
+      ]
+    },
+    {
+      "id": "arabic",
+      "label": "Arabic environment",
+      "description": "Arabic environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-arabic"
+      ]
+    },
+    {
+      "id": "arabic-desktop",
+      "label": "Arabic desktop",
+      "description": "Arabic desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, arabic",
+      "packages": [
+        "task-arabic-desktop"
+      ]
+    },
+    {
+      "id": "arabic-kde-desktop",
+      "label": "Arabic KDE Plasma desktop",
+      "description": "Arabic KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, arabic-desktop",
+      "packages": [
+        "task-arabic-kde-desktop"
+      ]
+    },
+    {
+      "id": "asturian",
+      "label": "Asturian environment",
+      "description": "Asturian environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-asturian"
+      ]
+    },
+    {
+      "id": "asturian-desktop",
+      "label": "Asturian desktop",
+      "description": "Asturian desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "asturian, desktop",
+      "packages": [
+        "task-asturian-desktop"
+      ]
+    },
+    {
+      "id": "basque",
+      "label": "Basque environment",
+      "description": "Basque environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-basque"
+      ]
+    },
+    {
+      "id": "basque-desktop",
+      "label": "Basque desktop",
+      "description": "Basque desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, basque",
+      "packages": [
+        "task-basque-desktop"
+      ]
+    },
+    {
+      "id": "basque-kde-desktop",
+      "label": "Basque KDE Plasma desktop",
+      "description": "Basque KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, basque-desktop",
+      "packages": [
+        "task-basque-kde-desktop"
+      ]
+    },
+    {
+      "id": "belarusian",
+      "label": "Belarusian environment",
+      "description": "Belarusian environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-belarusian"
+      ]
+    },
+    {
+      "id": "belarusian-desktop",
+      "label": "Belarusian desktop",
+      "description": "Belarusian desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, belarusian",
+      "packages": [
+        "task-belarusian-desktop"
+      ]
+    },
+    {
+      "id": "belarusian-kde-desktop",
+      "label": "Belarusian KDE Plasma desktop",
+      "description": "Belarusian KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, belarusian-desktop",
+      "packages": [
+        "task-belarusian-kde-desktop"
+      ]
+    },
+    {
+      "id": "bengali",
+      "label": "Bengali environment",
+      "description": "Bengali environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-bengali"
+      ]
+    },
+    {
+      "id": "bengali-desktop",
+      "label": "Bengali desktop",
+      "description": "Bengali desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, bengali",
+      "packages": [
+        "task-bengali-desktop"
+      ]
+    },
+    {
+      "id": "bengali-kde-desktop",
+      "label": "Bengali KDE Plasma desktop",
+      "description": "Bengali KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, bengali-desktop",
+      "packages": [
+        "task-bengali-kde-desktop"
+      ]
+    },
+    {
+      "id": "blendsel",
+      "label": "Choose a Debian Blend for installation",
+      "description": "Choose a Debian Blend for installation",
+      "section": "user",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-blendsel"
+      ]
+    },
+    {
+      "id": "bosnian",
+      "label": "Bosnian environment",
+      "description": "Bosnian environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-bosnian"
+      ]
+    },
+    {
+      "id": "bosnian-desktop",
+      "label": "Bosnian desktop",
+      "description": "Bosnian desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, bosnian",
+      "packages": [
+        "task-bosnian-desktop"
+      ]
+    },
+    {
+      "id": "bosnian-kde-desktop",
+      "label": "Bosnian KDE Plasma desktop",
+      "description": "Bosnian KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, bosnian-desktop",
+      "packages": [
+        "task-bosnian-kde-desktop"
+      ]
+    },
+    {
+      "id": "brazilian-portuguese",
+      "label": "Brazilian Portuguese environment",
+      "description": "Brazilian Portuguese environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-brazilian-portuguese"
+      ]
+    },
+    {
+      "id": "brazilian-portuguese-desktop",
+      "label": "Brazilian Portuguese desktop",
+      "description": "Brazilian Portuguese desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, brazilian-portuguese",
+      "packages": [
+        "task-brazilian-portuguese-desktop"
+      ]
+    },
+    {
+      "id": "brazilian-portuguese-kde-desktop",
+      "label": "Brazilian Portuguese KDE Plasma desktop",
+      "description": "Brazilian Portuguese KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, brazilian-portuguese-desktop",
+      "packages": [
+        "task-brazilian-portuguese-kde-desktop"
+      ]
+    },
+    {
+      "id": "british-desktop",
+      "label": "British English desktop",
+      "description": "British English desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop",
+      "packages": [
+        "task-british-desktop"
+      ]
+    },
+    {
+      "id": "british-kde-desktop",
+      "label": "British KDE Plasma desktop",
+      "description": "British KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, british-desktop",
+      "packages": [
+        "task-british-kde-desktop"
+      ]
+    },
+    {
+      "id": "bulgarian",
+      "label": "Bulgarian environment",
+      "description": "Bulgarian environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "cyrillic",
+      "packages": [
+        "task-bulgarian"
+      ]
+    },
+    {
+      "id": "bulgarian-desktop",
+      "label": "Bulgarian desktop",
+      "description": "Bulgarian desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, bulgarian",
+      "packages": [
+        "task-bulgarian-desktop"
+      ]
+    },
+    {
+      "id": "bulgarian-kde-desktop",
+      "label": "Bulgarian KDE Plasma desktop",
+      "description": "Bulgarian KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, bulgarian-desktop",
+      "packages": [
+        "task-bulgarian-kde-desktop"
+      ]
+    },
+    {
+      "id": "catalan",
+      "label": "Catalan environment",
+      "description": "Catalan environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-catalan"
+      ]
+    },
+    {
+      "id": "catalan-desktop",
+      "label": "Catalan desktop",
+      "description": "Catalan desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, catalan",
+      "packages": [
+        "task-catalan-desktop"
+      ]
+    },
+    {
+      "id": "catalan-kde-desktop",
+      "label": "Catalan KDE Plasma desktop",
+      "description": "Catalan KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, catalan-desktop",
+      "packages": [
+        "task-catalan-kde-desktop"
+      ]
+    },
+    {
+      "id": "chinese-s",
+      "label": "Simplified Chinese environment",
+      "description": "Simplified Chinese environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-chinese-s"
+      ]
+    },
+    {
+      "id": "chinese-s-desktop",
+      "label": "Simplified Chinese desktop",
+      "description": "Simplified Chinese desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, chinese-s",
+      "packages": [
+        "task-chinese-s-desktop"
+      ]
+    },
+    {
+      "id": "chinese-s-gnome-desktop",
+      "label": "Simplified Chinese GNOME desktop",
+      "description": "Simplified Chinese GNOME desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "gnome-desktop, chinese-s-desktop",
+      "packages": [
+        "task-chinese-s-gnome-desktop"
+      ]
+    },
+    {
+      "id": "chinese-s-kde-desktop",
+      "label": "Simplified Chinese KDE Plasma desktop",
+      "description": "Simplified Chinese KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, chinese-s-desktop",
+      "packages": [
+        "task-chinese-s-kde-desktop"
+      ]
+    },
+    {
+      "id": "chinese-t",
+      "label": "Traditional Chinese environment",
+      "description": "Traditional Chinese environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-chinese-t"
+      ]
+    },
+    {
+      "id": "chinese-t-desktop",
+      "label": "Traditional Chinese desktop",
+      "description": "Traditional Chinese desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, chinese-t",
+      "packages": [
+        "task-chinese-t-desktop"
+      ]
+    },
+    {
+      "id": "chinese-t-gnome-desktop",
+      "label": "Traditional Chinese GNOME desktop",
+      "description": "Traditional Chinese GNOME desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "gnome-desktop, chinese-t-desktop",
+      "packages": [
+        "task-chinese-t-gnome-desktop"
+      ]
+    },
+    {
+      "id": "chinese-t-kde-desktop",
+      "label": "Traditional Chinese KDE Plasma desktop",
+      "description": "Traditional Chinese KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, chinese-t-desktop",
+      "packages": [
+        "task-chinese-t-kde-desktop"
+      ]
+    },
+    {
+      "id": "cinnamon-desktop",
+      "label": "Cinnamon",
+      "description": "Cinnamon",
+      "section": "user",
+      "parents": [
+        "desktop"
+      ],
+      "enhances": "",
+      "packages": [
+        "task-cinnamon-desktop"
+      ]
+    },
+    {
+      "id": "croatian",
+      "label": "Croatian environment",
+      "description": "Croatian environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-croatian"
+      ]
+    },
+    {
+      "id": "croatian-desktop",
+      "label": "Croatian desktop",
+      "description": "Croatian desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, croatian",
+      "packages": [
+        "task-croatian-desktop"
+      ]
+    },
+    {
+      "id": "croatian-kde-desktop",
+      "label": "Croatian KDE Plasma desktop",
+      "description": "Croatian KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, croatian-desktop",
+      "packages": [
+        "task-croatian-kde-desktop"
+      ]
+    },
+    {
+      "id": "cyrillic",
+      "label": "Cyrillic environment",
+      "description": "Cyrillic environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-cyrillic"
+      ]
+    },
+    {
+      "id": "cyrillic-desktop",
+      "label": "Cyrillic desktop",
+      "description": "Cyrillic desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, cyrillic",
+      "packages": [
+        "task-cyrillic-desktop"
+      ]
+    },
+    {
+      "id": "cyrillic-kde-desktop",
+      "label": "Cyrillic KDE Plasma desktop",
+      "description": "Cyrillic KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, cyrillic-desktop",
+      "packages": [
+        "task-cyrillic-kde-desktop"
+      ]
+    },
+    {
+      "id": "czech",
+      "label": "Czech environment",
+      "description": "Czech environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-czech"
+      ]
+    },
+    {
+      "id": "czech-desktop",
+      "label": "Czech desktop",
+      "description": "Czech desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "czech, desktop",
+      "packages": [
+        "task-czech-desktop"
+      ]
+    },
+    {
+      "id": "czech-kde-desktop",
+      "label": "Czech KDE Plasma desktop",
+      "description": "Czech KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, czech-desktop",
+      "packages": [
+        "task-czech-kde-desktop"
+      ]
+    },
+    {
+      "id": "danish",
+      "label": "Danish environment",
+      "description": "Danish environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-danish"
+      ]
+    },
+    {
+      "id": "danish-desktop",
+      "label": "Danish desktop",
+      "description": "Danish desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, danish",
+      "packages": [
+        "task-danish-desktop"
+      ]
+    },
+    {
+      "id": "danish-kde-desktop",
+      "label": "Danish KDE Plasma desktop",
+      "description": "Danish KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, danish-desktop",
+      "packages": [
+        "task-danish-kde-desktop"
+      ]
+    },
+    {
+      "id": "desktop",
+      "label": "Debian desktop environment",
+      "description": "Debian desktop environment",
+      "section": "user",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-desktop"
+      ]
+    },
+    {
+      "id": "dutch",
+      "label": "Dutch environment",
+      "description": "Dutch environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-dutch"
+      ]
+    },
+    {
+      "id": "dutch-desktop",
+      "label": "Dutch desktop",
+      "description": "Dutch desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, dutch",
+      "packages": [
+        "task-dutch-desktop"
+      ]
+    },
+    {
+      "id": "dutch-kde-desktop",
+      "label": "Dutch KDE Plasma desktop",
+      "description": "Dutch KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, dutch-desktop",
+      "packages": [
+        "task-dutch-kde-desktop"
+      ]
+    },
+    {
+      "id": "dzongkha-desktop",
+      "label": "Dzongkha desktop",
+      "description": "Dzongkha desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop",
+      "packages": [
+        "task-dzongkha-desktop"
+      ]
+    },
+    {
+      "id": "dzongkha-kde-desktop",
+      "label": "Dzongkha KDE Plasma desktop",
+      "description": "Dzongkha KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, dzongkha-desktop",
+      "packages": [
+        "task-dzongkha-kde-desktop"
+      ]
+    },
+    {
+      "id": "english",
+      "label": "General English environment",
+      "description": "General English environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-english"
+      ]
+    },
+    {
+      "id": "esperanto",
+      "label": "Esperanto environment",
+      "description": "Esperanto environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-esperanto"
+      ]
+    },
+    {
+      "id": "esperanto-desktop",
+      "label": "Esperanto desktop",
+      "description": "Esperanto desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, esperanto",
+      "packages": [
+        "task-esperanto-desktop"
+      ]
+    },
+    {
+      "id": "esperanto-kde-desktop",
+      "label": "Esperanto KDE Plasma desktop",
+      "description": "Esperanto KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, esperanto-desktop",
+      "packages": [
+        "task-esperanto-kde-desktop"
+      ]
+    },
+    {
+      "id": "estonian",
+      "label": "Estonian environment",
+      "description": "Estonian environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-estonian"
+      ]
+    },
+    {
+      "id": "estonian-desktop",
+      "label": "Estonian desktop",
+      "description": "Estonian desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, estonian",
+      "packages": [
+        "task-estonian-desktop"
+      ]
+    },
+    {
+      "id": "estonian-kde-desktop",
+      "label": "Estonian KDE Plasma desktop",
+      "description": "Estonian KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, estonian-desktop",
+      "packages": [
+        "task-estonian-kde-desktop"
+      ]
+    },
+    {
+      "id": "finnish",
+      "label": "Finnish environment",
+      "description": "Finnish environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-finnish"
+      ]
+    },
+    {
+      "id": "finnish-desktop",
+      "label": "Finnish desktop",
+      "description": "Finnish desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "finnish, desktop",
+      "packages": [
+        "task-finnish-desktop"
+      ]
+    },
+    {
+      "id": "finnish-kde-desktop",
+      "label": "Finnish KDE Plasma desktop",
+      "description": "Finnish KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, finnish-desktop",
+      "packages": [
+        "task-finnish-kde-desktop"
+      ]
+    },
+    {
+      "id": "french",
+      "label": "French environment",
+      "description": "French environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-french"
+      ]
+    },
+    {
+      "id": "french-desktop",
+      "label": "French desktop",
+      "description": "French desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "french, desktop",
+      "packages": [
+        "task-french-desktop"
+      ]
+    },
+    {
+      "id": "french-kde-desktop",
+      "label": "French KDE Plasma desktop",
+      "description": "French KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, french-desktop",
+      "packages": [
+        "task-french-kde-desktop"
+      ]
+    },
+    {
+      "id": "galician",
+      "label": "Galician environment",
+      "description": "Galician environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-galician"
+      ]
+    },
+    {
+      "id": "galician-desktop",
+      "label": "Galician desktop",
+      "description": "Galician desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "galician, desktop",
+      "packages": [
+        "task-galician-desktop"
+      ]
+    },
+    {
+      "id": "galician-kde-desktop",
+      "label": "Galician KDE Plasma desktop",
+      "description": "Galician KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, galician-desktop",
+      "packages": [
+        "task-galician-kde-desktop"
+      ]
+    },
+    {
+      "id": "georgian",
+      "label": "Georgian environment",
+      "description": "Georgian environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-georgian"
+      ]
+    },
+    {
+      "id": "georgian-desktop",
+      "label": "Georgian desktop",
+      "description": "Georgian desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop",
+      "packages": [
+        "task-georgian-desktop"
+      ]
+    },
+    {
+      "id": "german",
+      "label": "German environment",
+      "description": "German environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-german"
+      ]
+    },
+    {
+      "id": "german-desktop",
+      "label": "German desktop",
+      "description": "German desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, german",
+      "packages": [
+        "task-german-desktop"
+      ]
+    },
+    {
+      "id": "german-kde-desktop",
+      "label": "German KDE Plasma desktop",
+      "description": "German KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, german-desktop",
+      "packages": [
+        "task-german-kde-desktop"
+      ]
+    },
+    {
+      "id": "gnome-desktop",
+      "label": "GNOME",
+      "description": "GNOME",
+      "section": "user",
+      "parents": [
+        "desktop"
+      ],
+      "enhances": "",
+      "packages": [
+        "task-gnome-desktop"
+      ]
+    },
+    {
+      "id": "gnome-flashback-desktop",
+      "label": "GNOME Flashback",
+      "description": "GNOME Flashback",
+      "section": "user",
+      "parents": [
+        "desktop"
+      ],
+      "enhances": "",
+      "packages": [
+        "task-gnome-flashback-desktop"
+      ]
+    },
+    {
+      "id": "greek",
+      "label": "Greek environment",
+      "description": "Greek environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-greek"
+      ]
+    },
+    {
+      "id": "greek-desktop",
+      "label": "Greek desktop",
+      "description": "Greek desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, greek",
+      "packages": [
+        "task-greek-desktop"
+      ]
+    },
+    {
+      "id": "greek-kde-desktop",
+      "label": "Greek KDE Plasma desktop",
+      "description": "Greek KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, greek-desktop",
+      "packages": [
+        "task-greek-kde-desktop"
+      ]
+    },
+    {
+      "id": "gujarati",
+      "label": "Gujarati environment",
+      "description": "Gujarati environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-gujarati"
+      ]
+    },
+    {
+      "id": "gujarati-desktop",
+      "label": "Gujarati desktop",
+      "description": "Gujarati desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, gujarati",
+      "packages": [
+        "task-gujarati-desktop"
+      ]
+    },
+    {
+      "id": "gujarati-kde-desktop",
+      "label": "Gujarati KDE Plasma desktop",
+      "description": "Gujarati KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, gujarati-desktop",
+      "packages": [
+        "task-gujarati-kde-desktop"
+      ]
+    },
+    {
+      "id": "hebrew",
+      "label": "Hebrew environment",
+      "description": "Hebrew environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-hebrew"
+      ]
+    },
+    {
+      "id": "hebrew-desktop",
+      "label": "Hebrew desktop",
+      "description": "Hebrew desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, hebrew",
+      "packages": [
+        "task-hebrew-desktop"
+      ]
+    },
+    {
+      "id": "hebrew-gnome-desktop",
+      "label": "Hebrew GNOME desktop",
+      "description": "Hebrew GNOME desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "gnome-desktop, hebrew-desktop",
+      "packages": [
+        "task-hebrew-gnome-desktop"
+      ]
+    },
+    {
+      "id": "hebrew-kde-desktop",
+      "label": "Hebrew KDE Plasma desktop",
+      "description": "Hebrew KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, hebrew-desktop",
+      "packages": [
+        "task-hebrew-kde-desktop"
+      ]
+    },
+    {
+      "id": "hindi",
+      "label": "Hindi environment",
+      "description": "Hindi environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-hindi"
+      ]
+    },
+    {
+      "id": "hindi-desktop",
+      "label": "Hindi desktop",
+      "description": "Hindi desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, hindi",
+      "packages": [
+        "task-hindi-desktop"
+      ]
+    },
+    {
+      "id": "hindi-kde-desktop",
+      "label": "Hindi KDE Plasma desktop",
+      "description": "Hindi KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, hindi-desktop",
+      "packages": [
+        "task-hindi-kde-desktop"
+      ]
+    },
+    {
+      "id": "hungarian",
+      "label": "Hungarian environment",
+      "description": "Hungarian environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-hungarian"
+      ]
+    },
+    {
+      "id": "hungarian-desktop",
+      "label": "Hungarian desktop",
+      "description": "Hungarian desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "hungarian, desktop",
+      "packages": [
+        "task-hungarian-desktop"
+      ]
+    },
+    {
+      "id": "hungarian-kde-desktop",
+      "label": "Hungarian KDE Plasma desktop",
+      "description": "Hungarian KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, hungarian-desktop",
+      "packages": [
+        "task-hungarian-kde-desktop"
+      ]
+    },
+    {
+      "id": "icelandic",
+      "label": "Icelandic environment",
+      "description": "Icelandic environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-icelandic"
+      ]
+    },
+    {
+      "id": "icelandic-desktop",
+      "label": "Icelandic desktop",
+      "description": "Icelandic desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "icelandic",
+      "packages": [
+        "task-icelandic-desktop"
+      ]
+    },
+    {
+      "id": "icelandic-kde-desktop",
+      "label": "Icelandic KDE Plasma desktop",
+      "description": "Icelandic KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, icelandic-desktop",
+      "packages": [
+        "task-icelandic-kde-desktop"
+      ]
+    },
+    {
+      "id": "indonesian",
+      "label": "Indonesian environment",
+      "description": "Indonesian environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-indonesian"
+      ]
+    },
+    {
+      "id": "indonesian-desktop",
+      "label": "Indonesian desktop",
+      "description": "Indonesian desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, indonesian",
+      "packages": [
+        "task-indonesian-desktop"
+      ]
+    },
+    {
+      "id": "indonesian-kde-desktop",
+      "label": "Indonesian KDE Plasma desktop",
+      "description": "Indonesian KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, indonesian-desktop",
+      "packages": [
+        "task-indonesian-kde-desktop"
+      ]
+    },
+    {
+      "id": "irish",
+      "label": "Irish environment",
+      "description": "Irish environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-irish"
+      ]
+    },
+    {
+      "id": "irish-desktop",
+      "label": "Irish desktop",
+      "description": "Irish desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "irish, desktop",
+      "packages": [
+        "task-irish-desktop"
+      ]
+    },
+    {
+      "id": "irish-kde-desktop",
+      "label": "Irish KDE Plasma desktop",
+      "description": "Irish KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, irish-desktop",
+      "packages": [
+        "task-irish-kde-desktop"
+      ]
+    },
+    {
+      "id": "italian",
+      "label": "Italian environment",
+      "description": "Italian environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-italian"
+      ]
+    },
+    {
+      "id": "italian-desktop",
+      "label": "Italian desktop",
+      "description": "Italian desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, italian",
+      "packages": [
+        "task-italian-desktop"
+      ]
+    },
+    {
+      "id": "italian-kde-desktop",
+      "label": "Italian KDE Plasma desktop",
+      "description": "Italian KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, italian-desktop",
+      "packages": [
+        "task-italian-kde-desktop"
+      ]
+    },
+    {
+      "id": "japanese",
+      "label": "Japanese environment",
+      "description": "Japanese environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-japanese"
+      ]
+    },
+    {
+      "id": "japanese-desktop",
+      "label": "Japanese desktop",
+      "description": "Japanese desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, japanese",
+      "packages": [
+        "task-japanese-desktop"
+      ]
+    },
+    {
+      "id": "japanese-gnome-desktop",
+      "label": "Japanese GNOME desktop",
+      "description": "Japanese GNOME desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "gnome-desktop, japanese-desktop",
+      "packages": [
+        "task-japanese-gnome-desktop"
+      ]
+    },
+    {
+      "id": "japanese-gnome-flashback-desktop",
+      "label": "Japanese GNOME Flashback desktop",
+      "description": "Japanese GNOME Flashback desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "gnome-desktop, japanese-desktop",
+      "packages": [
+        "task-japanese-gnome-flashback-desktop"
+      ]
+    },
+    {
+      "id": "japanese-kde-desktop",
+      "label": "Japanese KDE Plasma desktop",
+      "description": "Japanese KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, japanese-desktop",
+      "packages": [
+        "task-japanese-kde-desktop"
+      ]
+    },
+    {
+      "id": "kannada-desktop",
+      "label": "Kannada desktop",
+      "description": "Kannada desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop",
+      "packages": [
+        "task-kannada-desktop"
+      ]
+    },
+    {
+      "id": "kannada-gnome-desktop",
+      "label": "Kannada GNOME desktop",
+      "description": "Kannada GNOME desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "gnome-desktop, kannada-desktop",
+      "packages": [
+        "task-kannada-gnome-desktop"
+      ]
+    },
+    {
+      "id": "kannada-kde-desktop",
+      "label": "Kannada KDE Plasma desktop",
+      "description": "Kannada KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, kannada-desktop",
+      "packages": [
+        "task-kannada-kde-desktop"
+      ]
+    },
+    {
+      "id": "kazakh",
+      "label": "Kazakh environment",
+      "description": "Kazakh environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-kazakh"
+      ]
+    },
+    {
+      "id": "kazakh-desktop",
+      "label": "Kazakh desktop",
+      "description": "Kazakh desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, kazakh",
+      "packages": [
+        "task-kazakh-desktop"
+      ]
+    },
+    {
+      "id": "kazakh-kde-desktop",
+      "label": "Kazakh KDE Plasma desktop",
+      "description": "Kazakh KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, kazakh-desktop",
+      "packages": [
+        "task-kazakh-kde-desktop"
+      ]
+    },
+    {
+      "id": "kde-desktop",
+      "label": "KDE Plasma",
+      "description": "KDE Plasma",
+      "section": "user",
+      "parents": [
+        "desktop"
+      ],
+      "enhances": "",
+      "packages": [
+        "task-kde-desktop"
+      ]
+    },
+    {
+      "id": "khmer",
+      "label": "Khmer environment",
+      "description": "Khmer environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-khmer"
+      ]
+    },
+    {
+      "id": "khmer-desktop",
+      "label": "Khmer desktop",
+      "description": "Khmer desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "khmer, desktop",
+      "packages": [
+        "task-khmer-desktop"
+      ]
+    },
+    {
+      "id": "khmer-kde-desktop",
+      "label": "Khmer KDE Plasma desktop",
+      "description": "Khmer KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, khmer-desktop",
+      "packages": [
+        "task-khmer-kde-desktop"
+      ]
+    },
+    {
+      "id": "korean",
+      "label": "Korean environment",
+      "description": "Korean environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-korean"
+      ]
+    },
+    {
+      "id": "korean-desktop",
+      "label": "Korean desktop",
+      "description": "Korean desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, korean",
+      "packages": [
+        "task-korean-desktop"
+      ]
+    },
+    {
+      "id": "korean-gnome-desktop",
+      "label": "Korean GNOME desktop",
+      "description": "Korean GNOME desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "gnome-desktop, korean-desktop",
+      "packages": [
+        "task-korean-gnome-desktop"
+      ]
+    },
+    {
+      "id": "korean-kde-desktop",
+      "label": "Korean KDE Plasma desktop",
+      "description": "Korean KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, korean-desktop",
+      "packages": [
+        "task-korean-kde-desktop"
+      ]
+    },
+    {
+      "id": "kurdish",
+      "label": "Kurdish environment",
+      "description": "Kurdish environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-kurdish"
+      ]
+    },
+    {
+      "id": "kurdish-desktop",
+      "label": "Kurdish desktop",
+      "description": "Kurdish desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, kurdish",
+      "packages": [
+        "task-kurdish-desktop"
+      ]
+    },
+    {
+      "id": "kurdish-kde-desktop",
+      "label": "Kurdish KDE Plasma desktop",
+      "description": "Kurdish KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, kurdish-desktop",
+      "packages": [
+        "task-kurdish-kde-desktop"
+      ]
+    },
+    {
+      "id": "laptop",
+      "label": "laptop",
+      "description": "laptop",
+      "section": "user",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-laptop"
+      ]
+    },
+    {
+      "id": "latvian",
+      "label": "Latvian environment",
+      "description": "Latvian environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-latvian"
+      ]
+    },
+    {
+      "id": "latvian-desktop",
+      "label": "Latvian desktop",
+      "description": "Latvian desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, latvian",
+      "packages": [
+        "task-latvian-desktop"
+      ]
+    },
+    {
+      "id": "latvian-kde-desktop",
+      "label": "Latvian KDE Plasma desktop",
+      "description": "Latvian KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, latvian-desktop",
+      "packages": [
+        "task-latvian-kde-desktop"
+      ]
+    },
+    {
+      "id": "lithuanian",
+      "label": "Lithuanian environment",
+      "description": "Lithuanian environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-lithuanian"
+      ]
+    },
+    {
+      "id": "lithuanian-desktop",
+      "label": "Lithuanian desktop",
+      "description": "Lithuanian desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, lithuanian",
+      "packages": [
+        "task-lithuanian-desktop"
+      ]
+    },
+    {
+      "id": "lithuanian-kde-desktop",
+      "label": "Lithuanian KDE Plasma desktop",
+      "description": "Lithuanian KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, lithuanian-desktop",
+      "packages": [
+        "task-lithuanian-kde-desktop"
+      ]
+    },
+    {
+      "id": "lomiri-desktop",
+      "label": "Lomiri",
+      "description": "Lomiri",
+      "section": "user",
+      "parents": [
+        "desktop"
+      ],
+      "enhances": "",
+      "packages": [
+        "task-lomiri-desktop"
+      ]
+    },
+    {
+      "id": "lomiri-tablet",
+      "label": "Lomiri for tablet",
+      "description": "Lomiri for tablet",
+      "section": "user",
+      "parents": [
+        "desktop"
+      ],
+      "enhances": "",
+      "packages": [
+        "task-lomiri-tablet"
+      ]
+    },
+    {
+      "id": "lxde-desktop",
+      "label": "LXDE",
+      "description": "LXDE",
+      "section": "user",
+      "parents": [
+        "desktop"
+      ],
+      "enhances": "",
+      "packages": [
+        "task-lxde-desktop"
+      ]
+    },
+    {
+      "id": "lxqt-desktop",
+      "label": "LXQt",
+      "description": "LXQt",
+      "section": "user",
+      "parents": [
+        "desktop"
+      ],
+      "enhances": "",
+      "packages": [
+        "task-lxqt-desktop"
+      ]
+    },
+    {
+      "id": "macedonian",
+      "label": "Macedonian environment",
+      "description": "Macedonian environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-macedonian"
+      ]
+    },
+    {
+      "id": "macedonian-desktop",
+      "label": "Macedonian desktop",
+      "description": "Macedonian desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, macedonian",
+      "packages": [
+        "task-macedonian-desktop"
+      ]
+    },
+    {
+      "id": "macedonian-kde-desktop",
+      "label": "Macedonian KDE Plasma desktop",
+      "description": "Macedonian KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, macedonian-desktop",
+      "packages": [
+        "task-macedonian-kde-desktop"
+      ]
+    },
+    {
+      "id": "malayalam",
+      "label": "Malayalam environment",
+      "description": "Malayalam environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-malayalam"
+      ]
+    },
+    {
+      "id": "malayalam-desktop",
+      "label": "Malayalam desktop",
+      "description": "Malayalam desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, malayalam",
+      "packages": [
+        "task-malayalam-desktop"
+      ]
+    },
+    {
+      "id": "malayalam-gnome-desktop",
+      "label": "Malayalam GNOME desktop",
+      "description": "Malayalam GNOME desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "gnome-desktop, malayalam-desktop",
+      "packages": [
+        "task-malayalam-gnome-desktop"
+      ]
+    },
+    {
+      "id": "malayalam-kde-desktop",
+      "label": "Malayalam KDE Plasma desktop",
+      "description": "Malayalam KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, malayalam-desktop",
+      "packages": [
+        "task-malayalam-kde-desktop"
+      ]
+    },
+    {
+      "id": "marathi",
+      "label": "Marathi environment",
+      "description": "Marathi environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-marathi"
+      ]
+    },
+    {
+      "id": "marathi-desktop",
+      "label": "Marathi desktop",
+      "description": "Marathi desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, marathi",
+      "packages": [
+        "task-marathi-desktop"
+      ]
+    },
+    {
+      "id": "mate-desktop",
+      "label": "MATE",
+      "description": "MATE",
+      "section": "user",
+      "parents": [
+        "desktop"
+      ],
+      "enhances": "",
+      "packages": [
+        "task-mate-desktop"
+      ]
+    },
+    {
+      "id": "nepali-desktop",
+      "label": "Nepali desktop",
+      "description": "Nepali desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop",
+      "packages": [
+        "task-nepali-desktop"
+      ]
+    },
+    {
+      "id": "nepali-kde-desktop",
+      "label": "Nepali KDE Plasma desktop",
+      "description": "Nepali KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, nepali-desktop",
+      "packages": [
+        "task-nepali-kde-desktop"
+      ]
+    },
+    {
+      "id": "northern-sami",
+      "label": "Northern Sami environment",
+      "description": "Northern Sami environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-northern-sami"
+      ]
+    },
+    {
+      "id": "northern-sami-desktop",
+      "label": "Northern Sami desktop",
+      "description": "Northern Sami desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop",
+      "packages": [
+        "task-northern-sami-desktop"
+      ]
+    },
+    {
+      "id": "norwegian",
+      "label": "Norwegian (Bokmaal and Nynorsk) environment",
+      "description": "Norwegian (Bokmaal and Nynorsk) environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-norwegian"
+      ]
+    },
+    {
+      "id": "norwegian-desktop",
+      "label": "Norwegian (Bokmaal and Nynorsk) desktop",
+      "description": "Norwegian (Bokmaal and Nynorsk) desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, norwegian",
+      "packages": [
+        "task-norwegian-desktop"
+      ]
+    },
+    {
+      "id": "norwegian-kde-desktop",
+      "label": "Norwegian KDE Plasma desktop",
+      "description": "Norwegian KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, norwegian-desktop",
+      "packages": [
+        "task-norwegian-kde-desktop"
+      ]
+    },
+    {
+      "id": "persian",
+      "label": "Persian environment",
+      "description": "Persian environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-persian"
+      ]
+    },
+    {
+      "id": "persian-desktop",
+      "label": "Persian desktop",
+      "description": "Persian desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, persian",
+      "packages": [
+        "task-persian-desktop"
+      ]
+    },
+    {
+      "id": "persian-kde-desktop",
+      "label": "Persian KDE Plasma desktop",
+      "description": "Persian KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, persian-desktop",
+      "packages": [
+        "task-persian-kde-desktop"
+      ]
+    },
+    {
+      "id": "phosh-desktop",
+      "label": "Phosh",
+      "description": "Phosh",
+      "section": "user",
+      "parents": [
+        "desktop"
+      ],
+      "enhances": "",
+      "packages": [
+        "task-phosh-desktop"
+      ]
+    },
+    {
+      "id": "polish",
+      "label": "Polish environment",
+      "description": "Polish environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-polish"
+      ]
+    },
+    {
+      "id": "polish-desktop",
+      "label": "Polish desktop",
+      "description": "Polish desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, polish",
+      "packages": [
+        "task-polish-desktop"
+      ]
+    },
+    {
+      "id": "polish-kde-desktop",
+      "label": "Polish KDE Plasma desktop",
+      "description": "Polish KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, polish-desktop",
+      "packages": [
+        "task-polish-kde-desktop"
+      ]
+    },
+    {
+      "id": "portuguese",
+      "label": "Portuguese environment",
+      "description": "Portuguese environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-portuguese"
+      ]
+    },
+    {
+      "id": "portuguese-desktop",
+      "label": "Portuguese desktop",
+      "description": "Portuguese desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "portuguese, desktop",
+      "packages": [
+        "task-portuguese-desktop"
+      ]
+    },
+    {
+      "id": "portuguese-kde-desktop",
+      "label": "Portuguese KDE Plasma desktop",
+      "description": "Portuguese KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, portuguese-desktop",
+      "packages": [
+        "task-portuguese-kde-desktop"
+      ]
+    },
+    {
+      "id": "punjabi",
+      "label": "Punjabi environment",
+      "description": "Punjabi environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-punjabi"
+      ]
+    },
+    {
+      "id": "punjabi-desktop",
+      "label": "Punjabi desktop",
+      "description": "Punjabi desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, punjabi",
+      "packages": [
+        "task-punjabi-desktop"
+      ]
+    },
+    {
+      "id": "punjabi-kde-desktop",
+      "label": "Punjabi KDE Plasma desktop",
+      "description": "Punjabi KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, punjabi-desktop",
+      "packages": [
+        "task-punjabi-kde-desktop"
+      ]
+    },
+    {
+      "id": "romanian",
+      "label": "Romanian environment",
+      "description": "Romanian environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-romanian"
+      ]
+    },
+    {
+      "id": "romanian-desktop",
+      "label": "Romanian desktop",
+      "description": "Romanian desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, romanian",
+      "packages": [
+        "task-romanian-desktop"
+      ]
+    },
+    {
+      "id": "romanian-kde-desktop",
+      "label": "Romanian KDE Plasma desktop",
+      "description": "Romanian KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, romanian-desktop",
+      "packages": [
+        "task-romanian-kde-desktop"
+      ]
+    },
+    {
+      "id": "russian",
+      "label": "Russian environment",
+      "description": "Russian environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-russian"
+      ]
+    },
+    {
+      "id": "russian-desktop",
+      "label": "Russian desktop",
+      "description": "Russian desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, russian",
+      "packages": [
+        "task-russian-desktop"
+      ]
+    },
+    {
+      "id": "russian-kde-desktop",
+      "label": "Russian KDE Plasma desktop",
+      "description": "Russian KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, russian-desktop",
+      "packages": [
+        "task-russian-kde-desktop"
+      ]
+    },
+    {
+      "id": "serbian",
+      "label": "Serbian environment",
+      "description": "Serbian environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-serbian"
+      ]
+    },
+    {
+      "id": "serbian-desktop",
+      "label": "Serbian desktop",
+      "description": "Serbian desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, serbian",
+      "packages": [
+        "task-serbian-desktop"
+      ]
+    },
+    {
+      "id": "serbian-kde-desktop",
+      "label": "Serbian KDE Plasma desktop",
+      "description": "Serbian KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, serbian-desktop",
+      "packages": [
+        "task-serbian-kde-desktop"
+      ]
+    },
+    {
+      "id": "sinhala-desktop",
+      "label": "Sinhala desktop",
+      "description": "Sinhala desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop",
+      "packages": [
+        "task-sinhala-desktop"
+      ]
+    },
+    {
+      "id": "sinhala-kde-desktop",
+      "label": "Sinhala KDE Plasma desktop",
+      "description": "Sinhala KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, sinhala-desktop",
+      "packages": [
+        "task-sinhala-kde-desktop"
+      ]
+    },
+    {
+      "id": "slovak",
+      "label": "Slovak environment",
+      "description": "Slovak environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-slovak"
+      ]
+    },
+    {
+      "id": "slovak-desktop",
+      "label": "Slovak desktop",
+      "description": "Slovak desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "slovak, desktop",
+      "packages": [
+        "task-slovak-desktop"
+      ]
+    },
+    {
+      "id": "slovak-kde-desktop",
+      "label": "Slovak KDE Plasma desktop",
+      "description": "Slovak KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, slovak-desktop",
+      "packages": [
+        "task-slovak-kde-desktop"
+      ]
+    },
+    {
+      "id": "slovenian",
+      "label": "Slovenian environment",
+      "description": "Slovenian environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-slovenian"
+      ]
+    },
+    {
+      "id": "slovenian-desktop",
+      "label": "Slovenian desktop",
+      "description": "Slovenian desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "slovenian, desktop",
+      "packages": [
+        "task-slovenian-desktop"
+      ]
+    },
+    {
+      "id": "slovenian-kde-desktop",
+      "label": "Slovenian KDE Plasma desktop",
+      "description": "Slovenian KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, slovenian-desktop",
+      "packages": [
+        "task-slovenian-kde-desktop"
+      ]
+    },
+    {
+      "id": "south-african-english-desktop",
+      "label": "South African English desktop",
+      "description": "South African English desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop",
+      "packages": [
+        "task-south-african-english-desktop"
+      ]
+    },
+    {
+      "id": "spanish",
+      "label": "Spanish environment",
+      "description": "Spanish environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-spanish"
+      ]
+    },
+    {
+      "id": "spanish-desktop",
+      "label": "Spanish desktop",
+      "description": "Spanish desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, spanish",
+      "packages": [
+        "task-spanish-desktop"
+      ]
+    },
+    {
+      "id": "spanish-kde-desktop",
+      "label": "Spanish KDE Plasma desktop",
+      "description": "Spanish KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, spanish-desktop",
+      "packages": [
+        "task-spanish-kde-desktop"
+      ]
+    },
+    {
+      "id": "ssh-server",
+      "label": "SSH server",
+      "description": "SSH server",
+      "section": "server",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-ssh-server"
+      ]
+    },
+    {
+      "id": "standard",
+      "label": "standard system utilities",
+      "description": "standard system utilities\nThis task sets up a basic user environment, providing a reasonably\nsmall selection of services and tools usable on the command line.",
+      "section": "user",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "adduser",
+        "apt",
+        "apt-listchanges",
+        "apt-utils",
+        "base-files",
+        "base-passwd",
+        "bash",
+        "bash-completion",
+        "bind9-dnsutils",
+        "bind9-host",
+        "bsdutils",
+        "bzip2",
+        "ca-certificates",
+        "coreutils",
+        "cpio",
+        "cron",
+        "cron-daemon-common",
+        "dash",
+        "dbus",
+        "debconf",
+        "debconf-i18n",
+        "debian-archive-keyring",
+        "debian-faq",
+        "debianutils",
+        "dhcpcd-base",
+        "diffutils",
+        "dmidecode",
+        "doc-debian",
+        "dpkg",
+        "e2fsprogs",
+        "fdisk",
+        "file",
+        "findutils",
+        "gettext-base",
+        "grep",
+        "groff-base",
+        "gzip",
+        "hostname",
+        "ifupdown",
+        "inetutils-telnet",
+        "init",
+        "init-system-helpers",
+        "iproute2",
+        "iputils-ping",
+        "kmod",
+        "krb5-locales",
+        "less",
+        "libc-bin",
+        "libc-l10n",
+        "liblockfile-bin",
+        "libnss-systemd",
+        "libpam-modules",
+        "libpam-modules-bin",
+        "libpam-runtime",
+        "libpam-systemd",
+        "libpam-wtmpdb",
+        "linux-sysctl-defaults",
+        "locales",
+        "login",
+        "login.defs",
+        "logrotate",
+        "lsof",
+        "man-db",
+        "manpages",
+        "manpages-utils",
+        "mawk",
+        "media-types",
+        "mount",
+        "nano",
+        "ncurses-base",
+        "ncurses-bin",
+        "ncurses-term",
+        "netbase",
+        "netcat-traditional",
+        "nftables",
+        "openssh-client",
+        "openssh-common",
+        "passwd",
+        "pciutils",
+        "perl",
+        "perl-base",
+        "procps",
+        "readline-common",
+        "reportbug",
+        "sed",
+        "sensible-utils",
+        "systemd",
+        "systemd-sysv",
+        "systemd-timesyncd",
+        "sysvinit-utils",
+        "tar",
+        "traceroute",
+        "tzdata",
+        "ucf",
+        "udev",
+        "util-linux",
+        "util-linux-extra",
+        "vim-common",
+        "vim-tiny",
+        "wamerican",
+        "wget",
+        "whiptail",
+        "wtmpdb",
+        "xz-utils"
+      ]
+    },
+    {
+      "id": "swedish",
+      "label": "Swedish environment",
+      "description": "Swedish environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-swedish"
+      ]
+    },
+    {
+      "id": "swedish-desktop",
+      "label": "Swedish desktop",
+      "description": "Swedish desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, swedish",
+      "packages": [
+        "task-swedish-desktop"
+      ]
+    },
+    {
+      "id": "swedish-kde-desktop",
+      "label": "Swedish KDE Plasma desktop",
+      "description": "Swedish KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, swedish-desktop",
+      "packages": [
+        "task-swedish-kde-desktop"
+      ]
+    },
+    {
+      "id": "tagalog",
+      "label": "Tagalog environment",
+      "description": "Tagalog environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-tagalog"
+      ]
+    },
+    {
+      "id": "tamil",
+      "label": "Tamil environment",
+      "description": "Tamil environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-tamil"
+      ]
+    },
+    {
+      "id": "tamil-desktop",
+      "label": "Tamil desktop",
+      "description": "Tamil desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop",
+      "packages": [
+        "task-tamil-desktop"
+      ]
+    },
+    {
+      "id": "tamil-gnome-desktop",
+      "label": "Tamil GNOME desktop",
+      "description": "Tamil GNOME desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "gnome-desktop, tamil-desktop",
+      "packages": [
+        "task-tamil-gnome-desktop"
+      ]
+    },
+    {
+      "id": "telugu",
+      "label": "Telugu environment",
+      "description": "Telugu environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-telugu"
+      ]
+    },
+    {
+      "id": "telugu-desktop",
+      "label": "Telugu desktop",
+      "description": "Telugu desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, telugu",
+      "packages": [
+        "task-telugu-desktop"
+      ]
+    },
+    {
+      "id": "telugu-gnome-desktop",
+      "label": "Telugu GNOME desktop environment",
+      "description": "Telugu GNOME desktop environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "gnome-desktop, telugu-desktop",
+      "packages": [
+        "task-telugu-gnome-desktop"
+      ]
+    },
+    {
+      "id": "telugu-kde-desktop",
+      "label": "Telugu KDE Plasma desktop environment",
+      "description": "Telugu KDE Plasma desktop environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, telugu-desktop",
+      "packages": [
+        "task-telugu-kde-desktop"
+      ]
+    },
+    {
+      "id": "thai",
+      "label": "Thai environment",
+      "description": "Thai environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-thai"
+      ]
+    },
+    {
+      "id": "thai-desktop",
+      "label": "Thai desktop",
+      "description": "Thai desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, thai",
+      "packages": [
+        "task-thai-desktop"
+      ]
+    },
+    {
+      "id": "thai-gnome-desktop",
+      "label": "Thai GNOME desktop",
+      "description": "Thai GNOME desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "gnome-desktop, thai-desktop",
+      "packages": [
+        "task-thai-gnome-desktop"
+      ]
+    },
+    {
+      "id": "thai-kde-desktop",
+      "label": "Thai KDE Plasma desktop",
+      "description": "Thai KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, thai-desktop",
+      "packages": [
+        "task-thai-kde-desktop"
+      ]
+    },
+    {
+      "id": "turkish",
+      "label": "Turkish environment",
+      "description": "Turkish environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-turkish"
+      ]
+    },
+    {
+      "id": "turkish-desktop",
+      "label": "Turkish desktop",
+      "description": "Turkish desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, turkish",
+      "packages": [
+        "task-turkish-desktop"
+      ]
+    },
+    {
+      "id": "turkish-kde-desktop",
+      "label": "Turkish KDE Plasma desktop",
+      "description": "Turkish KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, turkish-desktop",
+      "packages": [
+        "task-turkish-kde-desktop"
+      ]
+    },
+    {
+      "id": "ukrainian",
+      "label": "Ukrainian environment",
+      "description": "Ukrainian environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-ukrainian"
+      ]
+    },
+    {
+      "id": "ukrainian-desktop",
+      "label": "Ukrainian desktop",
+      "description": "Ukrainian desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop, ukrainian",
+      "packages": [
+        "task-ukrainian-desktop"
+      ]
+    },
+    {
+      "id": "ukrainian-kde-desktop",
+      "label": "Ukrainian KDE Plasma desktop",
+      "description": "Ukrainian KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, ukrainian-desktop",
+      "packages": [
+        "task-ukrainian-kde-desktop"
+      ]
+    },
+    {
+      "id": "uyghur-desktop",
+      "label": "Uyghur desktop",
+      "description": "Uyghur desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop",
+      "packages": [
+        "task-uyghur-desktop"
+      ]
+    },
+    {
+      "id": "uyghur-kde-desktop",
+      "label": "Uyghur KDE Plasma desktop",
+      "description": "Uyghur KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, uyghur-desktop",
+      "packages": [
+        "task-uyghur-kde-desktop"
+      ]
+    },
+    {
+      "id": "vietnamese",
+      "label": "Vietnamese environment",
+      "description": "Vietnamese environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-vietnamese"
+      ]
+    },
+    {
+      "id": "vietnamese-desktop",
+      "label": "Vietnamese desktop",
+      "description": "Vietnamese desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop",
+      "packages": [
+        "task-vietnamese-desktop"
+      ]
+    },
+    {
+      "id": "vietnamese-kde-desktop",
+      "label": "Vietnamese KDE Plasma desktop",
+      "description": "Vietnamese KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, vietnamese-desktop",
+      "packages": [
+        "task-vietnamese-kde-desktop"
+      ]
+    },
+    {
+      "id": "web-server",
+      "label": "web server",
+      "description": "web server",
+      "section": "server",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-web-server"
+      ]
+    },
+    {
+      "id": "welsh",
+      "label": "Welsh environment",
+      "description": "Welsh environment",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "",
+      "packages": [
+        "task-welsh"
+      ]
+    },
+    {
+      "id": "welsh-desktop",
+      "label": "Welsh desktop",
+      "description": "Welsh desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "welsh, desktop",
+      "packages": [
+        "task-welsh-desktop"
+      ]
+    },
+    {
+      "id": "xfce-desktop",
+      "label": "Xfce",
+      "description": "Xfce",
+      "section": "user",
+      "parents": [
+        "desktop"
+      ],
+      "enhances": "",
+      "packages": [
+        "task-xfce-desktop"
+      ]
+    },
+    {
+      "id": "xhosa-desktop",
+      "label": "Xhosa desktop",
+      "description": "Xhosa desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "desktop",
+      "packages": [
+        "task-xhosa-desktop"
+      ]
+    },
+    {
+      "id": "xhosa-kde-desktop",
+      "label": "Xhosa KDE Plasma desktop",
+      "description": "Xhosa KDE Plasma desktop",
+      "section": "l10n",
+      "parents": [],
+      "enhances": "kde-desktop, xhosa-desktop",
+      "packages": [
+        "task-xhosa-kde-desktop"
+      ]
+    }
+  ],
+  "environments": [],
+  "schema": "aux-software-catalog-v1",
+  "distribution": "debian",
+  "release": "testing",
+  "architecture": "amd64",
+  "retrieved_at": "2026-11-09",
+  "source_url": "https://deb.debian.org/debian/pool/main/t/tasksel/tasksel-data_3.91_all.deb",
+  "source_sha256": "f75c88c8469a3ae5ecab006ec9252425ea4aa26d77d1d1a192d61ecf4de3aa5c",
+  "tasksel_version": "3.91",
+  "package_index_url": "https://deb.debian.org/debian/dists/testing/main/binary-amd64/Packages.xz",
+  "package_index_sha256": "fd5279275deed1456612cf2c7a3230da7111bc2711c94bf2efbab6a438d94e54",
+  "source_package_sha256": "b77ac8d97acc201f8054af55a8a243ce680ad4f9e213fd94c24314a89550ad03",
+  "digest_sha256": "ab6aea2edd12b49d306711a5b2e6f629489ebaf330c1cbcc2eaf722cdf21158d"
+}

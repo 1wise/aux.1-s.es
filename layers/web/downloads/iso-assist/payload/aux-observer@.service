@@ -1,0 +1,23 @@
+# Timestamp: 2026-10-17 | Version: 6.3.0-dev.1
+# Author & Credits: https://www.alawise.es/1-s
+[Unit]
+Description=TECH read-only observer on tty%i
+ConditionKernelCommandLine=aux.assist
+After=tech-work.service
+Conflicts=getty@tty%i.service
+
+[Service]
+ExecStart=/usr/bin/python3 /usr/share/aux-assist/assist.py --observe %i
+StandardInput=tty
+StandardOutput=tty
+StandardError=journal
+TTYPath=/dev/tty%i
+TTYReset=yes
+TTYVHangup=yes
+Environment=TERM=linux
+UMask=0077
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,23 @@
+{
+  "checked_at": "2026-11-22T16:00:33.936665+00:00",
+  "results": [
+    {
+      "id": "aux-debian-netboot-amd64",
+      "status": "resolved",
+      "release": "13.8",
+      "approved": true
+    },
+    {
+      "id": "aux-fedora-netboot-x86_64",
+      "status": "resolved",
+      "release": "45",
+      "approved": true
+    },
+    {
+      "id": "aux-alpine-netboot-x86_64",
+      "status": "resolved",
+      "release": "3.24.4",
+      "approved": true
+    }
+  ]
+}

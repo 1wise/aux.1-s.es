@@ -1,0 +1,91 @@
+<!doctype html>
+<!-- Timestamp: 2026-11-27 | Version: 8.0.1-beta.8 | Author & Credits: https://www.alawise.es/1-s -->
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>NixOS 26.05 (Stable) | PXE_</title>
+<style>
+@font-face { font-family: "PXE Bits"; src: url("../assets/pxe-bits.ttf") format("truetype"); font-display: swap; unicode-range: U+0045,U+0050,U+0058,U+005F; }
+body { color: #f8fafc; background: #0f172a; max-width: 100ch; margin: 2rem auto; padding: 0 1rem; font: 15px/1.5 ui-monospace, SFMono-Regular, Consolas, monospace; }
+a { color: #34d399; text-decoration: underline; }
+a:hover { color: #6ee7b7; background: #1e293b; }
+h1, h2, h3, h4 { color: #38bdf8; font-weight: 600; }
+h1 { border-bottom: 2px solid #38bdf8; padding-bottom: .6rem; }
+p { color: #cbd5e1; }
+li { padding: .35rem 0; overflow-wrap: anywhere; }
+pre { color: #f8fafc; background: #1e293b; border: 1px solid #475569; padding: 1rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+hr { border: 0; border-top: 1px solid #334155; }
+details { margin: .65rem 0; }
+summary { color: #38bdf8; cursor: pointer; padding: .35rem 0; font-weight: 600; overflow-wrap: anywhere; }
+summary:hover { color: #7dd3fc; text-decoration: underline; }
+summary h2, summary h3, summary h4 { display: inline; font-size: 1em; }
+.menu-branch { border-left: 1px dashed #475569; margin: .35rem 0 .8rem .5rem; padding-left: 1.2rem; }
+.menu-branch ul { padding-left: 1.3rem; }
+.mirror-panel { border: 1px dashed #fbbf24; background: #1e293b; padding: 1rem; margin: 1.5rem 0; }
+.mirror-panel > strong { color: #fbbf24; }
+.iso-link { color: #fbbf24; font-weight: 600; }
+.dir-link { color: #c4b5fd; font-weight: 600; }
+.bin-link { color: #f9a8d4; }
+.badge { color: #94a3b8; font-size: .9em; }
+.pxe-wordmark { color: #57f578; background: #06120a; font-family: "PXE Bits", ui-monospace, monospace; font-weight: normal; letter-spacing: .02em; padding: .12em .2em; white-space: nowrap; }
+.tec-wordmark { color: #a5b4fc; font-family: ui-monospace, "Liberation Mono", Consolas, monospace; font-weight: 600; letter-spacing: -.04em; }
+.pxe-cursor { animation: pxe-blink 1.2s steps(1, end) infinite; }
+@keyframes pxe-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .pxe-cursor { animation: none; } }
+h1 .pxe-wordmark { display: block; width: fit-content; font-size: 2.5rem; line-height: 1.2; margin-bottom: .35rem; }
+table { width: 100%; border-collapse: collapse; text-align: left; margin: 1rem 0; }
+th, td { padding: .65rem; border-bottom: 1px solid #334155; vertical-align: top; overflow-wrap: anywhere; }
+th { color: #7dd3fc; }
+.view-nav { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1.2rem; margin: 1rem 0; }
+.view-nav a { display: inline-block; }
+.catalog-tree { border-top: 1px solid #334155; border-bottom: 1px solid #334155; margin: 1.5rem 0; padding: .5rem 0; }
+.catalog-tree ul { list-style: none; padding-left: 1.5rem; }
+.catalog-tree > ul { padding-left: 0; }
+.catalog-tree li { padding: .15rem 0; }
+.view-nav .aux-switch { color: #f8fafc; }
+.aux-wordmark { font: 800 1.8rem/1.2 "Helvetica Neue", Arial, sans-serif; letter-spacing: -.08em; }
+.aux-wordmark span, .aux-wordmark i { color: #f18a5b; }
+.aux-wordmark i { font-style: normal; font-weight: 400; margin-left: .25em; }
+a:focus-visible, summary:focus-visible { outline: 2px solid #38bdf8; outline-offset: 4px; }
+.project-footer { display:flex;align-items:center;gap:24px;flex-wrap:wrap; }
+.featured-art { display:block;flex:0 0 auto;width:144px;max-width:100%;margin:0; }
+.featured-art img { display:block;width:100%;height:auto;object-fit:contain;border-radius:8px; }
+.featured-art figcaption { margin-top:8px;font-size:12px;line-height:1.5; }
+.featured-download { display:block; }
+.featured-size { display:block;color:#94a3b8;font-size:11px; }
+@media(max-width:680px) { .featured-art { width:112px; } }
+</style><link rel="canonical" href="https://aux.1-s.es/files/origin_acb9493092071190dd6a.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AUX Ecosystem (1-s.es / alawise.es)">
+<meta property="og:title" content="NixOS 26.05 (Stable) | PXE_">
+<meta property="og:description" content="Perfiles Debian Testing, Fedora Rawhide y Alpine Linux, catálogo netboot y herramientas de instalación, recuperación y administración.">
+<meta property="og:url" content="https://aux.1-s.es/files/origin_acb9493092071190dd6a.html">
+<meta property="og:image" content="https://aux.1-s.es/assets/aux-featured.webp?v=8.0.1-beta.8">
+<meta property="og:image:type" content="image/webp">
+<meta property="og:image:width" content="1254">
+<meta property="og:image:height" content="1254">
+<meta property="og:image:alt" content="Gnomo junto a GNU y Tux en una bahía alpina. Blue Hibou lleva el escudo del búho y Red Robin el del petirrojo.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="NixOS 26.05 (Stable) | PXE_">
+<meta name="twitter:description" content="Perfiles Debian Testing, Fedora Rawhide y Alpine Linux, catálogo netboot y herramientas de instalación, recuperación y administración.">
+<meta name="twitter:image" content="https://aux.1-s.es/assets/aux-featured.webp?v=8.0.1-beta.8">
+<meta name="twitter:image:alt" content="Gnomo junto a GNU y Tux en una bahía alpina. Blue Hibou lleva el escudo del búho y Red Robin el del petirrojo.">
+<meta name="author" content="1wise / alawise.es">
+<meta name="generator" content="AUX Suite 8.0.1-beta.8">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="googlebot" content="index, follow, notranslate, noimageindex">
+<meta name="rating" content="safe for kids">
+<meta name="copyright" content="CC BY-NC-SA 4.0 (contenidos y perfiles); GPL-3.0-or-later (infraestructura propia)">
+<meta name="description" content="Perfiles Debian Testing, Fedora Rawhide y Alpine Linux, catálogo netboot y herramientas de instalación, recuperación y administración.">
+<meta name="keywords" content="aux, pxe, tec, bare-metal, fedora, debian, alpine, apk, openrc, sysadmin, infraestructura, redes, automatización, chroot, debootstrap, dnf, xorriso, alawise, 1wise">
+<meta name="application-name" content="AUX Platform Core">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:site" content="@1wise_es">
+<meta name="twitter:creator" content="@1wise_es">
+<meta name="fediverse:creator" content="@1wise@mastodon.social">
+<meta property="og:locale:alternate" content="ca_AD">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:image:secure_url" content="https://aux.1-s.es/assets/aux-featured.webp?v=8.0.1-beta.8">
+<script type="application/ld+json" data-aux-seo>{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"AUX Suite","softwareVersion":"8.0.1-beta.8","operatingSystem":"Linux (Debian Testing, Fedora Rawhide, Alpine Linux)","applicationCategory":"SystemAdministrationApplication","license":["https://creativecommons.org/licenses/by-nc-sa/4.0/","https://www.gnu.org/licenses/gpl-3.0.html"],"author":{"@type":"Organization","name":"Alawise","url":"https://www.alawise.es/1-s"},"publisher":{"@type":"Organization","name":"1wise Cooperative Holding","url":"https://www.1wise.es"},"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}},{"@type":"WebSite","url":"https://aux.1-s.es/","name":"AUX Platform","potentialAction":{"@type":"SearchAction","target":"https://aux.1-s.es/catalogue.html?q={search_term_string}","query-input":"required name=search_term_string"}}]}</script>
+</head>
+<body>
+<nav class="view-nav" aria-label="Portal selection"><a class="aux-switch" href="https://aux.1-s.es/"><span class="aux-wordmark"><span>./</span>aux</span> Volver a ./aux</a><a href="http://pxe.1-s.es/files/origin_acb9493092071190dd6a.html"><span class="pxe-wordmark">PXE&gt;<span class="pxe-cursor">_</span></span> Terminal / Links</a><a href="https://tec.1-s.es/"><span class="tec-wordmark">tec.*</span> Técnicos / asistencia</a><a href="../index-pxe.html">ISO y descargas</a><a href="../pxe/commands.html">Guías de comandos</a><a href="https://tec.1-s.es/forum.php?view=pxe">Foro de recetas</a></nav><p><a href="../index.html">Visual catalog</a> | <a href="../cli-all.html">Text catalog</a></p><h1>NixOS 26.05 (Stable)</h1><p>Origin only · x86_64 · 26.05</p><p><a href="https://channels.nixos.org/nixos-26.05">Open provider</a></p><p>Download reference. A network boot recipe still needs preparation.</p><pre>wget -c -O nixos-26.05 -- https://channels.nixos.org/nixos-26.05</pre>
+<hr><div class="project-footer"><figure class="featured-art"><a href="../assets/aux-featured.webp?v=8.0.1-beta.8" target="_blank" rel="noopener" aria-label="Abrir imagen destacada a resolución completa"><img src="../assets/aux-featured.webp?v=8.0.1-beta.8" width="144" height="144" loading="lazy" decoding="async" alt="Gnomo junto a GNU y Tux en una bahía alpina. Blue Hibou lleva el escudo del búho y Red Robin el del petirrojo."></a><figcaption><a class="featured-download" href="../assets/aux-featured.webp?v=8.0.1-beta.8" download="aux-featured.webp">Descargar WebP original<span class="featured-size">1254 × 1254 píxeles</span></a></figcaption></figure><footer>CopyLeft 03/2026 · Créditos, Concepto y arquitectura en <a href="https://www.alawise.es/1-s">alawise.es/1-s</a><br>Contenidos publicados bajo licencia <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons CC BY-NC-SA 4.0</a>.</footer></div>
+</body></html>
