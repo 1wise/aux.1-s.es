@@ -1,0 +1,74 @@
+/* Timestamp: 2026-11-27 | Version: 8.0.1-beta.7
+ * Author & Credits: https://www.alawise.es/1-s */
+@font-face {
+  font-family: "PXE Bits";
+  src: url("pxe-bits.ttf") format("truetype");
+  font-display: swap;
+  unicode-range: U+0045,U+0050,U+0058,U+005F;
+}
+.aux-navigation { --aux-nav-width: 230px; margin: 0; padding: 0; max-width: none; }
+.aux-navigation > .workspace { margin-left: var(--aux-nav-width); min-width: 0; }
+.aux-navigation > .aux-page-content { margin-left: var(--aux-nav-width); min-width: 0; padding: 28px 32px; }
+.recover-body > .aux-page-content, .aux-navigation:has(.app-header) > .aux-page-content { padding: 0; }
+.aux-navigation .sidebar, .aux-navigation .sidebar * { box-sizing: border-box; }
+.aux-navigation .sidebar {
+  position: fixed; inset: 0 auto 0 0; z-index: 20;
+  width: var(--aux-nav-width); height: 100vh; height: 100dvh;
+  display: flex; flex-direction: column; gap: 0;
+  padding: 30px 21px 20px; overflow: auto; overscroll-behavior: contain;
+  border: 0; border-right: 1px solid #e2e3db;
+  background: #f0f0eb; color: #262922;
+  font: 14px/1.5 Arial, Helvetica, sans-serif; text-align: left;
+}
+.aux-navigation .sidebar a { color: inherit; text-decoration: none; background: transparent; }
+.aux-navigation .sidebar a:focus-visible { outline: 2px solid #de612c; outline-offset: 3px; }
+.aux-navigation .sidebar .brand { display: block; padding-left: 7px; width: fit-content; font: 800 59px/1 Arial, Helvetica, sans-serif; letter-spacing: -5px; }
+.aux-navigation .sidebar .brand span { color: #de612c; }
+.aux-navigation .sidebar .portal-switch { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 10px; width: fit-content; padding-left: 8px; margin-top: 10px; color: #4338ca; }
+.aux-navigation .sidebar .pxe-wordmark { font: 29px/1.15 "PXE Bits", ui-monospace, monospace; color: #57f578; background: #06120a; letter-spacing: .02em; padding: .12em .2em; white-space: nowrap; }
+.aux-navigation .sidebar .tec-wordmark { font: 600 29px/1.15 ui-monospace, "Liberation Mono", Consolas, monospace; letter-spacing: -1px; color: #4338ca; }
+.aux-navigation .sidebar .portal-switch-caption { font: 8px/1.5 ui-monospace, monospace; letter-spacing: .06em; }
+.aux-navigation .sidebar .brand-caption { position: static; font-size: 8px; font-weight: 600; letter-spacing: 1.25px; margin: 12px 0 24px 9px; color: #77796f; }
+.aux-navigation .sidebar .nav-label { display: block; font: 9px ui-monospace, monospace; letter-spacing: 1.4px; color: #77796f; padding-left: 10px; margin-bottom: 14px; }
+.aux-navigation .sidebar .side-nav { display: grid; gap: 5px; margin: 0; overflow: visible; }
+.aux-navigation .sidebar .nav-group { margin: 10px 0; padding: 0; border: 0; }
+.aux-navigation .sidebar .nav-group h2 { color: #5c6650; font: 9px/1.5 ui-monospace, monospace; letter-spacing: 1px; padding: 8px 10px; margin: 0; border: 0; }
+.aux-navigation .sidebar .side-nav a { display: block; padding: 8px 10px; border-radius: 5px; font-size: 11px; font-weight: 500; color: #62675d; white-space: normal; }
+.aux-navigation .sidebar .side-nav a:hover { color: #262922; background: #e8e9e1; }
+.aux-navigation .sidebar .side-nav a[aria-current="page"] { color: #262922; background: #e4e6dc; box-shadow: inset 3px 0 #de612c; }
+.aux-navigation .sidebar .sidebar-note { padding: 22px 10px 0; color: #868a7e; font-size: 10px; }
+.aux-navigation .sidebar .sidebar-note p { color: #8a8f80; font-size: 20px; line-height: 1.45; letter-spacing: -.5px; margin: 12px 0 0; }
+.aux-navigation .sidebar .tiny-square { display: inline-block; width: 6px; height: 6px; background: #de612c; margin-right: 4px; }
+.aux-navigation .sidebar .sidebar-footer { display: block; margin-top: auto; flex-shrink: 0; }
+.aux-navigation .sidebar .repo-link { display: flex; gap: 8px; align-items: center; font-size: 11px; color: #676c60; padding: 14px 9px; border-bottom: 1px solid #e2e3db; }
+.aux-navigation .sidebar .repo-link svg { width: 16px; height: 16px; fill: currentColor; stroke: none; }
+.aux-navigation .sidebar .repo-link > span { margin-left: auto; }
+.aux-navigation .sidebar .project-credit { display: flex; gap: 9px; align-items: center; margin: 19px 4px 0; font-size: 11px; }
+.aux-navigation .sidebar .project-credit small { display: block; font-size: 8px; color: #77796f; margin-top: 2px; }
+.aux-navigation .sidebar .sidebar-featured { margin: 18px 4px 0; }
+.aux-navigation .sidebar .featured-art { display: block; width: 144px; max-width: 100%; margin: 0; }
+.aux-navigation .sidebar .featured-art img { display: block; width: 100%; height: auto; border-radius: 8px; }
+.aux-navigation .sidebar .featured-art figcaption { margin-top: 8px; font-size: 10px; line-height: 1.5; }
+.aux-navigation .sidebar .featured-download { display: block; text-decoration: underline; text-underline-offset: 3px; }
+.aux-navigation .sidebar .featured-size { display: block; color: #77796f; font-size: 9px; }
+@media (max-width: 960px) {
+  .aux-navigation { --aux-nav-width: 200px; }
+  .aux-navigation .sidebar { padding-left: 13px; padding-right: 13px; }
+  .aux-navigation .sidebar .sidebar-note { display: none; }
+}
+/* A compact sticky menu leaves reading room while navigation stays available. */
+@media (max-width: 680px) {
+  html:has(.aux-navigation) { scroll-padding-top: 290px; }
+  .aux-navigation > .workspace, .aux-navigation > .aux-page-content { margin-left: 0; }
+  .aux-navigation > .aux-page-content { padding: 20px; }
+  .recover-body > .aux-page-content, .aux-navigation:has(.app-header) > .aux-page-content { padding: 0; }
+  .aux-navigation .sidebar { position: sticky; inset: 0 0 auto; width: 100%; height: auto; max-height: 42vh; max-height: 42dvh; padding: 12px 16px 8px; display: grid; grid-template-columns: auto auto 1fr; gap: 8px 16px; border-right: 0; border-bottom: 1px solid #e2e3db; overflow: hidden; }
+  .aux-navigation .sidebar .brand { font-size: 32px; letter-spacing: -3px; padding: 0; }
+  .aux-navigation .sidebar .portal-switch { margin: 0; padding: 0; align-items: center; }
+  .aux-navigation .sidebar .pxe-wordmark, .aux-navigation .sidebar .tec-wordmark { font-size: 22px; }
+  .aux-navigation .sidebar .portal-switch-caption, .aux-navigation .sidebar .brand-caption, .aux-navigation .sidebar .nav-label, .aux-navigation .sidebar .sidebar-footer, .aux-navigation .sidebar .sidebar-note { display: none; }
+  .aux-navigation .sidebar .side-nav { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, minmax(165px, 1fr)); gap: 12px; max-height: 27vh; max-height: 27dvh; overflow: auto; overscroll-behavior: contain; }
+  .aux-navigation .sidebar .nav-group { margin: 0; }
+  .aux-navigation .sidebar .nav-group h2 { padding: 4px 7px; font-size: 8px; }
+  .aux-navigation .sidebar .side-nav a { padding: 6px 7px; font-size: 10px; }
+}

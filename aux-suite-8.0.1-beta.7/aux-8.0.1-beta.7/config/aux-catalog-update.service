@@ -1,0 +1,20 @@
+# Timestamp: 2026-11-27 | Version: 8.0.1-beta.7
+# Author & Credits: https://www.alawise.es/1-s
+[Unit]
+Description=Refresh the selected AUX catalogue
+After=network-online.target
+Wants=network-online.target
+ConditionPathExists=/etc/aux/fast-boot.json
+
+[Service]
+Type=oneshot
+User=aux-catalog
+Group=aux-catalog
+ExecStart=/usr/local/bin/aux catalog refresh --config /etc/aux/fast-boot.json --apply --commit
+CacheDirectory=aux-catalog
+ReadWritePaths=/srv/aux/catalog
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ExecStart=/usr/local/bin/aux catalog audit --config /etc/aux/fast-boot.json --output /srv/aux/catalog/catalog.audit.json --apply

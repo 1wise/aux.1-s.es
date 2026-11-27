@@ -1,0 +1,29 @@
+# Timestamp: 2026-10-17 | Version: 6.3.0-dev.1
+# Author & Credits: https://www.alawise.es/1-s
+[Unit]
+Description=AUX local proposal broker (no remote approval)
+After=tech-work.service
+Requires=tech-work.service
+
+[Service]
+Type=simple
+User=root
+Group=aux-ai
+ExecStart=/usr/bin/python3 /usr/share/aux-assist/aux_exec.py serve
+RuntimeDirectory=aux-exec
+RuntimeDirectoryMode=0750
+RuntimeDirectoryPreserve=yes
+Environment=PYTHONDONTWRITEBYTECODE=1
+UMask=0077
+LimitCORE=0
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ReadWritePaths=/run/aux-exec
+CapabilityBoundingSet=CAP_CHOWN
+# Only the root approval console performs actions; this daemon only stores proposals.
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,479 @@
+{
+  "schema": "aux-software-catalog-v1",
+  "distribution": "alpine",
+  "release": "edge",
+  "architecture": "x86_64",
+  "retrieved_at": "2026-11-23",
+  "source_url": "https://dl-cdn.alpinelinux.org/alpine/edge/",
+  "source_kind": "aux-role-collections",
+  "source_indices": {
+    "main": {
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/main/x86_64/APKINDEX.tar.gz",
+      "sha256": "aafa1cc0e3e2c77c01716f791f0603facc32e4a09d454f10fa4f2de39c446e8d"
+    },
+    "community": {
+      "url": "https://dl-cdn.alpinelinux.org/alpine/edge/community/x86_64/APKINDEX.tar.gz",
+      "sha256": "ca32261c046d4cb17d02449808058d8d0ab014d5bf403e9fb78e7b5bf4131969"
+    }
+  },
+  "signature_check": "not-run-on-builder; apk verifies repository signatures at installation",
+  "groups": [
+    {
+      "id": "base",
+      "label": "Base, kernel y firmware",
+      "description": "Base, kernel y firmware · colección AUX de paquetes apk",
+      "visible": true,
+      "parents": [],
+      "packages": [
+        "alpine-base",
+        "linux-lts",
+        "linux-firmware-none",
+        "openrc",
+        "bash",
+        "sudo",
+        "python3",
+        "py3-aiohttp",
+        "py3-yaml",
+        "tmux",
+        "openssh-client-default",
+        "nano",
+        "less",
+        "curl",
+        "rsync",
+        "chrony",
+        "gnupg"
+      ]
+    },
+    {
+      "id": "desktop",
+      "label": "Escritorio XFCE",
+      "description": "Escritorio XFCE · colección AUX de paquetes apk",
+      "visible": true,
+      "parents": [],
+      "packages": [
+        "xfce4",
+        "xfce4-terminal",
+        "xorg-server",
+        "xinit",
+        "dbus",
+        "elogind",
+        "polkit",
+        "networkmanager"
+      ]
+    },
+    {
+      "id": "aux-assist",
+      "label": "aux-assist · Cliente de asistencia",
+      "description": "aux-assist · Cliente de asistencia · colección AUX de paquetes apk",
+      "visible": true,
+      "parents": [],
+      "packages": [
+        "py3-aiohttp",
+        "tmux",
+        "openssh",
+        "kbd",
+        "procps-ng",
+        "polkit"
+      ]
+    },
+    {
+      "id": "disks",
+      "label": "Discos y recuperación",
+      "description": "Discos y recuperación · colección AUX de paquetes apk",
+      "visible": true,
+      "parents": [],
+      "packages": [
+        "util-linux",
+        "parted",
+        "gparted",
+        "gptfdisk",
+        "cryptsetup",
+        "lvm2",
+        "mdadm",
+        "btrfs-progs",
+        "xfsprogs",
+        "e2fsprogs",
+        "dosfstools",
+        "exfatprogs",
+        "ntfs-3g",
+        "smartmontools",
+        "nvme-cli",
+        "ddrescue",
+        "testdisk"
+      ]
+    },
+    {
+      "id": "forensics",
+      "label": "Análisis forense",
+      "description": "Análisis forense · colección AUX de paquetes apk",
+      "visible": true,
+      "parents": [],
+      "packages": [
+        "sleuthkit",
+        "file",
+        "strace",
+        "lsof"
+      ]
+    },
+    {
+      "id": "network",
+      "label": "Red y diagnóstico",
+      "description": "Red y diagnóstico · colección AUX de paquetes apk",
+      "visible": true,
+      "parents": [],
+      "packages": [
+        "iproute2",
+        "iputils",
+        "bind-tools",
+        "ethtool",
+        "tcpdump",
+        "nmap",
+        "iperf3"
+      ]
+    },
+    {
+      "id": "admin",
+      "label": "Administración y SSH",
+      "description": "Administración y SSH · colección AUX de paquetes apk",
+      "visible": true,
+      "parents": [],
+      "packages": [
+        "bash-completion",
+        "git",
+        "pciutils",
+        "usbutils",
+        "htop"
+      ]
+    },
+    {
+      "id": "build",
+      "label": "Construcción de medios",
+      "description": "Construcción de medios · colección AUX de paquetes apk",
+      "visible": true,
+      "parents": [],
+      "packages": [
+        "alpine-sdk",
+        "xorriso",
+        "squashfs-tools",
+        "mtools",
+        "unzip",
+        "dialog",
+        "libqrencode-tools",
+        "py3-pip"
+      ]
+    },
+    {
+      "id": "kernel-modeler",
+      "label": "Kernel Modeler · configuración, compilación y pruebas",
+      "description": "Kernel Modeler · configuración, compilación y pruebas · colección AUX de paquetes apk",
+      "visible": true,
+      "parents": [],
+      "packages": [
+        "file",
+        "build-base",
+        "bash",
+        "bc",
+        "bison",
+        "flex",
+        "ncurses-dev",
+        "openssl-dev",
+        "elfutils-dev",
+        "pahole",
+        "perl",
+        "python3",
+        "cpio",
+        "tar",
+        "xz",
+        "zstd",
+        "lz4",
+        "git",
+        "patch",
+        "diffutils",
+        "findutils",
+        "pkgconf",
+        "kmod",
+        "dtc",
+        "mkinitfs",
+        "openssl",
+        "gnupg",
+        "qemu-system-x86_64",
+        "ovmf",
+        "sbsigntool",
+        "mokutil"
+      ]
+    }
+  ],
+  "environments": [],
+  "package_candidates": {
+    "alpine-base": {
+      "version": "3.25.0_alpha20260805-r0",
+      "repository": "main"
+    },
+    "alpine-sdk": {
+      "version": "1.1-r1",
+      "repository": "main"
+    },
+    "bash": {
+      "version": "5.3.9-r2",
+      "repository": "main"
+    },
+    "bash-completion": {
+      "version": "2.18.0-r0",
+      "repository": "main"
+    },
+    "bind-tools": {
+      "version": "9.20.30-r1",
+      "repository": "main"
+    },
+    "btrfs-progs": {
+      "version": "6.17.1-r1",
+      "repository": "main"
+    },
+    "chrony": {
+      "version": "4.9-r0",
+      "repository": "main"
+    },
+    "cryptsetup": {
+      "version": "2.8.8-r0",
+      "repository": "main"
+    },
+    "curl": {
+      "version": "8.23.0-r0",
+      "repository": "main"
+    },
+    "dbus": {
+      "version": "1.16.4-r0",
+      "repository": "main"
+    },
+    "ddrescue": {
+      "version": "1.30-r0",
+      "repository": "community"
+    },
+    "dialog": {
+      "version": "1.3.20260107-r1",
+      "repository": "main"
+    },
+    "dosfstools": {
+      "version": "4.2-r2",
+      "repository": "main"
+    },
+    "e2fsprogs": {
+      "version": "1.47.4-r0",
+      "repository": "main"
+    },
+    "elogind": {
+      "version": "255.24-r2",
+      "repository": "community"
+    },
+    "ethtool": {
+      "version": "7.2-r0",
+      "repository": "main"
+    },
+    "exfatprogs": {
+      "version": "1.4.4-r0",
+      "repository": "community"
+    },
+    "file": {
+      "version": "5.48-r0",
+      "repository": "main"
+    },
+    "git": {
+      "version": "2.56.1-r0",
+      "repository": "main"
+    },
+    "gparted": {
+      "version": "1.8.1-r0",
+      "repository": "community"
+    },
+    "gptfdisk": {
+      "version": "1.0.10-r1",
+      "repository": "main"
+    },
+    "htop": {
+      "version": "3.5.3-r0",
+      "repository": "main"
+    },
+    "iperf3": {
+      "version": "3.22-r0",
+      "repository": "main"
+    },
+    "iproute2": {
+      "version": "7.3.0-r0",
+      "repository": "main"
+    },
+    "iputils": {
+      "version": "20250605-r2",
+      "repository": "main"
+    },
+    "kbd": {
+      "version": "2.10.0-r0",
+      "repository": "main"
+    },
+    "less": {
+      "version": "710-r0",
+      "repository": "main"
+    },
+    "libqrencode-tools": {
+      "version": "4.1.1-r3",
+      "repository": "community"
+    },
+    "linux-firmware-none": {
+      "version": "20261019-r0",
+      "repository": "main"
+    },
+    "linux-lts": {
+      "version": "7.3.4-r0",
+      "repository": "main"
+    },
+    "lsof": {
+      "version": "4.99.7-r0",
+      "repository": "main"
+    },
+    "lvm2": {
+      "version": "2.03.44-r0",
+      "repository": "main"
+    },
+    "mdadm": {
+      "version": "4.6-r0",
+      "repository": "main"
+    },
+    "mtools": {
+      "version": "4.0.50-r0",
+      "repository": "main"
+    },
+    "nano": {
+      "version": "9.3-r0",
+      "repository": "main"
+    },
+    "networkmanager": {
+      "version": "1.58.1-r1",
+      "repository": "community"
+    },
+    "nmap": {
+      "version": "7.992-r0",
+      "repository": "main"
+    },
+    "ntfs-3g": {
+      "version": "2026.9.18-r0",
+      "repository": "main"
+    },
+    "nvme-cli": {
+      "version": "2.16-r1",
+      "repository": "main"
+    },
+    "openrc": {
+      "version": "0.63.2-r1",
+      "repository": "main"
+    },
+    "openssh": {
+      "version": "10.6_p2-r0",
+      "repository": "main"
+    },
+    "parted": {
+      "version": "3.8-r0",
+      "repository": "main"
+    },
+    "pciutils": {
+      "version": "3.15.0-r0",
+      "repository": "main"
+    },
+    "polkit": {
+      "version": "128-r0",
+      "repository": "community"
+    },
+    "procps-ng": {
+      "version": "4.0.7-r2",
+      "repository": "main"
+    },
+    "py3-aiohttp": {
+      "version": "3.14.3-r0",
+      "repository": "community"
+    },
+    "py3-pip": {
+      "version": "26.2.1-r0",
+      "repository": "main"
+    },
+    "py3-yaml": {
+      "version": "6.0.3-r2",
+      "repository": "main"
+    },
+    "python3": {
+      "version": "3.14.10-r1",
+      "repository": "main"
+    },
+    "rsync": {
+      "version": "3.5.2-r1",
+      "repository": "main"
+    },
+    "sleuthkit": {
+      "version": "4.15.0-r0",
+      "repository": "community"
+    },
+    "smartmontools": {
+      "version": "7.5-r0",
+      "repository": "main"
+    },
+    "squashfs-tools": {
+      "version": "4.7.5-r0",
+      "repository": "main"
+    },
+    "strace": {
+      "version": "7.2-r0",
+      "repository": "main"
+    },
+    "sudo": {
+      "version": "1.9.17_p2-r4",
+      "repository": "community"
+    },
+    "tcpdump": {
+      "version": "4.99.7-r0",
+      "repository": "main"
+    },
+    "testdisk": {
+      "version": "7.2-r3",
+      "repository": "main"
+    },
+    "tmux": {
+      "version": "3.8-r0",
+      "repository": "main"
+    },
+    "unzip": {
+      "version": "6.0-r16",
+      "repository": "main"
+    },
+    "usbutils": {
+      "version": "020-r0",
+      "repository": "main"
+    },
+    "util-linux": {
+      "version": "2.42.4-r3",
+      "repository": "main"
+    },
+    "xfce4": {
+      "version": "4.20-r0",
+      "repository": "community"
+    },
+    "xfce4-terminal": {
+      "version": "1.2.0-r0",
+      "repository": "community"
+    },
+    "xfsprogs": {
+      "version": "7.2.1-r0",
+      "repository": "main"
+    },
+    "xinit": {
+      "version": "1.4.4-r0",
+      "repository": "community"
+    },
+    "xorg-server": {
+      "version": "21.1.26-r0",
+      "repository": "community"
+    },
+    "xorriso": {
+      "version": "1.5.8-r0",
+      "repository": "main"
+    }
+  },
+  "digest_sha256": "6fa8767477fb43774e5f317267ae9fd379b82148155e09d82f41f44dc3e52f86",
+  "package_notes": "Base uses the SSH client; SSH server is selected explicitly through remote assistance or native tasks. openssh-client-default verified in the official Alpine edge package catalogue on 2026-11-23."
+}

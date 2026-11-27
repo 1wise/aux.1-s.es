@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AUX platform metadata",
+  "type": "object",
+  "required": [
+    "version",
+    "architecture",
+    "project",
+    "author",
+    "seo_meta_tags",
+    "structured_data_json_ld"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "architecture": {
+      "type": "object",
+      "required": [
+        "target_os",
+        "core_binaries",
+        "roles"
+      ],
+      "properties": {
+        "target_os": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "core_binaries": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "project": {
+      "type": "object",
+      "required": [
+        "name",
+        "url",
+        "repository",
+        "license"
+      ]
+    },
+    "author": {
+      "type": "object"
+    },
+    "seo_meta_tags": {
+      "type": "object",
+      "required": [
+        "standard",
+        "open_graph",
+        "twitter_card"
+      ],
+      "properties": {
+        "open_graph": {
+          "type": "object",
+          "properties": {
+            "og:locale:alternate": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "structured_data_json_ld": {
+      "type": "object",
+      "required": [
+        "@context",
+        "@graph"
+      ],
+      "properties": {
+        "@graph": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  }
+}

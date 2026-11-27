@@ -1,0 +1,10 @@
+#!/usr/bin/env python3
+# Timestamp: 2026-11-27 | Version: 8.0.1-beta.7
+# Author & Credits: https://www.alawise.es/1-s
+"""Observe AUX resource status without downloading or deploying."""
+from auxlib.checkstatus import main
+if __name__ == '__main__':
+    try:
+        raise SystemExit(main())
+    except (ValueError, OSError) as exc:
+        raise SystemExit('Checkstatus: '+str(exc))
